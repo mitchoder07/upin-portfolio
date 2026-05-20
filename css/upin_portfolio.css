@@ -819,7 +819,7 @@ h3.my-profession {
 .projects .row-container .box {
   overflow: hidden;
   position: relative;
-  height: 26rem;
+  height: 20rem;
   border-radius: 0.5rem;
   background-color: var(--bg-black-50);
 }
@@ -849,7 +849,7 @@ h3.my-profession {
 }
 
 .projects .row-container .box:hover h3 {
-  top: 3rem;
+  top: 1rem;
 }
 
 .projects .row-container .box .btn {
@@ -858,10 +858,11 @@ h3.my-profession {
   left: 50%;
   transform: translateX(-50%);
   margin-top: auto;
+  font-size: 1rem;
 }
 
 .projects .row-container .box .btn:hover {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .projects .row-container .box:hover .btn {
