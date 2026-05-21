@@ -29,9 +29,6 @@
             <div class="logo">
                 <a href="#"><span>U</span>pi<span>n</span></a>
             </div>
-            <div class="nav-toggler">
-                <span></span>
-            </div>
             <ul class="nav">
                 <li><a href="#home" class="active"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="#about"><i class="fa fa-user"></i> About</a></li>
@@ -40,6 +37,10 @@
                 <li><a href="#contact"><i class="fa fa-comments"></i> Contact</a></li>
             </ul>
         </aside>
+        <button class="menu-toggle">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="sidebar-overlay"></div>
 
         <!-- ===== MAIN CONTENT ===== -->
         <div class="main-content">
@@ -176,8 +177,8 @@
                                         <div class="skill-item padd-15">
                                             <h5>JavaScript</h5>
                                             <div class="progress">
-                                                <div class="progress-in" style="width: 46%;"></div>
-                                                <div class="skill-percent">46%</div>
+                                                <div class="progress-in" style="width: 66%;"></div>
+                                                <div class="skill-percent">66%</div>
                                             </div>
                                         </div>
                                         <div class="skill-item padd-15">
@@ -185,6 +186,13 @@
                                             <div class="progress">
                                                 <div class="progress-in" style="width: 73%;"></div>
                                                 <div class="skill-percent">73%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Bootstrap</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" style="width: 51%;"></div>
+                                                <div class="skill-percent">51%</div>
                                             </div>
                                         </div>
                                         <div class="skill-item padd-15">
@@ -343,35 +351,174 @@
                         <h2>My Latest Work :</h2>
                     </div>
                     <div class="row-container">
-                        <div class="box">
-                            <h3>Project 01</h3>
-                            <img src="images/1000671048.jpg" alt="Project 01">
-                            <a href="" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/vault_img.jpeg" alt="Cyber Bot">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3>Cyber Bot</h3>
+                                <p>
+                                    AI-powered cybersecurity assistant designed to help users
+                                    learn security concepts and safe digital practices.
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="https://crypto-vauult.vercel.app/" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <h3>Project 02</h3>
-                            <img src="images/1000671048.jpg" alt="Project 02">
-                            <a href="" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/vault_img.jpeg" alt="Cyber Bot">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3></h3>
+                                <p>...
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="https://crypto-vauult.vercel.app/" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <h3>Project 03</h3>
-                            <img src="images/wgg.jpg" alt="Project 03">
-                            <a href="https://word-guessing-game-nine.vercel.app/" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/vault_img.jpeg" alt="Cyber Bot">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3>Crypto Vault</h3>
+                                <p>
+                                    ...
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="https://crypto-vauult.vercel.app/" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <h3>Project 04</h3>
-                            <img src="images/chatbot.jpg" alt="Project 04">
-                            <a href="https://cyber-bot-zeta.vercel.app/" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/chatbot.jpg" alt="Cyber Bot">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3>Cyber Bot</h3>
+                                <p>
+                                    AI-powered cybersecurity assistant designed to help users
+                                    learn security concepts and safe digital practices.
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <h3>Project 05</h3>
-                            <img src="images/fim_proj.jpeg" alt="Project 05">
-                            <a href="" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/vault_img.jpeg" alt="Cyber Bot">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3></h3>
+                                <p>
+                                    ...
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="https://crypto-vauult.vercel.app/" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="box">
-                            <h3>Project 06</h3>
-                            <img src="images/vault_img.jpeg" alt="Project 06">
-                            <a href="https://crypto-vauult.vercel.app/" class="btn">View Project</a>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/wgg.jpg" alt="Scrabble">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Cybersecurity</span>
+                            </div>
+                            <div class="project-content">
+                                <h3>Cyber-Words Guess</h3>
+                                <p>
+                                    ...
+                                </p>
+                                <div class="project-tech">
+                                    <span>HTML</span>
+                                    <span>CSS</span>
+                                    <span>JavaScript</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <a href="https://word-guessing-game-nine.vercel.app/" target="_blank">
+                                        <i class="fa-solid fa-up-right-from-square"></i>
+                                        Live Demo
+                                    </a>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
