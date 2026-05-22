@@ -143,3 +143,214 @@ function closeSidebar() {
     navTogglerBtn.classList.remove("active");
     overlay.classList.remove("active");
 }
+
+// ======================= Project Modal ================================= //
+
+const projectModal =
+    document.querySelector(".project-modal");
+
+const openModalBtns =
+    document.querySelectorAll(".open-modal");
+
+const closeModalBtn =
+    document.querySelector(".modal-close");
+
+const modalOverlay =
+    document.querySelector(".modal-overlay");
+
+/* Modal elements */
+
+const modalImage =
+    document.querySelector(".modal-image img");
+
+const modalCategory =
+    document.querySelector(".modal-category");
+
+const modalTitle =
+    document.querySelector(".modal-content h2");
+
+const modalDescription =
+    document.querySelector(".modal-content p");
+
+const modalTech =
+    document.querySelector(".modal-tech");
+
+const liveDemo =
+    document.querySelector(".live-demo");
+
+const githubLink =
+    document.querySelector(".github-link");
+
+/* Open modal */
+
+openModalBtns.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        /* Get data */
+
+        const title =
+            button.dataset.title;
+
+        const image =
+            button.dataset.image;
+
+        const category =
+            button.dataset.category;
+
+        const description =
+            button.dataset.description;
+
+        const live =
+            button.dataset.live;
+
+        const github =
+            button.dataset.github;
+
+        const tech =
+            button.dataset.tech.split(",");
+
+        /* Inject data */
+
+        modalImage.src = image;
+
+        modalCategory.textContent =
+            category;
+
+        modalTitle.textContent =
+            title;
+
+        modalDescription.textContent =
+            description;
+
+        liveDemo.href = live;
+
+        githubLink.href = github;
+
+        /* Tech stack */
+
+        modalTech.innerHTML = "";
+
+        tech.forEach(item => {
+
+            const span =
+                document.createElement("span");
+
+            span.textContent = item;
+
+            modalTech.appendChild(span);
+        });
+
+        /* Open modal */
+
+        projectModal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+    });
+
+});
+
+/* Close modal */
+
+function closeModal() {
+
+    projectModal.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+}
+
+closeModalBtn.addEventListener(
+    "click",
+    closeModal
+);
+
+modalOverlay.addEventListener(
+    "click",
+    closeModal
+);
+
+/* =========================
+   EMAILJS CONTACT FORM
+========================= */
+
+emailjs.init("zu8J714XTpnUt9HTu");
+
+const contactForm = document.getElementById("contact-form");
+
+const contactBtn = document.querySelector(".contact-btn");
+
+const formMessage = document.querySelector(".form-message");
+
+let lastSubmissionTime = 0;
+
+contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    /* Spam cooldown */
+
+    const now = Date.now();
+
+    if (now - lastSubmissionTime < 60000) {
+        showMessage(
+            "Please wait before sending another message.",
+            "error"
+        );
+        return;
+    }
+
+    /* Honeypot spam protection */
+
+    const honeypot =
+        contactForm.querySelector(".honeypot").value;
+
+    if (honeypot) {
+        return;
+    }
+
+    contactBtn.classList.add("loading");
+
+    contactBtn.innerHTML =
+        "Sending...";
+
+    try {
+
+        await emailjs.sendForm(
+            "service_gep62at",
+            "template_wnbckrl",
+            contactForm
+        );
+
+        showMessage(
+            "Message sent successfully!",
+            "success"
+        );
+
+        contactForm.reset();
+
+        lastSubmissionTime = now;
+
+    } catch (error) {
+
+        showMessage(
+            "Something went wrong. Please try again.",
+            "error"
+        );
+
+        console.error(error);
+    }
+
+    contactBtn.classList.remove("loading");
+
+    contactBtn.innerHTML = "Send Message";
+});
+
+function showMessage(message, type) {
+
+    formMessage.textContent = message;
+
+    formMessage.className = `form-message ${type}`;
+
+    setTimeout(() => {
+        formMessage.textContent = "";
+    }, 5000);
+}
