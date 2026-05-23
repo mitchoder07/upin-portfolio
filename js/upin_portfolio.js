@@ -269,88 +269,116 @@ modalOverlay.addEventListener(
     closeModal
 );
 
-/* =========================
+    /* =========================
    EMAILJS CONTACT FORM
 ========================= */
 
-emailjs.init("zu8J714XTpnUt9HTu");
+const contactForm =
+    document.getElementById("contact-form");
 
-const contactForm = document.getElementById("contact-form");
+const contactBtn =
+    document.querySelector(".contact-btn");
 
-const contactBtn = document.querySelector(".contact-btn");
+const formMessage =
+    document.querySelector(".form-message");
 
-const formMessage = document.querySelector(".form-message");
+/* Prevent JS crash */
 
-let lastSubmissionTime = 0;
+if (contactForm) {
 
-contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    let lastSubmissionTime = 0;
 
-    /* Spam cooldown */
+    contactForm.addEventListener(
+        "submit",
+        async (e) => {
 
-    const now = Date.now();
+            e.preventDefault();
 
-    if (now - lastSubmissionTime < 60000) {
-        showMessage(
-            "Please wait before sending another message.",
-            "error"
-        );
-        return;
-    }
+            /* Spam cooldown */
 
-    /* Honeypot spam protection */
+            const now = Date.now();
 
-    const honeypot =
-        contactForm.querySelector(".honeypot").value;
+            if (
+                now - lastSubmissionTime < 60000
+            ) {
 
-    if (honeypot) {
-        return;
-    }
+                showMessage(
+                    "Please wait before sending another message.",
+                    "error"
+                );
 
-    contactBtn.classList.add("loading");
+                return;
+            }
 
-    contactBtn.innerHTML =
-        "Sending...";
+            /* Honeypot protection */
 
-    try {
+            const honeypot =
+                contactForm.querySelector(".honeypot").value;
 
-        await emailjs.sendForm(
-            "service_gep62at",
-            "template_wnbckrl",
-            contactForm
-        );
+            if (honeypot) {
+                return;
+            }
 
-        showMessage(
-            "Message sent successfully!",
-            "success"
-        );
+            /* Loading state */
 
-        contactForm.reset();
+            contactBtn.classList.add("loading");
 
-        lastSubmissionTime = now;
+            contactBtn.innerHTML =
+                "Sending...";
 
-    } catch (error) {
+            try {
 
-        showMessage(
-            "Something went wrong. Please try again.",
-            "error"
-        );
+                await emailjs.sendForm(
+                    "service_gep62at",
+                    "template_wnbckrl",
+                    contactForm
+                );
 
-        console.error(error);
-    }
+                showMessage(
+                    "Message sent successfully!",
+                    "success"
+                );
 
-    contactBtn.classList.remove("loading");
+                contactForm.reset();
 
-    contactBtn.innerHTML = "Send Message";
-});
+                lastSubmissionTime = now;
+
+            } catch (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Something went wrong. Please try again.",
+                    "error"
+                );
+            }
+
+            /* Reset button */
+
+            contactBtn.classList.remove("loading");
+
+            contactBtn.innerHTML = `
+                <span>Send Message</span>
+                <i class="fa-solid fa-paper-plane"></i>
+            `;
+        }
+    );
+}
+
+/* =========================
+   SHOW MESSAGE
+========================= */
 
 function showMessage(message, type) {
 
     formMessage.textContent = message;
 
-    formMessage.className = `form-message ${type}`;
+    formMessage.className =
+        `form-message ${type}`;
 
     setTimeout(() => {
+
         formMessage.textContent = "";
+
     }, 5000);
 }
