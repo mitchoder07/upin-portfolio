@@ -144,6 +144,65 @@ function closeSidebar() {
     overlay.classList.remove("active");
 }
 
+/* ========================= LOAD MORE PROJECTS ========================= */
+
+const projectCards =
+document.querySelectorAll(".project-card");
+
+const loadMoreBtn =
+document.querySelector(".load-more-btn");
+
+let visibleProjects = 6;
+
+/* Tablet */
+
+if(window.innerWidth <= 991){
+    visibleProjects = 4;
+}
+
+/* Mobile */
+
+if(window.innerWidth <= 767){
+    visibleProjects = 2;
+}
+
+/* Hide Extra Projects */
+projectCards.forEach((card,index) => {
+    if(index >= visibleProjects){
+        card.classList.add("hidden-project");
+    }
+});
+
+/* Load More */
+
+loadMoreBtn.addEventListener("click",() => {
+
+    let hiddenProjects =
+    document.querySelectorAll(
+        ".project-card.hidden-project"
+    );
+
+    /* Reveal next batch */
+
+    for(let i=0; i<3; i++){
+
+        if(hiddenProjects[i]){
+            hiddenProjects[i]
+            .classList.remove("hidden-project");
+        }
+    }
+
+    /* Hide button if no more */
+
+    if(
+        document.querySelectorAll(
+        ".project-card.hidden-project"
+        ).length === 0
+    ){
+        loadMoreBtn.style.display = "none";
+    }
+});
+
 // ======================= Project Modal ================================= //
 
 const projectModal =
@@ -269,9 +328,7 @@ modalOverlay.addEventListener(
     closeModal
 );
 
-    /* =========================
-   EMAILJS CONTACT FORM
-========================= */
+    /* ========================= EMAILJS CONTACT FORM ========================= */
 
 const contactForm =
     document.getElementById("contact-form");
