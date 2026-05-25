@@ -1830,7 +1830,7 @@ body.light .footer-bottom {
 
   .about .about-content .personal-info {
     flex: 0 0 100%;
-    max-width: 90%;
+    max-width: 85%;
   }
 
   .stats-grid {
