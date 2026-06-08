@@ -2,7 +2,7 @@ js:
 // ====================== typing animation ==============================
 document.addEventListener("DOMContentLoaded", function () {
     const typedInstance = new Typed(".typing", {
-        strings: ["Web Designer", "Python Developer", "CyberSecurity Graduate", "UI|UX Designer"],
+        strings: ["Frontend Engineer", "Python Software Engineer", "CyberSecurity Analyst", "Digital Product Designer"],
         typeSpeed: 100,
         backSpeed: 40,
         loop: true
