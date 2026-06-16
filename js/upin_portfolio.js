@@ -1,4 +1,3 @@
-js:
 // ====================== typing animation ==============================
 document.addEventListener("DOMContentLoaded", function () {
     const typedInstance = new Typed(".typing", {
