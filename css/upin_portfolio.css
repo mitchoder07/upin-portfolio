@@ -240,7 +240,6 @@ ul {
 
 .aside .nav li {
   margin-bottom: 1.25rem;
-  /* background: red; */
   display: block;
 }
 
@@ -457,7 +456,7 @@ h3.my-profession {
   z-index: 2;
 }
 
-/* The soft glow/shadow behind the icon - same colour as skin color */
+/* The shadow behind the icon */
 .stat-icon-glow {
   position: absolute;
   top: 50%;
@@ -957,7 +956,7 @@ h3.my-profession {
   display: none;
 }
 
-/* Load More Wrapper */
+/* Load More Projects */
 
 .projects-load {
   width: 100%;
@@ -985,7 +984,7 @@ h3.my-profession {
   box-shadow: 0 15px 35px var(--skin-color-light);
 }
 
-/* ========================= PROJECT MODAL ========================= */
+/* Project Modal */
 
 .project-modal {
   position: fixed;
@@ -1138,9 +1137,7 @@ h3.my-profession {
   transform: rotate(90deg);
 }
 
-/* =========================
-   CONTACT SECTION
-========================= */
+/* Contact Section */
 
 .contact.section {
   padding-bottom: 0;
@@ -1148,31 +1145,22 @@ h3.my-profession {
 
 .contact-title {
   color: var(--skin-color);
-
   text-align: center;
-
   font-size: 1.7rem;
-
   margin-bottom: 1rem;
-
   font-weight: 700;
 }
 
 .contact-sub-title {
   color: var(--text-black-700);
-
   text-align: center;
-
   font-size: 1rem;
-
   margin-bottom: 4rem;
 }
 
 .contact .row {
   display: flex;
-
   flex-wrap: wrap;
-
   justify-content: space-between;
 }
 
@@ -1180,21 +1168,13 @@ h3.my-profession {
 
 .contact .contact-info-item {
   flex: 0 0 23.5%;
-
   max-width: 23.5%;
-
   padding: 2rem 1rem;
-
   border-radius: 1.5rem;
-
   text-align: center;
-
   background: rgba(255, 255, 255, 0.03);
-
   border: 1px solid rgba(255, 255, 255, 0.05);
-
   transition: all 0.35s ease;
-
   margin-bottom: 2rem;
 }
 
@@ -1222,25 +1202,18 @@ h3.my-profession {
 
 .contact .contact-info-item h4 {
   font-size: 1.05rem;
-
   font-weight: 700;
-
   color: var(--text-black-900);
-
   margin-bottom: 0.7rem;
 }
 
 .contact .contact-info-item p {
   font-size: 0.95rem;
-
   color: var(--text-black-700);
-
   line-height: 1.7;
 }
 
-/* =========================
-   CONTACT FORM
-========================= */
+/* Contact Form */
 
 .contact .contact-form {
   flex: 0 0 100%;
@@ -1249,11 +1222,8 @@ h3.my-profession {
 
 .contact-form-container {
   width: 100%;
-
   padding: 2.5rem;
-
   border-radius: 2rem;
-
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
@@ -1264,7 +1234,6 @@ h3.my-profession {
 #contact-form {
   display: flex;
   flex-direction: column;
-
   gap: 1.5rem;
 }
 
@@ -1272,7 +1241,6 @@ h3.my-profession {
 
 #contact-form .row {
   display: flex;
-
   gap: 1.5rem;
 }
 
@@ -1285,21 +1253,13 @@ h3.my-profession {
 #contact-form input,
 #contact-form textarea {
   width: 100%;
-
   padding: 1rem 1.2rem;
-
   border-radius: 1rem;
-
   border: 1px solid rgba(255, 255, 255, 0.06);
-
   background: rgba(255, 255, 255, 0.03);
-
   color: white;
-
   font-size: 1rem;
-
   outline: none;
-
   transition: all 0.3s ease;
 }
 
@@ -1315,9 +1275,7 @@ h3.my-profession {
 #contact-form input:focus,
 #contact-form textarea:focus {
   border-color: var(--skin-color);
-
   box-shadow: 0 0 0 4px var(--skin-color-light);
-
   transform: translateY(-2px);
 }
 
@@ -1325,7 +1283,6 @@ h3.my-profession {
 
 #contact-form textarea {
   min-height: 180px;
-
   resize: none;
 }
 
@@ -1335,37 +1292,22 @@ h3.my-profession {
   display: none;
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* Contact Button */
 
 .contact-btn {
   display: inline-flex;
-
   align-items: center;
-
   gap: 0.8rem;
-
   justify-content: center;
-
   width: fit-content;
-
   padding: 1rem 2rem;
-
   border: none;
-
   border-radius: 1rem;
-
   background: linear-gradient(135deg, var(--skin-color), #10b981);
-
   color: white;
-
   font-size: 1rem;
-
   font-weight: 600;
-
   cursor: pointer;
-
   transition: all 0.3s ease;
 }
 
@@ -1376,19 +1318,14 @@ h3.my-profession {
 
 .contact-btn.loading {
   opacity: 0.7;
-
   pointer-events: none;
 }
 
-/* =========================
-   FORM MESSAGE
-========================= */
+/* Form Message */
 
 .form-message {
   font-size: 0.95rem;
-
   font-weight: 500;
-
   margin-top: 0.5rem;
 }
 
@@ -1400,24 +1337,18 @@ h3.my-profession {
   color: #ef4444;
 }
 
-/* =========================
-   LIGHT MODE
-========================= */
+/* Light Mode */
 
 body.light .contact-form-container {
   background: rgba(255, 255, 255, 0.75);
-
   border: 1px solid rgba(0, 0, 0, 0.06);
-
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
 }
 
 body.light #contact-form input,
 body.light #contact-form textarea {
   background: rgba(255, 255, 255, 0.72);
-
   border: 1px solid rgba(0, 0, 0, 0.06);
-
   color: #111827;
 }
 
@@ -1428,11 +1359,8 @@ body.light #contact-form textarea::placeholder {
 
 body.light .contact .contact-info-item {
   background: rgba(255, 255, 255, 0.75);
-
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
-
-/* ========================= NEW LIGHT MODE FIXES ========================= */
 
 body.light .aside {
   background: rgba(255, 255, 255, 0.92);
@@ -1441,14 +1369,10 @@ body.light .aside {
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-/* Logo */
-
 body.light .aside .logo a {
   color: #111827;
   text-shadow: none;
 }
-
-/* Nav links */
 
 body.light .aside .nav li a {
   color: #374151;
@@ -1456,9 +1380,7 @@ body.light .aside .nav li a {
 
 body.light .aside .nav li a.active {
   color: var(--skin-color);
-
   background: rgba(0, 0, 0, 0.05);
-
   border-radius: 0.7rem;
 }
 
@@ -1466,11 +1388,9 @@ body.light .aside .nav li a.active {
 
 body.light .project-card {
   background: rgba(255, 255, 255, 0.78);
-
   border: 1px solid rgba(0, 0, 0, 0.06);
-
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+              inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 /* Card title */
@@ -1485,13 +1405,9 @@ body.light .project-content p {
   color: #4b5563;
 }
 
-/* Tech pills */
-
 body.light .project-tech span {
   background: rgba(0, 0, 0, 0.04);
-
   border: 1px solid rgba(0, 0, 0, 0.05);
-
   color: #374151;
 }
 
@@ -1499,7 +1415,6 @@ body.light .project-tech span {
 
 body.light .project-buttons a:last-child {
   background: rgba(0, 0, 0, 0.05);
-
   color: #111827;
 }
 
@@ -1518,9 +1433,7 @@ body.light .project-image::after {
 
 body.light .menu-toggle {
   background: rgba(255, 255, 255, 0.85);
-
   color: #111827;
-
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
@@ -1544,7 +1457,11 @@ body.light .modal-content p {
   color: #4b5563;
 }
 
-body.light .modal-category,
+body.light .modal-category {
+  background: rgba(0, 0, 0, 0.1);
+  color: #fdf9ff;
+}
+
 body.light .modal-tech span {
   background: rgba(0, 0, 0, 0.05);
   color: #111827;
@@ -1560,9 +1477,7 @@ body.light .modal-close {
   color: #111827;
 }
 
-/* =========================
-   MINIMAL PREMIUM FOOTER
-========================= */
+/* Footer */
 
 .footer {
   width: calc(100% + 3.8rem);
@@ -1574,7 +1489,7 @@ body.light .modal-close {
   bottom: 0;
 }
 
-/* Content */
+/* Footer Content */
 
 .footer-content {
   max-width: 1200px;
@@ -1586,7 +1501,7 @@ body.light .modal-close {
   text-align: center;
 }
 
-/* Logo */
+/* Footer Logo */
 
 .footer-logo {
   margin-bottom: 1.5rem;
@@ -1612,60 +1527,45 @@ body.light .modal-close {
   color: var(--skin-color);
 }
 
-/* Quote */
+/* Footer Quote */
 
 .footer-quote {
   color: white;
-
   font-size: 2rem;
-
   font-style: italic;
-
   line-height: 1.6;
-
   max-width: 700px;
-
   margin-bottom: 1rem;
 }
 
-/* Small text */
+/* Footer text */
 
 .footer-text {
   color: rgba(255, 255, 255, 0.65);
-
   font-size: 1.05rem;
-
   margin-bottom: 2rem;
 }
 
-/* Socials */
+/* Footer Socials */
 
 .footer-socials {
   display: flex;
   align-items: center;
   gap: 1rem;
-
   margin-bottom: 2rem;
 }
 
 .footer-socials a {
   width: 3rem;
   height: 3rem;
-
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   text-decoration: none;
-
   color: rgba(255, 255, 255, 0.8);
-
   background: rgba(255, 255, 255, 0.05);
-
   border: 1px solid rgba(255, 255, 255, 0.06);
-
   transition: all 0.3s ease;
 }
 
@@ -1675,7 +1575,7 @@ body.light .modal-close {
   border-color: var(--skin-color);
 }
 
-/* Bottom */
+/* Footer Bottom */
 
 .footer-bottom {
   width: 100%;
@@ -1685,17 +1585,13 @@ body.light .modal-close {
 
 .footer-bottom p {
   color: var(--text-black-700);
-
   font-size: 0.95rem;
 }
 
-/* =========================
- LIGHT MODE
-========================= */
+/* Light Mode (Footer) */
 
 body.light .footer {
   background: #ffffff;
-
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -1813,9 +1709,7 @@ body.light .footer-bottom {
 
   .footer-container {
     grid-template-columns: 1fr;
-
     padding: 4rem 2rem 3rem;
-
     gap: 3rem;
   }
 }

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Use Intersection Observer to start counting when stats come into view
+    // Using Intersection Observer to start counting when stats come into view
     if (window.IntersectionObserver) {
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
@@ -116,7 +116,6 @@ function updateNav(element) {
 }
 document.querySelector(".hire-me").addEventListener("click", function () {
     const sectionIndex = this.getAttribute("data-section-index");
-    // console.log(sectionIndex)
     showSection(this);
     updateNav(this);
     removeBackSection();
@@ -144,7 +143,7 @@ function closeSidebar() {
     overlay.classList.remove("active");
 }
 
-/* ========================= LOAD MORE PROJECTS ========================= */
+// ===================== Load More Projects =====================
 
 const projectCards =
 document.querySelectorAll(".project-card");
@@ -203,7 +202,7 @@ loadMoreBtn.addEventListener("click",() => {
     }
 });
 
-// ======================= Project Modal ================================= //
+// ================= Project Modal ===========================
 
 const projectModal =
     document.querySelector(".project-modal");
@@ -328,7 +327,7 @@ modalOverlay.addEventListener(
     closeModal
 );
 
-    /* ========================= EMAILJS CONTACT FORM ========================= */
+// ===================== EMAILJS CONTACT FORM =====================
 
 const contactForm =
     document.getElementById("contact-form");
@@ -422,9 +421,7 @@ if (contactForm) {
     );
 }
 
-/* =========================
-   SHOW MESSAGE
-========================= */
+// ==================== SHOW MESSAGE =======================
 
 function showMessage(message, type) {
 
