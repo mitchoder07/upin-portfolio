@@ -1,25 +1,24 @@
 /* ================================================================
-   UPIN PORTFOLIO — UPGRADED CSS
-   Fixes: font-family typo, footer light-mode, image ring, 
-   responsive layout, stat-grid, contact cards, button alignment,
-   scroll smoothness, footer sizing, overall polish
+   UPIN PORTFOLIO — UPGRADED CSS v2
+   All fixes from screenshots + new requests applied
    ================================================================ */
 
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
-/* ---- TOKENS ---- */
+/* ---- DESIGN TOKENS ---- */
 :root {
   --bg-black-900: #020617;
-  --bg-black-100: #1a2235;
-  --bg-black-50: #2a3a55;
-  --text-black-900: #ffffff;
-  --text-black-700: #c8d0e0;
+  --bg-black-100: #111827;
+  --bg-black-50: #1e293b;
+  --text-black-900: #f1f5f9;
+  --text-black-700: #94a3b8;
 
-  /* Layout */
+  /* Gradient for headings — blends well on dark */
+  --heading-gradient: linear-gradient(135deg, var(--skin-color) 0%, #a78bfa 100%);
+
   --sidebar-width: 17rem;
   --section-pad-h: 2rem;
 
-  /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 0.18s;
   --dur-base: 0.32s;
@@ -28,9 +27,12 @@
 body.light {
   --bg-black-900: #f5f4fc;
   --bg-black-100: #ffffff;
-  --bg-black-50: #e4dff2;
-  --text-black-900: #302e4d;
-  --text-black-700: #504e70;
+  --bg-black-50: #e8e5f5;
+  --text-black-900: #1e1b3a;
+  --text-black-700: #6b6899;
+
+  /* Gradient shifts slightly warmer in light mode */
+  --heading-gradient: linear-gradient(135deg, var(--skin-color) 0%, #7c3aed 100%);
 }
 
 /* ================================================================
@@ -58,11 +60,23 @@ html {
 body {
   line-height: 1.6;
   font-size: 1rem;
-  /* FIX: was missing comma between font name and fallback */
   font-family: "Poppins", sans-serif;
   background: var(--bg-black-900);
   color: var(--text-black-900);
   -webkit-font-smoothing: antialiased;
+}
+
+/* ================================================================
+   GRADIENT HEADINGS — section titles + contact title
+   Works on dark AND light because it uses background-clip
+   ================================================================ */
+.gradient-text {
+  background: var(--heading-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 /* ================================================================
@@ -73,7 +87,6 @@ body {
   min-height: 100vh;
   display: block;
   padding: 0 var(--section-pad-h);
-  opacity: 1;
   position: fixed;
   left: var(--sidebar-width);
   top: 0;
@@ -82,10 +95,7 @@ body {
   z-index: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  /* FIX: smoother section transitions */
-  transition: opacity var(--dur-base) var(--ease-out),
-    transform var(--dur-base) var(--ease-out);
-  transform: translateX(0);
+  transition: opacity var(--dur-base) var(--ease-out);
   scroll-behavior: smooth;
 }
 
@@ -97,12 +107,12 @@ body {
 .section.active {
   z-index: 2;
   opacity: 1;
-  animation: slideSection 0.45s var(--ease-out) both;
+  animation: slideSection 0.42s var(--ease-out) both;
 }
 
 @keyframes slideSection {
   from {
-    transform: translateX(2.5rem);
+    transform: translateX(2rem);
     opacity: 0;
   }
 
@@ -146,23 +156,28 @@ body {
 .section-title {
   flex: 0 0 100%;
   max-width: 100%;
-  margin-bottom: 3.5rem;
+  margin-bottom: 3rem;
 }
 
 .section-title h2 {
   font-size: 2.2rem;
-  color: var(--text-black-900);
   font-weight: 700;
   position: relative;
   display: inline-block;
   padding-bottom: 0.75rem;
+  /* Apply gradient via class on the element in HTML */
+  background: var(--heading-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .section-title h2::before {
   content: "";
-  height: 0.2rem;
-  width: 3rem;
-  background: var(--skin-color);
+  height: 3px;
+  width: 2.8rem;
+  background: var(--heading-gradient);
   position: absolute;
   bottom: 0;
   left: 0;
@@ -171,22 +186,46 @@ body {
 
 .section-title h2::after {
   content: "";
-  height: 0.2rem;
-  width: 1.2rem;
-  background: var(--skin-color);
+  height: 3px;
+  width: 1.1rem;
+  background: var(--heading-gradient);
   position: absolute;
-  bottom: -0.4rem;
+  bottom: -6px;
   left: 0;
   border-radius: 2px;
 }
 
 /* ================================================================
-   BTN
+   CONTACT TITLE (also gets gradient)
+   ================================================================ */
+.contact-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  background: var(--heading-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: block;
+}
+
+.contact-sub-title {
+  color: var(--text-black-700);
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+}
+
+/* ================================================================
+   BUTTON
    ================================================================ */
 .btn {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  padding: 0.85rem 2.2rem;
+  padding: 0.85rem 2rem;
   color: white;
   border-radius: 3rem;
   display: inline-flex;
@@ -194,11 +233,9 @@ body {
   gap: 0.5rem;
   border: none;
   background: var(--skin-color);
-  text-transform: capitalize;
   cursor: pointer;
   transition: transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
-    font-size var(--dur-fast);
+    box-shadow var(--dur-fast);
   animation: btn-pulse 4s infinite;
   white-space: nowrap;
   letter-spacing: 0.02em;
@@ -206,7 +243,7 @@ body {
 
 @keyframes btn-pulse {
   0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--skin-color) 60%, transparent);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--skin-color) 55%, transparent);
   }
 
   70% {
@@ -232,7 +269,7 @@ body {
    ================================================================ */
 .aside {
   width: var(--sidebar-width);
-  background: rgba(10, 16, 35, 0.92);
+  background: rgba(8, 12, 28, 0.96);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   position: fixed;
@@ -240,7 +277,7 @@ body {
   top: 0;
   padding: 2rem 1.5rem;
   height: 100%;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -251,46 +288,47 @@ body {
 .aside .logo {
   position: absolute;
   top: 2.5rem;
-  font-size: 1.6rem;
 }
 
+/* FIX: Logo link navigates to #home — the JS handles it.
+   Make sure the cursor shows it's clickable */
 .aside .logo a {
   color: var(--text-black-900);
   font-weight: 700;
-  padding: 0.8rem 1rem;
-  font-size: 1.7rem;
-  letter-spacing: 0.15rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.12rem;
   position: relative;
+  display: inline-block;
+  cursor: pointer;
 }
 
 .aside .logo a span {
   font-family: "Clicker Script", cursive;
-  font-size: 2.3rem;
+  font-size: 2.1rem;
   color: var(--skin-color);
 }
 
 .aside .logo a::before {
   content: "";
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  border-bottom: 0.25rem solid var(--skin-color);
-  border-left: 0.25rem solid var(--skin-color);
+  width: 0.9rem;
+  height: 0.9rem;
+  border-bottom: 2px solid var(--skin-color);
+  border-left: 2px solid var(--skin-color);
   bottom: 0;
   left: 0;
-  border-radius: 0 0 0 3px;
 }
 
 .aside .logo a::after {
   content: "";
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  border-top: 0.25rem solid var(--skin-color);
-  border-right: 0.25rem solid var(--skin-color);
+  width: 0.9rem;
+  height: 0.9rem;
+  border-top: 2px solid var(--skin-color);
+  border-right: 2px solid var(--skin-color);
   top: 0;
   right: 0;
-  border-radius: 0 3px 0 0;
 }
 
 .aside .nav {
@@ -299,11 +337,11 @@ body {
 }
 
 .aside .nav li {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .aside .nav li a {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -311,9 +349,7 @@ body {
   border-radius: 0.6rem;
   color: var(--text-black-700);
   padding: 0.65rem 1rem;
-  transition: color var(--dur-fast), background var(--dur-fast),
-    transform var(--dur-fast);
-  border-bottom: none;
+  transition: color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast);
   letter-spacing: 0.02em;
 }
 
@@ -328,8 +364,8 @@ body {
 }
 
 .aside .nav li a i {
-  font-size: 1rem;
-  width: 1.2rem;
+  font-size: 0.95rem;
+  width: 1.1rem;
   text-align: center;
   flex-shrink: 0;
 }
@@ -341,22 +377,20 @@ body {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: none;
-  border-radius: 0.75rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.7rem;
   cursor: pointer;
   z-index: 1200;
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 16, 35, 0.82);
+  background: rgba(8, 12, 28, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: white;
-  font-size: 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  font-size: 1rem;
   transition: background var(--dur-fast), transform var(--dur-fast);
 }
 
@@ -376,12 +410,11 @@ body {
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.55);
   z-index: 999;
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--dur-base), visibility var(--dur-base);
-  /* FIX: removed backdrop-filter on overlay (iOS Safari issues) */
 }
 
 .sidebar-overlay.active {
@@ -390,7 +423,7 @@ body {
 }
 
 /* ================================================================
-   HOME SECTION
+   HOME
    ================================================================ */
 .home {
   min-height: 100vh;
@@ -404,21 +437,21 @@ body {
 }
 
 h3.hello {
-  font-size: 1.6rem;
-  margin: 2.5rem 0 1rem;
+  font-size: 1.5rem;
+  margin: 2.5rem 0 0.75rem;
   line-height: 1.4;
 }
 
 h3.hello .name {
   font-family: "Clicker Script", cursive;
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: var(--skin-color);
   display: inline-block;
 }
 
 h3.my-profession {
-  font-size: 1.7rem;
-  margin: 0.5rem 0 1.5rem;
+  font-size: 1.6rem;
+  margin: 0.5rem 0 1.25rem;
   font-weight: 400;
 }
 
@@ -429,9 +462,9 @@ h3.my-profession {
 
 .home-info p {
   margin-bottom: 2.5rem;
-  font-size: 1rem;
+  font-size: 0.97rem;
   color: var(--text-black-700);
-  max-width: 52ch;
+  max-width: 54ch;
   line-height: 1.8;
 }
 
@@ -445,15 +478,14 @@ h3.my-profession {
   position: relative;
 }
 
-/* FIX: Proper ring defined as ::before — was completely missing in original */
 .home .home-img::before {
   content: "";
   position: absolute;
-  width: 370px;
-  height: 420px;
+  width: 350px;
+  height: 370px;
   border-radius: 50%;
-  border: 2px solid var(--skin-color);
-  opacity: 0.35;
+  border: .2rem solid var(--skin-color);
+  opacity: 0.3;
   animation: ring-pulse 3s ease-in-out infinite;
 }
 
@@ -462,19 +494,19 @@ h3.my-profession {
   0%,
   100% {
     transform: scale(1);
-    opacity: 0.35;
+    opacity: 0.3;
   }
 
   50% {
-    transform: scale(1.04);
-    opacity: 0.15;
+    transform: scale(1.05);
+    opacity: 0.12;
   }
 }
 
 .home .home-img img {
   border-radius: 50%;
-  width: 320px;
-  height: 370px;
+  width: 335px;
+  height: 360px;
   object-fit: cover;
   object-position: top center;
   border: 3px solid var(--skin-color);
@@ -482,6 +514,27 @@ h3.my-profession {
   z-index: 1;
   display: block;
 }
+
+/* .availability-badge {
+  position: absolute;
+  bottom: 2rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(5, 10, 25, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.4rem 0.9rem 0.4rem 0.7rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 2;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+} */
 
 .availability-badge {
   position: absolute;
@@ -505,14 +558,14 @@ h3.my-profession {
 }
 
 body.light .availability-badge {
-  background: rgba(255, 255, 255, 0.9);
-  color: #302e4d;
-  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  color: #1e1b3a;
+  border-color: rgba(0, 0, 0, 0.07);
 }
 
 .pulse-dot {
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.55rem;
+  height: 0.55rem;
   background: #22c55e;
   border-radius: 50%;
   animation: pulse-dot 2s infinite;
@@ -525,7 +578,7 @@ body.light .availability-badge {
   }
 
   70% {
-    box-shadow: 0 0 0 8px transparent;
+    box-shadow: 0 0 0 7px transparent;
   }
 
   100% {
@@ -537,30 +590,28 @@ body.light .availability-badge {
    HOME STATS
    ================================================================ */
 .home-stats {
-  margin-top: 3.5rem;
+  margin-top: 3rem;
   padding: 1.5rem 0;
   margin-bottom: 4rem;
 }
 
-/* FIX: Stats grid now uses auto-fit so it works at all breakpoints */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 }
 
 .stat-card {
   background: var(--bg-black-100);
-  padding: 1.75rem 1.5rem;
+  padding: 1.6rem 1.4rem;
   border-radius: 1rem;
   border: 1px solid var(--bg-black-50);
-  transition: transform var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
 }
 
 .stat-icon-wrapper {
@@ -568,11 +619,11 @@ body.light .availability-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
 
 .stat-icon {
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: var(--skin-color);
   position: relative;
   z-index: 2;
@@ -580,8 +631,11 @@ body.light .availability-badge {
 
 .stat-icon-glow {
   position: absolute;
-  width: 3rem;
-  height: 3rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.8rem;
+  height: 2.8rem;
   background: var(--skin-color);
   border-radius: 50%;
   opacity: 0.15;
@@ -596,34 +650,34 @@ body.light .availability-badge {
 }
 
 .stat-title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-black-900);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .stat-number-wrapper {
-  margin: 0.4rem 0 0.75rem;
+  margin: 0.3rem 0 0.6rem;
   display: flex;
   align-items: baseline;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .stat-number {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: var(--skin-color);
   line-height: 1;
 }
 
 .stat-plus {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--skin-color);
 }
 
 .stat-description {
-  font-size: 0.875rem;
+  font-size: 0.83rem;
   color: var(--text-black-700);
   line-height: 1.6;
 }
@@ -643,8 +697,8 @@ body.light .availability-badge {
 }
 
 .about .about-content .about-text h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  margin-bottom: 0.9rem;
   font-weight: 700;
   color: var(--text-black-900);
 }
@@ -654,7 +708,7 @@ body.light .availability-badge {
 }
 
 .about .about-content .about-text p {
-  font-size: 0.97rem;
+  font-size: 0.95rem;
   line-height: 1.8;
   color: var(--text-black-700);
 }
@@ -672,8 +726,8 @@ body.light .availability-badge {
 
 .about .about-content .personal-info .info-item p {
   font-weight: 600;
-  padding: 0.7rem 0;
-  font-size: 0.9rem;
+  padding: 0.65rem 0;
+  font-size: 0.88rem;
   color: var(--text-black-900);
   border-bottom: 1px solid var(--bg-black-50);
 }
@@ -685,7 +739,7 @@ body.light .availability-badge {
 }
 
 .about .about-content .personal-info .buttons {
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
 }
 
 .about .about-content .skills {
@@ -697,13 +751,13 @@ body.light .availability-badge {
 .about .about-content .skills .skill-item {
   flex: 0 0 100%;
   max-width: 100%;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.2rem;
 }
 
 .about .about-content .skills .skill-item h5 {
-  line-height: 2.2rem;
+  line-height: 2rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-black-900);
 }
 
@@ -721,10 +775,8 @@ body.light .availability-badge {
   top: 0;
   height: 100%;
   border-radius: 3px;
-  background: var(--skin-color);
-  /* FIX: animate progress bars on load */
-  animation: grow-bar 1.2s var(--ease-out) both;
-  animation-delay: 0.3s;
+  background: var(--heading-gradient);
+  animation: grow-bar 1.2s var(--ease-out) both 0.3s;
 }
 
 @keyframes grow-bar {
@@ -737,10 +789,10 @@ body.light .availability-badge {
   position: absolute;
   right: 0;
   color: var(--text-black-900);
-  top: -2.2rem;
+  top: -2rem;
   font-weight: 500;
-  font-size: 0.85rem;
-  line-height: 2.2rem;
+  font-size: 0.82rem;
+  line-height: 2rem;
 }
 
 .about .about-content .education,
@@ -751,8 +803,8 @@ body.light .availability-badge {
 }
 
 .about .about-content h3.title {
-  font-size: 1.35rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  margin-bottom: 1.4rem;
   font-weight: 700;
   color: var(--text-black-900);
   position: relative;
@@ -764,7 +816,7 @@ body.light .availability-badge {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 2rem;
+  width: 1.8rem;
   height: 2px;
   background: var(--skin-color);
   border-radius: 2px;
@@ -777,7 +829,7 @@ body.light .availability-badge {
 
 .about .about-content .timeline {
   background: var(--bg-black-100);
-  padding: 1.5rem 1rem;
+  padding: 1.4rem 1rem;
   border: 1px solid var(--bg-black-50);
   border-radius: 0.75rem;
   width: 100%;
@@ -786,7 +838,7 @@ body.light .availability-badge {
 .about .about-content .timeline .timeline-item {
   position: relative;
   padding-left: 2rem;
-  padding-bottom: 2.5rem;
+  padding-bottom: 2.25rem;
 }
 
 .about .about-content .timeline .timeline-item:last-child {
@@ -798,7 +850,7 @@ body.light .availability-badge {
   width: 1px;
   position: absolute;
   height: 100%;
-  left: 0.45rem;
+  left: 0.42rem;
   top: 0;
   background: linear-gradient(to bottom, var(--skin-color), transparent);
 }
@@ -807,30 +859,30 @@ body.light .availability-badge {
   position: absolute;
   left: 0;
   top: 2px;
-  height: 1rem;
-  width: 1rem;
+  height: 0.95rem;
+  width: 0.95rem;
   border-radius: 50%;
   background: var(--skin-color);
-  box-shadow: 0 0 12px var(--skin-color);
+  box-shadow: 0 0 10px var(--skin-color);
 }
 
 .about .about-content .timeline .timeline-date {
   font-weight: 400;
-  font-size: 0.82rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.78rem;
+  margin-bottom: 0.4rem;
   color: var(--skin-color);
   opacity: 0.9;
 }
 
 .about .about-content .timeline .timeline-title {
   font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
   color: var(--text-black-900);
 }
 
 .about .about-content .timeline .timeline-text {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   line-height: 1.7;
   color: var(--text-black-700);
 }
@@ -843,7 +895,7 @@ body.light .availability-badge {
 }
 
 .service .service-item {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
   flex: 0 0 33.33%;
   max-width: 33.33%;
   display: flex;
@@ -853,11 +905,9 @@ body.light .availability-badge {
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
   border-radius: 0.875rem;
-  padding: 2rem 1.25rem;
+  padding: 1.75rem 1.1rem;
   text-align: center;
-  transition: transform var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base),
-    border-color var(--dur-base);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base), border-color var(--dur-base);
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -868,26 +918,26 @@ body.light .availability-badge {
 }
 
 .service .service-item .service-item-inner:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+  transform: translateY(-7px);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
   border-color: var(--skin-color);
 }
 
 .service .service-item .service-item-inner .icon {
-  height: 4rem;
-  width: 4rem;
+  height: 3.75rem;
+  width: 3.75rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.4rem;
   background: color-mix(in srgb, var(--skin-color) 12%, transparent);
   transition: background var(--dur-base), transform var(--dur-base);
 }
 
 .service .service-item .service-item-inner .icon .fa,
 .service .service-item .service-item-inner .icon .fa-brands {
-  font-size: 2rem;
+  font-size: 1.9rem;
   color: var(--skin-color);
   transition: color var(--dur-base);
 }
@@ -903,20 +953,20 @@ body.light .availability-badge {
 }
 
 .service .service-item .service-item-inner h4 {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.65rem;
   color: var(--text-black-900);
   font-weight: 700;
-  min-height: 2.5rem;
+  min-height: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .service .service-item .service-item-inner p {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   color: var(--text-black-700);
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 /* ================================================================
@@ -924,12 +974,11 @@ body.light .availability-badge {
    ================================================================ */
 .projects .projects-heading {
   margin-bottom: 2rem;
-  color: var(--text-black-900);
   text-align: center;
 }
 
 .projects .projects-heading h2 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 500;
   color: var(--text-black-700);
 }
@@ -937,30 +986,28 @@ body.light .availability-badge {
 .projects .row-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.75rem;
+  gap: 1.6rem;
 }
 
 .project-card {
   position: relative;
   overflow: hidden;
-  border-radius: 1.25rem;
+  border-radius: 1.15rem;
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
-  transition: transform var(--dur-base) var(--ease-out),
-    box-shadow var(--dur-base),
-    border-color var(--dur-base);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base), border-color var(--dur-base);
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-7px);
   border-color: color-mix(in srgb, var(--skin-color) 50%, transparent);
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.25);
 }
 
 .project-image {
   position: relative;
   overflow: hidden;
-  height: 16rem;
+  height: 15rem;
 }
 
 .project-image img {
@@ -978,33 +1025,32 @@ body.light .availability-badge {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.15));
-  transition: opacity var(--dur-base);
 }
 
 .project-badge {
   position: absolute;
-  top: 0.85rem;
-  left: 0.85rem;
-  padding: 0.35rem 0.85rem;
+  top: 0.8rem;
+  left: 0.8rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .project-content {
-  padding: 1.4rem 1.4rem 1.5rem;
+  padding: 1.3rem 1.3rem 1.4rem;
 }
 
 .project-content h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
   color: var(--text-black-900);
   font-weight: 700;
 }
@@ -1012,31 +1058,30 @@ body.light .availability-badge {
 .project-content p {
   color: var(--text-black-700);
   line-height: 1.65;
-  margin-bottom: 1.1rem;
-  font-size: 0.88rem;
+  margin-bottom: 1rem;
+  font-size: 0.86rem;
 }
 
 .project-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
 }
 
 .project-tech span {
-  padding: 0.3rem 0.75rem;
+  padding: 0.28rem 0.7rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--skin-color) 12%, transparent);
   border: 1px solid color-mix(in srgb, var(--skin-color) 25%, transparent);
-  font-size: 0.75rem;
+  font-size: 0.73rem;
   color: var(--skin-color);
   font-weight: 500;
 }
 
-/* FIX: project-buttons alignment — open-modal was unstyled as button */
 .project-buttons {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
 .project-buttons a,
@@ -1046,14 +1091,13 @@ body.light .availability-badge {
   align-items: center;
   justify-content: center;
   gap: 0.4rem;
-  padding: 0.75rem 0.5rem;
-  border-radius: 0.75rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.7rem;
   transition: transform var(--dur-fast), opacity var(--dur-fast);
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
-  text-align: center;
 }
 
 .project-buttons .open-modal {
@@ -1071,19 +1115,13 @@ body.light .availability-badge {
 .project-buttons a:hover,
 .project-buttons .open-modal:hover {
   transform: translateY(-2px);
-  opacity: 0.92;
+  opacity: 0.9;
 }
 
-body.light .project-buttons a:last-child {
-  background: var(--bg-black-50);
-}
-
-/* Hidden projects */
 .project-card.hidden-project {
   display: none;
 }
 
-/* Load more */
 .projects-load {
   display: flex;
   justify-content: center;
@@ -1091,21 +1129,21 @@ body.light .project-buttons a:last-child {
 }
 
 .load-more-btn {
-  padding: 0.9rem 2rem;
+  padding: 0.85rem 2rem;
   border: none;
-  border-radius: 0.875rem;
+  border-radius: 0.8rem;
   background: var(--skin-color);
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
   font-family: "Poppins", sans-serif;
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
 }
 
 .load-more-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--skin-color) 35%, transparent);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--skin-color) 35%, transparent);
 }
 
 /* ================================================================
@@ -1132,7 +1170,7 @@ body.light .project-buttons a:last-child {
 .modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -1142,13 +1180,13 @@ body.light .project-buttons a:last-child {
   width: min(820px, 100%);
   max-height: 90vh;
   overflow-y: auto;
-  border-radius: 1.25rem;
+  border-radius: 1.15rem;
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
   z-index: 2;
-  transform: translateY(24px) scale(0.97);
+  transform: translateY(22px) scale(0.97);
   transition: transform var(--dur-base) var(--ease-out);
-  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42);
 }
 
 .project-modal.active .modal-container {
@@ -1157,31 +1195,31 @@ body.light .project-buttons a:last-child {
 
 .modal-image img {
   width: 100%;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
-  border-radius: 1.25rem 1.25rem 0 0;
+  border-radius: 1.15rem 1.15rem 0 0;
 }
 
 .modal-content {
-  padding: 1.75rem;
+  padding: 1.6rem;
 }
 
 .modal-category {
   display: inline-block;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--skin-color) 15%, transparent);
+  background: color-mix(in srgb, var(--skin-color) 14%, transparent);
   color: var(--skin-color);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.65rem;
 }
 
 .modal-content h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.65rem;
   color: var(--text-black-900);
   font-weight: 700;
 }
@@ -1189,30 +1227,30 @@ body.light .project-buttons a:last-child {
 .modal-content p {
   line-height: 1.8;
   color: var(--text-black-700);
-  margin-bottom: 1.4rem;
-  font-size: 0.95rem;
+  margin-bottom: 1.3rem;
+  font-size: 0.93rem;
 }
 
 .modal-tech {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
+  gap: 0.55rem;
+  margin-bottom: 1.4rem;
 }
 
 .modal-tech span {
-  padding: 0.35rem 0.9rem;
+  padding: 0.32rem 0.85rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--skin-color) 12%, transparent);
   color: var(--skin-color);
   border: 1px solid color-mix(in srgb, var(--skin-color) 25%, transparent);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
 }
 
 .modal-buttons {
   display: flex;
-  gap: 0.75rem;
+  gap: 0.7rem;
   flex-wrap: wrap;
 }
 
@@ -1220,11 +1258,11 @@ body.light .project-buttons a:last-child {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.4rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem 1.3rem;
+  border-radius: 0.7rem;
   transition: transform var(--dur-fast), opacity var(--dur-fast);
   font-weight: 500;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   text-decoration: none;
 }
 
@@ -1245,77 +1283,65 @@ body.light .project-buttons a:last-child {
 
 .modal-close {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2.5rem;
-  height: 2.5rem;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.4rem;
+  height: 2.4rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-black-900);
   z-index: 5;
   transition: background var(--dur-fast), transform var(--dur-fast);
 }
 
 .modal-close:hover {
   background: var(--skin-color);
+  color: white;
   transform: rotate(90deg);
 }
 
 /* ================================================================
-   CONTACT
+   CONTACT SECTION
    ================================================================ */
 .contact.section {
   padding-bottom: 0;
 }
 
-.contact-title {
-  color: var(--skin-color);
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 0.6rem;
-  font-weight: 700;
-}
-
-.contact-sub-title {
-  color: var(--text-black-700);
-  text-align: center;
-  font-size: 0.95rem;
-  margin-bottom: 3rem;
-}
-
-/* FIX: Contact info cards — 4-col was too cramped on mid screens */
+/* Contact info grid — 2×2 on tablet/mobile instead of jam-packed 4-col */
 .contact .row {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .contact .contact-info-item {
+  /* Natural 2-up on smaller screens */
   flex: 1 1 200px;
-  max-width: 260px;
-  padding: 1.75rem 1rem;
+  max-width: 280px;
+  padding: 1.6rem 1rem;
   border-radius: 1rem;
   text-align: center;
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
   transition: transform var(--dur-base), border-color var(--dur-base);
-  margin-bottom: 0;
 }
 
 .contact .contact-info-item:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: var(--skin-color);
 }
 
 .contact .contact-info-item .icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  margin: 0 auto 1rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin: 0 auto 0.9rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1323,26 +1349,26 @@ body.light .project-buttons a:last-child {
   background: color-mix(in srgb, var(--skin-color) 12%, transparent);
 }
 
-.contact .contact-info-item .icon .fa {
-  font-size: 1.2rem;
+/* Updated: use fa-solid classes for professional icons */
+.contact .contact-info-item .icon i {
+  font-size: 1.15rem;
   color: var(--skin-color);
 }
 
 .contact .contact-info-item h4 {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-black-900);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .contact .contact-info-item p {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-black-700);
   line-height: 1.6;
   word-break: break-word;
 }
 
-/* Contact Form */
 .contact .contact-form {
   flex: 0 0 100%;
   max-width: 100%;
@@ -1351,25 +1377,21 @@ body.light .project-buttons a:last-child {
 
 .contact-form-container {
   width: 100%;
-  padding: 2rem;
-  border-radius: 1.25rem;
+  padding: 1.75rem;
+  border-radius: 1.15rem;
   background: var(--bg-black-100);
   border: 1px solid var(--bg-black-50);
-}
-
-body.light .contact-form-container {
-  background: var(--bg-black-100);
 }
 
 #contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.1rem;
 }
 
 #contact-form .row {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.1rem;
   margin: 0;
 }
 
@@ -1380,12 +1402,12 @@ body.light .contact-form-container {
 #contact-form input,
 #contact-form textarea {
   width: 100%;
-  padding: 0.875rem 1.1rem;
-  border-radius: 0.75rem;
+  padding: 0.82rem 1rem;
+  border-radius: 0.7rem;
   border: 1px solid var(--bg-black-50);
   background: var(--bg-black-900);
   color: var(--text-black-900);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-family: "Poppins", sans-serif;
   outline: none;
   transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
@@ -1400,11 +1422,11 @@ body.light .contact-form-container {
 #contact-form input:focus,
 #contact-form textarea:focus {
   border-color: var(--skin-color);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--skin-color) 18%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--skin-color) 16%, transparent);
 }
 
 #contact-form textarea {
-  min-height: 160px;
+  min-height: 150px;
   resize: vertical;
 }
 
@@ -1415,23 +1437,23 @@ body.light .contact-form-container {
 .contact-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.9rem 2rem;
+  gap: 0.55rem;
+  padding: 0.85rem 1.8rem;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 0.7rem;
   background: var(--skin-color);
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   cursor: pointer;
-  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
   align-self: flex-start;
+  transition: transform var(--dur-fast), box-shadow var(--dur-fast);
 }
 
 .contact-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--skin-color) 35%, transparent);
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--skin-color) 35%, transparent);
 }
 
 .contact-btn.loading {
@@ -1440,7 +1462,7 @@ body.light .contact-form-container {
 }
 
 .form-message {
-  font-size: 0.88rem;
+  font-size: 0.86rem;
   font-weight: 500;
 }
 
@@ -1453,95 +1475,119 @@ body.light .contact-form-container {
 }
 
 /* ================================================================
-   FOOTER — COMPLETE REDESIGN
+   FOOTER — PROFESSIONAL REDESIGN
+   Full-width, richer layout like senior devs use
    ================================================================ */
 .footer {
-  /* FIX: Use CSS var for bg so light mode works correctly */
   background: var(--bg-black-100);
   border-top: 1px solid var(--bg-black-50);
-  padding: 2.5rem var(--section-pad-h) 1.5rem;
-  margin: 3rem -2rem 0;
+  /* Bleed to section edges */
+  margin: 4rem calc(-1 * var(--section-pad-h)) 0;
+  padding: 3rem var(--section-pad-h) 0;
 }
 
-.footer-content {
+.footer-inner {
   max-width: 1100px;
-  margin: auto;
+  margin: 0 auto;
+}
+
+/* ---- Top row: brand + description + links ---- */
+.footer-top {
   display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 2rem 3rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--bg-black-50);
 }
 
-.footer-left {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+/* Column 1: Brand */
+/* .footer-brand {} */
 
-/* FIX: Footer logo uses CSS vars now */
-.footer-logo .logo a {
+.footer-brand .logo a {
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.1rem;
   color: var(--text-black-900);
-  padding: 0;
-  position: relative;
+  display: inline-block;
+  margin-bottom: 0.9rem;
 }
 
-.footer-logo .logo a span {
+.footer-brand .logo a span {
   font-family: "Clicker Script", cursive;
   font-size: 2rem;
   color: var(--skin-color);
 }
 
-/* FIX: footer-quote was 2rem — way too large */
-.footer-quote {
-  font-size: 0.92rem;
-  font-style: italic;
+.footer-tagline {
+  font-size: 0.86rem;
   color: var(--text-black-700);
-  line-height: 1.6;
-  max-width: 42ch;
+  line-height: 1.7;
+  /* max-width: 28ch; */
+  font-style: italic;
 }
 
-.footer-quote::before {
+.footer-tagline::before {
   content: '"';
   color: var(--skin-color);
-  font-size: 1.4rem;
-  margin-right: 0.2rem;
+  font-size: 1.3rem;
+  margin-right: 0.15rem;
   vertical-align: -0.15em;
 }
 
-.footer-text {
-  font-size: 0.82rem;
-  color: var(--text-black-700);
-  opacity: 0.7;
+/* Column 2: Quick links */
+.footer-links-col h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-black-900);
+  margin-bottom: 1.1rem;
 }
 
-/* FIX: Socials now on the right, stacked neatly */
-.footer-right {
+.footer-links-col ul {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
+  gap: 0.55rem;
 }
 
-.footer-socials-label {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+.footer-links-col ul li a {
+  font-size: 0.86rem;
   color: var(--text-black-700);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--dur-fast), transform var(--dur-fast);
+}
+
+.footer-links-col ul li a:hover {
+  color: var(--skin-color);
+  transform: translateX(4px);
+}
+
+.footer-links-col ul li a i {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* Column 3: Connect */
+.footer-connect-col h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-black-900);
+  margin-bottom: 1.1rem;
 }
 
 .footer-socials {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  gap: 0.65rem;
+  flex-wrap: wrap;
 }
 
 .footer-socials a {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1549,9 +1595,9 @@ body.light .contact-form-container {
   color: var(--text-black-700);
   background: var(--bg-black-50);
   border: 1px solid var(--bg-black-50);
-  transition: color var(--dur-fast), background var(--dur-fast),
-    transform var(--dur-fast), border-color var(--dur-fast);
   font-size: 1rem;
+  transition: color var(--dur-fast), background var(--dur-fast),
+    border-color var(--dur-fast), transform var(--dur-fast);
 }
 
 .footer-socials a:hover {
@@ -1561,43 +1607,63 @@ body.light .contact-form-container {
   transform: translateY(-3px);
 }
 
+.footer-available {
+  margin-top: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 2rem;
+  background: color-mix(in srgb, #22c55e 10%, transparent);
+  border: 1px solid color-mix(in srgb, #22c55e 30%, transparent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #22c55e;
+}
+
+/* ---- Bottom bar ---- */
 .footer-bottom {
-  grid-column: 1 / -1;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--bg-black-50);
+  padding: 1.2rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .footer-bottom p {
+  font-size: 0.8rem;
   color: var(--text-black-700);
-  font-size: 0.82rem;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
-.footer-bottom a {
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.footer-bottom-links a {
+  font-size: 0.8rem;
+  color: var(--text-black-700);
+  opacity: 0.65;
+  transition: color var(--dur-fast), opacity var(--dur-fast);
+}
+
+.footer-bottom-links a:hover {
   color: var(--skin-color);
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.footer-bottom a:hover {
-  text-decoration: underline;
+  opacity: 1;
 }
 
 /* ================================================================
-   SCROLL TO TOP BUTTON
+   SCROLL TO TOP
    ================================================================ */
 .scroll-top {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2.6rem;
+  height: 2.6rem;
   border-radius: 50%;
   background: var(--skin-color);
   color: white;
@@ -1607,13 +1673,12 @@ body.light .contact-form-container {
   justify-content: center;
   cursor: pointer;
   z-index: 500;
-  font-size: 1rem;
+  font-size: 0.9rem;
   opacity: 0;
   visibility: hidden;
   transform: translateY(1rem);
-  transition: opacity var(--dur-base), visibility var(--dur-base),
-    transform var(--dur-base);
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--skin-color) 35%, transparent);
+  transition: opacity var(--dur-base), visibility var(--dur-base), transform var(--dur-base);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--skin-color) 35%, transparent);
 }
 
 .scroll-top.visible {
@@ -1627,15 +1692,15 @@ body.light .contact-form-container {
 }
 
 /* ================================================================
-   LIGHT MODE OVERRIDES
+   LIGHT MODE
    ================================================================ */
 body.light .aside {
-  background: rgba(255, 255, 255, 0.95);
-  border-right-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.96);
+  border-right-color: rgba(0, 0, 0, 0.07);
 }
 
 body.light .aside .nav li a {
-  color: #504e70;
+  color: #6b6899;
 }
 
 body.light .aside .nav li a.active,
@@ -1644,10 +1709,14 @@ body.light .aside .nav li a:hover {
   background: color-mix(in srgb, var(--skin-color) 8%, transparent);
 }
 
+body.light .aside .logo a {
+  color: #1e1b3a;
+}
+
 body.light .menu-toggle {
-  background: rgba(255, 255, 255, 0.92);
-  color: #302e4d;
-  border-color: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.94);
+  color: #1e1b3a;
+  border-color: rgba(0, 0, 0, 0.07);
 }
 
 body.light .project-card {
@@ -1655,38 +1724,85 @@ body.light .project-card {
   border-color: rgba(0, 0, 0, 0.07);
 }
 
+body.light .project-content h3 {
+  color: #1e1b3a;
+}
+
+body.light .project-buttons a:last-child {
+  background: var(--bg-black-50);
+  color: #1e1b3a;
+}
+
+body.light .project-overlay {
+  background: linear-gradient(to top, rgba(236, 233, 252, 0.9), rgba(236, 233, 252, 0.05));
+}
+
 body.light .modal-container {
   background: #ffffff;
 }
 
+body.light .modal-content h2 {
+  color: #1e1b3a;
+}
+
+body.light .modal-content p {
+  color: #6b6899;
+}
+
 body.light .modal-close {
-  background: rgba(0, 0, 0, 0.07);
-  color: #302e4d;
+  background: rgba(0, 0, 0, 0.06);
+  color: #1e1b3a;
 }
 
 body.light .github-link {
   background: rgba(0, 0, 0, 0.05) !important;
-  color: #302e4d !important;
-}
-
-body.light .project-overlay {
-  background: linear-gradient(to top, rgba(240, 238, 252, 0.9), rgba(240, 238, 252, 0.1));
+  color: #1e1b3a !important;
 }
 
 body.light .footer {
-  background: var(--bg-black-100);
+  background: #ffffff;
   border-top-color: rgba(0, 0, 0, 0.07);
+}
+
+body.light .footer-top {
+  border-bottom-color: rgba(0, 0, 0, 0.07);
 }
 
 body.light .footer-bottom {
   border-top-color: rgba(0, 0, 0, 0.07);
 }
 
+body.light .footer-brand .logo a {
+  color: #1e1b3a;
+}
+
+body.light .footer-tagline {
+  color: #6b6899;
+}
+
+body.light .footer-links-col h4,
+body.light .footer-connect-col h4 {
+  color: #1e1b3a;
+}
+
+body.light .footer-links-col ul li a {
+  color: #6b6899;
+}
+
+body.light .footer-links-col ul li a:hover {
+  color: var(--skin-color);
+}
+
+body.light .footer-socials a {
+  background: var(--bg-black-50);
+  color: #6b6899;
+}
+
 body.light #contact-form input,
 body.light #contact-form textarea {
   background: #f5f4fc;
   border-color: rgba(0, 0, 0, 0.1);
-  color: #302e4d;
+  color: #1e1b3a;
 }
 
 body.light #contact-form input::placeholder,
@@ -1694,8 +1810,33 @@ body.light #contact-form textarea::placeholder {
   color: #9290b0;
 }
 
+body.light .stat-card {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+body.light .about .about-content .timeline {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+body.light .service .service-item .service-item-inner {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+body.light .contact .contact-info-item {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
+body.light .contact-form-container {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.07);
+}
+
 /* ================================================================
-   RESPONSIVE — 1199px (tablet/hamburger breakpoint)
+   RESPONSIVE — 1199px
    ================================================================ */
 @media (max-width: 1199px) {
   .section .container {
@@ -1708,7 +1849,7 @@ body.light #contact-form textarea::placeholder {
 
   .aside.open {
     left: 0;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+    box-shadow: 4px 0 32px rgba(0, 0, 0, 0.35);
   }
 
   .menu-toggle {
@@ -1722,6 +1863,15 @@ body.light #contact-form textarea::placeholder {
 
   .home .home-img::before {
     display: none;
+  }
+
+  /* Footer 3-col → 2-col at 1199px */
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
   }
 }
 
@@ -1745,13 +1895,13 @@ body.light #contact-form textarea::placeholder {
     width: 190px;
     height: 190px;
     border-radius: 50%;
-    object-fit: cover;
     border-width: 3px;
   }
 
   .availability-badge {
     right: -3rem;
     bottom: -0.5rem;
+    font-size: 0.65rem;
   }
 
   .home .home-info {
@@ -1771,9 +1921,10 @@ body.light #contact-form textarea::placeholder {
     max-width: 50%;
   }
 
+  /* Contact cards: 2-up, never 4-in-a-row on tablet */
   .contact .contact-info-item {
-    flex: 1 1 180px;
-    max-width: none;
+    flex: 1 1 calc(50% - 0.5rem);
+    max-width: calc(50% - 0.5rem);
   }
 }
 
@@ -1786,7 +1937,7 @@ body.light #contact-form textarea::placeholder {
   }
 
   .section-title h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .service .service-item,
@@ -1813,20 +1964,22 @@ body.light #contact-form textarea::placeholder {
 
   #contact-form .row {
     flex-direction: column;
-    gap: 0;
+    gap: .5rem;
   }
 
   .contact-form-container {
     padding: 1.25rem;
   }
 
-  /* FIX: Footer switches to single column on mobile */
-  .footer-content {
-    grid-template-columns: 1fr;
+  /* Contact cards: 1-col on phones */
+  .contact .contact-info-item {
+    flex: 1 1 100%;
+    max-width: 100%;
   }
 
-  .footer-right {
-    align-items: flex-start;
+  /* Footer: single column */
+  .footer-top {
+    grid-template-columns: 1fr;
   }
 
   .footer-bottom {
@@ -1836,11 +1989,11 @@ body.light #contact-form textarea::placeholder {
   }
 
   h3.hello {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 
   h3.my-profession {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -1862,8 +2015,8 @@ body.light #contact-form textarea::placeholder {
   }
 
   .home .home-img img {
-    width: 160px;
-    height: 160px;
+    width: 155px;
+    height: 155px;
   }
 }
 

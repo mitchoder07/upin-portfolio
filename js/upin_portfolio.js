@@ -326,30 +326,97 @@ modalOverlay.addEventListener(
     closeModal
 );
 
-// ===== SCROLL TO TOP =====
 (function () {
-    const btn = document.getElementById("scrollTopBtn");
-    if (!btn) return;
 
-    // Show/hide based on scroll position within the active section
-    document.querySelectorAll(".section").forEach(section => {
-        section.addEventListener("scroll", () => {
-            if (section.scrollTop > 500) {
-                btn.classList.add("visible");
-            } else {
-                btn.classList.remove("visible");
+    // ===== LOGO NAVIGATION FIX =====
+    // Logo clicks trigger the same section-switch as nav links
+    function navigateToSection(targetId) {
+        // Remove active from all nav links
+        document.querySelectorAll(".nav a").forEach(a => a.classList.remove("active"));
+
+        // Activate the matching nav link
+        const matchingLink = document.querySelector(`.nav a[href="#${targetId}"]`);
+        if (matchingLink) matchingLink.classList.add("active");
+
+        // Hide all sections, show target
+        document.querySelectorAll(".section").forEach(s => {
+            s.classList.remove("active", "back-section");
+        });
+
+        const target = document.getElementById(targetId);
+        if (target) target.classList.add("active");
+
+        // Close sidebar on mobile
+        if (window.innerWidth < 1200) {
+            document.querySelector(".aside")?.classList.remove("open");
+            document.querySelector(".menu-toggle")?.classList.remove("active");
+            document.querySelector(".sidebar-overlay")?.classList.remove("active");
+        }
+    }
+
+    // Wire up sidebar logo
+    const logoLink = document.getElementById("logo-link");
+    if (logoLink) {
+        logoLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            navigateToSection("home");
+        });
+    }
+
+    // Wire up footer logo
+    const footerLogoLink = document.getElementById("footer-logo-link");
+    if (footerLogoLink) {
+        footerLogoLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            navigateToSection("home");
+        });
+    }
+
+    // Wire up footer quick links
+    document.querySelectorAll(".footer-links-col a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const href = this.getAttribute("href");
+            if (href && href.startsWith("#")) {
+                navigateToSection(href.slice(1));
             }
         });
     });
 
-    btn.addEventListener("click", () => {
-        // Scroll active section to top
-        const active = document.querySelector(".section.active");
-        if (active) {
-            active.scrollTo({ top: 0, behavior: "smooth" });
-        }
-        btn.classList.remove("visible");
+    // Wire up footer bottom "Back to top"
+    document.querySelectorAll(".footer-bottom-links a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const href = this.getAttribute("href");
+            if (href && href.startsWith("#")) {
+                navigateToSection(href.slice(1));
+                // Also scroll to top of section
+                const section = document.getElementById(href.slice(1));
+                if (section) section.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
     });
+
+    // ===== SCROLL TO TOP BUTTON =====
+    const scrollBtn = document.getElementById("scrollTopBtn");
+    if (scrollBtn) {
+        document.querySelectorAll(".section").forEach(section => {
+            section.addEventListener("scroll", () => {
+                if (section.scrollTop > 350) {
+                    scrollBtn.classList.add("visible");
+                } else {
+                    scrollBtn.classList.remove("visible");
+                }
+            });
+        });
+
+        scrollBtn.addEventListener("click", () => {
+            const active = document.querySelector(".section.active");
+            if (active) active.scrollTo({ top: 0, behavior: "smooth" });
+            scrollBtn.classList.remove("visible");
+        });
+    }
+
 })();
 
 // ===================== EMAILJS CONTACT FORM =====================
