@@ -145,58 +145,58 @@ function closeSidebar() {
 // ===================== Load More Projects =====================
 
 const projectCards =
-document.querySelectorAll(".project-card");
+    document.querySelectorAll(".project-card");
 
 const loadMoreBtn =
-document.querySelector(".load-more-btn");
+    document.querySelector(".load-more-btn");
 
 let visibleProjects = 6;
 
 /* Tablet */
 
-if(window.innerWidth <= 991){
+if (window.innerWidth <= 991) {
     visibleProjects = 4;
 }
 
 /* Mobile */
 
-if(window.innerWidth <= 767){
+if (window.innerWidth <= 767) {
     visibleProjects = 2;
 }
 
 /* Hide Extra Projects */
-projectCards.forEach((card,index) => {
-    if(index >= visibleProjects){
+projectCards.forEach((card, index) => {
+    if (index >= visibleProjects) {
         card.classList.add("hidden-project");
     }
 });
 
 /* Load More */
 
-loadMoreBtn.addEventListener("click",() => {
+loadMoreBtn.addEventListener("click", () => {
 
     let hiddenProjects =
-    document.querySelectorAll(
-        ".project-card.hidden-project"
-    );
+        document.querySelectorAll(
+            ".project-card.hidden-project"
+        );
 
     /* Reveal next batch */
 
-    for(let i=0; i<3; i++){
+    for (let i = 0; i < 3; i++) {
 
-        if(hiddenProjects[i]){
+        if (hiddenProjects[i]) {
             hiddenProjects[i]
-            .classList.remove("hidden-project");
+                .classList.remove("hidden-project");
         }
     }
 
     /* Hide button if no more */
 
-    if(
+    if (
         document.querySelectorAll(
-        ".project-card.hidden-project"
+            ".project-card.hidden-project"
         ).length === 0
-    ){
+    ) {
         loadMoreBtn.style.display = "none";
     }
 });
@@ -325,6 +325,32 @@ modalOverlay.addEventListener(
     "click",
     closeModal
 );
+
+// ===== SCROLL TO TOP =====
+(function () {
+    const btn = document.getElementById("scrollTopBtn");
+    if (!btn) return;
+
+    // Show/hide based on scroll position within the active section
+    document.querySelectorAll(".section").forEach(section => {
+        section.addEventListener("scroll", () => {
+            if (section.scrollTop > 500) {
+                btn.classList.add("visible");
+            } else {
+                btn.classList.remove("visible");
+            }
+        });
+    });
+
+    btn.addEventListener("click", () => {
+        // Scroll active section to top
+        const active = document.querySelector(".section.active");
+        if (active) {
+            active.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        btn.classList.remove("visible");
+    });
+})();
 
 // ===================== EMAILJS CONTACT FORM =====================
 
