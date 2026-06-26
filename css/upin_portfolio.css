@@ -1751,7 +1751,11 @@ body.light .modal-content p {
 
 body.light .modal-close {
   background: rgba(0, 0, 0, 0.06);
-  color: #1e1b3a;
+  color: white;
+}
+
+body.light .modal-close:hover {
+  background: var(--skin-color);
 }
 
 body.light .github-link {
