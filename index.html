@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/skins/used_color_5.css" class="alternate-color" title="used_color_5" disabled>
     <!-- Color Changer Stylesheet -->
     <link rel="stylesheet" href="css/color_changer.css">
+    <!-- Logo Animation -->
+    <link rel="stylesheet" href="css/logo.css">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -30,7 +32,16 @@
         <!-- ===== ASIDE / SIDEBAR ===== -->
         <aside class="aside">
             <div class="logo">
-                <a href="#home" id="logo-link"><span>U</span>pi<span>n</span></a>
+                <a href="#home" id="logo-link">
+                    <div class="logo-pill">
+                        <div class="logo-mark"></div>
+                        <div class="logo-letters">
+                            <span class="logo-l-p">pi</span>
+                            <span class="logo-l-n">n</span>
+                            <span class="logo-dot"></span>
+                        </div>
+                    </div>
+                </a>
             </div>
             <ul class="nav">
                 <li><a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -135,7 +146,13 @@
                                 <div class="personal-info padd-15">
                                     <div class="row">
                                         <div class="info-item padd-15">
-                                            <p>Birthday : <span>16 May 2003</span></p>
+                                            <p>Birthday :
+                                                <span id="birthday-value" class="bday-hidden">••••••••••</span>
+                                                <button class="bday-lock-btn" id="bday-lock-btn"
+                                                    aria-label="Unlock birthday" title="Unlock to view">
+                                                    <i class="fa-solid fa-lock" id="bday-lock-icon"></i>
+                                                </button>
+                                            </p>
                                         </div>
                                         <div class="info-item padd-15">
                                             <p>Age : <span>23</span></p>
@@ -539,7 +556,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Project Card 5 Done -->
+                        <!-- Project Card 5 -->
                         <div class="project-card">
                             <div class="project-image">
                                 <img src="images/wgg.jpg" alt="Scrabble">
@@ -575,7 +592,35 @@
                         </div>
                         <div class="project-card">
                             <div class="project-image">
-                                <img src="images/coffee (2).jpeg" alt="Coffee">
+                                <img src="images/trivera.png" alt="Scrabble">
+                                <div class="project-overlay"></div>
+                                <span class="project-badge">Design</span>
+                            </div>
+                            <div class="project-content">
+                                <h3>Trivera</h3>
+                                <p>
+                                    E-commerce Design Interface
+                                </p>
+                                <div class="project-tech">
+                                    <span>Figma</span>
+                                </div>
+                                <div class="project-buttons">
+                                    <button class="open-modal" data-title="Trivera" data-image="images\trivera.png"
+                                        data-category="Design" data-description="..." data-live="https://word-gu/"
+                                        data-github="https://github.com/mitchoder07/" data-tech="Figma">
+                                        <i class="fa-solid fa-eye"></i>
+                                        View Project
+                                    </button>
+                                    <a href="#">
+                                        <i class="fa-brands fa-github"></i>
+                                        GitHub
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-card">
+                            <div class="project-image">
+                                <img src="images/kopi.png" alt="Coffee">
                                 <div class="project-overlay"></div>
                                 <span class="project-badge">Food</span>
                             </div>
@@ -590,7 +635,7 @@
                                     <span>JavaScript</span>
                                 </div>
                                 <div class="project-buttons">
-                                    <button class="open-modal" data-title="Coffee Shop" data-image="images\coffee.jpeg"
+                                    <button class="open-modal" data-title="Coffee Shop" data-image="images\kopi(2).png"
                                         data-category="Food"
                                         data-description="A responsive, visually rich coffee shop website built with HTML, CSS and JS showcasing a menu, location, and online ordering feel. Designed to feel as inviting as the aroma of fresh brew, with smooth animations and a clean layout."
                                         data-live="https://coffee-kopi.vercel.app/"
@@ -743,7 +788,16 @@
                             <!-- Col 1: Brand -->
                             <div class="footer-brand">
                                 <div class="logo">
-                                    <a href="#home" id="footer-logo-link"><span>U</span>pi<span>n</span></a>
+                                    <a href="#home" id="footer-logo-link">
+                                        <div class="logo-pill">
+                                            <div class="logo-mark"></div>
+                                            <div class="logo-letters">
+                                                <span class="logo-l-p">pi</span>
+                                                <span class="logo-l-n">n</span>
+                                                <span class="logo-dot"></span>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <p class="footer-tagline">
                                     Designing secure digital experiences today for a smarter tomorrow.
@@ -862,6 +916,56 @@
             </div>
         </div>
     </div>
+
+    <!-- ===== B-DAY MODAL ===== -->
+
+    <div id="bday-modal" role="dialog" aria-modal="true" aria-labelledby="bday-modal-title">
+        <div id="bday-modal-overlay"></div>
+        <div id="bday-modal-box">
+
+            <button id="bday-modal-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+
+            <div class="bday-modal-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h3 id="bday-modal-title">Private Information</h3>
+            <p>Enter your 4-digit PIN to reveal this detail.</p>
+
+            <!-- 4 dots showing PIN progress -->
+            <div class="bday-pin-dots" id="bday-dots">
+                <div class="bday-pin-dot" data-i="0"></div>
+                <div class="bday-pin-dot" data-i="1"></div>
+                <div class="bday-pin-dot" data-i="2"></div>
+                <div class="bday-pin-dot" data-i="3"></div>
+            </div>
+
+            <!-- Error text -->
+            <div id="bday-error">Incorrect PIN. Just give up :).</div>
+
+            <!-- Number pad -->
+            <div class="bday-numpad">
+                <button class="bday-key" data-val="1">1</button>
+                <button class="bday-key" data-val="2">2</button>
+                <button class="bday-key" data-val="3">3</button>
+                <button class="bday-key" data-val="4">4</button>
+                <button class="bday-key" data-val="5">5</button>
+                <button class="bday-key" data-val="6">6</button>
+                <button class="bday-key" data-val="7">7</button>
+                <button class="bday-key" data-val="8">8</button>
+                <button class="bday-key" data-val="9">9</button>
+                <button class="bday-key key-clear" data-action="clear">CLR</button>
+                <button class="bday-key" data-val="0">0</button>
+                <button class="bday-key key-backspace" data-action="back">
+                    <i class="fa-solid fa-delete-left"></i>
+                </button>
+            </div>
+
+            <div id="bday-error" style="display:none"></div>
+
+        </div>
+    </div>
+
     <!-- ===== SCRIPTS ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>

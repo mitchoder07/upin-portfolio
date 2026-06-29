@@ -285,13 +285,6 @@ body {
   transition: left var(--dur-base) var(--ease-out);
 }
 
-.aside .logo {
-  position: absolute;
-  top: 2.5rem;
-}
-
-/* FIX: Logo link navigates to #home — the JS handles it.
-   Make sure the cursor shows it's clickable */
 .aside .logo a {
   color: var(--text-black-900);
   font-weight: 700;
@@ -307,28 +300,6 @@ body {
   font-family: "Clicker Script", cursive;
   font-size: 2.1rem;
   color: var(--skin-color);
-}
-
-.aside .logo a::before {
-  content: "";
-  position: absolute;
-  width: 0.9rem;
-  height: 0.9rem;
-  border-bottom: 2px solid var(--skin-color);
-  border-left: 2px solid var(--skin-color);
-  bottom: 0;
-  left: 0;
-}
-
-.aside .logo a::after {
-  content: "";
-  position: absolute;
-  width: 0.9rem;
-  height: 0.9rem;
-  border-top: 2px solid var(--skin-color);
-  border-right: 2px solid var(--skin-color);
-  top: 0;
-  right: 0;
 }
 
 .aside .nav {
@@ -885,6 +856,262 @@ body.light .availability-badge {
   font-size: 0.85rem;
   line-height: 1.7;
   color: var(--text-black-700);
+}
+
+/* ---- Birthday lock button ---- */
+.bday-lock-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 0 0 0.4rem;
+  color: var(--skin-color);
+  font-size: 0.78rem;
+  vertical-align: middle;
+  transition: transform 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.bday-lock-btn:hover {
+  transform: scale(1.2);
+}
+
+.bday-lock-btn.unlocked {
+  color: #22c55e;
+}
+
+.bday-hidden {
+  letter-spacing: 0.15em;
+  color: var(--text-black-700);
+  font-family: monospace;
+  user-select: none;
+}
+
+/* ---- PIN Modal ---- */
+#bday-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+#bday-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+#bday-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+#bday-modal-box {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-black-100);
+  border: 1px solid var(--bg-black-50);
+  border-radius: 1.25rem;
+  padding: 2rem 1.75rem 1.75rem;
+  width: min(360px, 100%);
+  text-align: center;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45);
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#bday-modal.open #bday-modal-box {
+  transform: translateY(0) scale(1);
+}
+
+#bday-modal-box .bday-modal-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--skin-color) 14%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  font-size: 1.4rem;
+  color: var(--skin-color);
+}
+
+#bday-modal-box h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-black-900);
+  margin-bottom: 0.35rem;
+}
+
+#bday-modal-box p {
+  font-size: 0.82rem;
+  color: var(--text-black-700);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+/* PIN dots display */
+.bday-pin-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.bday-pin-dot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  border: 2px solid var(--bg-black-50);
+  background: transparent;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+.bday-pin-dot.filled {
+  background: var(--skin-color);
+  border-color: var(--skin-color);
+  transform: scale(1.1);
+}
+
+.bday-pin-dot.error {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Numpad */
+.bday-numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.bday-key {
+  background: var(--bg-black-50);
+  border: 1px solid var(--bg-black-50);
+  border-radius: 0.7rem;
+  padding: 0.9rem 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-black-900);
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, border-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.2rem;
+}
+
+.bday-key:hover {
+  background: color-mix(in srgb, var(--skin-color) 14%, transparent);
+  border-color: var(--skin-color);
+  color: var(--skin-color);
+}
+
+.bday-key:active {
+  transform: scale(0.93);
+}
+
+.bday-key.key-backspace {
+  color: var(--text-black-700);
+  font-size: 0.95rem;
+}
+
+.bday-key.key-clear {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Error message */
+#bday-error {
+  font-size: 0.8rem;
+  color: #ef4444;
+  min-height: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+#bday-error.visible {
+  opacity: 1;
+}
+
+/* Shake animation on wrong PIN */
+@keyframes bday-shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-8px);
+  }
+
+  40% {
+    transform: translateX(8px);
+  }
+
+  60% {
+    transform: translateX(-5px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.bday-shake {
+  animation: bday-shake 0.45s ease both;
+}
+
+/* Close button */
+#bday-modal-close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-black-50);
+  color: var(--text-black-700);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+
+#bday-modal-close:hover {
+  background: #ef4444;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* Light mode */
+body.light #bday-modal-box {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light .bday-key {
+  background: #f0eef8;
+  border-color: #e2ddf0;
+  color: #1e1b3a;
 }
 
 /* ================================================================

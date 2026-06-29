@@ -328,6 +328,166 @@ modalOverlay.addEventListener(
 
 (function () {
 
+    const SECRET_PIN = "1911";   // ← YOUR PIN HERE
+    const BIRTHDAY = "16 May 2003";  // ← shown after correct PIN
+
+    /* ---- State ---- */
+    let pinBuffer = "";
+    let isUnlocked = sessionStorage.getItem("bday_unlocked") === "1";
+
+    /* ---- Elements ---- */
+    const bdayValue = document.getElementById("birthday-value");
+    const lockBtn = document.getElementById("bday-lock-btn");
+    const lockIcon = document.getElementById("bday-lock-icon");
+    const modal = document.getElementById("bday-modal");
+    const modalClose = document.getElementById("bday-modal-close");
+    const overlay = document.getElementById("bday-modal-overlay");
+    const dots = document.querySelectorAll(".bday-pin-dot");
+    const errorEl = document.getElementById("bday-error");
+    const modalBox = document.getElementById("bday-modal-box");
+
+    if (!bdayValue || !lockBtn || !modal) return;
+
+    /* ---- If already unlocked this session, show immediately ---- */
+    if (isUnlocked) showBirthday();
+
+    /* ---- Open modal on lock icon click ---- */
+    lockBtn.addEventListener("click", () => {
+        if (isUnlocked) {
+            // Toggle hide/show if already unlocked
+            if (bdayValue.textContent === BIRTHDAY) {
+                hideBirthday();
+            } else {
+                showBirthday();
+            }
+            return;
+        }
+        openModal();
+    });
+
+    /* ---- Close modal ---- */
+    modalClose.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
+        if (modal.classList.contains("open")) {
+            if (e.key >= "0" && e.key <= "9") appendDigit(e.key);
+            if (e.key === "Backspace") deleteDigit();
+        }
+    });
+
+    /* ---- Number pad ---- */
+    document.querySelectorAll(".bday-key").forEach(key => {
+        key.addEventListener("click", () => {
+            const val = key.dataset.val;
+            const action = key.dataset.action;
+            if (val !== undefined) appendDigit(val);
+            if (action === "back") deleteDigit();
+            if (action === "clear") clearPin();
+        });
+    });
+
+    /* ---- PIN logic ---- */
+    function appendDigit(d) {
+        if (pinBuffer.length >= 4) return;
+        pinBuffer += d;
+        updateDots();
+        if (pinBuffer.length === 4) checkPin();
+    }
+
+    function deleteDigit() {
+        pinBuffer = pinBuffer.slice(0, -1);
+        clearError();
+        updateDots();
+    }
+
+    function clearPin() {
+        pinBuffer = "";
+        clearError();
+        updateDots();
+    }
+
+    function checkPin() {
+        if (pinBuffer === SECRET_PIN) {
+            // Correct — flash dots green then close
+            dots.forEach(d => d.classList.add("filled"));
+            setTimeout(() => {
+                isUnlocked = true;
+                sessionStorage.setItem("bday_unlocked", "1");
+                showBirthday();
+                closeModal();
+            }, 350);
+        } else {
+            // Wrong — shake + error
+            dots.forEach(d => { d.classList.remove("filled"); d.classList.add("error"); });
+            modalBox.classList.add("bday-shake");
+            showError("Incorrect PIN. Try again.");
+            setTimeout(() => {
+                modalBox.classList.remove("bday-shake");
+                dots.forEach(d => d.classList.remove("error"));
+                clearPin();
+            }, 600);
+        }
+    }
+
+    function updateDots() {
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("filled", i < pinBuffer.length);
+        });
+    }
+
+    function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.style.display = "block";
+        errorEl.classList.add("visible");
+    }
+
+    function clearError() {
+        errorEl.classList.remove("visible");
+        setTimeout(() => { errorEl.style.display = "none"; }, 200);
+    }
+
+    /* ---- Modal open/close ---- */
+    function openModal() {
+        clearPin();
+        clearError();
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+        setTimeout(clearPin, 300);
+    }
+
+    /* ---- Show / hide birthday ---- */
+    function showBirthday() {
+        bdayValue.textContent = BIRTHDAY;
+        bdayValue.classList.remove("bday-hidden");
+        lockIcon.className = "fa-solid fa-lock-open";
+        lockBtn.classList.add("unlocked");
+        lockBtn.title = "Click to hide";
+        lockBtn.setAttribute("aria-label", "Hide birthday");
+    }
+
+    function hideBirthday() {
+        bdayValue.textContent = "••••••••••";
+        bdayValue.classList.add("bday-hidden");
+        lockIcon.className = "fa-solid fa-lock";
+        lockBtn.classList.remove("unlocked");
+        lockBtn.title = "Unlock to view";
+        lockBtn.setAttribute("aria-label", "Unlock birthday");
+        // Don't clear session — next unlock is instant
+    }
+
+})();
+
+// ====================================================================
+
+(function () {
+
     // ===== LOGO NAVIGATION FIX =====
     // Logo clicks trigger the same section-switch as nav links
     function navigateToSection(targetId) {
