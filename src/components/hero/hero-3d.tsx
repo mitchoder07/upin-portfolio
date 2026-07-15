@@ -161,7 +161,7 @@ export function Hero3DScene() {
         <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.5}>
           <group>
             <FloatingShape
-              position={[-2.5, 0.5, 0]}
+              position={[-4.5, 0.5, -3]}
               color="#5eead4"
               geometry="knot"
               scale={0.85}
