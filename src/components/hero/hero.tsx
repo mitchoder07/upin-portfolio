@@ -36,9 +36,7 @@ export function Hero() {
         <Hero3DScene />
       </div>
 
-      {/* Left-to-right gradient for text readability.
-          Starts very solid on the left, fades by 60% so the 3D scene shows on the right.
-          Content is pushed right via padding so nothing sits under the dense part. */}
+      {/* delete this whole div */}
       <div
         className="absolute inset-0 -z-[5]"
         style={{
