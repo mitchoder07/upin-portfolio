@@ -36,7 +36,17 @@ export function Hero() {
         <Hero3DScene />
       </div>
 
-      {/* delete this whole div */}
+      {/* Left-to-right gradient for text readability.
+          Starts very solid on the left, fades by 60% so the 3D scene shows on the right.
+          Content is pushed right via padding so nothing sits under the dense part. */}
+      <div
+        className="absolute inset-0 -z-[5]"
+        style={{
+          background:
+            "linear-gradient(90deg, var(--background) 0%, var(--background) 15%, transparent 75%)",
+          opacity: 0.9,
+        }}
+      />
 
       <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-16 sm:px-10 lg:px-16 xl:px-20">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
