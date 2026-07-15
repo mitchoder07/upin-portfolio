@@ -44,7 +44,7 @@ export function Hero() {
         style={{
           background:
             "linear-gradient(90deg, var(--background) 0%, var(--background) 35%, transparent 75%)",
-          opacity: 0.9,
+          opacity: 0.2,
         }}
       />
 
