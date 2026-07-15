@@ -43,7 +43,7 @@ export function Hero() {
         className="absolute inset-0 -z-[5]"
         style={{
           background:
-            "linear-gradient(90deg, var(--background) 0%, var(--background) 35%, transparent 75%)",
+            "linear-gradient(90deg, var(--background) 0%, var(--background) 15%, transparent 75%)",
           opacity: 0.9,
         }}
       />
