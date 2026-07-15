@@ -37,14 +37,6 @@ export function Hero() {
       </div>
 
       {/* delete this whole div */}
-      <div
-        className="absolute inset-0 -z-[5]"
-        style={{
-          background:
-            "linear-gradient(90deg, var(--background) 0%, transparent 35%)",
-          opacity: 0.6,
-        }}
-      />
 
       <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-16 sm:px-10 lg:px-16 xl:px-20">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
