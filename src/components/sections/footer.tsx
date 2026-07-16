@@ -1,11 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUp, Mail, Github, Linkedin, Dribbble, Figma } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail, Dribbble, Figma } from "lucide-react";
 import { SiX, SiWhatsapp } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { AnimatedLogo } from "@/components/animated-logo";
-import type { ComponentType } from "react";
 
 const navLinks = [
   { id: "about", key: "about" },
@@ -16,22 +15,6 @@ const navLinks = [
   { id: "design", key: "design" },
   { id: "contact", key: "contact" },
 ] as const;
-
-type SocialLink = {
-  icon: ComponentType<{ className?: string }>;
-  href: string;
-  label: string;
-};
-
-const socials: SocialLink[] = [
-  { icon: Github, href: "https://github.com/mitchoder07", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/mitchoder07", label: "LinkedIn" },
-  { icon: SiX, href: "https://x.com/mitchoder07", label: "X" },
-  { icon: Dribbble, href: "https://dribbble.com/mitchoder07", label: "Dribbble" },
-  { icon: Figma, href: "https://figma.com/@mitchoder07", label: "Figma" },
-  { icon: SiWhatsapp, href: "https://wa.me/2347088955340", label: "WhatsApp" },
-  { icon: Mail, href: "mailto:olaniyiaremu2003@gmail.com", label: "Email" },
-];
 
 export function Footer() {
   const { t } = useI18n();
@@ -81,8 +64,16 @@ export function Footer() {
             <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {t.footer.connect}
             </h4>
-            <div className="flex flex-wrap gap-2">
-              {socials.map((s) => {
+            <div className="flex gap-2">
+              {[
+                { icon: Github, href: "https://github.com/mitchoder07", label: "GitHub" },
+                { icon: Linkedin, href: "https://linkedin.com/in/mitchoder07", label: "LinkedIn" },
+                { icon: SiX, href: "https://x.com/mitchoder07", label: "X" },
+                { icon: Dribbble, href: "https://dribbble.com/mitchoder07", label: "Dribbble" },
+                { icon: Figma, href: "https://figma.com/@mitchoder07", label: "Figma" },
+                { icon: SiWhatsapp, href: "https://wa.me/2347088955340", label: "WhatsApp" },
+                { icon: Mail, href: "mailto:olaniyiaremu2003@gmail.com", label: "Email" },
+              ].map((s) => {
                 const Icon = s.icon;
                 return (
                   <a

@@ -5,23 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// Character avatars — user's real photo, Upin characters, and anime characters.
+// Character avatars — Tokyo Revengers, Demon Slayer, and Upin characters.
 // They cycle silently every 3.2s with a cross-fade + slight zoom.
-// Order: profile photo → upin → anime → repeat
 type Avatar = {
   src: string;
   name: string;
 };
 
 const avatars: Avatar[] = [
-  { src: "/portfolio-images/profile.jpeg", name: "Abdullah Yusuf" },
-  { src: "/avatars/upin-1.png", name: "Upin" },
   { src: "/avatars/tokyo-1.png", name: "Tokyo Revengers" },
-  { src: "/avatars/upin-2.png", name: "Upin" },
   { src: "/avatars/demon-1.png", name: "Demon Slayer" },
   { src: "/avatars/tokyo-2.png", name: "Tokyo Revengers" },
   { src: "/avatars/demon-2.png", name: "Demon Slayer" },
   { src: "/avatars/tokyo-3.png", name: "Tokyo Revengers" },
+  { src: "/avatars/upin-1.png", name: "Upin" },
 ];
 
 const AVATAR_INTERVAL = 3200; // ms between switches

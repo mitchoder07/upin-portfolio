@@ -25,34 +25,32 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Upin — Frontend Engineer & UI/UX Designer",
+  title: "Upin — Full Stack Engineer | Polyglot Builder",
   description:
-    "Abdullah Yusuf (Upin) is a frontend engineer and UI/UX designer who designs and builds beautiful, accessible interfaces. From Figma wireframes to pixel-perfect React.",
+    "Upin is a full stack engineer who designs, builds, and ships resilient systems from database to pixel. Fluent in 7 human languages and 16+ programming ones.",
   keywords: [
     "Upin",
-    "Abdullah Yusuf",
-    "Frontend Engineer",
-    "UI/UX Designer",
+    "Full Stack Engineer",
     "Next.js",
     "TypeScript",
-    "Tailwind CSS",
-    "Figma",
-    "Design Systems",
+    "Polyglot Developer",
+    "Web3",
+    "Cloud",
     "Portfolio",
   ],
-  authors: [{ name: "Abdullah Yusuf" }],
+  authors: [{ name: "Upin" }],
   openGraph: {
-    title: "Upin — Frontend Engineer & UI/UX Designer",
+    title: "Upin — Full Stack Engineer",
     description:
-      "Designer who codes. Engineer who designs. Figma wireframes to pixel-perfect React.",
+      "Polyglot full stack engineer. Seven human languages, 16+ programming ones. From database to pixel.",
     siteName: "Upin",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Upin — Frontend Engineer & UI/UX Designer",
+    title: "Upin — Full Stack Engineer",
     description:
-      "Designer who codes. Engineer who designs. Figma to pixel-perfect React.",
+      "Polyglot full stack engineer. Seven human languages, 16+ programming ones.",
   },
 };
 

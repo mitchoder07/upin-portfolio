@@ -7,12 +7,12 @@ import {
   Calendar,
   Download,
   Send,
-  ArrowUpRight,
-  CheckCircle2,
   Github,
   Linkedin,
   Dribbble,
   Figma,
+  ArrowUpRight,
+  CheckCircle2,
 } from "lucide-react";
 import { SiX, SiWhatsapp } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
@@ -21,22 +21,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import type { ComponentType } from "react";
-
-type Social = {
-  icon: ComponentType<{ className?: string }>;
-  label: string;
-  href: string;
-};
-
-const socials: Social[] = [
-  { icon: Github, label: "GitHub", href: "https://github.com/mitchoder07" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/mitchoder07" },
-  { icon: SiX, label: "X", href: "https://x.com/mitchoder07" },
-  { icon: Dribbble, label: "Dribbble", href: "https://dribbble.com/mitchoder07" },
-  { icon: Figma, label: "Figma", href: "https://figma.com/@mitchoder07" },
-  { icon: SiWhatsapp, label: "WhatsApp", href: "https://wa.me/2347088955340" },
-];
 
 export function Contact() {
   const { t } = useI18n();
@@ -52,7 +36,6 @@ export function Contact() {
     }
     setSending(true);
     try {
-      // Submit directly to FormSubmit.co from the browser (avoids Cloudflare blocks)
       const res = await fetch(
         "https://formsubmit.co/ajax/olaniyiaremu2003@gmail.com",
         {
@@ -76,7 +59,6 @@ export function Contact() {
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setSent(false), 4000);
     } catch {
-      // Fallback: open user's email client with pre-filled message
       const mailto = `mailto:olaniyiaremu2003@gmail.com?subject=Portfolio contact from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`;
       window.location.href = mailto;
       toast.success("Opening your email app...");
@@ -84,6 +66,15 @@ export function Contact() {
       setSending(false);
     }
   };
+
+  const socials = [
+    { icon: Github, label: "GitHub", href: "https://github.com/mitchoder07" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/mitchoder07" },
+    { icon: SiX, label: "X", href: "https://x.com/mitchoder07" },
+    { icon: Dribbble, label: "Dribbble", href: "https://dribbble.com/mitchoder07" },
+    { icon: Figma, label: "Figma", href: "https://figma.com/@mitchoder07" },
+    { icon: SiWhatsapp, label: "WhatsApp", href: "https://wa.me/2347088955340" },
+  ];
 
   return (
     <section id="contact" className="section-pad relative bg-foreground/[0.015]">
@@ -114,7 +105,6 @@ export function Contact() {
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   placeholder={t.contact.namePlaceholder}
                   className="h-11 rounded-xl bg-background/50"
-                  required
                 />
               </div>
               <div className="space-y-1.5">
@@ -127,7 +117,6 @@ export function Contact() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder={t.contact.emailPlaceholder}
                   className="h-11 rounded-xl bg-background/50"
-                  required
                 />
               </div>
             </div>
@@ -140,7 +129,6 @@ export function Contact() {
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder={t.contact.messagePlaceholder}
                 className="min-h-[140px] rounded-xl bg-background/50"
-                required
               />
             </div>
 
@@ -186,11 +174,11 @@ export function Contact() {
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--neon)]/15 text-[var(--neon)] transition-transform duration-300 group-hover:scale-110">
                 <Mail className="h-5 w-5" />
               </div>
-              <div className="min-w-0 flex-1">
+              <div className="flex-1">
                 <div className="text-xs text-muted-foreground">
                   {t.contact.emailMe}
                 </div>
-                <div className="truncate text-sm font-semibold">olaniyiaremu2003@gmail.com</div>
+                <div className="text-sm font-semibold">olaniyiaremu2003@gmail.com</div>
               </div>
               <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-[var(--neon)]" />
             </a>
@@ -249,7 +237,7 @@ export function Contact() {
                       data-cursor="pointer"
                       aria-label={s.label}
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon className="h-4 w-4 shrink-0" />
                       <span className="hidden sm:inline">{s.label}</span>
                     </a>
                   );

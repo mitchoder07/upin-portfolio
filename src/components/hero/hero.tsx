@@ -31,24 +31,22 @@ export function Hero() {
       id="home"
       className="relative min-h-screen w-full overflow-hidden bg-grid bg-grid-fade"
     >
-      {/* 3D Background — FULL SCREEN, no dark panel covering it */}
+      {/* 3D Background — FULL SCREEN, bright and clear, no heavy overlay */}
       <div className="absolute inset-0 -z-10">
         <Hero3DScene />
       </div>
 
-      {/* Left-to-right gradient for text readability.
-          Starts very solid on the left, fades by 60% so the 3D scene shows on the right.
-          Content is pushed right via padding so nothing sits under the dense part. */}
+      {/* Very subtle gradient — only a slight darkening on the far left
+          so text is readable, but the 3D scene stays bright and visible */}
       <div
         className="absolute inset-0 -z-[5]"
         style={{
           background:
-            "linear-gradient(90deg, var(--background) 0%, var(--background) 15%, transparent 75%)",
-          opacity: 0.9,
+            "linear-gradient(90deg, oklch(from var(--background) l c h / 0.7) 0%, oklch(from var(--background) l c h / 0.3) 40%, transparent 70%)",
         }}
       />
 
-      <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-16 sm:px-10 lg:px-16 xl:px-20">
+      <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-24 sm:px-12 sm:ml-8 lg:ml-16 lg:px-16 xl:ml-24">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
           {/* Badge */}
           <motion.div
@@ -83,10 +81,10 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="font-display text-5xl font-bold leading-[1.0] tracking-tight break-words sm:text-6xl md:text-7xl lg:text-8xl"
           >
-            <span className="gradient-text-cool">{t.hero.name}</span>
+            <span className="gradient-text-cool text-glow">{t.hero.name}</span>
           </motion.h1>
 
-          {/* aka Upin */}
+          {/* aka Upin subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -158,7 +156,7 @@ export function Hero() {
             </Button>
           </motion.div>
 
-          {/* Stats */}
+          {/* Stats — each has its own glass background for guaranteed visibility */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -181,23 +179,23 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator — shows on lg+ screens (1024px+), hidden on smaller */}
         <motion.button
           onClick={() => scrollTo("about")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground hover:text-foreground md:flex"
+          className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground lg:flex"
           data-cursor="pointer"
         >
           <span className="text-[10px] uppercase tracking-[0.2em]">
             {t.hero.scroll}
           </span>
-          <div className="relative h-10 w-6 rounded-full border border-current">
+          <div className="relative h-8 w-5 rounded-full border border-current">
             <motion.div
-              animate={{ y: [0, 12, 0] }}
+              animate={{ y: [0, 10, 0] }}
               transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-1/2 top-1.5 h-2 w-0.5 -translate-x-1/2 rounded-full bg-current"
+              className="absolute left-1/2 top-1 h-1.5 w-0.5 -translate-x-1/2 rounded-full bg-current"
             />
           </div>
         </motion.button>

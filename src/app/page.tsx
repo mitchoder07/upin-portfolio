@@ -8,7 +8,7 @@ import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/projects/projects";
 import { Experience } from "@/components/sections/experience";
 import { OpenSource } from "@/components/sections/open-source";
-import { DesignCaseStudies } from "@/components/sections/design-case-studies";
+import { Writing } from "@/components/sections/writing";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
@@ -27,7 +27,7 @@ export default function Home() {
         <Projects />
         <Experience />
         <OpenSource />
-        <DesignCaseStudies />
+        <Writing />
         <Testimonials />
         <Contact />
       </main>

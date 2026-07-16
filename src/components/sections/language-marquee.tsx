@@ -3,18 +3,18 @@
 export function LanguageMarquee() {
   // Tech-focused marquee — no language emphasis
   const items = [
-    "Frontend Engineer",
-    "UI/UX Designer",
-    "Design Systems",
-    "Pixel-Perfect",
-    "Accessible",
-    "Mobile-First",
-    "Next.js 16",
-    "TypeScript",
-    "Tailwind CSS 4",
-    "Figma to React",
-    "shadcn/ui",
-    "Recharts",
+    "Full Stack Engineer",
+    "System Architecture",
+    "Performance Engineering",
+    "Production-Grade",
+    "Scalable Systems",
+    "CI/CD",
+    "Type-Safe",
+    "Observability",
+    "Ship → Scale",
+    "Open Source",
+    "Database → Pixel",
+    "Mentor",
   ];
   // Duplicate for seamless loop
   const doubled = [...items, ...items];

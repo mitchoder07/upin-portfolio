@@ -5,52 +5,71 @@ export type CodeSnippet = {
 };
 
 export const projectCodeSnippets: CodeSnippet[] = [
-  // Al-Hikmah — Certificate generator with print CSS
+  // 1. Al-Hikmah LMS — certificate print CSS + QR component (TypeScript)
   {
     language: "typescript",
-    filename: "al-hikmah/CertificatePreview.tsx",
+    filename: "al-hikmah/certificate.tsx",
     code: `import { forwardRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
 
+interface CertificateProps {
+  studentName: string;
+  courseTitle: string;
+  completionDate: string;
+  certificateId: string;
+  verifyUrl: string;
+}
+
 /**
- * Al-Hikmah — Print-perfect certificate generator.
- * Uses CSS @media print for page breaks and ATS-friendly layout.
+ * Al-Hikmah LMS — Printable certificate.
+ * Print-perfect via @media print rules + QR verification.
  */
-export const CertificatePreview = forwardRef<HTMLDivElement, Props>(
-  ({ student, course, score, certificateId }, ref) => {
+export const Certificate = forwardRef<HTMLDivElement, CertificateProps>(
+  function Certificate(props, ref) {
+    const { studentName, courseTitle, completionDate, certificateId, verifyUrl } = props;
+
     return (
       <div ref={ref} className="certificate-sheet">
-        <header className="cert-header">
-          <Logo />
-          <h1>Certificate of Completion</h1>
-          <p>This certifies that</p>
-        </header>
+        <div className="certificate-border">
+          <header className="certificate-header">
+            <h1>Al-Hikmah University</h1>
+            <p>Certificate of Completion</p>
+          </header>
 
-        <main className="cert-body">
-          <h2 className="student-name">{student.name}</h2>
-          <p>has successfully completed</p>
-          <h3 className="course-title">{course.title}</h3>
-          <p>with a final score of <strong>{score}%</strong></p>
-        </main>
+          <main className="certificate-body">
+            <p className="cert-label">This certifies that</p>
+            <p className="cert-name">{studentName}</p>
+            <p className="cert-label">has successfully completed</p>
+            <p className="cert-course">{courseTitle}</p>
+            <p className="cert-date">on {completionDate}</p>
+          </main>
 
-        <footer className="cert-footer">
-          <Signature label="Instructor" name={course.instructor} />
-          <QRCodeSVG
-            value={\`https://al-hikmah.edu/verify/\${certificateId}\`}
-            size={72}
-            className="cert-qr"
-            aria-label="Verification QR code"
-          />
-          <Signature label="Date" name={new Date().toLocaleDateString()} />
-        </footer>
+          <footer className="certificate-footer">
+            <div className="cert-signature">Registrar</div>
+            <div className="cert-qr">
+              <QRCodeSVG
+                value={\`\${verifyUrl}?id=\${certificateId}\`}
+                size={72}
+                level="H"
+              />
+              <span className="cert-id">{certificateId}</span>
+            </div>
+          </footer>
+        </div>
 
         <style>{\`
           @media print {
             .certificate-sheet {
               page-break-after: always;
-              size: A4 landscape;
               margin: 0;
             }
+            .no-print { display: none !important; }
+          }
+          .certificate-sheet {
+            width: 210mm;
+            height: 297mm;
+            padding: 18mm;
+            background: #fff;
           }
         \`}</style>
       </div>
@@ -59,258 +78,474 @@ export const CertificatePreview = forwardRef<HTMLDivElement, Props>(
 );`,
   },
 
-  // Islam Baca — Word-by-word reader hook
+  // 2. Rafaab — AI shopping assistant + flash sale countdown (TypeScript/React)
   {
     language: "typescript",
-    filename: "islam-baca/useWordReader.ts",
-    code: `/**
- * Islam Baca — Word-by-word Quran reader.
- * Highlights each word in sequence with adjustable speed.
- * Fully keyboard accessible: Space to play/pause, arrows to step.
+    filename: "rafaab/flash-sale.tsx",
+    code: `"use client";
+
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+
+/**
+ * Rafaab — Flash sale countdown.
+ * Live countdown + Paystack-ready CTA. Mobile-first.
  */
-export function useWordReader(verse: string[], options: Options = {}) {
-  const { speed = 800, loop = false } = options;
-  const [activeIdx, setActiveIdx] = useState(-1);
-  const [playing, setPlaying] = useState(false);
+export function FlashSaleCountdown({ endsAt }: { endsAt: string }) {
+  const [remaining, setRemaining] = useState(() => msLeft(endsAt));
 
   useEffect(() => {
-    if (!playing) return;
-    if (activeIdx >= verse.length - 1) {
-      if (!loop) { setPlaying(false); return; }
-      setActiveIdx(0);
-      return;
-    }
-    const timer = setTimeout(
-      () => setActiveIdx((i) => i + 1),
-      speed
-    );
-    return () => clearTimeout(timer);
-  }, [playing, activeIdx, verse.length, speed, loop]);
+    const id = setInterval(() => setRemaining(msLeft(endsAt)), 1000);
+    return () => clearInterval(id);
+  }, [endsAt]);
 
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.code === "Space") {
-      e.preventDefault();
-      setPlaying((p) => !p);
-    } else if (e.code === "ArrowRight") {
-      setActiveIdx((i) => Math.min(i + 1, verse.length - 1));
-    } else if (e.code === "ArrowLeft") {
-      setActiveIdx((i) => Math.max(i - 1, 0));
-    }
-  };
+  if (remaining <= 0) {
+    return <div className="flash-ended">Sale ended</div>;
+  }
 
-  return { activeIdx, playing, play: () => setPlaying(true),
-           pause: () => setPlaying(false), onKeyDown };
+  const parts = splitDuration(remaining);
+
+  return (
+    <motion.div
+      className="flash-countdown"
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      {parts.map((p) => (
+        <div key={p.label} className="flash-part">
+          <span className="flash-value">{p.value}</span>
+          <span className="flash-label">{p.label}</span>
+        </div>
+      ))}
+    </motion.div>
+  );
+}
+
+function msLeft(iso: string) {
+  return Math.max(0, new Date(iso).getTime() - Date.now());
+}
+
+function splitDuration(ms: number) {
+  const s = Math.floor(ms / 1000);
+  return [
+    { label: "HRS", value: pad(Math.floor(s / 3600)) },
+    { label: "MIN", value: pad(Math.floor((s % 3600) / 60)) },
+    { label: "SEC", value: pad(s % 60) },
+  ];
+}
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
 }`,
   },
 
-  // Crypto Vault — AES-256 encryption helper
+  // 3. Baca — word-by-word Quran reader component (JavaScript)
   {
-    language: "typescript",
-    filename: "crypto-vault/aes.ts",
+    language: "javascript",
+    filename: "baca/word-reader.js",
     code: `/**
- * Crypto Vault — AES-256-GCM encryption, fully client-side.
- * Zero data leaves the browser. Key derived from user passphrase
- * via PBKDF2 with 600,000 iterations (OWASP 2023 recommendation).
+ * Baca — Word-by-word Quran reader.
+ * Highlights the active word, plays audio, and respects focus.
  */
-const ENC = "AES-GCM";
-const KEY_LEN = 256;
-const ITER = 600_000;
-const SALT_LEN = 16;
-const IV_LEN = 12;
+export class WordByWordReader {
+  constructor(container, verses) {
+    this.container = container;
+    this.verses = verses;
+    this.activeIndex = -1;
+    this.audio = new Audio();
+    this.render();
+  }
 
-export async function deriveKey(
-  passphrase: string,
-  salt: Uint8Array
-): Promise<CryptoKey> {
-  const enc = new TextEncoder();
-  const baseKey = await crypto.subtle.importKey(
-    "raw", enc.encode(passphrase), "PBKDF2", false, ["deriveKey"]
+  render() {
+    this.container.innerHTML = "";
+    this.verses.forEach((verse, vIdx) => {
+      const vEl = document.createElement("article");
+      vEl.className = "verse";
+      vEl.setAttribute("aria-label", \`Verse \${verse.number}\`);
+
+      verse.words.forEach((word, wIdx) => {
+        const wEl = document.createElement("button");
+        wEl.type = "button";
+        wEl.className = "word";
+        wEl.textContent = word.text;
+        wEl.setAttribute("data-verse", vIdx);
+        wEl.setAttribute("data-word", wIdx);
+        wEl.setAttribute(
+          "aria-label",
+          \`\${word.translation}, word \${wIdx + 1}\`
+        );
+        wEl.addEventListener("click", () => this.activate(vIdx, wIdx));
+        vEl.appendChild(wEl);
+      });
+
+      this.container.appendChild(vEl);
+    });
+  }
+
+  activate(vIdx, wIdx) {
+    this.clearActive();
+    const el = this.container.querySelector(
+      \`[data-verse="\${vIdx}"][data-word="\${wIdx}"]\`
+    );
+    if (!el) return;
+    el.classList.add("word--active");
+    el.focus({ preventScroll: false });
+    this.activeIndex = wIdx;
+
+    const word = this.verses[vIdx].words[wIdx];
+    if (word.audio) {
+      this.audio.src = word.audio;
+      this.audio.play().catch(() => {});
+    }
+  }
+
+  clearActive() {
+    this.container
+      .querySelectorAll(".word--active")
+      .forEach((el) => el.classList.remove("word--active"));
+  }
+}`,
+  },
+
+  // 4. Crypto Vault — AES-256 encryption (JavaScript)
+  {
+    language: "javascript",
+    filename: "crypto-vault/aes.js",
+    code: `/**
+ * Crypto Vault — AES-256-GCM in the browser.
+ * Zero data leaves the device. Key derived from password via PBKDF2.
+ */
+const SUBTLE = window.crypto.subtle;
+const ENC = new TextEncoder();
+const DEC = new TextDecoder();
+
+const PBKDF2_ITERATIONS = 250_000;
+const SALT_BYTES = 16;
+const IV_BYTES = 12;
+
+export async function deriveKey(password, salt) {
+  const baseKey = await SUBTLE.importKey(
+    "raw",
+    ENC.encode(password),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
   );
-  return crypto.subtle.deriveKey(
-    { name: "PBKDF2", salt, iterations: ITER, hash: "SHA-256" },
+  return SUBTLE.deriveKey(
+    {
+      name: "PBKDF2",
+      salt,
+      iterations: PBKDF2_ITERATIONS,
+      hash: "SHA-256",
+    },
     baseKey,
-    { name: ENC, length: KEY_LEN },
+    { name: "AES-GCM", length: 256 },
     false,
     ["encrypt", "decrypt"]
   );
 }
 
-export async function encrypt(
-  plaintext: string,
-  passphrase: string
-): Promise<string> {
-  const salt = crypto.getRandomValues(new Uint8Array(SALT_LEN));
-  const iv = crypto.getRandomValues(new Uint8Array(IV_LEN));
-  const key = await deriveKey(passphrase, salt);
-  const enc = new TextEncoder();
-  const cipher = await crypto.subtle.encrypt(
-    { name: ENC, iv }, key, enc.encode(plaintext)
+export async function encryptSecret(password, plaintext) {
+  const salt = window.crypto.getRandomValues(new Uint8Array(SALT_BYTES));
+  const iv = window.crypto.getRandomValues(new Uint8Array(IV_BYTES));
+  const key = await deriveKey(password, salt);
+
+  const ciphertext = await SUBTLE.encrypt(
+    { name: "AES-GCM", iv },
+    key,
+    ENC.encode(plaintext)
   );
-  const blob = new Uint8Array(salt.length + iv.length + cipher.byteLength);
-  blob.set(salt, 0);
-  blob.set(iv, salt.length);
-  blob.set(new Uint8Array(cipher), salt.length + iv.length);
-  return toBase64(blob);
+
+  return {
+    salt: toBase64(salt),
+    iv: toBase64(iv),
+    ciphertext: toBase64(new Uint8Array(ciphertext)),
+  };
+}
+
+export async function decryptSecret(password, payload) {
+  const salt = fromBase64(payload.salt);
+  const iv = fromBase64(payload.iv);
+  const key = await deriveKey(password, salt);
+
+  const plaintext = await SUBTLE.decrypt(
+    { name: "AES-GCM", iv },
+    key,
+    fromBase64(payload.ciphertext)
+  );
+  return DEC.decode(plaintext);
+}
+
+function toBase64(bytes) {
+  return btoa(String.fromCharCode(...bytes));
+}
+
+function fromBase64(str) {
+  return Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
 }`,
   },
 
-  // Similarity Checker — multi-algorithm scoring
+  // 5. Similarity Checker — text similarity algorithm (JavaScript)
   {
-    language: "typescript",
-    filename: "similarity-checker/score.ts",
+    language: "javascript",
+    filename: "similarity-checker/similarity.js",
     code: `/**
- * Similarity Checker — Multi-algorithm plagiarism scoring.
- * Combines Cosine, Jaccard, and Levenshtein into a weighted score,
- * then renders the result on a visual gauge.
+ * Similarity Checker — multi-algorithm text similarity.
+ * Returns 0..1 score and a per-algorithm breakdown.
  */
-export function cosineSimilarity(a: string, b: string): number {
-  const va = termVector(a);
-  const vb = termVector(b);
-  let dot = 0, magA = 0, magB = 0;
-  for (const term of new Set([...Object.keys(va), ...Object.keys(vb)])) {
-    dot += (va[term] || 0) * (vb[term] || 0);
-    magA += (va[term] || 0) ** 2;
-    magB += (vb[term] || 0) ** 2;
+
+export function tokenize(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^\\w\\s]/g, " ")
+    .split(/\\s+/)
+    .filter(Boolean);
+}
+
+export function cosineSimilarity(a, b) {
+  const ta = tokenize(a);
+  const tb = tokenize(b);
+  const freq = new Map();
+
+  for (const w of ta) freq.set(w, (freq.get(w) ?? 0) + 1);
+  for (const w of tb) freq.set(w, (freq.get(w) ?? 0) - 1);
+
+  let dot = 0;
+  let magA = 0;
+  let magB = 0;
+
+  const allWords = new Set([...ta, ...tb]);
+  for (const w of allWords) {
+    const fa = ta.filter((x) => x === w).length;
+    const fb = tb.filter((x) => x === w).length;
+    dot += fa * fb;
+    magA += fa * fa;
+    magB += fb * fb;
   }
-  return magA && magB ? dot / (Math.sqrt(magA) * Math.sqrt(magB)) : 0;
+
+  if (magA === 0 || magB === 0) return 0;
+  return dot / (Math.sqrt(magA) * Math.sqrt(magB));
 }
 
-export function jaccardIndex(a: string, b: string): number {
-  const sa = new Set(a.toLowerCase().split(/\\s+/));
-  const sb = new Set(b.toLowerCase().split(/\\s+/));
-  const intersection = [...sa].filter((x) => sb.has(x)).length;
-  const union = new Set([...sa, ...sb]).size;
-  return union ? intersection / union : 0;
+export function jaccardSimilarity(a, b) {
+  const sa = new Set(tokenize(a));
+  const sb = new Set(tokenize(b));
+  let intersection = 0;
+  for (const w of sa) if (sb.has(w)) intersection++;
+  return intersection / (sa.size + sb.size - intersection);
 }
 
-export function combinedScore(a: string, b: string): number {
+export function levenshteinRatio(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (m === 0) return n === 0 ? 1 : 0;
+  if (n === 0) return 0;
+
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      dp[i][j] = Math.min(
+        dp[i - 1][j] + 1,
+        dp[i][j - 1] + 1,
+        dp[i - 1][j - 1] + cost
+      );
+    }
+  }
+
+  const dist = dp[m][n];
+  return 1 - dist / Math.max(m, n);
+}
+
+export function scoreSimilarity(a, b) {
   const cosine = cosineSimilarity(a, b);
-  const jaccard = jaccardIndex(a, b);
-  const levenshtein = 1 - editDistance(a, b) / Math.max(a.length, b.length);
-  // Weighted blend favors semantic overlap
-  return cosine * 0.5 + jaccard * 0.3 + levenshtein * 0.2;
+  const jaccard = jaccardSimilarity(a, b);
+  const lev = levenshteinRatio(a, b);
+  const overall = 0.5 * cosine + 0.3 * jaccard + 0.2 * lev;
+  return { overall, cosine, jaccard, levenshtein: lev };
 }`,
   },
 
-  // Cyber Bot — Suggested prompts pattern
+  // 6. Cyber Bot — chatbot suggested prompts (JavaScript)
   {
-    language: "typescript",
-    filename: "cyber-bot/suggested-prompts.ts",
+    language: "javascript",
+    filename: "cyber-bot/prompts.js",
     code: `/**
- * Cyber Bot — Suggested-prompts UX pattern.
- * Reduces cold-start friction by surfacing common cybersecurity
- * questions as one-tap chips, then fades them once the user
- * starts typing.
+ * Cyber Bot — suggested-prompts engine.
+ * Returns the most relevant follow-up prompts for a given answer.
  */
-const SUGGESTED_PROMPTS = [
-  "What is phishing and how do I spot it?",
-  "How does HTTPS actually protect me?",
-  "What makes a password strong?",
-  "What is two-factor authentication?",
-  "How do I know if my email was breached?",
-] as const;
 
-export function SuggestedPrompts({
-  onPick,
-  visible,
-}: {
-  onPick: (prompt: string) => void;
-  visible: boolean;
-}) {
-  return (
-    <div
-      className={\`flex flex-wrap gap-2 transition-opacity duration-300 \${
-        visible ? "opacity-100" : "pointer-events-none opacity-0"
-      }\`}
-      aria-hidden={!visible}
-    >
-      {SUGGESTED_PROMPTS.map((prompt) => (
-        <button
-          key={prompt}
-          onClick={() => onPick(prompt)}
-          className="rounded-full glass px-3 py-1.5 text-xs
-                     transition-colors hover:bg-[var(--neon)]/10
-                     hover:text-[var(--neon)]"
-        >
-          {prompt}
-        </button>
-      ))}
-    </div>
-  );
-}`,
-  },
-
-  // Cyber-Words Guess — Game loop
+const PROMPT_LIBRARY = [
   {
-    language: "typescript",
-    filename: "cyber-words/useGameLoop.ts",
-    code: `/**
- * Cyber-Words Guess — Game loop with color-coded feedback.
- * Green = correct letter in place, Amber = correct letter wrong
- * place, Gray = letter not in word. Classic pattern, accessible
- * labels for screen readers via aria-live.
- */
-export type LetterState = "correct" | "present" | "absent";
+    id: "phishing",
+    text: "How do I spot a phishing email?",
+    keywords: ["phishing", "email", "scam", "spoof"],
+  },
+  {
+    id: "passwords",
+    text: "What makes a strong password?",
+    keywords: ["password", "credential", "auth"],
+  },
+  {
+    id: "2fa",
+    text: "Why should I enable two-factor auth?",
+    keywords: ["2fa", "mfa", "factor", "otp"],
+  },
+  {
+    id: "vpn",
+    text: "Does a VPN actually protect me?",
+    keywords: ["vpn", "tunnel", "encrypt", "network"],
+  },
+  {
+    id: "ransomware",
+    text: "How does ransomware spread?",
+    keywords: ["ransomware", "malware", "encrypt", "virus"],
+  },
+  {
+    id: "updates",
+    text: "Why are software updates important?",
+    keywords: ["update", "patch", "vulnerability", "cve"],
+  },
+];
 
-export function useGameLoop(answer: string, maxGuesses = 6) {
-  const [guesses, setGuesses] = useState<string[]>([]);
-  const [current, setCurrent] = useState("");
-  const [status, setStatus] = useState<"playing" | "won" | "lost">("playing");
+export function suggestPrompts(answerText, limit = 3) {
+  const lower = answerText.toLowerCase();
+  const scored = PROMPT_LIBRARY.map((p) => {
+    let score = 0;
+    for (const kw of p.keywords) {
+      if (lower.includes(kw)) score += 1;
+    }
+    return { ...p, score };
+  });
 
-  const evaluate = (guess: string): LetterState[] => {
-    const result: LetterState[] = new Array(guess.length).fill("absent");
-    const answerChars = answer.split("");
-    guess.split("").forEach((ch, i) => {
-      if (ch === answerChars[i]) {
-        result[i] = "correct";
-        answerChars[i] = "#";
-      }
-    });
-    guess.split("").forEach((ch, i) => {
-      if (result[i] !== "correct" && answerChars.includes(ch)) {
-        result[i] = "present";
-        answerChars[answerChars.indexOf(ch)] = "#";
-      }
-    });
-    return result;
+  return scored
+    .filter((p) => p.score >= 0)
+    .sort((a, b) => b.score - a.score || Math.random() - 0.5)
+    .slice(0, limit)
+    .map((p) => ({ id: p.id, text: p.text }));
+}
+
+export function formatAnswerCard(answer) {
+  return {
+    title: answer.title,
+    summary: answer.summary,
+    bullets: answer.bullets ?? [],
+    source: answer.source ?? "Cyber Bot knowledge base",
+    prompts: suggestPrompts(\`\${answer.title} \${answer.summary}\`),
   };
-
-  const submit = () => {
-    if (current.length !== answer.length || status !== "playing") return;
-    const next = [...guesses, current];
-    setGuesses(next);
-    setCurrent("");
-    if (current === answer) setStatus("won");
-    else if (next.length >= maxGuesses) setStatus("lost");
-  };
-
-  return { guesses, current, status, evaluate, submit,
-           setCurrent, reset: () => { setGuesses([]); setCurrent(""); setStatus("playing"); } };
 }`,
   },
 
-  // Placeholder — portfolio template snippet
+  // 7. Cyber-Words — game loop (JavaScript)
+  {
+    language: "javascript",
+    filename: "cyber-words/game.js",
+    code: `/**
+ * Cyber-Words Guess — game loop.
+ * 5-letter word guessing with color-coded feedback.
+ */
+
+const WORDS = [
+  "PHISH",
+  "VIRUS",
+  "PATCH",
+  "CIPHER",
+  "TOKEN",
+  "SPOOF",
+  "BREACH",
+  "PROXY",
+  "WORMS",
+  "FIREW",
+];
+
+const MAX_GUESSES = 6;
+const WORD_LENGTH = 5;
+
+export function createGame() {
+  const answer = WORDS[Math.floor(Math.random() * WORDS.length)];
+  return {
+    answer,
+    guesses: [],
+    status: "playing",
+    current: "",
+  };
+}
+
+export function submitGuess(game, guess) {
+  if (game.status !== "playing") return game;
+  const g = guess.toUpperCase().slice(0, WORD_LENGTH);
+  if (g.length !== WORD_LENGTH) return game;
+
+  const feedback = evaluateGuess(g, game.answer);
+  const guesses = [...game.guesses, { word: g, feedback }];
+
+  let status = "playing";
+  if (g === game.answer) status = "won";
+  else if (guesses.length >= MAX_GUESSES) status = "lost";
+
+  return { ...game, guesses, status, current: "" };
+}
+
+function evaluateGuess(guess, answer) {
+  const result = Array(WORD_LENGTH).fill("absent");
+  const answerChars = answer.split("");
+  const guessChars = guess.split("");
+
+  // First pass: correct positions
+  for (let i = 0; i < WORD_LENGTH; i++) {
+    if (guessChars[i] === answerChars[i]) {
+      result[i] = "correct";
+      answerChars[i] = null;
+    }
+  }
+
+  // Second pass: present but misplaced
+  for (let i = 0; i < WORD_LENGTH; i++) {
+    if (result[i] === "correct") continue;
+    const idx = answerChars.indexOf(guessChars[i]);
+    if (idx !== -1) {
+      result[i] = "present";
+      answerChars[idx] = null;
+    }
+  }
+
+  return result;
+}
+
+export function nextKeyState(feedback) {
+  // Map letter -> best state across all guesses
+  return feedback.reduce((acc, f) => {
+    if (!acc[f]) acc[f] = true;
+    return acc;
+  }, {});
+}`,
+  },
+
+  // 8. Placeholder — template snippet
   {
     language: "typescript",
     filename: "your-next-design/example.ts",
-    code: `// This is a placeholder. Replace with YOUR real code snippet.
-// Open /src/lib/project-snippets.ts and swap this out.
+    code: `// This is a placeholder slot for your next Figma case study.
+// Open /src/lib/project-snippets.ts and swap this with real code.
 
-export function yourAwesomeComponent(props: Props): JSX.Element {
-  // Show recruiters what you actually build.
-  // Real code > marketing copy.
-  return (
-    <section aria-label={props.label}>
-      {props.items.map((item) => (
-        <Card key={item.id} item={item} />
-      ))}
-    </section>
-  );
+export interface DesignCaseStudy {
+  name: string;
+  figmaUrl: string;
+  summary: string;
+  outcomes: string[];
 }
 
-// Tip: Pick a snippet that:
-// 1. Shows your strongest design or engineering decision
-// 2. Has clean structure and naming
-// 3. Demonstrates a real craft trade-off`,
+export function summarizeCaseStudy(study: DesignCaseStudy): string {
+  const outcomes = study.outcomes.join(", ");
+  return \`\${study.name}: \${study.summary}. Outcomes: \${outcomes}.\`;
+}
+
+// Tip: pick a snippet that shows
+// 1. A real design decision you made
+// 2. A trade-off between UX and engineering
+// 3. Accessibility or performance care`,
   },
 ];

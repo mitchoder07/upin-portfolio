@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowUpRight,
@@ -11,7 +10,9 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  Lock,
 } from "lucide-react";
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "../sections/section-heading";
 import { CodePreview } from "./code-preview";
@@ -58,7 +59,7 @@ export function Projects() {
               <span className="mr-2 font-mono opacity-50">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              {i === 0 && t.projects.featured + " · "}
+              {p.confidential && t.projects.confidential + " · "}
               {p.name.split(":")[0].split(" [")[0]}
             </button>
           ))}
@@ -73,9 +74,9 @@ export function Projects() {
             transition={{ duration: 0.4 }}
             className="grid gap-6 lg:grid-cols-2 lg:gap-8"
           >
-            {/* Left: case study with image */}
+            {/* Left: case study */}
             <div className="flex min-w-0 flex-col">
-              {/* Project image / gradient placeholder */}
+              {/* Project image / gradient placeholder with confidential overlay */}
               <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl glass">
                 {active.image ? (
                   <Image
@@ -83,12 +84,16 @@ export function Projects() {
                     alt={active.name}
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover transition-transform duration-700 hover:scale-105"
+                    className={`object-cover transition-transform duration-700 hover:scale-105 ${
+                      active.confidential ? "blur-sm brightness-50" : ""
+                    }`}
                     priority={activeIdx === 0}
                   />
                 ) : (
                   <div
-                    className="flex h-full w-full items-center justify-center p-6"
+                    className={`flex h-full w-full items-center justify-center p-6 ${
+                      active.confidential ? "blur-sm brightness-50" : ""
+                    }`}
                     style={{
                       background:
                         active.gradient ||
@@ -110,17 +115,50 @@ export function Projects() {
                 {active.image && (
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 )}
+                {/* Confidential badge ON the image */}
+                {active.confidential && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-2 rounded-2xl border-2 border-amber-500/50 bg-black/60 px-6 py-4 backdrop-blur-md">
+                      <Lock className="h-8 w-8 text-amber-400" />
+                      <span className="font-display text-lg font-bold text-amber-400">
+                        {t.projects.confidential}
+                      </span>
+                      <span className="text-xs text-amber-200/80">
+                        Client work — details private
+                      </span>
+                    </div>
+                  </div>
+                )}
                 {/* Featured badge */}
-                {activeIdx === 0 && (
+                {activeIdx === 0 && !active.confidential && (
                   <div className="absolute left-3 top-3 rounded-full bg-black/50 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">
                     {t.projects.featured}
                   </div>
                 )}
               </div>
 
-              {/* Project name + tagline */}
+              {/* Project name + tagline + badges */}
               <div className="mb-4 flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    {active.confidential && (
+                      <Badge
+                        variant="secondary"
+                        className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 text-[11px] font-medium text-amber-600 dark:text-amber-400"
+                      >
+                        <Lock className="mr-1 h-3 w-3" />
+                        {t.projects.confidential}
+                      </Badge>
+                    )}
+                    {activeIdx === 0 && !active.confidential && (
+                      <Badge
+                        variant="secondary"
+                        className="rounded-full border border-[var(--neon)]/30 bg-[var(--neon)]/10 px-2.5 py-0.5 text-[11px] font-medium text-[var(--neon)]"
+                      >
+                        {t.projects.featured}
+                      </Badge>
+                    )}
+                  </div>
                   <h3 className="font-display text-xl font-bold leading-tight sm:text-2xl md:text-3xl">
                     {active.name}
                   </h3>
@@ -129,24 +167,30 @@ export function Projects() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="flex h-9 w-9 items-center justify-center rounded-full glass transition-colors hover:bg-foreground/10"
-                    aria-label="View code"
-                    data-cursor="pointer"
-                  >
-                    <Github className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="#"
-                    onClick={(e) => e.preventDefault()}
-                    className="flex h-9 w-9 items-center justify-center rounded-full glass transition-colors hover:bg-foreground/10"
-                    aria-label="Live demo"
-                    data-cursor="pointer"
-                  >
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
+                  {!active.confidential && active.githubUrl && (
+                    <a
+                      href={active.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-9 w-9 items-center justify-center rounded-full glass transition-colors hover:bg-foreground/10"
+                      aria-label="View code"
+                      data-cursor="pointer"
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                  )}
+                  {!active.confidential && active.liveUrl && (
+                    <a
+                      href={active.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-9 w-9 items-center justify-center rounded-full glass transition-colors hover:bg-foreground/10"
+                      aria-label="Live demo"
+                      data-cursor="pointer"
+                    >
+                      <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -194,23 +238,50 @@ export function Projects() {
 
               {/* CTAs */}
               <div className="mt-auto flex flex-wrap gap-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="h-9 rounded-full glass"
-                  data-cursor="pointer"
-                >
-                  <Github className="mr-2 h-3.5 w-3.5" />
-                  {t.projects.viewCode}
-                </Button>
-                <Button
-                  size="sm"
-                  className="h-9 rounded-full bg-foreground text-background hover:bg-foreground/90"
-                  data-cursor="pointer"
-                >
-                  {t.projects.viewLive}
-                  <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
-                </Button>
+                {active.confidential ? (
+                  <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
+                    <Lock className="h-3.5 w-3.5" />
+                    {t.projects.confidential}
+                  </div>
+                ) : (
+                  <>
+                    {active.githubUrl && (
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="h-9 rounded-full glass"
+                        data-cursor="pointer"
+                      >
+                        <a
+                          href={active.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <Github className="mr-2 h-3.5 w-3.5" />
+                          {t.projects.viewCode}
+                        </a>
+                      </Button>
+                    )}
+                    {active.liveUrl && (
+                      <Button
+                        asChild
+                        size="sm"
+                        className="h-9 rounded-full bg-foreground text-background hover:bg-foreground/90"
+                        data-cursor="pointer"
+                      >
+                        <a
+                          href={active.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {t.projects.viewLive}
+                          <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+                        </a>
+                      </Button>
+                    )}
+                  </>
+                )}
               </div>
 
               {/* Pager */}
