@@ -5,23 +5,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// Character avatars — Tokyo Revengers, Demon Slayer, and Upin characters.
-// They cycle silently every 3.2s with a cross-fade + slight zoom.
+// Character avatars — user's real photo first (2x duration), then all Upin + anime characters.
+// They cycle with a cross-fade + slight zoom. Profile photo stays 2x longer.
 type Avatar = {
   src: string;
   name: string;
+  /** Duration multiplier — profile photo stays 2x longer */
+  durationMult?: number;
 };
 
 const avatars: Avatar[] = [
-  { src: "/avatars/tokyo-1.png", name: "Tokyo Revengers" },
-  { src: "/avatars/demon-1.png", name: "Demon Slayer" },
-  { src: "/avatars/tokyo-2.png", name: "Tokyo Revengers" },
-  { src: "/avatars/demon-2.png", name: "Demon Slayer" },
-  { src: "/avatars/tokyo-3.png", name: "Tokyo Revengers" },
+  { src: "/portfolio-images/profile.jpeg", name: "Abdullah Yusuf", durationMult: 2 },
   { src: "/avatars/upin-1.png", name: "Upin" },
+  { src: "/avatars/tokyo-1.png", name: "Tokyo Revengers" },
+  { src: "/avatars/upin-2.png", name: "Upin" },
+  { src: "/avatars/demon-1.png", name: "Demon Slayer" },
+  { src: "/avatars/anime-1.png", name: "Anime" },
+  { src: "/avatars/tokyo-2.png", name: "Tokyo Revengers" },
+  { src: "/avatars/anime-2.png", name: "Anime" },
+  { src: "/avatars/demon-2.png", name: "Demon Slayer" },
+  { src: "/avatars/anime-3.png", name: "Anime" },
+  { src: "/avatars/tokyo-3.png", name: "Tokyo Revengers" },
 ];
 
-const AVATAR_INTERVAL = 3200; // ms between switches
+const BASE_INTERVAL = 3200; // ms — base duration for normal avatars
 
 interface AnimatedLogoProps {
   /** Click handler — usually scrolls to top */
@@ -46,11 +53,14 @@ export function AnimatedLogo({
     setIdx((prev) => (prev + 1) % avatars.length);
   }, []);
 
+  // Use variable interval: profile photo stays 2x longer
   useEffect(() => {
     if (isPaused) return;
-    const timer = setInterval(next, AVATAR_INTERVAL);
-    return () => clearInterval(timer);
-  }, [next, isPaused]);
+    const current = avatars[idx];
+    const interval = BASE_INTERVAL * (current.durationMult || 1);
+    const timer = setTimeout(next, interval);
+    return () => clearTimeout(timer);
+  }, [next, isPaused, idx]);
 
   const avatarSize = size === "lg" ? 44 : 36;
   const textSize = size === "lg" ? "text-xl" : "text-lg";

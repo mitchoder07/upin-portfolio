@@ -524,28 +524,55 @@ export function nextKeyState(feedback) {
 }`,
   },
 
-  // 8. Placeholder — template snippet
+  // 8. Kopi — Coffee shop product card with hover animation
   {
-    language: "typescript",
-    filename: "your-next-design/example.ts",
-    code: `// This is a placeholder slot for your next Figma case study.
-// Open /src/lib/project-snippets.ts and swap this with real code.
+    language: "javascript",
+    filename: "kopi/product-card.js",
+    code: `/**
+ * Kopi — Coffee shop product card.
+ * Warm hover animation, accessible focus state.
+ */
+class ProductCard {
+  constructor(element) {
+    this.card = element;
+    this.image = this.card.querySelector(".product-image");
+    this.addButton = this.card.querySelector(".add-to-cart");
 
-export interface DesignCaseStudy {
-  name: string;
-  figmaUrl: string;
-  summary: string;
-  outcomes: string[];
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.card.addEventListener("mouseenter", this.onHover.bind(this));
+    this.card.addEventListener("mouseleave", this.onLeave.bind(this));
+    this.addButton.addEventListener("click", this.onAddToCart.bind(this));
+  }
+
+  onHover() {
+    this.image.style.transform = "scale(1.08) translateY(-4px)";
+    this.card.style.boxShadow = "0 12px 32px rgba(120, 80, 40, 0.25)";
+  }
+
+  onLeave() {
+    this.image.style.transform = "scale(1) translateY(0)";
+    this.card.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.08)";
+  }
+
+  onAddToCart(event) {
+    const productId = this.card.dataset.productId;
+    const productName = this.card.dataset.name;
+
+    Cart.add({ id: productId, name: productName, qty: 1 });
+    Toast.show(\`\${productName} added to cart\`, { type: "success" });
+
+    // Haptic-style button feedback
+    this.addButton.classList.add("pulse");
+    setTimeout(() => this.addButton.classList.remove("pulse"), 400);
+  }
 }
 
-export function summarizeCaseStudy(study: DesignCaseStudy): string {
-  const outcomes = study.outcomes.join(", ");
-  return \`\${study.name}: \${study.summary}. Outcomes: \${outcomes}.\`;
-}
-
-// Tip: pick a snippet that shows
-// 1. A real design decision you made
-// 2. A trade-off between UX and engineering
-// 3. Accessibility or performance care`,
+// Initialize all product cards on the menu page
+document.querySelectorAll(".product-card").forEach((el) => {
+  new ProductCard(el);
+});`,
   },
 ];

@@ -63,8 +63,9 @@ export function OpenSource() {
           {t.openSource.repos.map((repo, i) => (
             <motion.a
               key={repo.name}
-              href="#"
-              onClick={(e) => e.preventDefault()}
+              href={`https://github.com/mitchoder07/${repo.name}`}
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
@@ -122,14 +123,21 @@ export function OpenSource() {
           className="mt-10 text-center"
         >
           <Button
+            asChild
             size="lg"
             variant="outline"
             className="h-12 rounded-full glass px-6 hover:border-[var(--neon)]/60"
             data-cursor="pointer"
           >
-            <Github className="mr-2 h-4 w-4" />
-            {t.openSource.viewGithub}
-            <ArrowUpRight className="ml-2 h-4 w-4" />
+            <a
+              href="https://github.com/mitchoder07"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="mr-2 h-4 w-4" />
+              {t.openSource.viewGithub}
+              <ArrowUpRight className="ml-2 h-4 w-4" />
+            </a>
           </Button>
         </motion.div>
       </div>
