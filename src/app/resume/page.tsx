@@ -28,23 +28,31 @@ export default function ResumePage() {
         >
           ← Back to portfolio
         </a>
-        <Button
-          onClick={handlePrint}
-          disabled={printing}
-          className="gap-2"
-        >
-          {printing ? (
-            <>
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-background/30 border-t-background" />
-              Preparing...
-            </>
-          ) : (
-            <>
-              <Printer className="h-4 w-4" />
-              Print / Save as PDF
-            </>
-          )}
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button asChild variant="outline" className="gap-2">
+            <a href="/resume.pdf" download="Abdullah-Yusuf-Resume.pdf">
+              <Download className="h-4 w-4" />
+              Download PDF
+            </a>
+          </Button>
+          <Button
+            onClick={handlePrint}
+            disabled={printing}
+            className="gap-2"
+          >
+            {printing ? (
+              <>
+                <span className="h-4 w-4 animate-spin rounded-full border-2 border-background/30 border-t-background" />
+                Preparing...
+              </>
+            ) : (
+              <>
+                <Printer className="h-4 w-4" />
+                Print / Save as PDF
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       {/* Resume content — A4-friendly, prints clean white */}

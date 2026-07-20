@@ -203,7 +203,8 @@ export function Contact() {
             </a>
 
             <a
-              href="/resume"
+              href="/resume.pdf"
+              download="Abdullah-Yusuf-Resume.pdf"
               className="group flex items-center gap-3 rounded-2xl glass p-4 transition-all duration-300 hover:border-foreground/30 hover:bg-foreground/5"
               data-cursor="pointer"
             >
