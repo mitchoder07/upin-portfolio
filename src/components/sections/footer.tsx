@@ -93,8 +93,15 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Quote */}
+        <div className="mt-10 border-t border-foreground/10 pt-6 text-center">
+          <p className="mx-auto max-w-xl font-display text-sm italic leading-relaxed text-muted-foreground/80">
+            &ldquo;{t.footer.quote}&rdquo;
+          </p>
+        </div>
+
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-foreground/10 pt-6 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Upin. {t.footer.rights}
           </p>

@@ -5,28 +5,29 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// Character avatars — Tokyo Revengers, Demon Slayer, and Upin's own photos.
-// They cycle silently every 3.2s with a cross-fade + slight zoom.
-// Upin's own avatars stay on screen 2x as long as the character avatars.
+// Character avatars — Tokyo Revengers, Demon Slayer, Upin cartoon avatars, anime avatars,
+// and Upin's real profile photo. They cycle with a cross-fade + slight zoom.
+// The real photo stays on screen 2x as long as every other avatar.
 type Avatar = {
   src: string;
   name: string;
   duration: number;
 };
 
-const AVATAR_INTERVAL = 3200; // ms between switches for character avatars
-const UPIN_INTERVAL = AVATAR_INTERVAL * 2; // Upin's own photos stay 2x as long
+const AVATAR_INTERVAL = 3200; // ms between switches for normal avatars
+const PROFILE_INTERVAL = AVATAR_INTERVAL * 2; // real photo stays 2x as long
 
 const avatars: Avatar[] = [
+  { src: "/portfolio-images/profile.jpeg", name: "Abdullah Yusuf", duration: PROFILE_INTERVAL },
   { src: "/avatars/tokyo-1.png", name: "Tokyo Revengers", duration: AVATAR_INTERVAL },
   { src: "/avatars/demon-1.png", name: "Demon Slayer", duration: AVATAR_INTERVAL },
   { src: "/avatars/tokyo-2.png", name: "Tokyo Revengers", duration: AVATAR_INTERVAL },
   { src: "/avatars/demon-2.png", name: "Demon Slayer", duration: AVATAR_INTERVAL },
   { src: "/avatars/tokyo-3.png", name: "Tokyo Revengers", duration: AVATAR_INTERVAL },
-  { src: "/avatars/upin-1.png", name: "Upin", duration: UPIN_INTERVAL },
-  { src: "/avatars/anime-2.png", name: "Anime", duration: UPIN_INTERVAL },
-  { src: "/avatars/anime-3.png", name: "Anime", duration: UPIN_INTERVAL },
-  { src: "/avatars/upin-2.png", name: "Upin", duration: UPIN_INTERVAL },
+  { src: "/avatars/upin-1.png", name: "Upin", duration: AVATAR_INTERVAL },
+  { src: "/avatars/anime-2.png", name: "Anime", duration: AVATAR_INTERVAL },
+  { src: "/avatars/anime-3.png", name: "Anime", duration: AVATAR_INTERVAL },
+  { src: "/avatars/upin-2.png", name: "Upin", duration: AVATAR_INTERVAL },
 ];
 
 interface AnimatedLogoProps {

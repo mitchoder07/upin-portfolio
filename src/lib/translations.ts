@@ -193,6 +193,7 @@ export type Translation = {
   };
   footer: {
     tagline: string;
+    quote: string;
     builtWith: string;
     rights: string;
     backToTop: string;
@@ -421,6 +422,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -677,6 +679,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "Frontend Engineer & UI/UX Designer. Builder. Shipper.",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "Designed & built with care. Next.js, TypeScript, Tailwind CSS, Figma.",
       rights: "All rights reserved.",
       backToTop: "Back to top",
@@ -904,6 +907,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -1160,6 +1164,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "Jurutera Frontend & Pereka UI/UX. Pembina. Penghantar.",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "Direka & dibina dengan penuh perhatian. Next.js, TypeScript, Tailwind CSS, Figma.",
       rights: "Hak cipta terpelihara.",
       backToTop: "Kembali ke atas",
@@ -1387,6 +1392,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -1643,6 +1649,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "Injiniyan Frontend & Mai Tsara UI/UX. Mai ginawa. Mai turawa.",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "An tsara & ginawa da kulawa. Next.js, TypeScript, Tailwind CSS, Figma.",
       rights: "Dukkan haƙƙoƙin an tanada.",
       backToTop: "Komawa sama",
@@ -1870,6 +1877,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -2126,6 +2134,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX. Oníkọ́. Onífí-rán.",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "A ṣètò & kọ́ pẹ̀lú ìtọ́jú. Next.js, TypeScript, Tailwind CSS, Figma.",
       rights: "Gbogbo ẹ̀tọ̀ dábàbà.",
       backToTop: "Padà sí òkè",
@@ -2353,6 +2362,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -2609,6 +2619,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "フロントエンドエンジニア & UI/UXデザイナー。ビルダー。シッパー。",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "丁寧に設計・構築。Next.js、TypeScript、Tailwind CSS、Figma。",
       rights: "全著作権所有。",
       backToTop: "トップに戻る",
@@ -2836,6 +2847,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -3092,6 +3104,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "مهندس واجهات أمامية & مصمم UI/UX. باني. مسلّم.",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "صُمم وبُني بعناية. Next.js، TypeScript، Tailwind CSS، Figma.",
       rights: "جميع الحقوق محفوظة.",
       backToTop: "العودة للأعلى",
@@ -3319,6 +3332,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
+          liveUrl: "https://baca-al-qur-an.onrender.com/",
         },
         {
           name: "Crypto Vault",
@@ -3575,6 +3589,7 @@ export const translations: Record<Locale, Translation> = {
     },
     footer: {
       tagline: "前端工程师 & UI/UX 设计师。构建者。交付者。",
+      quote: "Great interfaces, like great warriors, are forged through a thousand quiet iterations no one ever sees.",
       builtWith: "用心设计与构建。Next.js、TypeScript、Tailwind CSS、Figma。",
       rights: "保留所有权利。",
       backToTop: "回到顶部",
