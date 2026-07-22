@@ -1,32 +1,85 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Clock, Calendar } from "lucide-react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "./section-heading";
 
-// Design case study images.
-// To add your own images:
-// 1. Put image files in /public/portfolio-images/ (e.g. design-1.png, design-2.png)
-// 2. Update the image paths in the array below to match your filenames
-// 3. The images will appear at the top of each case study card
-//
-// If an image path doesn't exist, a gradient placeholder is shown instead.
-const caseStudyImages: string[] = [
-  // "/portfolio-images/design-1.png",  // Design System
-  // "/portfolio-images/design-2.png",  // Mobile App
-  // "/portfolio-images/design-3.png",  // Dashboard
-  // "/portfolio-images/design-4.png",  // Landing Page
+type CaseStudy = {
+  images: string[];
+  figmaUrl: string;
+};
+
+const caseStudies: CaseStudy[] = [
+  {
+    images: ["/figma/rafaab-1.png", "/figma/rafaab-2.png", "/figma/rafaab-3.png"],
+    figmaUrl: "https://www.figma.com/design/0dxazcz2O4PsKuae6jzt0v/Rafaab?node-id=0-1&p=f&t=xsVVyAJ7lZQltKq9-0",
+  },
+  {
+    images: ["/figma/alhikmah-lms-1.png", "/figma/alhikmah-lms-2.png", "/figma/alhikmah-lms-3.png"],
+    figmaUrl: "https://www.figma.com/design/dpBwBIf76c1RkgSPZ5QjLD/LMS?node-id=0-1&p=f&t=vNkUX7Y1HplKiA4k-0",
+  },
+  {
+    images: ["/figma/flyer-1.png", "/figma/flyer-2.png"],
+    figmaUrl: "https://www.figma.com/design/taZ7gCuveSPRNGUf5le6VP/Flyers?node-id=0-1&p=f&t=iEOudEdq9femXgfZ-0",
+  },
+  {
+    images: ["/figma/portfolio-1.png", "/figma/portfolio-2.png", "/figma/portfolio-3.png"],
+    figmaUrl: "https://www.figma.com/design/04BmvgaTEEuR25ewyIW0zF/Untitled?t=Xc4woXRINRhsclP4-0",
+  },
 ];
 
-// Gradient colors for placeholders when no image is set
-const placeholderGradients = [
-  "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
-  "linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%)",
-  "linear-gradient(135deg, #f59e0b 0%, #ef4444 50%, #ec4899 100%)",
-  "linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%)",
-];
+const IMAGE_INTERVAL = 3000;
+
+function CyclingImage({ images, alt }: { images: string[]; alt: string }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => {
+      setIdx((prev) => (prev + 1) % images.length);
+    }, IMAGE_INTERVAL);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative h-full w-full">
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={idx}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[idx]}
+            alt={alt}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover"
+            priority={idx === 0}
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {images.length > 1 && (
+        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+          {images.map((_, i) => (
+            <div
+              key={i}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "w-5 bg-white/80" : "w-1.5 bg-white/30"
+                }`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Writing() {
   const { t } = useI18n();
@@ -42,14 +95,16 @@ export function Writing() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {t.writing.articles.map((article, i) => {
-            const image = caseStudyImages[i];
-            const gradient = placeholderGradients[i % placeholderGradients.length];
+            const study = caseStudies[i] || caseStudies[0];
+            const images = study?.images || [];
+            const figmaUrl = study?.figmaUrl || "#";
 
             return (
               <motion.a
                 key={i}
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href={figmaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
@@ -58,20 +113,16 @@ export function Writing() {
                 className="group relative overflow-hidden rounded-2xl glass transition-all duration-300 hover:border-[var(--neon)]/30 hover:shadow-xl hover:shadow-black/10"
                 data-cursor="pointer"
               >
-                {/* Image / gradient placeholder at top */}
                 <div className="relative aspect-[16/9] overflow-hidden">
-                  {image ? (
-                    <Image
-                      src={image}
-                      alt={article.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                  {images.length > 0 ? (
+                    <CyclingImage images={images} alt={article.title} />
                   ) : (
                     <div
                       className="flex h-full w-full items-center justify-center"
-                      style={{ background: gradient }}
+                      style={{
+                        background:
+                          "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
+                      }}
                     >
                       <div className="text-center">
                         <div className="mb-2 font-display text-xl font-bold text-white/90 drop-shadow-lg sm:text-2xl">
@@ -81,7 +132,6 @@ export function Writing() {
                       </div>
                     </div>
                   )}
-                  {/* Tag badge on top of image */}
                   <div className="absolute left-3 top-3">
                     <span className="rounded-full bg-black/50 px-2.5 py-0.5 text-[11px] font-medium text-white backdrop-blur-sm">
                       {article.tag}
@@ -89,19 +139,15 @@ export function Writing() {
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className="p-6">
-                  {/* Title */}
                   <h3 className="mb-2 font-display text-lg font-bold leading-snug transition-colors group-hover:text-[var(--neon)] sm:text-xl">
                     {article.title}
                   </h3>
 
-                  {/* Excerpt */}
                   <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                     {article.excerpt}
                   </p>
 
-                  {/* Meta */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 text-[11px] text-muted-foreground">
                       <span className="flex items-center gap-1">

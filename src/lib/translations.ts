@@ -24,7 +24,7 @@ export type Translation = {
     experience: string;
     openSource: string;
     writing: string;
-      design: string;
+    design: string;
     testimonials: string;
     contact: string;
     menu: string;
@@ -598,36 +598,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "View case study",
       articles: [
         {
-          title: "Design Systems Are Cheaper Than You Think",
+          title: "Rafaab: Premium E-Commerce Reimagined",
           excerpt:
-            "A practical guide to shipping a design system with color tokens, typography scales, and spacing rules. Includes a working Figma + Tailwind setup.",
-          date: "2026-05-14",
-          readTime: "18 min read",
-          tag: "Design Systems",
+            "A gold-amulet brand identity meets AI-powered shopping. Flash sales with live countdowns, visual order tracking, and a seller dashboard that makes Jumia look ancient.",
+          date: "2026-06-10",
+          readTime: "Figma Case Study",
+          tag: "E-Commerce",
         },
         {
-          title: "Print CSS for Certificates",
+          title: "Al-Hikmah LMS: Education Platform Design System",
           excerpt:
-            "How to build a certificate generator with QR verification that prints cleanly on real paper. Lessons from the Al-Hikmah LMS.",
-          date: "2026-03-22",
-          readTime: "12 min read",
-          tag: "Frontend",
+            "From color tokens to certificate generators. A full design system for a university LMS with green-gold branding, analytics dashboards, and PWA-ready mobile flows.",
+          date: "2026-04-15",
+          readTime: "Figma Case Study",
+          tag: "Design System",
         },
         {
-          title: "Accessible Charts With Recharts",
+          title: "Flyers: High-Impact Promotional Design",
           excerpt:
-            "Why most dashboards fail accessibility, and how to fix them. Patterns for keyboard, screen readers, and color contrast.",
-          date: "2026-01-30",
-          readTime: "9 min read",
-          tag: "Accessibility",
+            "Bold typography, striking color blocking, and print-ready layouts. A series of promotional flyers designed to grab attention in under 2 seconds.",
+          date: "2026-02-20",
+          readTime: "Figma Case Study",
+          tag: "Graphic Design",
         },
         {
-          title: "Designing For RTL",
+          title: "Portfolio v3: Dark Premium Experience",
           excerpt:
-            "RTL is not a CSS afterthought. It's a mindset. Lessons from designing Arabic-first interfaces that feel native.",
-          date: "2025-11-08",
-          readTime: "14 min read",
-          tag: "i18n & Localization",
+            "The design process behind this very portfolio. Glassmorphism, 3D hero, interactive terminal, and a 7-language i18n system with RTL support.",
+          date: "2026-01-05",
+          readTime: "Figma Case Study",
+          tag: "Web Design",
         },
       ],
     },
@@ -1083,36 +1083,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "Lihat kajian kes",
       articles: [
         {
-          title: "Sistem Reka Bentuk Lebih Murah Daripada Yang Anda Fikir",
+          title: "Rafaab: E-Dagang Premium Diubah Suai",
           excerpt:
-            "Panduan praktikal untuk menghantar sistem reka bentuk dengan token warna, skala tipografi, dan peraturan jarak. Termasuk persediaan Figma + Tailwind yang berfungsi.",
-          date: "2026-05-14",
-          readTime: "18 min baca",
+            "Identiti jenama emas-amulet bertemu beli-belah AI. Jualan kilat dengan kiraan detik langsung, penjejakan pesanan visual, dan dashboard penjual.",
+          date: "2026-06-10",
+          readTime: "Kajian Kes Figma",
+          tag: "E-Dagang",
+        },
+        {
+          title: "Al-Hikmah LMS: Sistem Reka Bentuk Platform Pendidikan",
+          excerpt:
+            "Dari token warna ke penjana sijil. Sistem reka bentuk penuh untuk LMS universiti dengan jenama hijau-emas, dashboard analitik, dan aliran mudah alih.",
+          date: "2026-04-15",
+          readTime: "Kajian Kes Figma",
           tag: "Sistem Reka Bentuk",
         },
         {
-          title: "Print CSS untuk Sijil",
+          title: "Flyer: Reka Bentuk Promosi Berimpak Tinggi",
           excerpt:
-            "Cara membina penjana sijil dengan pengesahan QR yang dicetak bersih di atas kertas sebenar. Pengajaran dari Al-Hikmah LMS.",
-          date: "2026-03-22",
-          readTime: "12 min baca",
-          tag: "Frontend",
+            "Tipografi berani, penyekat warna mencolok, dan susun atur sedia cetak. Siri flyer promosi yang direka untuk menarik perhatian dalam kurang 2 saat.",
+          date: "2026-02-20",
+          readTime: "Kajian Kes Figma",
+          tag: "Reka Bentuk Grafik",
         },
         {
-          title: "Carta Boleh Capai Dengan Recharts",
+          title: "Portfolio v3: Pengalaman Premium Gelap",
           excerpt:
-            "Mengapa kebanyakan papan pemuda gagal kebolehcapaian, dan cara membetulkannya. Corak untuk papan kekunci, pembaca skrin, dan kontras warna.",
-          date: "2026-01-30",
-          readTime: "9 min baca",
-          tag: "Kebolehcapaian",
-        },
-        {
-          title: "Merekabentuk Untuk RTL",
-          excerpt:
-            "RTL bukan selepas pemikiran CSS. Ia satu cara berfikir. Pengajaran dari merekabentuk antara muka Arabic-first yang berasa asli.",
-          date: "2025-11-08",
-          readTime: "14 min baca",
-          tag: "i18n & Localisasi",
+            "Proses reka bentuk di sebalik portfolio ini. Glassmorphism, wira 3D, terminal interaktif, dan sistem i18n 7-bahasa dengan sokongan RTL.",
+          date: "2026-01-05",
+          readTime: "Kajian Kes Figma",
+          tag: "Reka Bentuk Web",
         },
       ],
     },
@@ -1568,36 +1568,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "Duba kararran abubuwa",
       articles: [
         {
-          title: "Tsarin Tsara Suna Arha Fiye Da Yadda Kake Tunani",
+          title: "Rafaab: E-Commerce na Musamman Da Sake Tsara",
           excerpt:
-            "Jagora mai amfani don tura tsarin tsara tare da token na launi, sikelin rubutu, da ƙa'idodin tazara. Ya haɗa da tsarin Figma + Tailwind mai aiki.",
-          date: "2026-05-14",
-          readTime: "18 min karantawa",
-          tag: "Tsarin Tsara",
+            "Salar asalin zinariya tare da sayayya ta AI. Sayar da cikin gaggawa da kira lokaci, bin diddigin odar gani, da dashboard na mai sayarwa.",
+          date: "2026-06-10",
+          readTime: "Kararran Figma",
+          tag: "E-Commerce",
         },
         {
-          title: "Print CSS don Takaddun Shaida",
+          title: "Al-Hikmah LMS: Tsarin Tsarin Dandamalin Ilimi",
           excerpt:
-            "Yadda za a gina injin samar da takaddun shaida da tabbatarwa ta QR wanda ake bugawa a tsabta akan takarda. Koya daga Al-Hikmah LMS.",
-          date: "2026-03-22",
-          readTime: "12 min karantawa",
-          tag: "Frontend",
+            "Daga token na launi zuwa mai samar da serti. Cikakken tsarin tsari don LMS na jami'a da salar kore-zinariya, dashboard na analitik, da kwararun wayar hannu.",
+          date: "2026-04-15",
+          readTime: "Kararran Figma",
+          tag: "Tsarin Tsari",
         },
         {
-          title: "Zane Mai Sauyin Shiga Da Recharts",
+          title: "Flyer: Tsarin Talla Mai Tasiri Sosai",
           excerpt:
-            "Dalilin da yasa yawancin pano ke gazawa sauyin shiga, da yadda za a gyara. Tsarin don maɓalli, masu karanta allo, da kwastan launi.",
-          date: "2026-01-30",
-          readTime: "9 min karantawa",
-          tag: "Sauyin Shiga",
+            "Rubutu mai karfi, toshe launi mai ban sha'awa, da tsari shirye don bugawa. Jerin tallan da aka tsara don kama hankali a kasa da dakika 2.",
+          date: "2026-02-20",
+          readTime: "Kararran Figma",
+          tag: "Tsarin Zane",
         },
         {
-          title: "Tsara Don RTL",
+          title: "Portfolio v3: Kwarewar Premium Mai Duhu",
           excerpt:
-            "RTL ba CSS bayan-tunani ba ne. Hanyar tunani ce. Koya daga tsara mu'amala Arabic-first da ke jin asali.",
-          date: "2025-11-08",
-          readTime: "14 min karantawa",
-          tag: "i18n & Fassarar",
+            "Tsarin tsari a bayan wannan portfolio. Glassmorphism, jarumin 3D, tasha mai hulda, da tsarin i18n na harsuna 7 tare da goyon bayan RTL.",
+          date: "2026-01-05",
+          readTime: "Kararran Figma",
+          tag: "Tsarin Yanar Gizo",
         },
       ],
     },
@@ -2053,36 +2053,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "Wo ìdànjáde",
       articles: [
         {
-          title: "Àwọn Ọ̀nà Ìdà Rẹ̀rìn Ju Ìrònú Rẹ Lọ",
+          title: "Rafaab: E-Commerce Alákọ̀bájẹ́ Tí A Tún Ṣe",
           excerpt:
-            "Ìmọ̀ràn àmúlò fún fífí ọ̀nà ìdà rán pẹ̀lú tóǹù launì, sikelì kíkọ̀, àti ọ̀nà tàrà. Ó pèsè ìmúlò Figma + Tailwind tó ń ṣiṣẹ́.",
-          date: "2026-05-14",
-          readTime: "18 mínítì kíkà",
-          tag: "Àwọn Ọ̀nà Ìdà",
+            "Ìdánimọ̀ wúrà pẹ̀lú ìràwọ́ AI. Títà kíkankín pẹ̀lú ìkànnì, ìtọ́sọ́nà ìràpadà, àti dashboard olùtà.",
+          date: "2026-06-10",
+          readTime: "Ìdànjáde Figma",
+          tag: "E-Commerce",
         },
         {
-          title: "Print CSS fún Àwọn Ìwé-ẹ̀rí",
+          title: "Al-Hikmah LMS: Ètò Àkóónú Dandamali Ẹ̀kọ́",
           excerpt:
-            "Bí a ṣe ń kọ́ olùṣẹ̀dá ìwé-ẹ̀rí pẹ̀lú ìfẹ̀rílẹ̀ QR tó ń tẹ̀ mọ́ kíkò lórí kíkà. Ìkẹ́kọ̀ọ́ láti inú Al-Hikmah LMS.",
-          date: "2026-03-22",
-          readTime: "12 mínítì kíkà",
-          tag: "Frontend",
+            "Láti tóǹù launì sí olú-dájọ́ ìwé-ẹ̀rí. Ètò àkóónú kíkankín fún LMS yunifásítì pẹ̀lú wúrà-eṣó, dashboard analitik, àti kwararoyé mobile.",
+          date: "2026-04-15",
+          readTime: "Ìdànjáde Figma",
+          tag: "Ètò Àkóónú",
         },
         {
-          title: "Àwọn Ọ̀nà Tó Wúlò Pẹ̀lú Recharts",
+          title: "Flyer: Àkóónú Títà Tó Ni Ìpa",
           excerpt:
-            "Ìdí tí àwọn pano púpọ̀ fi ń kùnà ìmọ̀-wọlé, àti bí a ṣe ń tọ́ ọ̀rọ̀. Àwọn ọ̀nà fún pínpín, olùkà álóò, àti ìdámọ̀ràn àwọ̀.",
-          date: "2026-01-30",
-          readTime: "9 mínítì kíkà",
-          tag: "Ìmọ̀-Wọlé",
+            "Kíkọ̀ gígùn, ìpì launì tó ṣàyẹ̀wò, àti àkóónú tó yẹ fún ìtẹ̀. Àkójọ́pọ̀ flyer tí a ṣe láti mú àkíyèsí nínú ìsẹ́jú 2.",
+          date: "2026-02-20",
+          readTime: "Ìdànjáde Figma",
+          tag: "Àkóónú Kíkọ̀",
         },
         {
-          title: "Ṣíṣètò Fún RTL",
+          title: "Portfolio v3: Ìrírí Premium Dúdú",
           excerpt:
-            "RTL kì í ṣe àyídíyò CSS lẹ́yìn-ìrònú. Ó jẹ́ ọ̀nà ìrònú. Ìkẹ́kọ̀ọ́ láti ṣètò àwọn ìjápọ̀ Arabic-first tó ń farahàn bí àdání.",
-          date: "2025-11-08",
-          readTime: "14 mínítì kíkà",
-          tag: "i18n & Ìyípadà",
+            "Ìmọ̀-ẹrọ àkóónú lẹ́yìn portfolio yìí. Glassmorphism, fọ́n-3D, tẹ́mínálì, àti ètò i18n èdè 7 pẹ̀lú atilẹ́yin RTL.",
+          date: "2026-01-05",
+          readTime: "Ìdànjáde Figma",
+          tag: "Àkóónú Web",
         },
       ],
     },
@@ -2538,36 +2538,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "ケーススタディを見る",
       articles: [
         {
-          title: "デザインシステムは思ったより安い",
+          title: "Rafaab: プレミアムECの再構築",
           excerpt:
-            "カラートークン、タイポグラフィスケール、スペーシングルールでデザインシステムを出荷するための実践的ガイド。動作するFigma + Tailwindセットアップを含む。",
-          date: "2026-05-14",
-          readTime: "18分で読了",
+            "金色のアミュレットブランドアイデンティティとAIショッピングの融合。ライブカウントダウン付きフラッシュセール、視覚的注文追跡、セラーダッシュボード。",
+          date: "2026-06-10",
+          readTime: "Figmaケーススタディ",
+          tag: "EC",
+        },
+        {
+          title: "Al-Hikmah LMS: 教育プラットフォームのデザインシステム",
+          excerpt:
+            "カラートークンから証明書ジェネレーターまで。緑と金のブランディング、分析ダッシュボード、PWA対応モバイルフローを備えた大学LMSの完全なデザインシステム。",
+          date: "2026-04-15",
+          readTime: "Figmaケーススタディ",
           tag: "デザインシステム",
         },
         {
-          title: "証明書のPrint CSS",
+          title: "Flyers: 高インパクトのプロモーションデザイン",
           excerpt:
-            "QR検証付きで実際の紙にきれいに印刷される証明書ジェネレーターの構築方法。Al-Hikmah LMSからの教訓。",
-          date: "2026-03-22",
-          readTime: "12分で読了",
-          tag: "フロントエンド",
+            "大胆なタイポグラフィ、鮮やかな色のブロック、印刷対応レイアウト。2秒以内に注目を集めるプロモーションフライヤーシリーズ。",
+          date: "2026-02-20",
+          readTime: "Figmaケーススタディ",
+          tag: "グラフィックデザイン",
         },
         {
-          title: "Rechartsでアクセシブルなチャート",
+          title: "Portfolio v3: ダークプレミアム体験",
           excerpt:
-            "なぜほとんどのダッシュボードがアクセシビリティに失敗するのか、そしてどう直すのか。キーボード、スクリーンリーダー、色コントラストのパターン。",
-          date: "2026-01-30",
-          readTime: "9分で読了",
-          tag: "アクセシビリティ",
-        },
-        {
-          title: "RTLのために設計する",
-          excerpt:
-            "RTLはCSSの事後検討ではありません。マインドセットです。ネイティブに感じるアラビア語ファーストインターフェースの設計からの教訓。",
-          date: "2025-11-08",
-          readTime: "14分で読了",
-          tag: "i18n & ローカライゼーション",
+            "このポートフォリオの裏側のデザインプロセス。グラスモーフィズム、3Dヒーロー、インタラクティブターミナル、RTL対応の7言語i18nシステム。",
+          date: "2026-01-05",
+          readTime: "Figmaケーススタディ",
+          tag: "Webデザイン",
         },
       ],
     },
@@ -3023,36 +3023,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "عرض دراسة الحالة",
       articles: [
         {
-          title: "أنظمة التصميم أرخص مما تظن",
+          title: "Rafaab: إعادة تصور التجارة الإلكترونية الفاخرة",
           excerpt:
-            "دليل عملي لإطلاق نظام تصميم مع رموز الألوان ومقاييس الطباعة وقواعد المسافات. يتضمن إعداد Figma + Tailwind يعمل.",
-          date: "2026-05-14",
-          readTime: "18 دقيقة قراءة",
-          tag: "أنظمة التصميم",
+            "هوية علامة تجارية بتميمة ذهبية تلتقي بالتسوق الذكي. مبيعات سريعة بعدادات مباشرة، تتبع طلبات مرئي، ولوحة تحكم للبائعين.",
+          date: "2026-06-10",
+          readTime: "دراسة حالة Figma",
+          tag: "تجارة إلكترونية",
         },
         {
-          title: "Print CSS للشهادات",
+          title: "Al-Hikmah LMS: نظام تصميم منصة التعليم",
           excerpt:
-            "كيف تبني مولد شهادات مع تحقق QR يُطبع بنظافة على ورق حقيقي. دروس من Al-Hikmah LMS.",
-          date: "2026-03-22",
-          readTime: "12 دقيقة قراءة",
-          tag: "الواجهة الأمامية",
+            "من رموز الألوان إلى مولد الشهادات. نظام تصميم كامل لمنصة LMS جامعية بهوية خضراء-ذهبية، لوحات تحليلات، وتدفقات جوال جاهزة PWA.",
+          date: "2026-04-15",
+          readTime: "دراسة حالة Figma",
+          tag: "نظام تصميم",
         },
         {
-          title: "رسوم بيانية يسهل الوصول إليها مع Recharts",
+          title: "Flyers: تصميم ترويجي عالي التأثير",
           excerpt:
-            "لماذا تفشل معظم لوحات التحكم في إمكانية الوصول، وكيف تُصلح. أنماط للوحة المفاتيح وقارئ الشاشة وتباين الألوان.",
-          date: "2026-01-30",
-          readTime: "9 دقيقة قراءة",
-          tag: "إمكانية الوصول",
+            "طباعة جريئة، كتل ألوان لافتة، وتخطيطات جاهزة للطباعة. سلسلة flyer مصممة لجذب الانتباه في أقل من ثانيتين.",
+          date: "2026-02-20",
+          readTime: "دراسة حالة Figma",
+          tag: "تصميم جرافيك",
         },
         {
-          title: "التصميم لـ RTL",
+          title: "Portfolio v3: تجربة فاخرة داكنة",
           excerpt:
-            "RTL ليس فكرة لاحقة في CSS. إنه عقلية. دروس من تصميم واجهات عربية أولاً تشعر بالأصالة.",
-          date: "2025-11-08",
-          readTime: "14 دقيقة قراءة",
-          tag: "i18n والترجمة",
+            "عملية التصميم خلف هذا المعرض. زجاجية، بطل ثلاثي الأبعاد، طرفية تفاعلية، ونظام i18n بـ7 لغات مع دعم RTL.",
+          date: "2026-01-05",
+          readTime: "دراسة حالة Figma",
+          tag: "تصميم ويب",
         },
       ],
     },
