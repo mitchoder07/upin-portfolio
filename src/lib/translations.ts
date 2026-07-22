@@ -3508,36 +3508,36 @@ export const translations: Record<Locale, Translation> = {
       readMore: "查看案例研究",
       articles: [
         {
-          title: "设计系统比你想象的便宜",
+          title: "Rafaab: 高端电商的重新构想",
           excerpt:
-            "用颜色令牌、排版尺度和间距规则交付设计系统的实用指南。包含可运行的 Figma + Tailwind 设置。",
-          date: "2026-05-14",
-          readTime: "18 分钟阅读",
+            "金色护身符品牌标识与AI购物相遇。限时抢购带实时倒计时、可视化订单追踪和卖家仪表板。",
+          date: "2026-06-10",
+          readTime: "Figma案例研究",
+          tag: "电商",
+        },
+        {
+          title: "Al-Hikmah LMS: 教育平台设计系统",
+          excerpt:
+            "从颜色令牌到证书生成器。为大学LMS打造的完整设计系统，绿金品牌、分析仪表板和PWA就绪的移动流程。",
+          date: "2026-04-15",
+          readTime: "Figma案例研究",
           tag: "设计系统",
         },
         {
-          title: "证书的 Print CSS",
+          title: "Flyers: 高冲击力推广设计",
           excerpt:
-            "如何构建带 QR 验证、在真实纸张上干净打印的证书生成器。来自 Al-Hikmah LMS 的教训。",
-          date: "2026-03-22",
-          readTime: "12 分钟阅读",
-          tag: "前端",
+            "大胆排版、醒目色块、印刷就绪的布局。一系列旨在2秒内抓住注意力的推广传单。",
+          date: "2026-02-20",
+          readTime: "Figma案例研究",
+          tag: "平面设计",
         },
         {
-          title: "用 Recharts 构建可访问图表",
+          title: "Portfolio v3: 暗色高端体验",
           excerpt:
-            "为什么大多数仪表板在可访问性上失败,以及如何修复。键盘、屏幕阅读器和颜色对比的模式。",
-          date: "2026-01-30",
-          readTime: "9 分钟阅读",
-          tag: "可访问性",
-        },
-        {
-          title: "为 RTL 设计",
-          excerpt:
-            "RTL 不是 CSS 的事后想法。它是一种思维方式。从设计阿拉伯语优先、感觉原生的界面中学到的经验。",
-          date: "2025-11-08",
-          readTime: "14 分钟阅读",
-          tag: "i18n 与本地化",
+            "这个作品集背后的设计过程。毛玻璃效果、3D英雄区、交互式终端和带RTL支持的7语言i18n系统。",
+          date: "2026-01-05",
+          readTime: "Figma案例研究",
+          tag: "网页设计",
         },
       ],
     },
