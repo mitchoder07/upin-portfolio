@@ -45,14 +45,18 @@ function CyclingImage({ images, alt }: { images: string[]; alt: string }) {
   }, [images.length]);
 
   return (
-    <div className="relative h-full w-full">
-      <AnimatePresence mode="sync">
+    <div className="relative h-full w-full overflow-hidden">
+      <AnimatePresence mode="popLayout">
         <motion.div
           key={idx}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, scale: 1.15, filter: "blur(12px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 1.05, filter: "blur(8px)" }}
+          transition={{
+            opacity: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+            scale: { duration: 3.5, ease: [0.22, 1, 0.36, 1] },
+            filter: { duration: 0.6, ease: "easeOut" },
+          }}
           className="absolute inset-0"
         >
           <Image
@@ -66,14 +70,40 @@ function CyclingImage({ images, alt }: { images: string[]; alt: string }) {
         </motion.div>
       </AnimatePresence>
 
+      {/* Cinematic vignette */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.25) 100%)",
+        }}
+      />
+
+      {/* Progress bar indicator */}
       {images.length > 1 && (
-        <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+        <div className="absolute bottom-0 left-0 right-0 flex h-1 gap-1 px-3 pb-3">
           {images.map((_, i) => (
             <div
               key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${i === idx ? "w-5 bg-white/80" : "w-1.5 bg-white/30"
-                }`}
-            />
+              className="h-full flex-1 overflow-hidden rounded-full bg-white/20"
+            >
+              <motion.div
+                className="h-full rounded-full bg-white/80"
+                initial={{ width: i === idx ? "0%" : "100%" }}
+                animate={{
+                  width:
+                    i === idx
+                      ? "100%"
+                      : i === (idx + 1) % images.length
+                        ? "0%"
+                        : "100%",
+                }}
+                transition={{
+                  duration: i === idx ? IMAGE_INTERVAL / 1000 : 0,
+                  ease: "linear",
+                }}
+              />
+            </div>
           ))}
         </div>
       )}
