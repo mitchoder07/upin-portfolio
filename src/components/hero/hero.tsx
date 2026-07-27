@@ -29,22 +29,12 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen w-full overflow-hidden bg-grid bg-grid-fade"
+      className="relative min-h-screen w-full overflow-hidden bg-grid"
     >
       {/* 3D Background — FULL SCREEN, bright and clear, no heavy overlay */}
       <div className="absolute inset-0 -z-10">
         <Hero3DScene />
       </div>
-
-      {/* Very subtle gradient — only a slight darkening on the far left
-          so text is readable, but the 3D scene stays bright and visible */}
-      <div
-        className="absolute inset-0 -z-[5]"
-        style={{
-          background:
-            "linear-gradient(90deg, oklch(from var(--background) l c h / 0.7) 0%, oklch(from var(--background) l c h / 0.3) 40%, transparent 70%)",
-        }}
-      />
 
       <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-24 sm:px-12 sm:ml-8 lg:ml-16 lg:px-16 xl:ml-24">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
