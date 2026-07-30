@@ -635,24 +635,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "Receipts. Because a portfolio without them is just a résumé with a domain name.",
       items: [
-        {
-          quote:
-            "Upin is the rare designer who can ship production React. He designed our design system in Figma and implemented it in Next.js the same week. Top 1%.",
-          name: "Dr. Aminu Suleiman",
-          role: "Project Lead, Al-Hikmah University",
-        },
-        {
-          quote:
-            "We hired Upin to design and build Rafaab. He owned the brand, the Figma, and the code. The result outclasses anything in our market.",
-          name: "Rabi'u Mohammed",
-          role: "Founder, Rafaab",
-        },
-        {
-          quote:
-            "His obsession with detail is unreal. He rebuilt our certificate flow with print CSS and QR verification in 3 days. Print-perfect on the first try.",
-          name: "Fatima Ibrahim",
-          role: "Product Manager, Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -1118,24 +1100,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "Resit. Kerana portfolio tanpa mereka hanyalah resume dengan nama domain.",
       items: [
-        {
-          quote:
-            "Upin adalah pereka jarang yang boleh menghantar React production. Dia merekabentuk sistem reka bentuk kami dalam Figma dan melaksanakannya dalam Next.js pada minggu yang sama. Top 1%.",
-          name: "Dr. Aminu Suleiman",
-          role: "Jurusan Projek, Universiti Al-Hikmah",
-        },
-        {
-          quote:
-            "Kami menggaji Upin untuk merekabentuk dan membina Rafaab. Dia memiliki jenama, Figma, dan kod. Hasilnya mengatasi apa-apa di pasaran kami.",
-          name: "Rabi'u Mohammed",
-          role: "Pengasas, Rafaab",
-        },
-        {
-          quote:
-            "Obsesnya terhadap butiran tidak masuk akal. Dia membina semula aliran sijil kami dengan print CSS dan pengesahan QR dalam 3 hari. Sempurna-cetak pada percubaan pertama.",
-          name: "Fatima Ibrahim",
-          role: "Pengurus Produk, Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -1601,24 +1565,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "Kwatancen. Domin portfolio ba tare da su resume ne kawai tare da sunan yanki.",
       items: [
-        {
-          quote:
-            "Upin mai tsara ne kaɗan wanda zai iya tura React production. Ya tsara tsarin mu a Figma kuma ya aiwatar da shi a Next.js cikin mako guda. Top 1%.",
-          name: "Dr. Aminu Suleiman",
-          role: "Shugaban Aiki, Jami'ar Al-Hikmah",
-        },
-        {
-          quote:
-            "Mun ɗauki Upin don tsara da gina Rafaab. Ya mallaki suna, Figma, da lamba. Sakamakon ya fi komai a kasuwar mu.",
-          name: "Rabi'u Mohammed",
-          role: "Wanda ya kafa, Rafaab",
-        },
-        {
-          quote:
-            "Tsananiwarsa ga cikakkun bayanai ba ta da misalti. Ya sake gina tsarin takaddun shaida mu da print CSS da tabbatarwa ta QR cikin kwanaki 3. Da-farko-da-tsabta a farkon gwaji.",
-          name: "Fatima Ibrahim",
-          role: "Manajan Samfur, Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -2084,24 +2030,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "Ìwé-ẹ̀rí. Nítorí portfolio láìsí wọn, résumé ni pẹ̀lú orúkọ ìdáná.",
       items: [
-        {
-          quote:
-            "Upin jẹ́ aláṣẹ tó yàtọ̀ tó lè fi React rán. Ó ṣètò ọ̀nà ìdà wa ní Figma ó sì kọ́ wọ́n ní Next.js ní ọ̀sẹ̀ kan náà. Àríwá 1%.",
-          name: "Dr. Aminu Suleiman",
-          role: "Olùṣàkóso Iṣẹ́, Yunifásítì Al-Hikmah",
-        },
-        {
-          quote:
-            "A gba Upin láti ṣètò àti kọ́ Rafaab. Ó ní orúkọ, Figma, àti kóòdù. Èyí tó jáde ń fi gbogbo nkan bíi nkan ibi.",
-          name: "Rabi'u Mohammed",
-          role: "Atẹ̀rín & CEO, Rafaab",
-        },
-        {
-          quote:
-            "Àkíyèsí rẹ̀ sí àwọn nkan kéékèèké jẹ́ ìyànudọ́tun. Ó tún kọ́ ìlò ìwé-ẹ̀rí wa pẹ̀lú print CSS àti ìfẹ̀rílẹ̀ QR ní ọjọ́ mẹ́ta. Ó tẹ̀ mọ́ kíkà lórí ìgbà àkọ́kọ́.",
-          name: "Fatima Ibrahim",
-          role: "Manija ọjà, Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -2567,24 +2495,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "証拠。それらのないポートフォリオは、ドメイン名を持つレジュメに過ぎません。",
       items: [
-        {
-          quote:
-            "Upinは本番Reactを出荷できる稀なデザイナーです。Figmaでデザインシステムを設計し、同じ週にNext.jsで実装しました。トップ1%。",
-          name: "Dr. Aminu Suleiman",
-          role: "プロジェクトリード、Al-Hikmah大学",
-        },
-        {
-          quote:
-            "Rafaabの設計と構築のためにUpinを雇いました。ブランド、Figma、コードを所有。結果は市場の何よりも優れています。",
-          name: "Rabi'u Mohammed",
-          role: "創業者、Rafaab",
-        },
-        {
-          quote:
-            "彼の詳細への執着は異常です。print CSSとQR検証で証明書フローを3日で再構築。初回で印刷完璧。",
-          name: "Fatima Ibrahim",
-          role: "プロダクトマネージャー、Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -3050,24 +2960,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "إيصالات. لأن معرض أعمال بدونها هو مجرد سيرة ذاتية باسم نطاق.",
       items: [
-        {
-          quote:
-            "Upin مصمم نادر يستطيع إطلاق React إنتاجي. صمم نظام التصميم لدينا في Figma ونفّذه في Next.js في نفس الأسبوع. أعلى 1%.",
-          name: "د. أمين سليمان",
-          role: "قائد المشروع، جامعة Al-Hikmah",
-        },
-        {
-          quote:
-            "وظفنا Upin لتصميم وبناء Rafaab. امتلك العلامة وFigma والكود. النتيجة تتفوق على أي شيء في سوقنا.",
-          name: "ربيعو محمد",
-          role: "مؤسس، Rafaab",
-        },
-        {
-          quote:
-            "هوسه بالتفاصيل غير معقول. أعاد بناء تدفق الشهادات لدينا مع print CSS وتحقق QR في 3 أيام. طُبع بشكل مثالي من المحاولة الأولى.",
-          name: "فاطمة إبراهيم",
-          role: "مديرة المنتج، Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
@@ -3533,24 +3425,6 @@ export const translations: Record<Locale, Translation> = {
       subheading:
         "证据。因为没有它们的简历只是带域名的简历。",
       items: [
-        {
-          quote:
-            "Upin 是那种罕见的能交付生产 React 的设计师。他在 Figma 中设计我们的设计系统,并在同一周用 Next.js 实现。前 1%。",
-          name: "Aminu Suleiman 博士",
-          role: "项目负责人, Al-Hikmah 大学",
-        },
-        {
-          quote:
-            "我们雇佣 Upin 设计和构建 Rafaab。他拥有品牌、Figma 和代码。结果超越了市场上的任何东西。",
-          name: "Rabi'u Mohammed",
-          role: "创始人, Rafaab",
-        },
-        {
-          quote:
-            "他对细节的执念不正常。他用 print CSS 和 QR 验证在 3 天内重建了我们的证书流程。第一次就完美打印。",
-          name: "Fatima Ibrahim",
-          role: "产品经理, Al-Hikmah LMS",
-        },
       ],
     },
     contact: {
