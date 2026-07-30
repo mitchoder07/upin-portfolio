@@ -5,77 +5,53 @@ export type CodeSnippet = {
 };
 
 export const projectCodeSnippets: CodeSnippet[] = [
-  // 1. Al-Hikmah LMS — certificate print CSS + QR component (TypeScript)
+  // 1. Al-Bashir Academy LMS — course analytics dashboard card (TypeScript)
   {
     language: "typescript",
-    filename: "al-hikmah/certificate.tsx",
-    code: `import { forwardRef } from "react";
-import { QRCodeSVG } from "qrcode.react";
+    filename: "al-bashir/analytics-card.tsx",
+    code: `import { AreaChart, Area, ResponsiveContainer, Tooltip } from "recharts";
 
-interface CertificateProps {
-  studentName: string;
+interface CourseAnalyticsProps {
   courseTitle: string;
-  completionDate: string;
-  certificateId: string;
-  verifyUrl: string;
+  completionData: { week: string; completions: number }[];
+  activeStudents: number;
 }
 
 /**
- * Al-Hikmah LMS — Printable certificate.
- * Print-perfect via @media print rules + QR verification.
+ * Al-Bashir Academy LMS — Course analytics card.
+ * Part of the instructor-facing dashboard, built with Recharts.
  */
-export const Certificate = forwardRef<HTMLDivElement, CertificateProps>(
-  function Certificate(props, ref) {
-    const { studentName, courseTitle, completionDate, certificateId, verifyUrl } = props;
+export function CourseAnalyticsCard(props: CourseAnalyticsProps) {
+  const { courseTitle, completionData, activeStudents } = props;
 
-    return (
-      <div ref={ref} className="certificate-sheet">
-        <div className="certificate-border">
-          <header className="certificate-header">
-            <h1>Al-Hikmah University</h1>
-            <p>Certificate of Completion</p>
-          </header>
+  return (
+    <div className="analytics-card">
+      <header className="analytics-header">
+        <h3>{courseTitle}</h3>
+        <span className="active-count">{activeStudents} active students</span>
+      </header>
 
-          <main className="certificate-body">
-            <p className="cert-label">This certifies that</p>
-            <p className="cert-name">{studentName}</p>
-            <p className="cert-label">has successfully completed</p>
-            <p className="cert-course">{courseTitle}</p>
-            <p className="cert-date">on {completionDate}</p>
-          </main>
-
-          <footer className="certificate-footer">
-            <div className="cert-signature">Registrar</div>
-            <div className="cert-qr">
-              <QRCodeSVG
-                value={\`\${verifyUrl}?id=\${certificateId}\`}
-                size={72}
-                level="H"
-              />
-              <span className="cert-id">{certificateId}</span>
-            </div>
-          </footer>
-        </div>
-
-        <style>{\`
-          @media print {
-            .certificate-sheet {
-              page-break-after: always;
-              margin: 0;
-            }
-            .no-print { display: none !important; }
-          }
-          .certificate-sheet {
-            width: 210mm;
-            height: 297mm;
-            padding: 18mm;
-            background: #fff;
-          }
-        \`}</style>
+      <div className="analytics-chart">
+        <ResponsiveContainer width="100%" height={140}>
+          <AreaChart data={completionData}>
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="completions"
+              stroke="var(--brand-gold)"
+              fill="var(--brand-gold)"
+              fillOpacity={0.15}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
-    );
-  }
-);`,
+
+      <footer className="analytics-footer">
+        <span>Weekly completions</span>
+      </footer>
+    </div>
+  );
+}`,
   },
 
   // 2. Rafaab — AI shopping assistant + flash sale countdown (TypeScript/React)

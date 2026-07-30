@@ -389,10 +389,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "Confidential",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "Production education platform with design system, analytics, and PWA",
           description:
-            "A full-featured Learning Management System for Al-Hikmah University. Built the entire frontend: design system (color tokens, typography, spacing), course management, quiz builder, analytics dashboards with Recharts, multi-step forms, and PWA support. This is a confidential client project.",
+            "A full-featured Learning Management System for Al-Bashir Academy. Built the entire frontend: design system (color tokens, typography, spacing), course management, quiz builder, analytics dashboards with Recharts, multi-step forms, and PWA support. This is a confidential client project.",
           role: "Frontend Engineer & UI/UX Designer",
           impact: "Full design system, 50+ reusable components, mobile-first responsive",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -496,9 +496,9 @@ export const translations: Record<Locale, Translation> = {
           company: "Self-employed",
           period: "2024 - Present",
           description:
-            "Building production web apps with Next.js, TypeScript, Tailwind. Led the Al-Hikmah education platform frontend.",
+            "Building production web apps with Next.js, TypeScript, Tailwind. Led the Al-Bashir Academy platform frontend.",
           achievements: [
-            "Shipped Al-Hikmah LMS with full design system and PWA",
+            "Shipped Al-Bashir Academy LMS with full design system and PWA",
             "Built 50+ reusable components used across client projects",
           ],
         },
@@ -604,7 +604,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "E-Commerce",
         },
         {
-          title: "Al-Hikmah LMS: Education Platform Design System",
+          title: "Al-Bashir Academy LMS: Education Platform Design System",
           excerpt:
             "From color tokens to production dashboards. A full design system for a university LMS with green-gold branding, analytics dashboards, and PWA-ready mobile flows.",
           date: "2026-04-15",
@@ -854,10 +854,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "Sulit",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "Platform pendidikan production dengan sistem reka bentuk, analitik, dan PWA",
           description:
-            "Sistem Pengurusan Pembelajaran penuh untuk Universiti Al-Hikmah. Membina keseluruhan frontend: sistem reka bentuk (token warna, tipografi, jarak), pengurusan kursus, pembina kuiz, papan pemuda analitik dengan Recharts, borang pelbagai langkah, dan sokongan PWA. Ini adalah projek pelanggan sulit.",
+            "Sistem Pengurusan Pembelajaran penuh untuk Al-Bashir Academy. Membina keseluruhan frontend: sistem reka bentuk (token warna, tipografi, jarak), pengurusan kursus, pembina kuiz, papan pemuda analitik dengan Recharts, borang pelbagai langkah, dan sokongan PWA. Ini adalah projek pelanggan sulit.",
           role: "Jurutera Frontend & Pereka UI/UX",
           impact: "Sistem reka bentuk penuh, 50+ komponen boleh guna semula, responsif mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -961,9 +961,9 @@ export const translations: Record<Locale, Translation> = {
           company: "Mandiri",
           period: "2024 - Kini",
           description:
-            "Membina aplikasi web production dengan Next.js, TypeScript, Tailwind. Memimpin frontend platform pendidikan Al-Hikmah.",
+            "Membina aplikasi web production dengan Next.js, TypeScript, Tailwind. Memimpin frontend platform Al-Bashir Academy.",
           achievements: [
-            "Menghantar Al-Hikmah LMS dengan sistem reka bentuk penuh dan PWA",
+            "Menghantar Al-Bashir Academy LMS dengan sistem reka bentuk penuh dan PWA",
             "Membina 50+ komponen boleh guna semula digunakan merentasi projek pelanggan",
           ],
         },
@@ -1069,7 +1069,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "E-Dagang",
         },
         {
-          title: "Al-Hikmah LMS: Sistem Reka Bentuk Platform Pendidikan",
+          title: "Al-Bashir Academy LMS: Sistem Reka Bentuk Platform Pendidikan",
           excerpt:
             "Dari token warna ke dashboard produksi. Sistem reka bentuk penuh untuk LMS universiti dengan jenama hijau-emas, dashboard analitik, dan aliran mudah alih.",
           date: "2026-04-15",
@@ -1319,10 +1319,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "Sirri",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "Manhajar ilimi ta production tare da tsarin tsara, analitik, da PWA",
           description:
-            "Tsarin Kula da Koyo mai cikakke don Jami'ar Al-Hikmah. Na gina dukkan frontend: tsarin tsara (token na launi, rubutu, tazara), kula da kwas, gina quiz, pano na analitik da Recharts, fomu mai matakai, da goyon bayan PWA. Wannan aikin abokin ciniki ne na sirri.",
+            "Tsarin Kula da Koyo mai cikakke don Al-Bashir Academy. Na gina dukkan frontend: tsarin tsara (token na launi, rubutu, tazara), kula da kwas, gina quiz, pano na analitik da Recharts, fomu mai matakai, da goyon bayan PWA. Wannan aikin abokin ciniki ne na sirri.",
           role: "Injiniyan Frontend & Mai Tsara UI/UX",
           impact: "Tsarin tsara cikakke, 50+ abubuwa masu amfani da suka daba, amsa ta mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -1426,9 +1426,9 @@ export const translations: Record<Locale, Translation> = {
           company: "Kai",
           period: "2024 - Yanzu",
           description:
-            "Gina manhajojin yanar gizo na production da Next.js, TypeScript, Tailwind. Jagoran frontend na manhajar ilimi ta Al-Hikmah.",
+            "Gina manhajojin yanar gizo na production da Next.js, TypeScript, Tailwind. Jagoran frontend na dandalin Al-Bashir Academy.",
           achievements: [
-            "Tura Al-Hikmah LMS da cikakken tsarin tsara da PWA",
+            "Tura Al-Bashir Academy LMS da cikakken tsarin tsara da PWA",
             "Gina 50+ abubuwa masu amfani da suka daba a aikin abokan ciniki",
           ],
         },
@@ -1534,7 +1534,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "E-Commerce",
         },
         {
-          title: "Al-Hikmah LMS: Tsarin Tsarin Dandamalin Ilimi",
+          title: "Al-Bashir Academy LMS: Tsarin Tsarin Dandamalin Ilimi",
           excerpt:
             "Daga token na launi zuwa dashboard na samarwa. Cikakken tsarin tsari don LMS na jami'a da salar kore-zinariya, dashboard na analitik, da kwararun wayar hannu.",
           date: "2026-04-15",
@@ -1784,10 +1784,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "Ìkọ́kọ́",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "Manhaja ẹ̀kọ́ production pẹ̀lú ọ̀nà ìdà, analítíìkì, àti PWA",
           description:
-            "Ọ̀nà Kòntíròò Kíkọ́-Ẹ̀kọ́ fún Yunifásítì Al-Hikmah. Mo kọ́ gbogbo frontend: ọ̀nà ìdà (tóǹù launì, kíkọ̀, tàrà), ìkòwé kọ́ọ̀ṣì, kíkọ́ quiz, àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ, àti àtìlẹ́yìn PWA. Èyí jẹ́ iṣẹ́ oníṣẹ́-àṣẹ ìkọ́kọ́.",
+            "Ọ̀nà Kòntíròò Kíkọ́-Ẹ̀kọ́ fún Al-Bashir Academy. Mo kọ́ gbogbo frontend: ọ̀nà ìdà (tóǹù launì, kíkọ̀, tàrà), ìkòwé kọ́ọ̀ṣì, kíkọ́ quiz, àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ, àti àtìlẹ́yìn PWA. Èyí jẹ́ iṣẹ́ oníṣẹ́-àṣẹ ìkọ́kọ́.",
           role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
           impact: "Ọ̀nà ìdà tó yé, 50+ àwọn ẹ̀yìn tó lò, ìdà mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -1891,9 +1891,9 @@ export const translations: Record<Locale, Translation> = {
           company: "Fúnra-ra",
           period: "2024 - Lọ́wọ́lọ́wọ́",
           description:
-            "Kíkọ́ àwọn àpó wẹ́ẹ̀bù production pẹ̀lú Next.js, TypeScript, Tailwind. Mo jẹ́ olùṣàkóso frontend manhaja ẹ̀kọ́ Al-Hikmah.",
+            "Kíkọ́ àwọn àpó wẹ́ẹ̀bù production pẹ̀lú Next.js, TypeScript, Tailwind. Mo jẹ́ olùṣàkóso frontend pátákó Al-Bashir Academy.",
           achievements: [
-            "Fi Al-Hikmah LMS rán pẹ̀lú ọ̀nà ìdà tó yé àti PWA",
+            "Fi Al-Bashir Academy LMS rán pẹ̀lú ọ̀nà ìdà tó yé àti PWA",
             "Kọ́ 50+ àwọn ẹ̀yìn tó lò láàrín àwọn iṣẹ́ oníṣẹ́",
           ],
         },
@@ -1999,7 +1999,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "E-Commerce",
         },
         {
-          title: "Al-Hikmah LMS: Ètò Àkóónú Dandamali Ẹ̀kọ́",
+          title: "Al-Bashir Academy LMS: Ètò Àkóónú Dandamali Ẹ̀kọ́",
           excerpt:
             "Láti tóǹù launì sí dashboard iṣelọpọ. Ètò àkóónú kíkankín fún LMS yunifásítì pẹ̀lú wúrà-eṣó, dashboard analitik, àti kwararoyé mobile.",
           date: "2026-04-15",
@@ -2249,10 +2249,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "機密",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "デザインシステム、分析、PWAを備えた本番教育プラットフォーム",
           description:
-            "Al-Hikmah大学向けのフル機能LMS。フロントエンド全体を構築: デザインシステム（カラートークン、タイポグラフィ、スペーシング）、コース管理、クイズビルダー、Recharts分析ダッシュボード、多段階フォーム、PWAサポート。これは機密クライアントプロジェクトです。",
+            "Al-Bashir Academy向けのフル機能LMS。フロントエンド全体を構築: デザインシステム（カラートークン、タイポグラフィ、スペーシング）、コース管理、クイズビルダー、Recharts分析ダッシュボード、多段階フォーム、PWAサポート。これは機密クライアントプロジェクトです。",
           role: "フロントエンドエンジニア & UI/UXデザイナー",
           impact: "完全なデザインシステム、50以上の再利用可能コンポーネント、モバイルファーストレスポンシブ",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -2356,9 +2356,9 @@ export const translations: Record<Locale, Translation> = {
           company: "自営",
           period: "2024 - 現在",
           description:
-            "Next.js、TypeScript、Tailwindで本番Webアプリを構築。Al-Hikmah教育プラットフォームのフロントエンドをリード。",
+            "Next.js、TypeScript、Tailwindで本番Webアプリを構築。Al-Bashir Academyのフロントエンドをリード。",
           achievements: [
-            "完全なデザインシステムとPWAでAl-Hikmah LMSをリリース",
+            "完全なデザインシステムとPWAでAl-Bashir Academy LMSをリリース",
             "クライアントプロジェクトで再利用される50以上のコンポーネントを構築",
           ],
         },
@@ -2464,7 +2464,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "EC",
         },
         {
-          title: "Al-Hikmah LMS: 教育プラットフォームのデザインシステム",
+          title: "Al-Bashir Academy LMS: 教育プラットフォームのデザインシステム",
           excerpt:
             "カラートークンから本番ダッシュボードまで。緑と金のブランディング、分析ダッシュボード、PWA対応モバイルフローを備えた大学LMSの完全なデザインシステム。",
           date: "2026-04-15",
@@ -2714,10 +2714,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "سري",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "منصة تعليم إنتاجية مع نظام تصميم وتحليلات وPWA",
           description:
-            "نظام إدارة تعلم كامل الميزات لجامعة Al-Hikmah. بنيت الواجهة الأمامية بالكامل: نظام تصميم (رموز الألوان، الطباعة، المسافات)، إدارة المقررات، منشئ الاختبارات، لوحات التحليلات مع Recharts، نماذج متعددة الخطوات، ودعم PWA. هذا مشروع عميل سري.",
+            "نظام إدارة تعلم كامل الميزات لأكاديمية Al-Bashir Academy. بنيت الواجهة الأمامية بالكامل: نظام تصميم (رموز الألوان، الطباعة، المسافات)، إدارة المقررات، منشئ الاختبارات، لوحات التحليلات مع Recharts، نماذج متعددة الخطوات، ودعم PWA. هذا مشروع عميل سري.",
           role: "مهندس واجهات أمامية & مصمم UI/UX",
           impact: "نظام تصميم كامل، 50+ مكون قابل لإعادة الاستخدام، تصميم متجاوب mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -2821,9 +2821,9 @@ export const translations: Record<Locale, Translation> = {
           company: "عمل ذاتي",
           period: "2024 - حتى الآن",
           description:
-            "بناء تطبيقات ويب إنتاجية مع Next.js، TypeScript، Tailwind. قُدت واجهة منصة التعليم Al-Hikmah.",
+            "بناء تطبيقات ويب إنتاجية مع Next.js، TypeScript، Tailwind. قُدت واجهة منصة Al-Bashir Academy.",
           achievements: [
-            "أطلقت Al-Hikmah LMS مع نظام تصميم كامل وPWA",
+            "أطلقت Al-Bashir Academy LMS مع نظام تصميم كامل وPWA",
             "بنيت 50+ مكون قابل لإعادة الاستخدام عبر مشاريع العملاء",
           ],
         },
@@ -2929,7 +2929,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "تجارة إلكترونية",
         },
         {
-          title: "Al-Hikmah LMS: نظام تصميم منصة التعليم",
+          title: "Al-Bashir Academy LMS: نظام تصميم منصة التعليم",
           excerpt:
             "من رموز الألوان إلى لوحات الإنتاج. نظام تصميم كامل لمنصة LMS جامعية بهوية خضراء-ذهبية، لوحات تحليلات، وتدفقات جوال جاهزة PWA.",
           date: "2026-04-15",
@@ -3179,10 +3179,10 @@ export const translations: Record<Locale, Translation> = {
       confidential: "机密",
       items: [
         {
-          name: "Al-Hikmah LMS Portal",
+          name: "Al-Bashir Academy LMS Portal",
           tagline: "生产级教育平台,带设计系统、分析和 PWA",
           description:
-            "为 Al-Hikmah 大学构建的全功能学习管理系统。构建了整个前端:设计系统(颜色令牌、排版、间距)、课程管理、测验构建器、Recharts 分析仪表板、多步表单和 PWA 支持。这是一个机密客户项目。",
+            "为 Al-Bashir Academy 构建的全功能学习管理系统。构建了整个前端:设计系统(颜色令牌、排版、间距)、课程管理、测验构建器、Recharts 分析仪表板、多步表单和 PWA 支持。这是一个机密客户项目。",
           role: "前端工程师 & UI/UX 设计师",
           impact: "完整设计系统,50+ 可复用组件,移动优先响应式",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -3286,9 +3286,9 @@ export const translations: Record<Locale, Translation> = {
           company: "自雇",
           period: "2024 - 至今",
           description:
-            "用 Next.js、TypeScript、Tailwind 构建生产 Web 应用。领导 Al-Hikmah 教育平台前端。",
+            "用 Next.js、TypeScript、Tailwind 构建生产 Web 应用。领导 Al-Bashir Academy 前端。",
           achievements: [
-            "交付带完整设计系统和 PWA 的 Al-Hikmah LMS",
+            "交付带完整设计系统和 PWA 的 Al-Bashir Academy LMS",
             "构建 50+ 跨客户项目复用的组件",
           ],
         },
@@ -3394,7 +3394,7 @@ export const translations: Record<Locale, Translation> = {
           tag: "电商",
         },
         {
-          title: "Al-Hikmah LMS: 教育平台设计系统",
+          title: "Al-Bashir Academy LMS: 教育平台设计系统",
           excerpt:
             "从颜色令牌到生产仪表板。为大学LMS打造的完整设计系统，绿金品牌、分析仪表板和PWA就绪的移动流程。",
           date: "2026-04-15",
