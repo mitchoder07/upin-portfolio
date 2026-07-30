@@ -231,7 +231,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "Open to frontend & design roles",
       stat1Label: "Frontend",
       stat2Label: "Designs",
-      stat3Label: "OS Stars",
+      stat3Label: "Contributions",
       scroll: "Scroll to explore",
     },
     terminal: {
@@ -269,13 +269,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "About",
       heading: "Designer who codes. Engineer who designs.",
       p1: "I'm Abdullah Yusuf, known as Upin. A frontend engineer and UI/UX designer who has spent the last five years turning ideas into interfaces users love. My work lives at the intersection of design and code: I sketch wireframes in Figma in the morning, build them in React by afternoon, and polish the animations by evening. I believe great products come from engineers who understand design and designers who understand code.",
-      p2: "What sets me apart is that I own both sides. I've designed design systems and implemented them in production. I've built analytics dashboards with Recharts, multi-step forms with validation, certificate generators with print CSS, and PWAs that work offline. Whether it's making a button feel right or architecting a component library, I bring the same craft.",
+      p2: "What sets me apart is that I own both sides. I've designed design systems and implemented them in production. I've built analytics dashboards with Recharts, multi-step forms with validation, and PWAs that work offline. Whether it's making a button feel right or architecting a component library, I bring the same craft.",
       p3: "When I'm not shipping, I'm learning. I write about design systems and frontend architecture, mentor aspiring developers, and contribute to open source. I believe the best frontend engineers are obsessive about details. This portfolio is my attempt to show you what that obsession looks like.",
       highlights: [
         { label: "Years frontend", value: "5+" },
         { label: "Figma designs", value: "20+" },
         { label: "Components built", value: "50+" },
-        { label: "p99 latency cut", value: "8x" },
       ],
       coreTitle: "What I bring to the table.",
       coreDesc: "Design and engineering, shipped together.",
@@ -393,7 +392,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "Production education platform with design system, analytics, and PWA",
           description:
-            "A full-featured Learning Management System for Al-Hikmah University. Built the entire frontend: design system (color tokens, typography, spacing), course management, quiz builder, certificate generation with print CSS and QR verification, analytics dashboards with Recharts, multi-step forms, and PWA support. This is a confidential client project.",
+            "A full-featured Learning Management System for Al-Hikmah University. Built the entire frontend: design system (color tokens, typography, spacing), course management, quiz builder, analytics dashboards with Recharts, multi-step forms, and PWA support. This is a confidential client project.",
           role: "Frontend Engineer & UI/UX Designer",
           impact: "Full design system, 50+ reusable components, mobile-first responsive",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -501,7 +500,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "Shipped Al-Hikmah LMS with full design system and PWA",
             "Built 50+ reusable components used across client projects",
-            "Cut p99 latency 8x through code-splitting and image optimization",
           ],
         },
         {
@@ -567,25 +565,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "Premium e-commerce marketplace with AI shopping assistant. Paystack, flash sales, real-time tracking.",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "Quran study web app with word-by-word analysis and accessible reading mode.",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "Client-side AES-256 encryption vault. Zero data leaves the device.",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "Multi-algorithm plagiarism checker with visual gauge and citation assistant.",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "View GitHub Profile",
@@ -608,7 +606,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: Education Platform Design System",
           excerpt:
-            "From color tokens to certificate generators. A full design system for a university LMS with green-gold branding, analytics dashboards, and PWA-ready mobile flows.",
+            "From color tokens to production dashboards. A full design system for a university LMS with green-gold branding, analytics dashboards, and PWA-ready mobile flows.",
           date: "2026-04-15",
           readTime: "Figma Case Study",
           tag: "Design System",
@@ -716,7 +714,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "Terbuka untuk peranan frontend & reka bentuk",
       stat1Label: "Frontend",
       stat2Label: "Reka Bentuk",
-      stat3Label: "Bintang OS",
+      stat3Label: "Sumbangan",
       scroll: "Tatal untuk terokai",
     },
     terminal: {
@@ -754,13 +752,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "Tentang",
       heading: "Pereka yang mengekod. Jurutera yang merekabentuk.",
       p1: "Saya Abdullah Yusuf, dikenali sebagai Upin. Jurutera frontend dan pereka UI/UX yang telah menghabiskan lima tahun lalu menukar idea menjadi antara muka yang disukai pengguna. Kerja saya berada di persimpangan reka bentuk dan kod: saya melakar wireframe dalam Figma pada waktu pagi, membina mereka dalam React pada waktu petang, dan menggilap animasi pada waktu malam. Saya percaya produk hebat datang dari jurutera yang memahami reka bentuk dan pereka yang memahami kod.",
-      p2: "Apa yang membezakan saya adalah saya memiliki kedua-dua belah pihak. Saya telah merekabentuk sistem reka bentuk dan melaksanakannya dalam production. Saya telah membina papan pemuka analitik dengan Recharts, borang pelbagai langkah dengan pengesahan, penjana sijil dengan print CSS, dan PWA yang berfungsi luar talian. Sama ada menjadikan butang terasa betul atau mereka bentuk pustaka komponen, saya membawa kerajinan yang sama.",
+      p2: "Apa yang membezakan saya adalah saya memiliki kedua-dua belah pihak. Saya telah merekabentuk sistem reka bentuk dan melaksanakannya dalam production. Saya telah membina papan pemuka analitik dengan Recharts, borang pelbagai langkah dengan pengesahan, dan PWA yang berfungsi luar talian. Sama ada menjadikan butang terasa betul atau mereka bentuk pustaka komponen, saya membawa kerajinan yang sama.",
       p3: "Apabila saya tidak menghantar, saya belajar. Saya menulis tentang sistem reka bentuk dan senibina frontend, membimbing pembangun bercita-cita, dan menyumbang kepada sumber terbuka. Saya percaya jurutera frontend terbaik obses terhadap butiran. Portfolio ini adalah cubaan saya untuk menunjukkan kepada anda bagaimana rupa obses itu.",
       highlights: [
         { label: "Tahun frontend", value: "5+" },
         { label: "Reka Figma", value: "20+" },
         { label: "Komponen dibina", value: "50+" },
-        { label: "pendaman dikurangkan", value: "8x" },
       ],
       coreTitle: "Apa yang saya bawa.",
       coreDesc: "Reka bentuk dan kejuruteraan, dihantar bersama.",
@@ -878,7 +875,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "Platform pendidikan production dengan sistem reka bentuk, analitik, dan PWA",
           description:
-            "Sistem Pengurusan Pembelajaran penuh untuk Universiti Al-Hikmah. Membina keseluruhan frontend: sistem reka bentuk (token warna, tipografi, jarak), pengurusan kursus, pembina kuiz, penjana sijil dengan print CSS dan pengesahan QR, papan pemuda analitik dengan Recharts, borang pelbagai langkah, dan sokongan PWA. Ini adalah projek pelanggan sulit.",
+            "Sistem Pengurusan Pembelajaran penuh untuk Universiti Al-Hikmah. Membina keseluruhan frontend: sistem reka bentuk (token warna, tipografi, jarak), pengurusan kursus, pembina kuiz, papan pemuda analitik dengan Recharts, borang pelbagai langkah, dan sokongan PWA. Ini adalah projek pelanggan sulit.",
           role: "Jurutera Frontend & Pereka UI/UX",
           impact: "Sistem reka bentuk penuh, 50+ komponen boleh guna semula, responsif mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -986,7 +983,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "Menghantar Al-Hikmah LMS dengan sistem reka bentuk penuh dan PWA",
             "Membina 50+ komponen boleh guna semula digunakan merentasi projek pelanggan",
-            "Mengurangkan pendaman p99 8x melalui pemisahan kod dan pengoptimuman imej",
           ],
         },
         {
@@ -1052,25 +1048,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "Pasaran e-dagang premium dengan pembantu beli-belah AI. Paystack, jualan kilat, penjejakan masa nyata.",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "Apl web kajian Quran dengan analisis perkataan-demi-perkataan dan mod membaca boleh capai.",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "Peti penyulitan AES-256 sisi-klien. Tiada data meninggalkan peranti.",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "Pemeriksa plagiarisme pelbagai-algoritma dengan tolok visual dan pembantu petikan.",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "Lihat Profil GitHub",
@@ -1093,7 +1089,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: Sistem Reka Bentuk Platform Pendidikan",
           excerpt:
-            "Dari token warna ke penjana sijil. Sistem reka bentuk penuh untuk LMS universiti dengan jenama hijau-emas, dashboard analitik, dan aliran mudah alih.",
+            "Dari token warna ke dashboard produksi. Sistem reka bentuk penuh untuk LMS universiti dengan jenama hijau-emas, dashboard analitik, dan aliran mudah alih.",
           date: "2026-04-15",
           readTime: "Kajian Kes Figma",
           tag: "Sistem Reka Bentuk",
@@ -1201,7 +1197,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "Bude don mukaman frontend & tsarawa",
       stat1Label: "Frontend",
       stat2Label: "Tsare-tsare",
-      stat3Label: "Taurari OS",
+      stat3Label: "Gudunmawa",
       scroll: "Sauƙaƙa don bincika",
     },
     terminal: {
@@ -1239,13 +1235,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "Game da",
       heading: "Mai tsara da ke rubuta lamba. Injiniya da ke tsara.",
       p1: "Ni Abdullah Yusuf (Upin) ne. Injiniyan frontend da mai tsara UI/UX wanda ya kwashe shekaru biyar na ƙarshe canza ra'ayi zuwa mu'amala da masu amfani ke so. Aikina yana tsakanin tsarawa da lamba: ina tsara wireframe a Figma da safe, ina gina su a React da yamma, kuma ina ƙirƙirar motsa-motsi da dare. Na gaskata samfurin da kyau injiniyoyi suka gina waɗanda suka fahimta tsarawa kuma masu tsara waɗanda suka fahimta lamba.",
-      p2: "Abin da ya banbance ni shine ni na duka ɓangarorin biyu. Na tsara tsarin tsara lamba kuma na aiwatar da su a production. Na gina pano na analitik da Recharts, fomu mai matakai da yawa da tabbatarwa, injin samar da takaddun shaida da print CSS, da PWA da ke aiki ba tare da intanet ba. Ko yin maɓalli jin daɗi ko gina tsarin ɓangaren laburare, ina kawo irin wannan ƙwarewa.",
+      p2: "Abin da ya banbance ni shine ni na duka ɓangarorin biyu. Na tsara tsarin tsara lamba kuma na aiwatar da su a production. Na gina pano na analitik da Recharts, fomu mai matakai da yawa da tabbatarwa, da PWA da ke aiki ba tare da intanet ba. Ko yin maɓalli jin daɗi ko gina tsarin ɓangaren laburare, ina kawo irin wannan ƙwarewa.",
       p3: "Lokacin da ban tura ba, ina koyo. Ina rubutu game da tsarin tsara da gine-ginen frontend, ina ba da shawara ga masu haɓaka, kuma ina ba da gudummawa ga tushen buɗe. Na gaskia injiniyoyin frontend mafi kyau suna da yawa game da cikakkun bayanai. Wannan portfolio ƙoƙatina ne na nuna muku yadda wannan kwarin gwiwa ke kama.",
       highlights: [
         { label: "Shekaru frontend", value: "5+" },
         { label: "Tsara Figma", value: "20+" },
         { label: "Abubuwan da aka gina", value: "50+" },
-        { label: "jinkiri da aka rage", value: "8x" },
       ],
       coreTitle: "Abin da na kawo.",
       coreDesc: "Tsarawa da injiniya, an kawo tare.",
@@ -1363,7 +1358,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "Manhajar ilimi ta production tare da tsarin tsara, analitik, da PWA",
           description:
-            "Tsarin Kula da Koyo mai cikakke don Jami'ar Al-Hikmah. Na gina dukkan frontend: tsarin tsara (token na launi, rubutu, tazara), kula da kwas, gina quiz, samar da takaddun shaida da print CSS da tabbatarwa ta QR, pano na analitik da Recharts, fomu mai matakai, da goyon bayan PWA. Wannan aikin abokin ciniki ne na sirri.",
+            "Tsarin Kula da Koyo mai cikakke don Jami'ar Al-Hikmah. Na gina dukkan frontend: tsarin tsara (token na launi, rubutu, tazara), kula da kwas, gina quiz, pano na analitik da Recharts, fomu mai matakai, da goyon bayan PWA. Wannan aikin abokin ciniki ne na sirri.",
           role: "Injiniyan Frontend & Mai Tsara UI/UX",
           impact: "Tsarin tsara cikakke, 50+ abubuwa masu amfani da suka daba, amsa ta mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -1471,7 +1466,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "Tura Al-Hikmah LMS da cikakken tsarin tsara da PWA",
             "Gina 50+ abubuwa masu amfani da suka daba a aikin abokan ciniki",
-            "Yanke jinkirin p99 8x ta hanyar raba-lamba da inganta hoto",
           ],
         },
         {
@@ -1537,25 +1531,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "Kasuwar e-commerce mai kyau tare da mataimakin sayayya na AI. Paystack, siye mai sauri, bin diddigin a lokaci gaskiya.",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "Aplikacin yanar gizo na nazarin Alqur'ani tare da nazarin kalma-da-kalma da yanayin karantawa mai sauyin shiga.",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "Tsarin rufewa na AES-256 na gefen-abokan ciniki. Babu bayanan da ke barin na'urar.",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "Mai duba sata da yawa-algorithm tare da ma'auni na gani da mataimakin daɗaɗɗen bayani.",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "Duba Bayanin GitHub",
@@ -1578,7 +1572,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: Tsarin Tsarin Dandamalin Ilimi",
           excerpt:
-            "Daga token na launi zuwa mai samar da serti. Cikakken tsarin tsari don LMS na jami'a da salar kore-zinariya, dashboard na analitik, da kwararun wayar hannu.",
+            "Daga token na launi zuwa dashboard na samarwa. Cikakken tsarin tsari don LMS na jami'a da salar kore-zinariya, dashboard na analitik, da kwararun wayar hannu.",
           date: "2026-04-15",
           readTime: "Kararran Figma",
           tag: "Tsarin Tsari",
@@ -1686,7 +1680,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "Ṣíṣe fún ipò frontend & ìdààkọ́",
       stat1Label: "Frontend",
       stat2Label: "Àwọ̀n Ìdà",
-      stat3Label: "Ìràwọ̀ OS",
+      stat3Label: "Awọn Ìfilọlẹ",
       scroll: "Yọ fún ìwárí",
     },
     terminal: {
@@ -1724,13 +1718,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "Nípa",
       heading: "Aláṣẹ tó ń kọ́ kóòdù. Onímọ̀-ẹrọ tó ń ṣètò.",
       p1: "Mo jẹ́ Abdullah Yusuf, bíbí Upin. Onímọ̀-ẹrọ frontend àti aláṣẹ UI/UX tí ó ti lo ọdún márùn-ún tó kọjá n yí ìbèèrè di àwọn ìjápọ̀ tí àwọn olùlò fẹ́ràn. Iṣẹ́ mi wà láàárín ìdà àti kóòdù: mo ń kòwé wireframe ní Figma ní òwúrọ̀, mo ń kọ́ wọn ní React ní ọ̀sán, àti mo ń ṣ'àfẹ́fẹ́ ìrìn ní alẹ́. Mo gbagbọ pé ọ̀rọ̀ ẹ̀yìn tó dára ń wá láti ọ̀dọ̀ àwọn onímọ̀-ẹrọ tó yé ìdà àti àwọn aláṣẹ tó yé kóòdù.",
-      p2: "Èyí tó yà mí sótọ̀ ní pé mo ní ẹ̀gbẹ́ méjèèjì. Mo ti ṣètò àwọn ọ̀nà ìdà àti mo ti fi wọ́n ṣẹ́ nínú production. Mo ti kọ́ àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ pẹ̀lú ìfẹ̀rílẹ̀, àwọn olùṣẹ̀dá ìwé-ẹ̀rí pẹ̀lú print CSS, àti àwọn PWA tó ń ṣiṣẹ́ láìsí ayélujára. Bóyá ó jẹ́ ṣíṣe bọtíní tó dára tàbí kíkọ́ ilé-ìkọ́ ẹ̀rọ, mo mú ìmọ̀-ẹrọ kanna wá.",
+      p2: "Èyí tó yà mí sótọ̀ ní pé mo ní ẹ̀gbẹ́ méjèèjì. Mo ti ṣètò àwọn ọ̀nà ìdà àti mo ti fi wọ́n ṣẹ́ nínú production. Mo ti kọ́ àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ pẹ̀lú ìfẹ̀rílẹ̀, àti àwọn PWA tó ń ṣiṣẹ́ láìsí ayélujára. Bóyá ó jẹ́ ṣíṣe bọtíní tó dára tàbí kíkọ́ ilé-ìkọ́ ẹ̀rọ, mo mú ìmọ̀-ẹrọ kanna wá.",
       p3: "Nígbà tí n kò ń rán, mo ń kọ́. Mo ń kọ̀wé nípa àwọn ọ̀nà ìdà àti àkóónú frontend, mo ń ṣàkóbá fún àwọn onímọ̀-ẹrọ tó ń bẹ̀rẹ̀, àti mo ń ṣe ìrànwọ́ sí orísun ìmọ̀. Mo gbagbọ pé àwọn onímọ̀-ẹrọ frontend tó dára jù jẹ́ àwọn tó ń ṣàkíyèsi àwọn nkan kéékèèké. Portfolio yìí ni ìgbìyànjú mi láti fihàn ọ̀wọ́ irúfẹ́ àkíyèsí yẹn.",
       highlights: [
         { label: "Ọdún frontend", value: "5+" },
         { label: "Àwọn ìdà Figma", value: "20+" },
         { label: "Àwọn ọ̀ṣọ́ tó kọ́", value: "50+" },
-        { label: "ìdálẹ́wọ̀sí tó kéré", value: "8x" },
       ],
       coreTitle: "Èyí tí mo mú wá.",
       coreDesc: "Ìdà àti ìmọ̀-ẹrọ, a fi rán pọ̀.",
@@ -1848,7 +1841,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "Manhaja ẹ̀kọ́ production pẹ̀lú ọ̀nà ìdà, analítíìkì, àti PWA",
           description:
-            "Ọ̀nà Kòntíròò Kíkọ́-Ẹ̀kọ́ fún Yunifásítì Al-Hikmah. Mo kọ́ gbogbo frontend: ọ̀nà ìdà (tóǹù launì, kíkọ̀, tàrà), ìkòwé kọ́ọ̀ṣì, kíkọ́ quiz, olùṣẹ̀dá ìwé-ẹ̀rí pẹ̀lú print CSS àti ìfẹ̀rílẹ̀ QR, àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ, àti àtìlẹ́yìn PWA. Èyí jẹ́ iṣẹ́ oníṣẹ́-àṣẹ ìkọ́kọ́.",
+            "Ọ̀nà Kòntíròò Kíkọ́-Ẹ̀kọ́ fún Yunifásítì Al-Hikmah. Mo kọ́ gbogbo frontend: ọ̀nà ìdà (tóǹù launì, kíkọ̀, tàrà), ìkòwé kọ́ọ̀ṣì, kíkọ́ quiz, àwọn pano analítíìkì pẹ̀lú Recharts, àwọn fọọmu mẹ́jẹ-mẹ́jẹ, àti àtìlẹ́yìn PWA. Èyí jẹ́ iṣẹ́ oníṣẹ́-àṣẹ ìkọ́kọ́.",
           role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
           impact: "Ọ̀nà ìdà tó yé, 50+ àwọn ẹ̀yìn tó lò, ìdà mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -1956,7 +1949,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "Fi Al-Hikmah LMS rán pẹ̀lú ọ̀nà ìdà tó yé àti PWA",
             "Kọ́ 50+ àwọn ẹ̀yìn tó lò láàrín àwọn iṣẹ́ oníṣẹ́",
-            "Gé ìdálẹ́wọ̀sí p99 8x nípa pínyà-kóòdù àti ìmúdára àwòrán",
           ],
         },
         {
@@ -2022,25 +2014,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "Kasuwan e-commerce tó yé pẹ̀lú olùrànwọ́ ríra AI. Paystack, títà kínní, ìtẹ̀lé àkókò-gidi.",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "Aplikáǹsì wẹ́ẹ̀bù ẹ̀kọ́ Quran pẹ̀lú ìtupalẹ̀ ọ̀rọ̀-lọ́rọ̀ àti ọ̀nà kíkà tó wúlò.",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "Àpò ìdásóní AES-256 ẹ̀gbẹ́-oníṣẹ́. Kò sí dátà tó ń kúrò lórí ẹ̀rọ.",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "Olùdájọ́ jíjàgídíjàcan algorithm-púpọ̀ pẹ̀lú góòjí àríyànjà àti olùrànwọ́ ìdásílẹ̀.",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "Wo Ìwé GitHub",
@@ -2063,7 +2055,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: Ètò Àkóónú Dandamali Ẹ̀kọ́",
           excerpt:
-            "Láti tóǹù launì sí olú-dájọ́ ìwé-ẹ̀rí. Ètò àkóónú kíkankín fún LMS yunifásítì pẹ̀lú wúrà-eṣó, dashboard analitik, àti kwararoyé mobile.",
+            "Láti tóǹù launì sí dashboard iṣelọpọ. Ètò àkóónú kíkankín fún LMS yunifásítì pẹ̀lú wúrà-eṣó, dashboard analitik, àti kwararoyé mobile.",
           date: "2026-04-15",
           readTime: "Ìdànjáde Figma",
           tag: "Ètò Àkóónú",
@@ -2171,7 +2163,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "フロントエンド & デザインの役職募集中",
       stat1Label: "フロントエンド",
       stat2Label: "デザイン",
-      stat3Label: "OS Stars",
+      stat3Label: "Contributions",
       scroll: "スクロールして探検",
     },
     terminal: {
@@ -2209,13 +2201,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "私について",
       heading: "コードを書くデザイナー。デザインするエンジニア。",
       p1: "私はAbdullah Yusuf、Upinとして知られています。過去5年間、アイデアをユーザーが愛するインターフェースに変えてきたフロントエンドエンジニア兼UI/UXデザイナーです。私の仕事はデザインとコードの交点にあります。朝にFigmaでワイヤーフレームを描き、午後にReactで構築し、夕方にアニメーションを磨きます。偉大なプロダクトはデザインを理解するエンジニアとコードを理解するデザイナーから生まれると信じています。",
-      p2: "私を際立たせるのは、両側を所有していることです。デザインシステムを設計し、本番で実装してきました。Rechartsを使った分析ダッシュボード、バリデーション付きの多段階フォーム、print CSSの証明書ジェネレーター、オフラインで動くPWAを構築してきました。ボタンの手触りからコンポーネントライブラリの設計まで、同じ職人技を持ち込みます。",
+      p2: "私を際立たせるのは、両側を所有していることです。デザインシステムを設計し、本番で実装してきました。Rechartsを使った分析ダッシュボード、バリデーション付きの多段階フォーム、オフラインで動くPWAを構築してきました。ボタンの手触りからコンポーネントライブラリの設計まで、同じ職人技を持ち込みます。",
       p3: "出荷していない時は、学んでいます。デザインシステムとフロントエンドアーキテクチャについて書き、志ある開発者をメンターし、オープンソースに貢献しています。最高のフロントエンドエンジニアは詳細に執着すると信じています。このポートフォリオは、その執着がどのようなものかをお見せする試みです。",
       highlights: [
         { label: "フロントエンド年数", value: "5+" },
         { label: "Figmaデザイン", value: "20+" },
         { label: "構築コンポーネント", value: "50+" },
-        { label: "レイテンシ削減", value: "8x" },
       ],
       coreTitle: "私がもたらすもの。",
       coreDesc: "デザインとエンジニアリング、一緒に届けます。",
@@ -2333,7 +2324,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "デザインシステム、分析、PWAを備えた本番教育プラットフォーム",
           description:
-            "Al-Hikmah大学向けのフル機能LMS。フロントエンド全体を構築: デザインシステム（カラートークン、タイポグラフィ、スペーシング）、コース管理、クイズビルダー、print CSSとQR検証付き証明書ジェネレーター、Recharts分析ダッシュボード、多段階フォーム、PWAサポート。これは機密クライアントプロジェクトです。",
+            "Al-Hikmah大学向けのフル機能LMS。フロントエンド全体を構築: デザインシステム（カラートークン、タイポグラフィ、スペーシング）、コース管理、クイズビルダー、Recharts分析ダッシュボード、多段階フォーム、PWAサポート。これは機密クライアントプロジェクトです。",
           role: "フロントエンドエンジニア & UI/UXデザイナー",
           impact: "完全なデザインシステム、50以上の再利用可能コンポーネント、モバイルファーストレスポンシブ",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -2441,7 +2432,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "完全なデザインシステムとPWAでAl-Hikmah LMSをリリース",
             "クライアントプロジェクトで再利用される50以上のコンポーネントを構築",
-            "コード分割と画像最適化でp99レイテンシを8倍削減",
           ],
         },
         {
@@ -2507,25 +2497,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "AIショッピングアシスタント付きプレミアムEコマース市場。Paystack、フラッシュセール、リアルタイム追跡。",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "単語ごとの分析とアクセシブルな読書モードを備えたクルアーン学習Webアプリ。",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "クライアントサイドAES-256暗号化ボールト。デバイスからデータが外に出ない。",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "ビジュアルゲージと引用アシスタント付きマルチアルゴリズム盗作チェッカー。",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "GitHubプロフィールを見る",
@@ -2548,7 +2538,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: 教育プラットフォームのデザインシステム",
           excerpt:
-            "カラートークンから証明書ジェネレーターまで。緑と金のブランディング、分析ダッシュボード、PWA対応モバイルフローを備えた大学LMSの完全なデザインシステム。",
+            "カラートークンから本番ダッシュボードまで。緑と金のブランディング、分析ダッシュボード、PWA対応モバイルフローを備えた大学LMSの完全なデザインシステム。",
           date: "2026-04-15",
           readTime: "Figmaケーススタディ",
           tag: "デザインシステム",
@@ -2656,7 +2646,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "منفتح على أدوار الواجهة الأمامية والتصميم",
       stat1Label: "الواجهة الأمامية",
       stat2Label: "التصاميم",
-      stat3Label: "نجوم OS",
+      stat3Label: "المساهمات",
       scroll: "مرر للاستكشاف",
     },
     terminal: {
@@ -2694,13 +2684,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "نبذة",
       heading: "مصمم يكتب الكود. مهندس يصمم.",
       p1: "أنا عبد الله يوسف (Upin). مهندس واجهات أمامية ومصمم UI/UX قضى السنوات الخمس الماضية في تحويل الأفكار إلى واجهات يحبها المستخدمون. عملي يعيش عند تقاطع التصميم والكود: أرسم المخططات في Figma في الصباح، أبنيها في React بعد الظهر، وأصقل الحركات في المساء. أؤمن أن المنتجات العظيمة تأتي من مهندسين يفهمون التصميم ومصممين يفهمون الكود.",
-      p2: "ما يميزني هو أنني أمتلك الجانبين. لقد صممت أنظمة تصميم ونفذتها في الإنتاج. بنيت لوحات تحليلات بـ Recharts، نماذج متعددة الخطوات مع التحقق، مولدات شهادات بـ print CSS، وتطبيقات PWA تعمل دون اتصال. سواء كان الأمر جعل زر يشعر بالصحة أو تصميم مكتبة مكونات، أجلب نفس الحرفية.",
+      p2: "ما يميزني هو أنني أمتلك الجانبين. لقد صممت أنظمة تصميم ونفذتها في الإنتاج. بنيت لوحات تحليلات بـ Recharts، نماذج متعددة الخطوات مع التحقق، وتطبيقات PWA تعمل دون اتصال. سواء كان الأمر جعل زر يشعر بالصحة أو تصميم مكتبة مكونات، أجلب نفس الحرفية.",
       p3: "عندما لا أكون أطلق المنتجات، أكون أتعلم. أكتب عن أنظمة التصميم ومعمارية الواجهة الأمامية، أرشد المطورين الطموحين، وأساهم في المصدر المفتوح. أؤمن أن أفضل مهندسي الواجهة الأمامية مهووسون بالتفاصيل. هذا المعرض هو محاولتي لإظهار كيف يبدو هذا الهوس.",
       highlights: [
         { label: "سنوات الواجهة الأمامية", value: "5+" },
         { label: "تصاميم Figma", value: "20+" },
         { label: "مكونات مبنية", value: "50+" },
-        { label: "تقليل زمن الاستجابة", value: "8x" },
       ],
       coreTitle: "ما أقدمه.",
       coreDesc: "التصميم والهندسة، مسلّمة معاً.",
@@ -2818,7 +2807,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "منصة تعليم إنتاجية مع نظام تصميم وتحليلات وPWA",
           description:
-            "نظام إدارة تعلم كامل الميزات لجامعة Al-Hikmah. بنيت الواجهة الأمامية بالكامل: نظام تصميم (رموز الألوان، الطباعة، المسافات)، إدارة المقررات، منشئ الاختبارات، مولد الشهادات مع print CSS وتحقق QR، لوحات التحليلات مع Recharts، نماذج متعددة الخطوات، ودعم PWA. هذا مشروع عميل سري.",
+            "نظام إدارة تعلم كامل الميزات لجامعة Al-Hikmah. بنيت الواجهة الأمامية بالكامل: نظام تصميم (رموز الألوان، الطباعة، المسافات)، إدارة المقررات، منشئ الاختبارات، لوحات التحليلات مع Recharts، نماذج متعددة الخطوات، ودعم PWA. هذا مشروع عميل سري.",
           role: "مهندس واجهات أمامية & مصمم UI/UX",
           impact: "نظام تصميم كامل، 50+ مكون قابل لإعادة الاستخدام، تصميم متجاوب mobile-first",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -2926,7 +2915,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "أطلقت Al-Hikmah LMS مع نظام تصميم كامل وPWA",
             "بنيت 50+ مكون قابل لإعادة الاستخدام عبر مشاريع العملاء",
-            "خفضت زمن استجابة p99 8x عبر تقسيم الكود وتحسين الصور",
           ],
         },
         {
@@ -2992,25 +2980,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "سوق تجارة إلكترونية فاخرة مع مساعد تسوق AI. Paystack، مبيعات سريعة، تتبع فوري.",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "تطبيق ويب لدراسة القرآن مع تحليل كلمة بكلمة ووضع قراءة يسهل الوصول إليه.",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "خزنة تشفير AES-256 من جانب العميل. لا تغادر البيانات الجهاز.",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "مدقق انتحال متعدد الخوارزميات مع مقياس مرئي ومساعد استشهاد.",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "عرض ملف GitHub",
@@ -3033,7 +3021,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: نظام تصميم منصة التعليم",
           excerpt:
-            "من رموز الألوان إلى مولد الشهادات. نظام تصميم كامل لمنصة LMS جامعية بهوية خضراء-ذهبية، لوحات تحليلات، وتدفقات جوال جاهزة PWA.",
+            "من رموز الألوان إلى لوحات الإنتاج. نظام تصميم كامل لمنصة LMS جامعية بهوية خضراء-ذهبية، لوحات تحليلات، وتدفقات جوال جاهزة PWA.",
           date: "2026-04-15",
           readTime: "دراسة حالة Figma",
           tag: "نظام تصميم",
@@ -3141,7 +3129,7 @@ export const translations: Record<Locale, Translation> = {
       availability: "接受前端与设计职位",
       stat1Label: "前端",
       stat2Label: "设计",
-      stat3Label: "OS Stars",
+      stat3Label: "贡献",
       scroll: "滚动探索",
     },
     terminal: {
@@ -3179,13 +3167,12 @@ export const translations: Record<Locale, Translation> = {
       badge: "关于",
       heading: "会写代码的设计师。会设计的工程师。",
       p1: "我是 Abdullah Yusuf,又名 Upin。一名前端工程师和 UI/UX 设计师,过去五年一直在把想法变成用户喜爱的界面。我的工作在设计与代码的交汇处:早上在 Figma 画线框,下午用 React 实现,傍晚打磨动画。我相信伟大的产品来自懂设计的工程师和懂代码的设计师。",
-      p2: "让我与众不同的是我同时拥有两面。我设计过设计系统并在生产中实现它们。我用 Recharts 构建分析仪表板,构建带验证的多步表单、带打印 CSS 的证书生成器,以及离线可用的 PWA。无论是让按钮手感对、还是架构组件库,我都带来同样的工艺。",
+      p2: "让我与众不同的是我同时拥有两面。我设计过设计系统并在生产中实现它们。我用 Recharts 构建分析仪表板,构建带验证的多步表单,以及离线可用的 PWA。无论是让按钮手感对、还是架构组件库,我都带来同样的工艺。",
       p3: "不交付产品的时候,我在学习。我写关于设计系统和前端架构的文章,指导有志开发者,贡献开源。我相信最好的前端工程师对细节有执念。这个作品集是我尝试向你展示这种执念的样子。",
       highlights: [
         { label: "前端年数", value: "5+" },
         { label: "Figma 设计", value: "20+" },
         { label: "构建组件", value: "50+" },
-        { label: "延迟降低", value: "8x" },
       ],
       coreTitle: "我能带来什么。",
       coreDesc: "设计与工程,一起交付。",
@@ -3303,7 +3290,7 @@ export const translations: Record<Locale, Translation> = {
           name: "Al-Hikmah LMS Portal",
           tagline: "生产级教育平台,带设计系统、分析和 PWA",
           description:
-            "为 Al-Hikmah 大学构建的全功能学习管理系统。构建了整个前端:设计系统(颜色令牌、排版、间距)、课程管理、测验构建器、带打印 CSS 和 QR 验证的证书生成器、Recharts 分析仪表板、多步表单和 PWA 支持。这是一个机密客户项目。",
+            "为 Al-Hikmah 大学构建的全功能学习管理系统。构建了整个前端:设计系统(颜色令牌、排版、间距)、课程管理、测验构建器、Recharts 分析仪表板、多步表单和 PWA 支持。这是一个机密客户项目。",
           role: "前端工程师 & UI/UX 设计师",
           impact: "完整设计系统,50+ 可复用组件,移动优先响应式",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
@@ -3411,7 +3398,6 @@ export const translations: Record<Locale, Translation> = {
           achievements: [
             "交付带完整设计系统和 PWA 的 Al-Hikmah LMS",
             "构建 50+ 跨客户项目复用的组件",
-            "通过代码分割和图像优化将 p99 延迟降低 8 倍",
           ],
         },
         {
@@ -3477,25 +3463,25 @@ export const translations: Record<Locale, Translation> = {
           name: "rafaab",
           description: "带 AI 购物助手的高端电商市场。Paystack、闪购、实时跟踪。",
           language: "TypeScript",
-          stars: "4.2k",
+          stars: "1",
         },
         {
           name: "baca-Al-qur-an",
           description: "带逐词分析和可访问阅读模式的古兰经学习 Web 应用。",
           language: "JavaScript",
-          stars: "1.2k",
+          stars: "1",
         },
         {
           name: "cryptoVault",
           description: "客户端 AES-256 加密金库。零数据离开设备。",
           language: "JavaScript",
-          stars: "820",
+          stars: "0",
         },
         {
           name: "similarity-checker",
           description: "带可视化仪表和引用助手的多算法抄袭检测器。",
           language: "JavaScript",
-          stars: "410",
+          stars: "1",
         },
       ],
       viewGithub: "查看 GitHub 主页",
@@ -3518,7 +3504,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Al-Hikmah LMS: 教育平台设计系统",
           excerpt:
-            "从颜色令牌到证书生成器。为大学LMS打造的完整设计系统，绿金品牌、分析仪表板和PWA就绪的移动流程。",
+            "从颜色令牌到生产仪表板。为大学LMS打造的完整设计系统，绿金品牌、分析仪表板和PWA就绪的移动流程。",
           date: "2026-04-15",
           readTime: "Figma案例研究",
           tag: "设计系统",
