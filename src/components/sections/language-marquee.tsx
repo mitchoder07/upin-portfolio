@@ -3,18 +3,18 @@
 export function LanguageMarquee() {
   // Tech-focused marquee — no language emphasis
   const items = [
-    "Full Stack Engineer",
-    "System Architecture",
-    "Performance Engineering",
-    "Production-Grade",
-    "Scalable Systems",
-    "CI/CD",
+    "Frontend Engineer",
+    "UI/UX Designer",
+    "Design Systems",
     "Type-Safe",
-    "Observability",
-    "Ship → Scale",
+    "Accessible by Default",
+    "Figma → Code",
+    "Cybersecurity-Minded",
+    "Ship → Iterate",
     "Open Source",
+    "PWA-Ready",
     "Database → Pixel",
-    "Mentor",
+    "Open for Freelance Work",
   ];
   // Duplicate for seamless loop
   const doubled = [...items, ...items];
