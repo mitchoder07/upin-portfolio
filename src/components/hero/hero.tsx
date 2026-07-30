@@ -15,7 +15,7 @@ const Hero3DScene = dynamic(
 const stats = [
   { key: "stat1Label", value: "5" },
   { key: "stat2Label", value: "20+" },
-  { key: "stat3Label", value: "290" },
+  { key: "stat3Label", value: "306" },
 ] as const;
 
 export function Hero() {
