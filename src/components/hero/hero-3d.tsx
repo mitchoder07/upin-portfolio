@@ -12,9 +12,25 @@ import {
   AdaptiveDpr,
   PerformanceMonitor,
 } from "@react-three/drei";
-import { Suspense, useRef, useMemo } from "react";
+import { Component, Suspense, useRef, useMemo } from "react";
+import type { ReactNode } from "react";
 import type { Mesh } from "three";
 import * as THREE from "three";
+
+// Catches any hard failure from Environment's network-fetched HDR (not just
+// a slow load) so it can never take down the rest of the 3D scene.
+class SilentErrorBoundary extends Component<
+  { children: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    return this.state.hasError ? null : this.props.children;
+  }
+}
 
 function FloatingShape({
   position,
@@ -209,9 +225,18 @@ export function Hero3DScene() {
           opacity={0.6}
         />
 
-        <Environment preset="night" />
         <MouseParallax />
       </Suspense>
+
+      {/* Isolated in its own Suspense + error boundary: this fetches an HDR
+          file from an external CDN. If that fetch is slow or fails outright,
+          only the reflections are affected — it can no longer blank out or
+          crash the shapes/particles/sparkles above. */}
+      <SilentErrorBoundary>
+        <Suspense fallback={null}>
+          <Environment preset="night" />
+        </Suspense>
+      </SilentErrorBoundary>
     </Canvas>
   );
 }
