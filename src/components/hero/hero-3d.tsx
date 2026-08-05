@@ -4,7 +4,6 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   Float,
   MeshDistortMaterial,
-  Environment,
   Sparkles,
   TorusKnot,
   Icosahedron,
@@ -12,25 +11,9 @@ import {
   AdaptiveDpr,
   PerformanceMonitor,
 } from "@react-three/drei";
-import { Component, Suspense, useRef, useMemo } from "react";
-import type { ReactNode } from "react";
+import { Suspense, useRef, useMemo } from "react";
 import type { Mesh } from "three";
 import * as THREE from "three";
-
-// Catches any hard failure from Environment's network-fetched HDR (not just
-// a slow load) so it can never take down the rest of the 3D scene.
-class SilentErrorBoundary extends Component<
-  { children: ReactNode },
-  { hasError: boolean }
-> {
-  state = { hasError: false };
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-  render() {
-    return this.state.hasError ? null : this.props.children;
-  }
-}
 
 function FloatingShape({
   position,
@@ -137,7 +120,7 @@ function ParticleField() {
         size={0.025}
         color="#5eead4"
         transparent
-        opacity={0.6}
+        opacity={0.7}
         sizeAttenuation
         depthWrite={false}
       />
@@ -163,16 +146,24 @@ export function Hero3DScene() {
       dpr={[1, 2]}
       gl={{ antialias: true, alpha: true }}
       camera={{ position: [0, 0, 8], fov: 45 }}
-      style={{ background: "transparent" }}
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        background: "transparent",
+        pointerEvents: "none",
+      }}
     >
       <PerformanceMonitor>
         <AdaptiveDpr pixelated={false} />
       </PerformanceMonitor>
       <Suspense fallback={null}>
-        <ambientLight intensity={0.4} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} color="#5eead4" />
-        <directionalLight position={[-5, -3, 2]} intensity={0.6} color="#e879f9" />
-        <pointLight position={[0, 0, 5]} intensity={0.8} color="#5eead4" />
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} intensity={1.5} color="#5eead4" />
+        <directionalLight position={[-5, -3, 2]} intensity={0.8} color="#e879f9" />
+        <pointLight position={[0, 0, 5]} intensity={1.0} color="#5eead4" />
 
         <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.5}>
           <group>
@@ -227,16 +218,6 @@ export function Hero3DScene() {
 
         <MouseParallax />
       </Suspense>
-
-      {/* Isolated in its own Suspense + error boundary: this fetches an HDR
-          file from an external CDN. If that fetch is slow or fails outright,
-          only the reflections are affected — it can no longer blank out or
-          crash the shapes/particles/sparkles above. */}
-      <SilentErrorBoundary>
-        <Suspense fallback={null}>
-          <Environment preset="night" />
-        </Suspense>
-      </SilentErrorBoundary>
     </Canvas>
   );
 }
