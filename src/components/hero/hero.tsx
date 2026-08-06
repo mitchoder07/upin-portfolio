@@ -31,12 +31,12 @@ export function Hero() {
       id="home"
       className="relative min-h-screen w-full overflow-hidden bg-grid"
     >
-      {/* 3D Background — FULL SCREEN, bright and clear, no heavy overlay */}
-      <div className="absolute inset-0 -z-10">
+      {/* 3D Background — FULL SCREEN, bright and clear */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <Hero3DScene />
       </div>
 
-      <div className="container-max relative flex min-h-screen flex-col justify-center px-6 pt-28 pb-24 sm:px-12 sm:ml-8 lg:ml-16 lg:px-16 xl:ml-24">
+      <div className="container-max relative z-10 flex min-h-screen flex-col justify-center px-6 pt-28 pb-24 sm:px-12 sm:ml-8 lg:ml-16 lg:px-16 xl:ml-24">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
           {/* Badge */}
           <motion.div
