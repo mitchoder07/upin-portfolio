@@ -5,6 +5,7 @@ import {
   Float,
   MeshDistortMaterial,
   Environment,
+  Lightformer,
   Sparkles,
   TorusKnot,
   Icosahedron,
@@ -70,7 +71,7 @@ function FloatingShape({
             distort={0.3}
             speed={2}
             emissive={color}
-            emissiveIntensity={0.15}
+            emissiveIntensity={0.35}
           />
         </TorusKnot>
       )}
@@ -83,7 +84,7 @@ function FloatingShape({
             distort={0.4}
             speed={1.5}
             emissive={color}
-            emissiveIntensity={0.2}
+            emissiveIntensity={0.4}
           />
         </Icosahedron>
       )}
@@ -96,7 +97,7 @@ function FloatingShape({
             distort={0.2}
             speed={2.5}
             emissive={color}
-            emissiveIntensity={0.25}
+            emissiveIntensity={0.45}
           />
         </Octahedron>
       )}
@@ -228,13 +229,46 @@ export function Hero3DScene() {
         <MouseParallax />
       </Suspense>
 
-      {/* Isolated in its own Suspense + error boundary: this fetches an HDR
-          file from an external CDN. If that fetch is slow or fails outright,
-          only the reflections are affected — it can no longer blank out or
-          crash the shapes/particles/sparkles above. */}
+      {/* Generated procedurally, in-browser, via WebGL — no network fetch,
+          so it can never fail to load regardless of CDN/network conditions.
+          This is what gives the metallic shapes their reflections/highlights;
+          previously this used Environment preset="night", which fetched an
+          HDR file from an external CDN and could silently fail to load,
+          leaving the high-metalness shapes with no reflections to show. */}
       <SilentErrorBoundary>
         <Suspense fallback={null}>
-          <Environment preset="night" />
+          <Environment resolution={256}>
+            <Lightformer
+              form="rect"
+              intensity={3}
+              color="#5eead4"
+              position={[0, 2, 5]}
+              scale={[6, 6, 1]}
+            />
+            <Lightformer
+              form="rect"
+              intensity={2.5}
+              color="#e879f9"
+              position={[-5, -1, 3]}
+              rotation={[0, Math.PI / 3, 0]}
+              scale={[6, 6, 1]}
+            />
+            <Lightformer
+              form="rect"
+              intensity={2}
+              color="#a78bfa"
+              position={[4, -3, -2]}
+              rotation={[0, -Math.PI / 4, 0]}
+              scale={[5, 5, 1]}
+            />
+            <Lightformer
+              form="ring"
+              intensity={1.5}
+              color="#ffffff"
+              position={[0, -5, 2]}
+              scale={[8, 8, 1]}
+            />
+          </Environment>
         </Suspense>
       </SilentErrorBoundary>
     </Canvas>
