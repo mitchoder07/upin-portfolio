@@ -7,9 +7,9 @@ import { SectionHeading } from "./section-heading";
 import { Button } from "@/components/ui/button";
 
 const stats = [
-  { icon: Github, key: "reposLabel", value: "12" },
+  { icon: Github, key: "reposLabel", value: "15" },
   { icon: Star, key: "starsLabel", value: "6" },
-  { icon: Activity, key: "contribsLabel", value: "306" },
+  { icon: Activity, key: "contribsLabel", value: "400+" },
 ] as const;
 
 const languageColors: Record<string, string> = {
