@@ -5,6 +5,7 @@ import {
   Float,
   MeshDistortMaterial,
   Environment,
+  Lightformer,
   Sparkles,
   TorusKnot,
   Icosahedron,
@@ -12,7 +13,7 @@ import {
   AdaptiveDpr,
   PerformanceMonitor,
 } from "@react-three/drei";
-import { Component, Suspense, useRef, useMemo } from "react";
+import { Component, Suspense, useRef, useMemo, useEffect } from "react";
 import type { ReactNode } from "react";
 import type { Mesh } from "three";
 import * as THREE from "three";
@@ -70,7 +71,7 @@ function FloatingShape({
             distort={0.3}
             speed={2}
             emissive={color}
-            emissiveIntensity={0.15}
+            emissiveIntensity={0.35}
           />
         </TorusKnot>
       )}
@@ -83,7 +84,7 @@ function FloatingShape({
             distort={0.4}
             speed={1.5}
             emissive={color}
-            emissiveIntensity={0.2}
+            emissiveIntensity={0.4}
           />
         </Icosahedron>
       )}
@@ -96,7 +97,7 @@ function FloatingShape({
             distort={0.2}
             speed={2.5}
             emissive={color}
-            emissiveIntensity={0.25}
+            emissiveIntensity={0.45}
           />
         </Octahedron>
       )}
@@ -157,6 +158,29 @@ function MouseParallax() {
   return null;
 }
 
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const aspect = size.width / size.height;
+    const cam = camera as THREE.PerspectiveCamera;
+    if (aspect < 0.9) {
+      // Narrow/portrait viewport (most phones) — pull the camera back and
+      // widen the FOV so shapes spread across x aren't cramped or clipped.
+      cam.fov = 62;
+      cam.position.z = 11;
+    } else if (aspect < 1.3) {
+      // Tablets / narrow desktop windows
+      cam.fov = 50;
+      cam.position.z = 9;
+    } else {
+      cam.fov = 45;
+      cam.position.z = 8;
+    }
+    cam.updateProjectionMatrix();
+  }, [size, camera]);
+  return null;
+}
+
 export function Hero3DScene() {
   return (
     <Canvas
@@ -168,6 +192,7 @@ export function Hero3DScene() {
       <PerformanceMonitor>
         <AdaptiveDpr pixelated={false} />
       </PerformanceMonitor>
+      <ResponsiveCamera />
       <Suspense fallback={null}>
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1.2} color="#5eead4" />
@@ -228,13 +253,46 @@ export function Hero3DScene() {
         <MouseParallax />
       </Suspense>
 
-      {/* Isolated in its own Suspense + error boundary: this fetches an HDR
-          file from an external CDN. If that fetch is slow or fails outright,
-          only the reflections are affected — it can no longer blank out or
-          crash the shapes/particles/sparkles above. */}
+      {/* Generated procedurally, in-browser, via WebGL — no network fetch,
+          so it can never fail to load regardless of CDN/network conditions.
+          This is what gives the metallic shapes their reflections/highlights;
+          previously this used Environment preset="night", which fetched an
+          HDR file from an external CDN and could silently fail to load,
+          leaving the high-metalness shapes with no reflections to show. */}
       <SilentErrorBoundary>
         <Suspense fallback={null}>
-          <Environment preset="night" />
+          <Environment resolution={256}>
+            <Lightformer
+              form="rect"
+              intensity={3}
+              color="#5eead4"
+              position={[0, 2, 5]}
+              scale={[6, 6, 1]}
+            />
+            <Lightformer
+              form="rect"
+              intensity={2.5}
+              color="#e879f9"
+              position={[-5, -1, 3]}
+              rotation={[0, Math.PI / 3, 0]}
+              scale={[6, 6, 1]}
+            />
+            <Lightformer
+              form="rect"
+              intensity={2}
+              color="#a78bfa"
+              position={[4, -3, -2]}
+              rotation={[0, -Math.PI / 4, 0]}
+              scale={[5, 5, 1]}
+            />
+            <Lightformer
+              form="ring"
+              intensity={1.5}
+              color="#ffffff"
+              position={[0, -5, 2]}
+              scale={[8, 8, 1]}
+            />
+          </Environment>
         </Suspense>
       </SilentErrorBoundary>
     </Canvas>
