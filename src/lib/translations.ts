@@ -260,7 +260,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf (Upin). Frontend Engineer & UI/UX Designer with 5+ years designing and shipping accessible interfaces. I turn Figma wireframes into pixel-perfect React products.",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "command not found. Type 'help' for available commands.",
       },
       placeholder: "Type a command and press Enter...",
@@ -725,7 +725,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf (Upin). Jurutera Frontend & Pereka UI/UX dengan 5+ tahun merekabentuk dan menghantar antara muka boleh diakses. Saya menukar wireframe Figma kepada produk React yang sempurna piksel.",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "arahan tidak dijumpai. Taip 'help' untuk arahan tersedia.",
       },
       placeholder: "Taip arahan dan tekan Enter...",
@@ -1190,7 +1190,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf (Upin). Injiniyan Frontend & Mai Tsara UI/UX da shekaru 5+ na tsara da tura mu'amala mai sauyin shiga. Ina canza wireframe na Figma zuwa samfurin React mai cikakken pixel.",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "umarni ba a same ba. Rubuta 'help' don umarnin da ke akwai.",
       },
       placeholder: "Rubuta umarni ka danna Enter...",
@@ -1655,7 +1655,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf (Upin). Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX pẹ̀lú ọdún 5+ n ṣètò àti fí ìjápọ̀ tó wúlò fún ìwọlé rán. Mo n yí wireframe Figma di ọjà React tó yé tán.",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "àṣẹ kò rí. Tẹ 'help' fún àwọn àṣẹ tó wà.",
       },
       placeholder: "Tẹ àṣẹ kí o tẹ Enter...",
@@ -2120,7 +2120,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf (Upin). フロントエンドエンジニア & UI/UXデザイナー。5年以上アクセシブルなインターフェースを設計・リリース。FigmaのワイヤーフレームをピクセルパーフェクトなReactプロダクトに変換します。",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "コマンドが見つかりません。「help」と入力して使用可能なコマンドを確認してください。",
       },
       placeholder: "コマンドを入力してEnterを押してください...",
@@ -2585,7 +2585,7 @@ export const translations: Record<Locale, Translation> = {
           "عبد الله يوسف (Upin). مهندس واجهات أمامية & مصمم UI/UX بخبرة 5+ سنوات في تصميم وتسليم واجهات يسهل الوصول إليها. أحول مخططات Figma إلى منتجات React بدقة البكسل.",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "الأمر غير موجود. اكتب 'help' للأوامر المتاحة.",
       },
       placeholder: "اكتب أمراً واضغط Enter...",
@@ -3050,7 +3050,7 @@ export const translations: Record<Locale, Translation> = {
           "Abdullah Yusuf(Upin)。前端工程师 & UI/UX 设计师,5年以上设计与交付可访问界面的经验。我把 Figma 线框转化为像素级完美的 React 产品。",
         ls: "about.md skills.json projects/ experience.log contact.vcf social.txt",
         social:
-          "GitHub: github.com/upin · LinkedIn: linkedin.com/in/upin · X: x.com/upin · Email: hello@upin.dev",
+          "GitHub: github.com/mitchoder07 · LinkedIn: linkedin.com/in/mitchoder07 · X: x.com/mitchoder07 · Dribbble: dribbble.com/mitchoder07 · Figma: figma.com/@mitchoder07 · Email: olaniyiaremu2003@gmail.com",
         unknown: "命令未找到。输入 'help' 查看可用命令。",
       },
       placeholder: "输入命令并按 Enter...",

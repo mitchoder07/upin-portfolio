@@ -158,10 +158,11 @@ function TerminalInner() {
             break;
           case "contact":
           case "cat contact.vcf":
-            addOutput("Email: hello@upin.dev");
-            addOutput("GitHub: github.com/upin");
-            addOutput("LinkedIn: linkedin.com/in/upin");
-            addOutput("X (Twitter): x.com/upin");
+            addOutput("Email: olaniyiaremu2003@gmail.com");
+            addOutput("GitHub: github.com/mitchoder07");
+            addOutput("LinkedIn: linkedin.com/in/mitchoder07");
+            addOutput("X (Twitter): x.com/mitchoder07");
+            addOutput("WhatsApp: wa.me/2347088955340");
             setTimeout(() => scrollToSection("contact"), 300);
             break;
           case "social":
@@ -293,17 +294,17 @@ function TerminalInner() {
             data-cursor="pointer"
           >
             {/* Title bar */}
-            <div className="flex items-center gap-2 border-b border-foreground/10 bg-foreground/[0.03] px-4 py-3">
-              <div className="flex gap-1.5">
+            <div className="flex min-w-0 items-center gap-2 border-b border-foreground/10 bg-foreground/[0.03] px-4 py-3">
+              <div className="flex shrink-0 gap-1.5">
                 <div className="h-3 w-3 rounded-full bg-red-500/80" />
                 <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
                 <div className="h-3 w-3 rounded-full bg-green-500/80" />
               </div>
-              <div className="ml-3 flex items-center gap-2 text-xs text-muted-foreground">
-                <TerminalIcon className="h-3.5 w-3.5" />
-                <span className="font-mono">upin@portfolio — zsh</span>
+              <div className="ml-3 flex min-w-0 items-center gap-2 text-xs text-muted-foreground">
+                <TerminalIcon className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate font-mono">upin@portfolio — zsh</span>
               </div>
-              <div className="ml-auto hidden items-center gap-1 text-muted-foreground sm:flex">
+              <div className="ml-auto hidden shrink-0 items-center gap-1 text-muted-foreground sm:flex">
                 <Minus className="h-3.5 w-3.5" />
                 <Square className="h-3 w-3" />
                 <X className="h-3.5 w-3.5" />
@@ -313,17 +314,17 @@ function TerminalInner() {
             {/* Output area */}
             <div
               ref={scrollRef}
-              className="max-h-[460px] min-h-[360px] overflow-y-auto p-4 font-mono text-[13px] leading-relaxed sm:p-6"
+              className="max-h-[460px] min-h-[360px] overflow-x-hidden overflow-y-auto p-4 font-mono text-[13px] leading-relaxed sm:p-6"
             >
               {lines.map((line, i) => (
                 <div
                   key={i}
-                  className={cn("whitespace-pre-wrap break-words", lineColor(line.type))}
+                  className={cn("min-w-0 whitespace-pre-wrap break-words", lineColor(line.type))}
                 >
                   {line.type === "input" ? (
-                    <div className="flex gap-2">
-                      <span className="text-[var(--neon)]">{t.terminal.prompt}</span>
-                      <span className="flex-1">{line.content as string}</span>
+                    <div className="flex min-w-0 gap-2">
+                      <span className="shrink-0 text-[var(--neon)]">{t.terminal.prompt}</span>
+                      <span className="min-w-0 flex-1 break-words">{line.content as string}</span>
                     </div>
                   ) : (
                     line.content
@@ -332,20 +333,20 @@ function TerminalInner() {
               ))}
 
               {/* Input line */}
-              <form onSubmit={handleSubmit} className="mt-1 flex gap-2">
-                <span className="text-[var(--neon)]">{t.terminal.prompt}</span>
+              <form onSubmit={handleSubmit} className="mt-1 flex min-w-0 gap-2">
+                <span className="shrink-0 text-[var(--neon)]">{t.terminal.prompt}</span>
                 <input
                   ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder={t.terminal.placeholder}
-                  className="flex-1 bg-transparent font-mono text-[13px] text-foreground outline-none placeholder:text-muted-foreground/50"
+                  className="min-w-0 flex-1 bg-transparent font-mono text-[13px] text-foreground outline-none placeholder:text-muted-foreground/50"
                   autoComplete="off"
                   spellCheck={false}
                   aria-label="Terminal input"
                 />
-                <span className="-ml-2 inline-block h-4 w-1.5 animate-blink bg-[var(--neon)]" />
+                <span className="-ml-2 inline-block h-4 w-1.5 shrink-0 animate-blink bg-[var(--neon)]" />
               </form>
             </div>
           </div>

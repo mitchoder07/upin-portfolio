@@ -40,17 +40,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Upin" }],
   openGraph: {
-    title: "Upin — Full Stack Engineer",
+    title: "Upin — Frontend Engineer & UI/UX Designer",
     description:
-      "Polyglot full stack engineer. Seven human languages, 16+ programming ones. From database to pixel.",
+      "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones. From database to pixel.",
     siteName: "Upin",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Upin — Full Stack Engineer",
+    title: "Upin — Frontend Engineer & UI/UX Designer",
     description:
-      "Polyglot full stack engineer. Seven human languages, 16+ programming ones.",
+      "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones.",
   },
 };
 
