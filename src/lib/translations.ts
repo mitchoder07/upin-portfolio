@@ -620,9 +620,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "Graphic Design",
         },
         {
-          title: "Portfolio v3: Dark Premium Experience",
+          title: "Portfolio v1: Pick a color, crack a code",
           excerpt:
-            "The design process behind this very portfolio. Glassmorphism, 3D hero, interactive terminal, and a 7-language i18n system with RTL support.",
+            "This old portfolio lets you splash any color you like across the screen. And my birthday? Locked behind a password wall – go on, take a guess! (Hint: it is not 1234.).",
           date: "2026-01-05",
           readTime: "Figma Case Study",
           tag: "Web Design",
@@ -1085,9 +1085,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "Reka Bentuk Grafik",
         },
         {
-          title: "Portfolio v3: Pengalaman Premium Gelap",
+          title: "Portfolio v1: Pilih warna, teka kod",
           excerpt:
-            "Proses reka bentuk di sebalik portfolio ini. Glassmorphism, wira 3D, terminal interaktif, dan sistem i18n 7-bahasa dengan sokongan RTL.",
+            "Portfolio lama ni bagi awak bebas pilih apa-apa warna untuk hiasan skrin. Hari jadi saya? Terkunci di sebalik dinding kata laluan – jom cuba teka! (Petunjuk: bukan 1234.).",
           date: "2026-01-05",
           readTime: "Kajian Kes Figma",
           tag: "Reka Bentuk Web",
@@ -1550,9 +1550,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "Tsarin Zane",
         },
         {
-          title: "Portfolio v3: Kwarewar Premium Mai Duhu",
+          title: "Portfolio v1: Zaɓi launi, fasa lambar sirri",
           excerpt:
-            "Tsarin tsari a bayan wannan portfolio. Glassmorphism, jarumin 3D, tasha mai hulda, da tsarin i18n na harsuna 7 tare da goyon bayan RTL.",
+            "Wannan tsohon portfolio yana ba ka damar canza kowane launi da kake so a kan allo. Kuma ranar haifuwa ta? A kulle take da kalmar sirri – ka gwada! (Alamar: ba 1234 ba.)",
           date: "2026-01-05",
           readTime: "Kararran Figma",
           tag: "Tsarin Yanar Gizo",
@@ -2015,9 +2015,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "Àkóónú Kíkọ̀",
         },
         {
-          title: "Portfolio v3: Ìrírí Premium Dúdú",
+          title: "Portfolio v1: Yan awọ, pa koodu",
           excerpt:
-            "Ìmọ̀-ẹrọ àkóónú lẹ́yìn portfolio yìí. Glassmorphism, fọ́n-3D, tẹ́mínálì, àti ètò i18n èdè 7 pẹ̀lú atilẹ́yin RTL.",
+            "Portfolio atijọ yii jẹ ki o yan eyikeyi awọ ti o fẹ lori iboju. Ọjọ-ibi mi? Ti pa mọ lẹhin odi ọrọigbaniwọle – ma gbiyanju lati sọ! (Amọ: kii ṣe 1234.)",
           date: "2026-01-05",
           readTime: "Ìdànjáde Figma",
           tag: "Àkóónú Web",
@@ -2480,9 +2480,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "グラフィックデザイン",
         },
         {
-          title: "Portfolio v3: ダークプレミアム体験",
+          title: "Portfolio v1: 色を選んで、コードを解読",
           excerpt:
-            "このポートフォリオの裏側のデザインプロセス。グラスモーフィズム、3Dヒーロー、インタラクティブターミナル、RTL対応の7言語i18nシステム。",
+            "この旧ポートフォリオでは、画面に好きな色を自由に散りばめられます。私の誕生日？パスワードの壁の向こうに隠れています – さあ、推測してみて！ (ヒント: 1234じゃないよ。)",
           date: "2026-01-05",
           readTime: "Figmaケーススタディ",
           tag: "Webデザイン",
@@ -2945,9 +2945,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "تصميم جرافيك",
         },
         {
-          title: "Portfolio v3: تجربة فاخرة داكنة",
+          title: "المحفظة الإصدار 1: اختر لوناً، افك شفرة",
           excerpt:
-            "عملية التصميم خلف هذا المعرض. زجاجية، بطل ثلاثي الأبعاد، طرفية تفاعلية، ونظام i18n بـ7 لغات مع دعم RTL.",
+            "هذه المحفظة القديمة تتيح لك اختيار أي لون تحبه على الشاشة. وعيد ميلادي؟ مخلف وراء جدار كلمة مرور – هيا، خمّن! (تلميح: ليس 1234.)RTL.",
           date: "2026-01-05",
           readTime: "دراسة حالة Figma",
           tag: "تصميم ويب",
@@ -3410,9 +3410,9 @@ export const translations: Record<Locale, Translation> = {
           tag: "平面设计",
         },
         {
-          title: "Portfolio v3: 暗色高端体验",
+          title: "作品集 v1：选颜色，破密码",
           excerpt:
-            "这个作品集背后的设计过程。毛玻璃效果、3D英雄区、交互式终端和带RTL支持的7语言i18n系统。",
+            "这个旧版作品集让你随意在屏幕上泼洒任何颜色。我的生日？被密码墙锁着呢 – 来猜猜看吧！（提示：不是1234。）",
           date: "2026-01-05",
           readTime: "Figma案例研究",
           tag: "网页设计",
