@@ -25,12 +25,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Upin — Full Stack Engineer | Polyglot Builder",
+  title: "Upin — Frontend Engineer & UI/UX Designer | Polyglot Builder",
   description:
-    "Upin is a full stack engineer who designs, builds, and ships resilient systems from database to pixel. Fluent in 7 human languages and 16+ programming ones.",
+    "Upin is a frontend engineer who designs, builds, and ships responsive and accessible web applications. Fluent in 7 human languages and 16+ programming ones.",
   keywords: [
     "Upin",
-    "Full Stack Engineer",
+    "Frontend Engineer",
     "Next.js",
     "TypeScript",
     "Polyglot Developer",
