@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Lock,
+  Clock,
 } from "lucide-react";
 import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
@@ -60,6 +61,7 @@ export function Projects() {
                 {String(i + 1).padStart(2, "0")}
               </span>
               {p.confidential && t.projects.confidential + " · "}
+              {p.comingSoon && t.projects.comingSoon + " · "}
               {p.name.split(":")[0].split(" [")[0]}
             </button>
           ))}
@@ -129,6 +131,20 @@ export function Projects() {
                     </div>
                   </div>
                 )}
+                {/* Coming Soon badge ON the image */}
+                {active.comingSoon && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-2 rounded-2xl border-2 border-sky-500/50 bg-black/60 px-6 py-4 backdrop-blur-md">
+                      <Clock className="h-8 w-8 text-sky-400" />
+                      <span className="font-display text-lg font-bold text-sky-400">
+                        {t.projects.comingSoon}
+                      </span>
+                      <span className="text-xs text-sky-200/80">
+                        Full case study in progress
+                      </span>
+                    </div>
+                  </div>
+                )}
                 {/* Featured badge */}
                 {activeIdx === 0 && !active.confidential && (
                   <div className="absolute left-3 top-3 rounded-full bg-black/50 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">
@@ -150,6 +166,15 @@ export function Projects() {
                         {t.projects.confidential}
                       </Badge>
                     )}
+                    {active.comingSoon && (
+                      <Badge
+                        variant="secondary"
+                        className="rounded-full border border-sky-500/30 bg-sky-500/10 px-2.5 py-0.5 text-[11px] font-medium text-sky-600 dark:text-sky-400"
+                      >
+                        <Clock className="mr-1 h-3 w-3" />
+                        {t.projects.comingSoon}
+                      </Badge>
+                    )}
                     {activeIdx === 0 && !active.confidential && (
                       <Badge
                         variant="secondary"
@@ -167,7 +192,7 @@ export function Projects() {
                   </p>
                 </div>
                 <div className="flex gap-2">
-                  {!active.confidential && active.githubUrl && (
+                  {!active.confidential && !active.comingSoon && active.githubUrl && (
                     <a
                       href={active.githubUrl}
                       target="_blank"
@@ -179,7 +204,7 @@ export function Projects() {
                       <Github className="h-4 w-4" />
                     </a>
                   )}
-                  {!active.confidential && active.liveUrl && (
+                  {!active.confidential && !active.comingSoon && active.liveUrl && (
                     <a
                       href={active.liveUrl}
                       target="_blank"
@@ -242,6 +267,11 @@ export function Projects() {
                   <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
                     <Lock className="h-3.5 w-3.5" />
                     {t.projects.confidential}
+                  </div>
+                ) : active.comingSoon ? (
+                  <div className="inline-flex h-9 items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/5 px-4 text-xs font-medium text-sky-600 dark:text-sky-400">
+                    <Clock className="h-3.5 w-3.5" />
+                    {t.projects.comingSoon}
                   </div>
                 ) : (
                   <>
