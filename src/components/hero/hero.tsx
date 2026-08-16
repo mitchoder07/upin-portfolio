@@ -175,7 +175,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-3 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-4"
+          className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-8"
           data-cursor="pointer"
         >
           <span className="text-[10px] uppercase tracking-[0.2em]">
