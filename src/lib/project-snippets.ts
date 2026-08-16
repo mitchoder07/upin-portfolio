@@ -115,7 +115,62 @@ function pad(n: number) {
 }`,
   },
 
-  // 3. Baca — word-by-word Quran reader component (JavaScript)
+  // 3. Your Studio — LogoCard component with masonry grid + lightbox (TypeScript/React)
+  {
+    language: "typescript",
+    filename: "your-studio/logo-card.tsx",
+    code: `'use client';
+
+import * as React from 'react';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import type { Logo } from '@/data/logos';
+
+interface LogoCardProps {
+  logo: Logo;
+  index: number;
+  onOpen: (logo: Logo) => void;
+}
+
+/**
+ * Your Studio — LogoCard.
+ * Masonry grid card with hover overlay, palette swatches,
+ * and click-to-open lightbox behavior.
+ */
+export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
+  return (
+    <article
+      className="group relative cursor-pointer animate-fade-up"
+      style={{ animationDelay: \`\${Math.min(index, 12) * 0.04}s\` }}
+      onClick={() => onOpen(logo)}
+    >
+      <div className={cn(
+        'relative aspect-square overflow-hidden bg-card border border-border',
+        'transition-all duration-500 group-hover:border-gold'
+      )}>
+        <Image
+          src={\`/logos/\${logo.slug}.png\`}
+          alt={\`\${logo.name} — \${logo.style} logo for \${logo.industry}\`}
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="object-contain transition-transform duration-700 group-hover:scale-[1.04]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="text-white text-base truncate" style={{ fontFamily: 'var(--font-serif)' }}>
+            {logo.name}
+          </div>
+          <div className="text-[10px] tracking-[0.2em] uppercase text-white/60 truncate">
+            {logo.industry} · {logo.style}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}`,
+  },
+
+  // 4. Baca — word-by-word Quran reader component (JavaScript)
   {
     language: "javascript",
     filename: "baca/word-reader.js",
@@ -183,7 +238,7 @@ export class WordByWordReader {
 }`,
   },
 
-  // 4. Crypto Vault — AES-256 encryption (JavaScript)
+  // 5. Crypto Vault — AES-256 encryption (JavaScript)
   {
     language: "javascript",
     filename: "crypto-vault/aes.js",
@@ -261,7 +316,7 @@ function fromBase64(str) {
 }`,
   },
 
-  // 5. Similarity Checker — text similarity algorithm (JavaScript)
+  // 6. Similarity Checker — text similarity algorithm (JavaScript)
   {
     language: "javascript",
     filename: "similarity-checker/similarity.js",
@@ -345,7 +400,7 @@ export function scoreSimilarity(a, b) {
 }`,
   },
 
-  // 6. Cyber Bot — chatbot suggested prompts (JavaScript)
+  // 7. Cyber Bot — chatbot suggested prompts (JavaScript)
   {
     language: "javascript",
     filename: "cyber-bot/prompts.js",
@@ -415,7 +470,7 @@ export function formatAnswerCard(answer) {
 }`,
   },
 
-  // 7. Cyber-Words — game loop (JavaScript)
+  // 8. Cyber-Words — game loop (JavaScript)
   {
     language: "javascript",
     filename: "cyber-words/game.js",
@@ -500,7 +555,7 @@ export function nextKeyState(feedback) {
 }`,
   },
 
-  // 8. Kopi — Coffee shop product card with hover animation
+  // 9. Kopi — Coffee shop product card with hover animation
   {
     language: "javascript",
     filename: "kopi/product-card.js",
