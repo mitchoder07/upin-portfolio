@@ -102,15 +102,17 @@ export function Projects() {
                         "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)",
                     }}
                   >
-                    <div className="text-center">
-                      <div className="mb-2 font-display text-2xl font-bold text-white drop-shadow-lg sm:text-3xl">
-                        {active.name}
+                    {!active.confidential && !active.comingSoon && (
+                      <div className="text-center">
+                        <div className="mb-2 font-display text-2xl font-bold text-white drop-shadow-lg sm:text-3xl">
+                          {active.name}
+                        </div>
+                        <div className="mx-auto h-1 w-16 rounded-full bg-white/40" />
+                        <div className="mt-3 font-mono text-xs uppercase tracking-[0.3em] text-white/70">
+                          Case study
+                        </div>
                       </div>
-                      <div className="mx-auto h-1 w-16 rounded-full bg-white/40" />
-                      <div className="mt-3 font-mono text-xs uppercase tracking-[0.3em] text-white/70">
-                        Case study
-                      </div>
-                    </div>
+                    )}
                   </div>
                 )}
                 {/* Gradient overlay for image legibility */}
