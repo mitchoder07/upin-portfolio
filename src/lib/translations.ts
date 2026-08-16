@@ -415,10 +415,10 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — Logo Portfolio",
-          tagline: "Dark-editorial logo portfolio with 74 brand marks, real-time filtering, and lightbox viewer",
+          name: "Your Studio: Logo Portfolio",
+          tagline: "A dark, editorial logo portfolio with 74 brand marks, real-time filtering, and a lightbox viewer",
           description:
-            "A dark-editorial logo portfolio web app cataloging 74 brand marks across 13 industries and 8 design styles. Built with Next.js 16 and TypeScript, it features a masonry grid, real-time filtering by industry and style, live search, a full-screen lightbox with keyboard navigation, and dark/light theme toggle. Each logo is served as an auto-centered 1024×1024 image with palette swatches, brief, and concept notes. This project is coming soon — full case study in progress.",
+            "A dark, editorial-style portfolio for browsing 74 logo marks across 13 industries and 8 design styles. I built it with Next.js 16 and TypeScript: a masonry grid you can filter by industry or style, live search, and a full-screen lightbox you can navigate with the keyboard. Each logo sits on its own 1024x1024 canvas alongside its color palette, a short brief, and my concept notes. Full case study coming soon.",
           role: "Frontend Engineer & UI/UX Designer",
           impact: "74 logos, 13 industries, 8 styles, masonry grid, lightbox, theme toggle",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Lucide", "next-themes"],
@@ -892,7 +892,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — Portfolio Logo",
+          name: "Your Studio: Portfolio Logo",
           tagline: "Portfolio logo editorial gelap dengan 74 jenama, penapisan masa nyata, dan pemapar lightbox",
           description:
             "Aplikasi web portfolio logo berkonsepkan editorial gelap yang mengkatalogkan 74 jenama merentas 13 industri dan 8 gaya reka bentuk. Dibina dengan Next.js 16 dan TypeScript, ia menampilkan grid masonry, penapisan masa nyata mengikut industri dan gaya, carian langsung, lightbox skrin penuh dengan navigasi papan kekunci, dan toggel tema gelap/terang. Setiap logo dioptimumkan sebagai imej 1024×1024 yang disentratkan secara automatik dengan swatch palet, ringkasan, dan nota konsep. Projek ini akan datang tidak lama lagi.",
@@ -1369,7 +1369,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — Tarihin Logo",
+          name: "Your Studio: Tarihin Logo",
           tagline: "Tarihin logo mai tsarin duhu na editorial tare da alamomin kasuwanci 74, tacewa a lokaci guda, da mai kallon lightbox",
           description:
             "Aikace-aikacen yanar gizo na tarihin logo mai tsarin duhu wanda yake ƗirƗirar jerin alamomin kasuwanci 74 a fadin masana’untu 13 da salo na tsari 8. An gina shi da Next.js 16 da TypeScript, yana da grid masonry, tacewa a lokaci guda bisa masana’untu da salo, bincike kai tsaye, lightbox na cikakken allo tare da kewayawa ta keyboard, da canza tsarin duhu/haske. Kowane logo an inganta shi azaman hoton 1024×1024 wanda aka daidaita kansa. Wannan aikin yana zuwa nan ba da daɗewa.",
@@ -1845,7 +1845,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — Àkọ́jọ́pọ̀ Logo",
+          name: "Your Studio: Àkọ́jọ́pọ̀ Logo",
           tagline: "Àkọ́jọ́pọ̀ logo alẹ́ẹ́kùú tí ó ní àmì ọ́kọ́ 74, ìyípadà lásìkò gidi, àti olùwo lightbox",
           description:
             "Aplikasyon wẹ́ẹ́bù àkọ́jọ́pọ̀ logo tí ó ní ìrísí alẹ́ẹ́kùú tí ó ń kójọ́ àwọ̀n àmì ọ́kọ́ 74 káríaká àwọ̀n òwò 13 àti àwọ̀n ìrísí àyàwò 8. A ṣẹ́ àkọ́sílẹ́ rẹ̀ pẹ̀lù Next.js 16 àti TypeScript, ó ní Íànwò masonry grid, ìyípadà lásìkò gidi, wádìí làì ní Íààmù̀, lightbox tí ó gboò léèkún pẹ̀lù ìtọ́nisọ́nà keyboard, àti ìyípadà ìrísí alẹ́ẹ́kùú/ìmọ́lẹ̀. Kọ̀ọ̀kan logo wà ní ìmúdàrà gẹ́gẹ́bíi àwọ̀rán 1024×1024. Wọ̀n yìí á bọ́ làìpẹ́.",
@@ -2322,7 +2322,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — ロゴポートフォリオ",
+          name: "Your Studio: ロゴポートフォリオ",
           tagline: "74のブランドマーク、リアルタイムフィルタリング、ライトボックスビューアーを持つダークエディトリアルロゴポートフォリオ",
           description:
             "13の業界と8つのデザインスタイルにわたる74のブランドマークをカタログ化した、ダークエディトリアルスタイルのロゴポートフォリオWebアプリ。Next.js 16とTypeScriptで構築され、メーソンリーグリッド、リアルタイムフィルタリング、ライブ検索、キーボードナビゲーション付きの全画面ライトボックス、ダーク/ライトテーマトグルを備えています。各ロゴは自動センタリングされた1024×1024画像として最適化されています。このプロジェクトは近日公開予定です。",
@@ -2799,7 +2799,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "استوديو الخاص بك — معرض الشعارات",
+          name: "استوديو الخاص بك: معرض الشعارات",
           tagline: "معرض شعارات بأسلوب تحريري داكن مع 74 علامة تجارية، تصفية فورية، وعارض صندوق ضوئي",
           description:
             "تطبيق ويب لمعرض الشعارات بأسلوب تحريري داكن يفهرس 74 علامة تجارية عبر 13 صناعة و 8 أنماط تصميم. تم بناؤه باستخدام Next.js 16 و TypeScript، ويتميز بتخطيط شبكي ماسونري، وتصفية فورية حسب الصناعة والنمط، وبحث مباشر، وصندوق ضوئي بملء الشاشة مع تنقل بلوحة المفاتيح، والتبديل بين الوضع الداكن والفاتح. هذا المشروع قادم قريباً.",
@@ -3276,7 +3276,7 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://rafaab.vercel.app/",
         },
         {
-          name: "Your Studio — 标志作品集",
+          name: "Your Studio: 标志作品集",
           tagline: "暗色编辑风格的标志作品集，含74个品牌标志、实时筛选和灯箱查看器",
           description:
             "一个暗色编辑风格的标志作品集网页应用，收录了74个品牌标志，涵盖13个行业和8种设计风格。使用 Next.js 16 和 TypeScript 构建，具有砌体网格布局、实时筛选、即时搜索、带键盘导航的全屏灯箱和深色/浅色主题切换。每个标志都优化为自动居中的1024×1024图像。此项目即将推出。",
