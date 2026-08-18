@@ -7,6 +7,7 @@ import {
   Environment,
   Lightformer,
   Sparkles,
+  Trail,
   TorusKnot,
   Icosahedron,
   Octahedron,
@@ -39,12 +40,16 @@ function FloatingShape({
   geometry,
   speed = 1,
   scale = 1,
+  emissiveBoost = 1,
+  opacity = 1,
 }: {
   position: [number, number, number];
   color: string;
   geometry: "knot" | "ico" | "oct";
   speed?: number;
   scale?: number;
+  emissiveBoost?: number;
+  opacity?: number;
 }) {
   const ref = useRef<Mesh>(null);
 
@@ -71,7 +76,9 @@ function FloatingShape({
             distort={0.3}
             speed={2}
             emissive={color}
-            emissiveIntensity={0.35}
+            emissiveIntensity={0.35 * emissiveBoost}
+            transparent
+            opacity={opacity}
           />
         </TorusKnot>
       )}
@@ -158,6 +165,62 @@ function MouseParallax() {
   return null;
 }
 
+// A single playful "pew pew" streak — darts once across the background,
+// then goes idle for a while before firing again. Paths are kept on the
+// right/upper side of the scene (positive x, away from the text column on
+// the left) so the trail never crosses over the hero copy.
+function ShootingStar({
+  start,
+  end,
+  color,
+  cycle,
+  delay,
+  dartDuration = 0.7,
+}: {
+  start: [number, number, number];
+  end: [number, number, number];
+  color: string;
+  cycle: number;
+  delay: number;
+  dartDuration?: number;
+}) {
+  const ref = useRef<Mesh>(null);
+  const from = useMemo(() => new THREE.Vector3(...start), [start]);
+  const to = useMemo(() => new THREE.Vector3(...end), [end]);
+
+  useFrame((state) => {
+    if (!ref.current) return;
+    const t = (state.clock.getElapsedTime() + delay) % cycle;
+    if (t > dartDuration) {
+      ref.current.visible = false;
+      return;
+    }
+    ref.current.visible = true;
+    const eased = 1 - Math.pow(1 - t / dartDuration, 3);
+    ref.current.position.lerpVectors(from, to, eased);
+  });
+
+  return (
+    <Trail width={2.5} length={5} color={color} attenuation={(w) => w * w} decay={2}>
+      <mesh ref={ref} visible={false}>
+        <sphereGeometry args={[0.035, 8, 8]} />
+        <meshBasicMaterial color={color} toneMapped={false} />
+      </mesh>
+    </Trail>
+  );
+}
+
+function ShootingStars() {
+  return (
+    <>
+      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={6} delay={0} />
+      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={7.5} delay={2.2} />
+      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={5.5} delay={4} />
+      <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={8} delay={5.5} />
+    </>
+  );
+}
+
 function ResponsiveCamera() {
   const { camera, size } = useThree();
   useEffect(() => {
@@ -202,11 +265,13 @@ export function Hero3DScene() {
         <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.5}>
           <group>
             <FloatingShape
-              position={[-2.5, 0.5, 0]}
-              color="#5eead4"
+              position={[-2.8, 0.5, -1.5]}
+              color="#0f766e"
               geometry="knot"
               scale={0.85}
               speed={0.8}
+              emissiveBoost={0.3}
+              opacity={0.55}
             />
             <FloatingShape
               position={[2.5, -0.5, -1]}
@@ -249,6 +314,8 @@ export function Hero3DScene() {
           color="#5eead4"
           opacity={0.6}
         />
+
+        <ShootingStars />
 
         <MouseParallax />
       </Suspense>
