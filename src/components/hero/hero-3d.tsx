@@ -170,20 +170,49 @@ function MouseParallax() {
 // A comic-book style text bubble anchored to a 3D position. Renders as real
 // DOM text (via Html) so it always stays crisp and legible, never a blurry
 // texture baked into the canvas, with a bouncy pop-in/pop-out.
-// Made BOLDER and LARGER for both mobile and desktop.
-function ComicBubble({ text, size = "normal" }: { text: string | null; size?: "normal" | "large" }) {
-  const sizeClasses = size === "large" 
-    ? "text-sm sm:text-lg md:text-xl font-black px-4 py-2 sm:px-5 sm:py-2.5"
-    : "text-sm sm:text-base md:text-lg font-bold px-3 py-1.5 sm:px-4 sm:py-2";
-  
+// Three size tiers:
+//   - "normal": shooting star captions (compact)
+//   - "large": reactive shape captions (bigger)
+//   - "tank": tank captions — biggest & boldest, sized to be readable on
+//             mobile through desktop. On mobile we use text-base (16px)
+//             rather than text-sm (14px) so the longest caption
+//             "don't mind me, read on" is comfortably readable when the
+//             bubble is rotated. Still fits inside a 360px viewport.
+// `rotate` lets each instance choose its tilt — the tank bubble uses a
+// gentler -3° (vs the comic -6° on shooting stars) so the longer tank
+// messages stay closer to horizontal and easier to read at small sizes.
+function ComicBubble({
+  text,
+  size = "normal",
+  position = [0, 0, 0],
+  rotate = -6,
+}: {
+  text: string | null;
+  size?: "normal" | "large" | "tank";
+  position?: [number, number, number];
+  rotate?: number;
+}) {
+  const sizeClasses =
+    size === "tank"
+      ? "text-base sm:text-lg md:text-xl lg:text-2xl font-black px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 tracking-wide"
+      : size === "large"
+      ? "text-sm sm:text-lg md:text-xl font-black px-4 py-2 sm:px-5 sm:py-2.5"
+      : "text-sm sm:text-base md:text-lg font-bold px-3 py-1.5 sm:px-4 sm:py-2";
+
   return (
-    <Html center distanceFactor={7} zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
+    <Html
+      position={position}
+      center
+      distanceFactor={9}
+      zIndexRange={[30, 0]}
+      style={{ pointerEvents: "none" }}
+    >
       <AnimatePresence>
         {text && (
           <motion.div
             key={text}
-            initial={{ scale: 0, rotate: -12, opacity: 0 }}
-            animate={{ scale: 1, rotate: -6, opacity: 1 }}
+            initial={{ scale: 0, rotate: rotate - 6, opacity: 0 }}
+            animate={{ scale: 1, rotate, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 600, damping: 18 }}
             className={`select-none whitespace-nowrap rounded-lg border-2 border-white bg-black/85 font-display tracking-wide text-white shadow-[3px_3px_0_rgba(0,0,0,0.5)] ${sizeClasses}`}
@@ -201,7 +230,8 @@ function ComicBubble({ text, size = "normal" }: { text: string | null; size?: "n
 // before firing again. Paths are kept on the right/upper side of the scene
 // (positive x, away from the text column on the left) so the trail never
 // crosses over the hero copy.
-// Now with LONGER duration and BOLDER, LARGER text!
+// dartDuration bumped to 2.5s so the caption stays on screen long enough
+// to actually read on both mobile and desktop.
 function ShootingStar({
   start,
   end,
@@ -209,7 +239,7 @@ function ShootingStar({
   cycle,
   delay,
   caption,
-  dartDuration = 1.4,
+  dartDuration = 2.5,
 }: {
   start: [number, number, number];
   end: [number, number, number];
@@ -243,7 +273,7 @@ function ShootingStar({
       <mesh ref={ref} visible={false}>
         <sphereGeometry args={[0.035, 8, 8]} />
         <meshBasicMaterial color={color} toneMapped={false} />
-        <ComicBubble text={active ? caption : null} size="large" />
+        <ComicBubble text={active ? caption : null} size="large" position={[0, 0.6, 0]} />
       </mesh>
     </Trail>
   );
@@ -361,122 +391,367 @@ function ReactiveShape({
           emissiveIntensity={0.45}
         />
       </Octahedron>
-      <ComicBubble text={caption} size="large" />
+      <ComicBubble text={caption} size="large" position={[0, 0.6, 0]} />
     </group>
   );
 }
 
-// Tank that slowly passes through the scene with sequential comic messages
-// Takes ~10 seconds to cross the screen, with funny quips along the way
+// Tank that slowly passes through the scene with sequential comic messages.
+//
+// DESIGN GOALS (per user spec):
+//   1. Crosses the screen SLOWLY — 20 seconds end-to-end at a constant,
+//      readable pace (no eased-in-out jerky bits in the middle that rush
+//      past the copy).
+//   2. Each caption is shown for ~4 seconds so the user can actually read
+//      every word on both mobile and desktop before the next one swaps in.
+//   3. ALL captions are shown before the tank exits — the last one ("bye!")
+//      is held until the tank has fully left the frame.
+//   4. Tank itself is a proper-looking military vehicle: hull, sloped
+//      glacis plate, turret with hatch + commander stub, long cannon,
+//      side skirt over visible road wheels, exhaust pipe, antenna.
+//   5. Road wheels spin proportionally to ground speed for a sense of motion.
+//   6. Caption is rendered by a SEPARATE component (TankCaption) at a fixed
+//      world position above the hero copy — NOT anchored to the tank mesh.
+//      This guarantees the caption is always visible at every viewport
+//      size, even when the tank itself is off-screen entering / exiting.
+//      Anchoring the bubble to the tank meant the bubble got clipped at
+//      the screen edges on desktop ("TANK INCOMING!" showed as "DOMING!")
+//      and was completely invisible on mobile during entry / exit.
+
+// Module-level timing constants — shared between Tank (movement) and
+// TankCaption (text). Defined here so both stay in sync automatically.
+const TANK_CYCLE = 25; // total cycle = 20s crossing + 5s rest
+const TANK_CROSS_DURATION = 20; // seconds to traverse the screen
+const TANK_START_X = -13;
+const TANK_END_X = 13;
+const TANK_Y_POS = -1.2;
+const TANK_Z_POS = -1.5;
+
+// 5 evenly-spaced captions, 4s each, covering the full 20s crossing.
+// Every caption is guaranteed to be visible for a full 4s at every
+// responsive size — see TankCaption below for the always-on-screen
+// fixed-position bubble that displays them.
+const TANK_MESSAGES = [
+  { at: 0, text: "TANK INCOMING!" },
+  { at: 4, text: "passing through" },
+  { at: 8, text: "don't mind me, read on" },
+  { at: 12, text: "almost there" },
+  { at: 16, text: "bye!" },
+] as const;
+
 function Tank() {
   const groupRef = useRef<THREE.Group>(null);
-  const [caption, setCaption] = useState<string | null>(null);
-  
-  // Tank moves from left to right, taking 10 seconds to cross
-  const CYCLE = 15; // Total cycle time in seconds (includes pause at end)
-  const CROSS_DURATION = 10; // Time to cross the screen
-  const START_X = -12;
-  const END_X = 12;
-  const Y_POS = -0.5;
-  const Z_POS = -1.5;
-  
-  // Sequential messages as tank crosses
-  const messages = [
-    { at: 0.0, text: "TANK INCOMING!" },
-    { at: 1.5, text: "passing through" },
-    { at: 3.5, text: "don't mind me, read on" },
-    { at: 5.5, text: "wow this site is cool" },
-    { at: 7.0, text: "almost there" },
-    { at: 8.5, text: "almost there..." },
-    { at: 9.5, text: "bye" },
-  ];
+  const wheelRefs = useRef<THREE.Mesh[]>([]);
 
   useFrame((state) => {
     if (!groupRef.current) return;
     const elapsed = state.clock.getElapsedTime();
-    const t = elapsed % CYCLE;
-    
-    // Calculate position (0 to 1 progress across screen)
-    let progress = 0;
-    if (t < CROSS_DURATION) {
-      progress = t / CROSS_DURATION;
-    } else {
-      progress = 1; // Stay at end for remainder of cycle
+    const t = elapsed % TANK_CYCLE;
+
+    // Linear progress while crossing, then hold at 1.0 during the rest
+    // period so the tank sits just off-screen before looping.
+    const progress = t < TANK_CROSS_DURATION ? t / TANK_CROSS_DURATION : 1;
+
+    // Pure linear interpolation — no easing — so the tank never "rushes"
+    // through the middle and the caption timing stays predictable.
+    groupRef.current.position.x = TANK_START_X + (TANK_END_X - TANK_START_X) * progress;
+    groupRef.current.position.y = TANK_Y_POS;
+    groupRef.current.position.z = TANK_Z_POS;
+
+    // Subtle bobbing for mechanical "weight" feel.
+    groupRef.current.rotation.z = Math.sin(elapsed * 2.2) * 0.015;
+    groupRef.current.position.y = TANK_Y_POS + Math.sin(elapsed * 4) * 0.015;
+
+    // Spin road wheels in proportion to ground speed.
+    // (26 units of travel over 20s ≈ 1.3 u/s; wheel radius 0.18 →
+    // angular velocity ≈ 1.3/0.18 ≈ 7.2 rad/s)
+    const wheelSpeed = 7.2 * (t < TANK_CROSS_DURATION ? 1 : 0);
+    for (const w of wheelRefs.current) {
+      if (w) w.rotation.x = elapsed * wheelSpeed;
     }
-    
-    // Ease in-out for smoother movement
-    const eased = progress < 0.5 
-      ? 2 * progress * progress 
-      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-    
-    // Set position
-    groupRef.current.position.x = START_X + (END_X - START_X) * eased;
-    groupRef.current.position.y = Y_POS;
-    groupRef.current.position.z = Z_POS;
-    
-    // Slight bobbing for movement feel
-    groupRef.current.rotation.z = Math.sin(elapsed * 3) * 0.02;
-    
-    // Update caption based on progress
-    let currentMessage: string | null = null;
-    for (const msg of messages) {
-      if (progress >= msg.at / CROSS_DURATION && progress < (messages[messages.indexOf(msg) + 1]?.at / CROSS_DURATION ?? 1.1)) {
-        currentMessage = msg.text;
-        break;
-      }
-    }
-    setCaption(currentMessage);
   });
 
+  // Military green palette — high metalness for the metal bits, matte
+  // for the rubber tracks/wheels, slightly emissive so the tank reads
+  // against the dark space background without being a flat silhouette.
+  const hullColor = "#3f5c3a";
+  const turretColor = "#4a6b43";
+  const barrelColor = "#2c3a26";
+  const trimColor = "#1c2818";
+  const trackColor = "#161a13";
+  const wheelColor = "#262b1f";
+  const metalMat = (color: string, opts: { emissive?: string; emissiveIntensity?: number; rough?: number } = {}) =>
+    ({
+      color,
+      roughness: opts.rough ?? 0.55,
+      metalness: 0.65,
+      emissive: opts.emissive ?? color,
+      emissiveIntensity: opts.emissiveIntensity ?? 0.12,
+    } as const);
+
   return (
-    <group ref={groupRef} position={[START_X, Y_POS, Z_POS]}>
-      {/* Tank body - simplified geometric representation */}
-      <mesh position={[0, 0, 0]} scale={[1.2, 0.4, 0.6]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#4ade80" roughness={0.4} metalness={0.6} />
+    <group ref={groupRef} position={[TANK_START_X, TANK_Y_POS, TANK_Z_POS]}>
+      {/* ---------- Hull ---------- */}
+      {/* Lower hull — main box */}
+      <mesh position={[0, 0, 0]} castShadow receiveShadow>
+        <boxGeometry args={[2.2, 0.5, 1.3]} />
+        <meshStandardMaterial {...metalMat(hullColor)} />
       </mesh>
-      
-      {/* Tank turret */}
-      <mesh position={[0.1, 0.35, 0]} scale={[0.5, 0.3, 0.4]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#22c55e" roughness={0.4} metalness={0.6} />
+
+      {/* Sloped glacis plate at the front (positive x = front) */}
+      <mesh position={[1.15, 0.18, 0]} rotation={[0, 0, -Math.PI / 4.5]} castShadow>
+        <boxGeometry args={[0.55, 0.5, 1.25]} />
+        <meshStandardMaterial {...metalMat(hullColor, { rough: 0.5 })} />
       </mesh>
-      
-      {/* Tank cannon */}
-      <mesh position={[0.7, 0.35, 0]} rotation={[0, 0, Math.PI / 2]} scale={[0.6, 0.12, 0.12]}>
-        <cylinderGeometry args={[1, 1, 1, 8]} />
-        <meshStandardMaterial color="#16a34a" roughness={0.3} metalness={0.7} />
+
+      {/* Rear deck — flat sloped plate at the back */}
+      <mesh position={[-1.15, 0.18, 0]} rotation={[0, 0, Math.PI / 4.5]} castShadow>
+        <boxGeometry args={[0.55, 0.5, 1.25]} />
+        <meshStandardMaterial {...metalMat(hullColor, { rough: 0.5 })} />
       </mesh>
-      
-      {/* Tank tracks - left */}
-      <mesh position={[0, -0.25, 0.4]} scale={[1.3, 0.2, 0.15]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#1f2937" roughness={0.8} metalness={0.3} />
+
+      {/* Fenders / side skirts over the tracks — left + right */}
+      <mesh position={[0, -0.05, 0.78]} castShadow>
+        <boxGeometry args={[2.3, 0.08, 0.25]} />
+        <meshStandardMaterial {...metalMat(trimColor, { rough: 0.7 })} />
       </mesh>
-      
-      {/* Tank tracks - right */}
-      <mesh position={[0, -0.25, -0.4]} scale={[1.3, 0.2, 0.15]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color="#1f2937" roughness={0.8} metalness={0.3} />
+      <mesh position={[0, -0.05, -0.78]} castShadow>
+        <boxGeometry args={[2.3, 0.08, 0.25]} />
+        <meshStandardMaterial {...metalMat(trimColor, { rough: 0.7 })} />
       </mesh>
-      
-      {/* Wheels/tracks detail */}
-      {[-0.4, 0, 0.4].map((xOffset, i) => (
-        <group key={i}>
-          <mesh position={[xOffset, -0.25, 0.45]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.12, 0.04, 8, 16]} />
-            <meshStandardMaterial color="#374151" roughness={0.7} metalness={0.4} />
+
+      {/* ---------- Turret ---------- */}
+      {/* Turret ring / base */}
+      <mesh position={[0.05, 0.3, 0]} castShadow>
+        <cylinderGeometry args={[0.55, 0.6, 0.15, 16]} />
+        <meshStandardMaterial {...metalMat(trimColor, { rough: 0.4 })} />
+      </mesh>
+      {/* Turret body — slab-sided, slightly tapered front */}
+      <mesh position={[0.05, 0.55, 0]} castShadow>
+        <boxGeometry args={[1.1, 0.4, 1.0]} />
+        <meshStandardMaterial {...metalMat(turretColor)} />
+      </mesh>
+      {/* Sloped front of turret — looks armored */}
+      <mesh position={[0.62, 0.55, 0]} rotation={[0, 0, -Math.PI / 5]} castShadow>
+        <boxGeometry args={[0.4, 0.4, 1.0]} />
+        <meshStandardMaterial {...metalMat(turretColor, { rough: 0.5 })} />
+      </mesh>
+
+      {/* Commander hatch on top of turret */}
+      <mesh position={[0.1, 0.78, 0]} castShadow>
+        <cylinderGeometry args={[0.18, 0.2, 0.1, 12]} />
+        <meshStandardMaterial {...metalMat("#2c3a26", { rough: 0.35 })} />
+      </mesh>
+      {/* Tiny commander stub (just for character) */}
+      <mesh position={[0.1, 0.92, 0]}>
+        <sphereGeometry args={[0.05, 8, 8]} />
+        <meshStandardMaterial color="#1a1f12" roughness={0.6} metalness={0.2} />
+      </mesh>
+
+      {/* ---------- Main gun ---------- */}
+      {/* Gun mantlet — block where barrel meets turret */}
+      <mesh position={[1.0, 0.55, 0]} castShadow>
+        <boxGeometry args={[0.3, 0.3, 0.3]} />
+        <meshStandardMaterial {...metalMat(trimColor, { rough: 0.4 })} />
+      </mesh>
+      {/* Main barrel — long cylinder */}
+      <mesh position={[1.85, 0.55, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.07, 0.08, 1.5, 16]} />
+        <meshStandardMaterial {...metalMat(barrelColor, { rough: 0.35 })} />
+      </mesh>
+      {/* Muzzle brake — slight bulge at the end */}
+      <mesh position={[2.62, 0.55, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.1, 0.1, 0.18, 16]} />
+        <meshStandardMaterial {...metalMat(barrelColor, { rough: 0.3 })} />
+      </mesh>
+
+      {/* ---------- Tracks + road wheels ---------- */}
+      {/* Track base — long rounded box running along each side */}
+      <mesh position={[0, -0.18, 0.7]} castShadow>
+        <boxGeometry args={[2.4, 0.32, 0.18]} />
+        <meshStandardMaterial
+          color={trackColor}
+          roughness={0.9}
+          metalness={0.2}
+          emissive="#0a0d07"
+          emissiveIntensity={0.1}
+        />
+      </mesh>
+      <mesh position={[0, -0.18, -0.7]} castShadow>
+        <boxGeometry args={[2.4, 0.32, 0.18]} />
+        <meshStandardMaterial
+          color={trackColor}
+          roughness={0.9}
+          metalness={0.2}
+          emissive="#0a0d07"
+          emissiveIntensity={0.1}
+        />
+      </mesh>
+
+      {/* Road wheels — 5 per side, evenly spaced. Wheels SPIN on their
+          local X axis (cylinder default axis is Y, so we rotate the mesh
+          90° on Z to lay it on its side, then spin on X to roll). */}
+      {[-0.8, -0.4, 0, 0.4, 0.8].map((xOff, i) => (
+        <group key={`wheel-${i}`}>
+          <mesh
+            ref={(m) => {
+              if (m) wheelRefs.current[i] = m;
+            }}
+            position={[xOff, -0.2, 0.7]}
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <cylinderGeometry args={[0.18, 0.18, 0.12, 12]} />
+            <meshStandardMaterial
+              color={wheelColor}
+              roughness={0.6}
+              metalness={0.5}
+              emissive={wheelColor}
+              emissiveIntensity={0.08}
+            />
           </mesh>
-          <mesh position={[xOffset, -0.25, -0.45]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.12, 0.04, 8, 16]} />
-            <meshStandardMaterial color="#374151" roughness={0.7} metalness={0.4} />
+          <mesh
+            ref={(m) => {
+              if (m) wheelRefs.current[i + 5] = m;
+            }}
+            position={[xOff, -0.2, -0.7]}
+            rotation={[0, 0, Math.PI / 2]}
+          >
+            <cylinderGeometry args={[0.18, 0.18, 0.12, 12]} />
+            <meshStandardMaterial
+              color={wheelColor}
+              roughness={0.6}
+              metalness={0.5}
+              emissive={wheelColor}
+              emissiveIntensity={0.08}
+            />
           </mesh>
         </group>
       ))}
-      
-      {/* Comic bubble above tank */}
-      <ComicBubble text={caption} size="large" />
+
+      {/* Drive sprockets — slightly bigger, at the rear of each track */}
+      <mesh position={[-1.05, -0.15, 0.7]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.22, 0.22, 0.14, 10]} />
+        <meshStandardMaterial {...metalMat("#1a1f12", { rough: 0.4 })} />
+      </mesh>
+      <mesh position={[-1.05, -0.15, -0.7]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.22, 0.22, 0.14, 10]} />
+        <meshStandardMaterial {...metalMat("#1a1f12", { rough: 0.4 })} />
+      </mesh>
+
+      {/* Idler wheels at the front (slightly larger) */}
+      <mesh position={[1.05, -0.15, 0.7]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.2, 0.2, 0.14, 10]} />
+        <meshStandardMaterial {...metalMat("#1a1f12", { rough: 0.4 })} />
+      </mesh>
+      <mesh position={[1.05, -0.15, -0.7]} rotation={[0, 0, Math.PI / 2]} castShadow>
+        <cylinderGeometry args={[0.2, 0.2, 0.14, 10]} />
+        <meshStandardMaterial {...metalMat("#1a1f12", { rough: 0.4 })} />
+      </mesh>
+
+      {/* ---------- Detail bits ---------- */}
+      {/* Exhaust pipe sticking out the back-left */}
+      <mesh position={[-1.18, 0.15, 0.4]} rotation={[0, Math.PI / 2, 0]} castShadow>
+        <cylinderGeometry args={[0.07, 0.07, 0.3, 10]} />
+        <meshStandardMaterial color="#1a1a1a" roughness={0.8} metalness={0.4} />
+      </mesh>
+
+      {/* Antenna — thin tall stick on the turret */}
+      <mesh position={[0.45, 1.2, 0.3]}>
+        <cylinderGeometry args={[0.012, 0.018, 1.0, 6]} />
+        <meshStandardMaterial color="#0a0a0a" roughness={0.5} metalness={0.6} />
+      </mesh>
+
+      {/* Headlight — small emissive disc on the glacis */}
+      <mesh position={[1.32, 0.1, 0.35]} rotation={[0, 0, Math.PI / 2]}>
+        <cylinderGeometry args={[0.06, 0.06, 0.04, 12]} />
+        <meshStandardMaterial
+          color="#f5f5dc"
+          emissive="#fff8a0"
+          emissiveIntensity={1.5}
+          roughness={0.3}
+        />
+      </mesh>
     </group>
+  );
+}
+
+// Tank caption bubble — rendered at a FIXED world position above the hero
+// copy, decoupled from the tank mesh itself.
+//
+// Why decoupled: when the bubble was a child of the tank group, drei's
+// <Html> projected its position to wherever the tank was in 3D space. On
+// desktop, the tank starts at world x=-13 (off-screen), so the projected
+// bubble was at the left edge of the canvas and got clipped —
+// "TANK INCOMING!" rendered as "DOMING!" because half the bubble was
+// outside the viewport. On mobile (very narrow visible x range), the
+// bubble was entirely off-screen during entry and exit, so the first
+// and last messages were never visible.
+//
+// By rendering the bubble at a fixed world position above the hero copy,
+// it is always on-screen at every viewport size, and all 5 messages
+// are guaranteed to be readable for their full 4-second window.
+//
+// Responsive Y position: on narrow (mobile portrait) viewports the camera
+// pulls back to z=11 with a wider 62° vFOV, so the visible world-y range
+// is roughly ±6.6. We position the bubble at y=5.4 on mobile so it
+// projects into the top ~18% of the viewport — clear of the hero badge
+// at pt-28 (112px from top). On wide (desktop/tablet) viewports the
+// camera is at z=8 with 45° vFOV, visible y range ±3.31; we use y=3.0
+// so the bubble sits at the very top of the viewport, well above the
+// hero content (which starts at pt-28 = 112px from top).
+function TankCaption() {
+  const [caption, setCaption] = useState<string | null>(null);
+  const lastMsgRef = useRef<string | null>(null);
+  const { size } = useThree();
+  const aspect = size.width / size.height;
+  // Y position per viewport class — see ResponsiveCamera above for the
+  // matching (fov, z) values.
+  //   • Mobile portrait (aspect < 0.9, z=11, vFOV=62°, visible y ±6.6):
+  //     y = 5.4 → screen y ≈ 74px. The navbar is transparent on mobile
+  //     (no center nav items — `hidden lg:flex`) so the bubble is visible
+  //     through the navbar area, well clear of the hero name (which starts
+  //     at pt-28 = 112px).
+  //   • Tablet (0.9 ≤ aspect < 1.3, z=9, vFOV=50°, visible y ±4.19):
+  //     y = 3.0 → screen y ≈ 145px. Below the navbar (88px) and above the
+  //     hero name (~225px on tablet).
+  //   • Desktop (aspect ≥ 1.3, z=8, vFOV=45°, visible y ±3.31):
+  //     y = 2.5 → screen y ≈ 110px. The navbar on desktop DOES show the
+  //     center nav items (About / Skills / Projects / etc.), so we push
+  //     the bubble just below the navbar (88px) rather than behind it.
+  //     Lands in the empty space between the navbar bottom and the hero
+  //     badge (which is on the left, so no horizontal overlap with the
+  //     horizontally-centered bubble).
+  const bubbleY = aspect < 0.9 ? 5.4 : aspect < 1.3 ? 3.0 : 2.5;
+
+  useFrame((state) => {
+    const elapsed = state.clock.getElapsedTime();
+    const t = elapsed % TANK_CYCLE;
+
+    // Resolve the caption for the current time. Only setState when it
+    // actually changes — calling setCaption every frame would re-render
+    // the bubble 60x/sec and tank performance on low-end devices.
+    let currentMessage: string | null = null;
+    for (let i = 0; i < TANK_MESSAGES.length; i++) {
+      const start = TANK_MESSAGES[i].at;
+      const end = i + 1 < TANK_MESSAGES.length ? TANK_MESSAGES[i + 1].at : TANK_CROSS_DURATION;
+      if (t >= start && t < end) {
+        currentMessage = TANK_MESSAGES[i].text;
+        break;
+      }
+    }
+    if (currentMessage !== lastMsgRef.current) {
+      lastMsgRef.current = currentMessage;
+      setCaption(currentMessage);
+    }
+  });
+
+  return (
+    <ComicBubble
+      text={caption}
+      size="tank"
+      position={[0, bubbleY, 0]}
+      rotate={-3}
+    />
   );
 }
 
@@ -570,8 +845,12 @@ export function Hero3DScene() {
 
         <ShootingStars />
         
-        {/* Tank passing through with comic messages */}
+        {/* Tank passing through with comic messages.
+            Tank handles the 3D mesh movement; TankCaption is a separate
+            fixed-position bubble that guarantees all 5 captions are
+            always visible on every viewport size. */}
         <Tank />
+        <TankCaption />
 
         <MouseParallax />
       </Suspense>

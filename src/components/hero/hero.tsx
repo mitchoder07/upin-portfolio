@@ -169,13 +169,21 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator — moved down on desktop/tablet to avoid stats */}
+        {/* Scroll indicator.
+            Mobile: bottom-20 (5rem) — leaves breathing room above the
+                    bottom edge on small viewports where the section is short.
+            sm:     bottom-20 (5rem) — same as mobile.
+            md/lg:  bottom-6  (1.5rem) — pushed DOWN so the mouse icon sits
+                    well clear of the stats cards on tablet + desktop.
+                    Previously md:bottom-28 lg:bottom-32 which put the
+                    indicator UP inside the stats grid — opposite of what
+                    was asked for. */}
         <motion.button
           onClick={() => scrollTo("about")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-24 md:bottom-28 lg:bottom-32"
+          className="absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-20 md:bottom-6 lg:bottom-6"
           data-cursor="pointer"
         >
           <span className="text-[10px] uppercase tracking-[0.2em]">
