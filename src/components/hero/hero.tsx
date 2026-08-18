@@ -169,13 +169,13 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll indicator — now shown at every screen size */}
+        {/* Scroll indicator — moved down on desktop/tablet to avoid stats */}
         <motion.button
           onClick={() => scrollTo("about")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-16 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-12"
+          className="absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-24 md:bottom-28 lg:bottom-32"
           data-cursor="pointer"
         >
           <span className="text-[10px] uppercase tracking-[0.2em]">

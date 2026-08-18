@@ -170,7 +170,12 @@ function MouseParallax() {
 // A comic-book style text bubble anchored to a 3D position. Renders as real
 // DOM text (via Html) so it always stays crisp and legible, never a blurry
 // texture baked into the canvas, with a bouncy pop-in/pop-out.
-function ComicBubble({ text }: { text: string | null }) {
+// Made BOLDER and LARGER for both mobile and desktop.
+function ComicBubble({ text, size = "normal" }: { text: string | null; size?: "normal" | "large" }) {
+  const sizeClasses = size === "large" 
+    ? "text-sm sm:text-lg md:text-xl font-black px-4 py-2 sm:px-5 sm:py-2.5"
+    : "text-sm sm:text-base md:text-lg font-bold px-3 py-1.5 sm:px-4 sm:py-2";
+  
   return (
     <Html center distanceFactor={7} zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
       <AnimatePresence>
@@ -181,7 +186,7 @@ function ComicBubble({ text }: { text: string | null }) {
             animate={{ scale: 1, rotate: -6, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 600, damping: 18 }}
-            className="select-none whitespace-nowrap rounded-lg border-2 border-white bg-black/85 px-2.5 py-1 font-display text-xs font-black tracking-wide text-white shadow-[2px_2px_0_rgba(0,0,0,0.5)] sm:text-sm"
+            className={`select-none whitespace-nowrap rounded-lg border-2 border-white bg-black/85 font-display tracking-wide text-white shadow-[3px_3px_0_rgba(0,0,0,0.5)] ${sizeClasses}`}
           >
             {text}
           </motion.div>
@@ -196,6 +201,7 @@ function ComicBubble({ text }: { text: string | null }) {
 // before firing again. Paths are kept on the right/upper side of the scene
 // (positive x, away from the text column on the left) so the trail never
 // crosses over the hero copy.
+// Now with LONGER duration and BOLDER, LARGER text!
 function ShootingStar({
   start,
   end,
@@ -203,7 +209,7 @@ function ShootingStar({
   cycle,
   delay,
   caption,
-  dartDuration = 0.7,
+  dartDuration = 1.4,
 }: {
   start: [number, number, number];
   end: [number, number, number];
@@ -237,7 +243,7 @@ function ShootingStar({
       <mesh ref={ref} visible={false}>
         <sphereGeometry args={[0.035, 8, 8]} />
         <meshBasicMaterial color={color} toneMapped={false} />
-        <ComicBubble text={active ? caption : null} />
+        <ComicBubble text={active ? caption : null} size="large" />
       </mesh>
     </Trail>
   );
@@ -246,10 +252,19 @@ function ShootingStar({
 function ShootingStars() {
   return (
     <>
-      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={6} delay={0} caption="PEW!" />
-      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={7.5} delay={2.2} caption="ZAP!" />
-      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={5.5} delay={4} caption="PEW PEW!" />
-      <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={8} delay={5.5} caption="WHOOSH!" />
+      {/* Original shooting stars with longer duration */}
+      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={8} delay={0} caption="PEW!" />
+      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={10} delay={2.5} caption="ZAP!" />
+      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={9} delay={5} caption="PEW PEW!" />
+      <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={11} delay={7.5} caption="WHOOSH!" />
+      
+      {/* NEW additional shooting stars with more variety */}
+      <ShootingStar start={[4, 4, -1.5]} end={[7, 1, -2]} color="#f472b6" cycle={12} delay={1} caption="KA-POW!" />
+      <ShootingStar start={[7, 3, -2.5]} end={[3, -2, -1]} color="#34d399" cycle={9.5} delay={3.5} caption="BAM!" />
+      <ShootingStar start={[2, 4.5, -2]} end={[6, 0.5, -1]} color="#fbbf24" cycle={10.5} delay={6} caption="BOOM!" />
+      <ShootingStar start={[5, 3.5, -1]} end={[1, -2.5, -2]} color="#60a5fa" cycle={13} delay={8} caption="WHAM!" />
+      <ShootingStar start={[3, 5, -2.5]} end={[6.5, 2, -1.5]} color="#f87171" cycle={8.5} delay={4.5} caption="CRASH!" />
+      <ShootingStar start={[6.5, 4, -1]} end={[2, 0, -2]} color="#a3e635" cycle={11.5} delay={9} caption="KAPOW!" />
     </>
   );
 }
@@ -346,7 +361,121 @@ function ReactiveShape({
           emissiveIntensity={0.45}
         />
       </Octahedron>
-      <ComicBubble text={caption} />
+      <ComicBubble text={caption} size="large" />
+    </group>
+  );
+}
+
+// Tank that slowly passes through the scene with sequential comic messages
+// Takes ~10 seconds to cross the screen, with funny quips along the way
+function Tank() {
+  const groupRef = useRef<THREE.Group>(null);
+  const [caption, setCaption] = useState<string | null>(null);
+  
+  // Tank moves from left to right, taking 10 seconds to cross
+  const CYCLE = 15; // Total cycle time in seconds (includes pause at end)
+  const CROSS_DURATION = 10; // Time to cross the screen
+  const START_X = -12;
+  const END_X = 12;
+  const Y_POS = -0.5;
+  const Z_POS = -1.5;
+  
+  // Sequential messages as tank crosses
+  const messages = [
+    { at: 0.0, text: "TANK INCOMING!" },
+    { at: 1.5, text: "passing through" },
+    { at: 3.5, text: "don't mind me, read on" },
+    { at: 5.5, text: "wow this site is cool" },
+    { at: 7.0, text: "almost there" },
+    { at: 8.5, text: "almost there..." },
+    { at: 9.5, text: "bye" },
+  ];
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const elapsed = state.clock.getElapsedTime();
+    const t = elapsed % CYCLE;
+    
+    // Calculate position (0 to 1 progress across screen)
+    let progress = 0;
+    if (t < CROSS_DURATION) {
+      progress = t / CROSS_DURATION;
+    } else {
+      progress = 1; // Stay at end for remainder of cycle
+    }
+    
+    // Ease in-out for smoother movement
+    const eased = progress < 0.5 
+      ? 2 * progress * progress 
+      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+    
+    // Set position
+    groupRef.current.position.x = START_X + (END_X - START_X) * eased;
+    groupRef.current.position.y = Y_POS;
+    groupRef.current.position.z = Z_POS;
+    
+    // Slight bobbing for movement feel
+    groupRef.current.rotation.z = Math.sin(elapsed * 3) * 0.02;
+    
+    // Update caption based on progress
+    let currentMessage: string | null = null;
+    for (const msg of messages) {
+      if (progress >= msg.at / CROSS_DURATION && progress < (messages[messages.indexOf(msg) + 1]?.at / CROSS_DURATION ?? 1.1)) {
+        currentMessage = msg.text;
+        break;
+      }
+    }
+    setCaption(currentMessage);
+  });
+
+  return (
+    <group ref={groupRef} position={[START_X, Y_POS, Z_POS]}>
+      {/* Tank body - simplified geometric representation */}
+      <mesh position={[0, 0, 0]} scale={[1.2, 0.4, 0.6]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#4ade80" roughness={0.4} metalness={0.6} />
+      </mesh>
+      
+      {/* Tank turret */}
+      <mesh position={[0.1, 0.35, 0]} scale={[0.5, 0.3, 0.4]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#22c55e" roughness={0.4} metalness={0.6} />
+      </mesh>
+      
+      {/* Tank cannon */}
+      <mesh position={[0.7, 0.35, 0]} rotation={[0, 0, Math.PI / 2]} scale={[0.6, 0.12, 0.12]}>
+        <cylinderGeometry args={[1, 1, 1, 8]} />
+        <meshStandardMaterial color="#16a34a" roughness={0.3} metalness={0.7} />
+      </mesh>
+      
+      {/* Tank tracks - left */}
+      <mesh position={[0, -0.25, 0.4]} scale={[1.3, 0.2, 0.15]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#1f2937" roughness={0.8} metalness={0.3} />
+      </mesh>
+      
+      {/* Tank tracks - right */}
+      <mesh position={[0, -0.25, -0.4]} scale={[1.3, 0.2, 0.15]}>
+        <boxGeometry args={[1, 1, 1]} />
+        <meshStandardMaterial color="#1f2937" roughness={0.8} metalness={0.3} />
+      </mesh>
+      
+      {/* Wheels/tracks detail */}
+      {[-0.4, 0, 0.4].map((xOffset, i) => (
+        <group key={i}>
+          <mesh position={[xOffset, -0.25, 0.45]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.12, 0.04, 8, 16]} />
+            <meshStandardMaterial color="#374151" roughness={0.7} metalness={0.4} />
+          </mesh>
+          <mesh position={[xOffset, -0.25, -0.45]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.12, 0.04, 8, 16]} />
+            <meshStandardMaterial color="#374151" roughness={0.7} metalness={0.4} />
+          </mesh>
+        </group>
+      ))}
+      
+      {/* Comic bubble above tank */}
+      <ComicBubble text={caption} size="large" />
     </group>
   );
 }
@@ -440,6 +569,9 @@ export function Hero3DScene() {
         />
 
         <ShootingStars />
+        
+        {/* Tank passing through with comic messages */}
+        <Tank />
 
         <MouseParallax />
       </Suspense>
