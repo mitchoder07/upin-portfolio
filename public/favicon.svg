@@ -6,14 +6,7 @@
       <stop offset="0.5" stop-color="#D4AF37"/>
       <stop offset="1" stop-color="#9F7E1E"/>
     </linearGradient>
-    <radialGradient id="cyanGlow" cx="0.5" cy="0.3" r="0.4">
-      <stop offset="0" stop-color="#06B6D4" stop-opacity="0.3"/>
-      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
-    </radialGradient>
   </defs>
-
-  <rect width="64" height="64" rx="14" fill="#000000"/>
-  <ellipse cx="32" cy="24" rx="28" ry="18" fill="url(#cyanGlow)"/>
 
   <!-- U letterform -->
   <path d="M 20 18 L 20 38 Q 20 46 28 46 L 36 46 Q 44 46 44 38 L 44 18"
