@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" role="img" aria-label="Upin — Frontend Engineer & UI/UX Designer">
+  <defs>
+    <linearGradient id="ogGold" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F5E6A8"/>
+      <stop offset="0.5" stop-color="#D4AF37"/>
+      <stop offset="1" stop-color="#9F7E1E"/>
+    </linearGradient>
+    <linearGradient id="ogCyan" x1="0" y1="0" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#06B6D4"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="ogGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#D4AF37" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#D4AF37" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  
+  <rect width="1200" height="630" fill="#000000"/>
+
+  
+  <ellipse cx="600" cy="315" rx="400" ry="280" fill="url(#ogGlow)"/>
+
+  
+  <g transform="translate(80, 60) scale(0.78)">
+    
+    <path d="M 144 96 L 144 320 Q 144 392 216 392 L 296 392 Q 368 392 368 320 L 368 96"
+      stroke="url(#ogGold)" stroke-width="36" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    
+    <rect x="120" y="80" width="272" height="14" rx="3" fill="url(#ogGold)"/>
+
+    
+    <path d="M 120 80 L 144 24 L 168 80 Z" fill="url(#ogGold)"/>
+    <path d="M 224 80 L 256 8 L 288 80 Z" fill="url(#ogGold)"/>
+    <path d="M 344 80 L 368 24 L 392 80 Z" fill="url(#ogGold)"/>
+
+    
+    <text x="144" y="64" font-family="Georgia, serif" font-size="26" font-weight="700" fill="#000000" text-anchor="middle">U</text>
+    <text x="256" y="52" font-family="'Noto Naskh Arabic', 'Amiri', serif" font-size="28" font-weight="700" fill="#000000" text-anchor="middle">ع</text>
+    <text x="368" y="64" font-family="'Noto Sans CJK SC', sans-serif" font-size="26" font-weight="700" fill="#000000" text-anchor="middle">上</text>
+
+    
+    <text x="256" y="436" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="11" fill="url(#ogCyan)" opacity="0.75" letter-spacing="2">011 1010 010 1100 011 1010 010 1100</text>
+    <circle cx="256" cy="452" r="2" fill="#06B6D4" opacity="0.9"/>
+  </g>
+
+  
+  <g transform="translate(640, 220)">
+    
+    <text x="0" y="80"
+      font-family="'Space Grotesk', 'Inter', sans-serif"
+      font-size="86" font-weight="700"
+      fill="url(#ogGold)" letter-spacing="-1">Upin</text>
+
+    
+    <text x="4" y="138"
+      font-family="'Inter', sans-serif"
+      font-size="24" font-weight="400"
+      fill="#E2E8F0">Frontend Engineer &amp; UI/UX Designer</text>
+
+    
+    <text x="4" y="176"
+      font-family="'JetBrains Mono', monospace"
+      font-size="16" font-weight="400"
+      fill="#06B6D4">7 human languages · 16+ programming ones</text>
+  </g>
+</svg>

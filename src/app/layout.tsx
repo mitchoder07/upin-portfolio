@@ -39,18 +39,35 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: "Upin" }],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   openGraph: {
     title: "Upin — Frontend Engineer & UI/UX Designer",
     description:
       "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones. From database to pixel.",
     siteName: "Upin",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Upin — Frontend Engineer & UI/UX Designer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Upin — Frontend Engineer & UI/UX Designer",
     description:
       "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones.",
+    images: ["/og-image.png"],
   },
 };
 
