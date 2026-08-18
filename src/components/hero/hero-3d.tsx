@@ -8,16 +8,18 @@ import {
   Lightformer,
   Sparkles,
   Trail,
+  Html,
   TorusKnot,
   Icosahedron,
   Octahedron,
   AdaptiveDpr,
   PerformanceMonitor,
 } from "@react-three/drei";
-import { Component, Suspense, useRef, useMemo, useEffect } from "react";
+import { Component, Suspense, useRef, useMemo, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import type { Mesh } from "three";
 import * as THREE from "three";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Catches any hard failure from Environment's network-fetched HDR (not just
 // a slow load) so it can never take down the rest of the 3D scene.
@@ -165,16 +167,42 @@ function MouseParallax() {
   return null;
 }
 
+// A comic-book style text bubble anchored to a 3D position. Renders as real
+// DOM text (via Html) so it always stays crisp and legible, never a blurry
+// texture baked into the canvas, with a bouncy pop-in/pop-out.
+function ComicBubble({ text }: { text: string | null }) {
+  return (
+    <Html center distanceFactor={7} zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
+      <AnimatePresence>
+        {text && (
+          <motion.div
+            key={text}
+            initial={{ scale: 0, rotate: -12, opacity: 0 }}
+            animate={{ scale: 1, rotate: -6, opacity: 1 }}
+            exit={{ scale: 0, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 600, damping: 18 }}
+            className="select-none whitespace-nowrap rounded-lg border-2 border-white bg-black/85 px-2.5 py-1 font-display text-xs font-black tracking-wide text-white shadow-[2px_2px_0_rgba(0,0,0,0.5)] sm:text-sm"
+          >
+            {text}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </Html>
+  );
+}
+
 // A single playful "pew pew" streak — darts once across the background,
-// then goes idle for a while before firing again. Paths are kept on the
-// right/upper side of the scene (positive x, away from the text column on
-// the left) so the trail never crosses over the hero copy.
+// popping up a comic-style caption as it fires, then goes idle for a while
+// before firing again. Paths are kept on the right/upper side of the scene
+// (positive x, away from the text column on the left) so the trail never
+// crosses over the hero copy.
 function ShootingStar({
   start,
   end,
   color,
   cycle,
   delay,
+  caption,
   dartDuration = 0.7,
 }: {
   start: [number, number, number];
@@ -182,16 +210,20 @@ function ShootingStar({
   color: string;
   cycle: number;
   delay: number;
+  caption: string;
   dartDuration?: number;
 }) {
   const ref = useRef<Mesh>(null);
   const from = useMemo(() => new THREE.Vector3(...start), [start]);
   const to = useMemo(() => new THREE.Vector3(...end), [end]);
+  const [active, setActive] = useState(false);
 
   useFrame((state) => {
     if (!ref.current) return;
     const t = (state.clock.getElapsedTime() + delay) % cycle;
-    if (t > dartDuration) {
+    const isActive = t <= dartDuration;
+    if (isActive !== active) setActive(isActive);
+    if (!isActive) {
       ref.current.visible = false;
       return;
     }
@@ -205,6 +237,7 @@ function ShootingStar({
       <mesh ref={ref} visible={false}>
         <sphereGeometry args={[0.035, 8, 8]} />
         <meshBasicMaterial color={color} toneMapped={false} />
+        <ComicBubble text={active ? caption : null} />
       </mesh>
     </Trail>
   );
@@ -213,11 +246,108 @@ function ShootingStar({
 function ShootingStars() {
   return (
     <>
-      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={6} delay={0} />
-      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={7.5} delay={2.2} />
-      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={5.5} delay={4} />
-      <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={8} delay={5.5} />
+      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={6} delay={0} caption="PEW!" />
+      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={7.5} delay={2.2} caption="ZAP!" />
+      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={5.5} delay={4} caption="PEW PEW!" />
+      <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={8} delay={5.5} caption="WHOOSH!" />
     </>
+  );
+}
+
+// The comic relief: a little shape that periodically "gets hit" by a
+// passing shot, panics, and bolts away in a full dramatic overreaction —
+// before sheepishly sneaking back to its spot a moment later. Runs on a
+// fixed loop rather than true collision detection, so the timing is always
+// predictable and never chaotic.
+function ReactiveShape({
+  position,
+  color,
+}: {
+  position: [number, number, number];
+  color: string;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+  const meshRef = useRef<Mesh>(null);
+  const [caption, setCaption] = useState<string | null>(null);
+  const phaseRef = useRef<"idle" | "hit" | "fleeing" | "returning">("idle");
+
+  const basePos = useMemo(() => new THREE.Vector3(...position), [position]);
+  const fleePos = useMemo(
+    () => new THREE.Vector3(position[0] + 3.2, position[1] + 2, position[2] - 2.5),
+    [position]
+  );
+
+  const CYCLE = 9;
+  const HIT_AT = 5.5;
+  const HIT_DURATION = 0.35;
+  const FLEE_DURATION = 1.3;
+  const RETURN_DURATION = 1.4;
+
+  useFrame((state) => {
+    if (!groupRef.current || !meshRef.current) return;
+    const elapsed = state.clock.getElapsedTime();
+    meshRef.current.rotation.x = elapsed * 0.15;
+    meshRef.current.rotation.y = elapsed * 0.2;
+
+    const t = elapsed % CYCLE;
+
+    if (t < HIT_AT) {
+      if (phaseRef.current !== "idle") {
+        phaseRef.current = "idle";
+        setCaption(null);
+      }
+      groupRef.current.position.copy(basePos);
+      groupRef.current.rotation.z = 0;
+    } else if (t < HIT_AT + HIT_DURATION) {
+      if (phaseRef.current !== "hit") {
+        phaseRef.current = "hit";
+        setCaption("OW!");
+      }
+      const shakeT = (t - HIT_AT) / HIT_DURATION;
+      groupRef.current.position.set(
+        basePos.x + Math.sin(shakeT * 50) * 0.09,
+        basePos.y + Math.cos(shakeT * 45) * 0.09,
+        basePos.z
+      );
+    } else if (t < HIT_AT + HIT_DURATION + FLEE_DURATION) {
+      if (phaseRef.current !== "fleeing") {
+        phaseRef.current = "fleeing";
+        setCaption("Nooo, I'm out!");
+      }
+      const fleeT = (t - HIT_AT - HIT_DURATION) / FLEE_DURATION;
+      const eased = 1 - Math.pow(1 - fleeT, 2);
+      groupRef.current.position.lerpVectors(basePos, fleePos, eased);
+      groupRef.current.rotation.z = eased * Math.PI * 1.5;
+    } else {
+      if (phaseRef.current !== "returning") {
+        phaseRef.current = "returning";
+        setCaption("...okay, back now.");
+      }
+      const retT = (t - HIT_AT - HIT_DURATION - FLEE_DURATION) / RETURN_DURATION;
+      const eased = retT * retT;
+      groupRef.current.position.lerpVectors(fleePos, basePos, eased);
+      groupRef.current.rotation.z = (1 - eased) * Math.PI * 1.5;
+      if (retT > 0.85 && phaseRef.current === "returning") {
+        setCaption(null);
+      }
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={position}>
+      <Octahedron ref={meshRef} args={[1, 0]} scale={0.4}>
+        <MeshDistortMaterial
+          color={color}
+          roughness={0.2}
+          metalness={0.8}
+          distort={0.2}
+          speed={2.5}
+          emissive={color}
+          emissiveIntensity={0.45}
+        />
+      </Octahedron>
+      <ComicBubble text={caption} />
+    </group>
   );
 }
 
@@ -280,13 +410,7 @@ export function Hero3DScene() {
               scale={0.7}
               speed={1.1}
             />
-            <FloatingShape
-              position={[0.5, 1.8, -2]}
-              color="#a78bfa"
-              geometry="oct"
-              scale={0.4}
-              speed={1.4}
-            />
+            <ReactiveShape position={[0.5, 1.8, -2]} color="#a78bfa" />
             <FloatingShape
               position={[-1.2, -1.6, -1.5]}
               color="#22d3ee"
