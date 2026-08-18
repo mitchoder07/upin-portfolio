@@ -399,49 +399,92 @@ function ReactiveShape({
 // Tank that slowly passes through the scene with sequential comic messages.
 //
 // DESIGN GOALS (per user spec):
-//   1. Crosses the screen SLOWLY — 20 seconds end-to-end at a constant,
+//   1. Crosses the screen SLOWLY — 32 seconds end-to-end at a constant,
 //      readable pace (no eased-in-out jerky bits in the middle that rush
 //      past the copy).
 //   2. Each caption is shown for ~4 seconds so the user can actually read
 //      every word on both mobile and desktop before the next one swaps in.
 //   3. ALL captions are shown before the tank exits — the last one ("bye!")
-//      is held until the tank has fully left the frame.
+//      is held until the tank has fully left the frame at every viewport.
 //   4. Tank itself is a proper-looking military vehicle: hull, sloped
 //      glacis plate, turret with hatch + commander stub, long cannon,
 //      side skirt over visible road wheels, exhaust pipe, antenna.
 //   5. Road wheels spin proportionally to ground speed for a sense of motion.
-//   6. Caption is rendered by a SEPARATE component (TankCaption) at a fixed
-//      world position above the hero copy — NOT anchored to the tank mesh.
-//      This guarantees the caption is always visible at every viewport
-//      size, even when the tank itself is off-screen entering / exiting.
-//      Anchoring the bubble to the tank meant the bubble got clipped at
-//      the screen edges on desktop ("TANK INCOMING!" showed as "DOMING!")
-//      and was completely invisible on mobile during entry / exit.
+//   6. Caption bubble FOLLOWS THE TANK (anchored to the tank group, so it
+//      looks like the tank is the one saying each line), EXCEPT for the
+//      first message ("TANK INCOMING!") which is the announcement made
+//      BEFORE the tank enters the frame. The announcement bubble is
+//      rendered separately at a fixed top-center position so it is always
+//      readable while the tank is still off-screen entering.
+//   7. The tank-anchored bubble uses a SMOOTH SIDE-FLIP — when the tank
+//      is on the left half of the screen, the bubble sits to the RIGHT
+//      of the tank; when the tank is on the right half, the bubble sits
+//      to the LEFT. This keeps the bubble closer to the screen center
+//      and prevents it from getting clipped at the screen edges when the
+//      tank is near either side.
+//   8. Path length and crossing duration are calibrated so that ALL 5
+//      follow-messages (t = 4–24s) fit inside the tank's visible window
+//      on the SMALLEST viewport (mobile portrait, visible x range ±3.03
+//      world units). Tank enters mobile view at t ≈ 4.5s, exits at t ≈ 24.9s,
+//      so every message gets its full 4-second read.
 
-// Module-level timing constants — shared between Tank (movement) and
-// TankCaption (text). Defined here so both stay in sync automatically.
-const TANK_CYCLE = 25; // total cycle = 20s crossing + 5s rest
-const TANK_CROSS_DURATION = 20; // seconds to traverse the screen
-const TANK_START_X = -13;
-const TANK_END_X = 13;
+// Module-level timing constants — shared between Tank (movement), the
+// tank-anchored follow bubble, and TankCaption (the announcement bubble).
+const TANK_CYCLE = 37; // total cycle = 32s crossing + 5s rest
+const TANK_CROSS_DURATION = 32; // seconds to traverse the screen
+const TANK_START_X = -8;
+const TANK_END_X = 8;
 const TANK_Y_POS = -1.2;
 const TANK_Z_POS = -1.5;
 
-// 5 evenly-spaced captions, 4s each, covering the full 20s crossing.
-// Every caption is guaranteed to be visible for a full 4s at every
-// responsive size — see TankCaption below for the always-on-screen
-// fixed-position bubble that displays them.
+// 6 messages total:
+//   - Message 1 ("TANK INCOMING!") at t=0–4s is the ANNOUNCEMENT — rendered
+//     by TankCaption at a fixed top-center position (tank still entering).
+//   - Messages 2–6 are the tank's "dialogue" while it visibly crosses the
+//     screen — rendered by the tank-anchored bubble inside the Tank group.
+// "okay this is kinda fire" is the new playful message inserted before
+// "almost there" — the tank complimenting the site as it passes through.
 const TANK_MESSAGES = [
   { at: 0, text: "TANK INCOMING!" },
   { at: 4, text: "passing through" },
   { at: 8, text: "don't mind me, read on" },
-  { at: 12, text: "almost there" },
-  { at: 16, text: "bye!" },
+  { at: 12, text: "okay this is kinda fire" },
+  { at: 16, text: "almost there" },
+  { at: 20, text: "bye!" },
 ] as const;
+
+// First index that's a "follow" message (vs the announcement at index 0).
+const TANK_FOLLOW_START_INDEX = 1;
 
 function Tank() {
   const groupRef = useRef<THREE.Group>(null);
   const wheelRefs = useRef<THREE.Mesh[]>([]);
+  // Caption for the follow messages (messages 2–6). The first message
+  // ("TANK INCOMING!") is handled separately by TankCaption.
+  const [caption, setCaption] = useState<string | null>(null);
+  const lastMsgRef = useRef<string | null>(null);
+  // Horizontal offset of the bubble relative to the tank center, for the
+  // smooth side-flip. Updates are throttled — we only setState when the
+  // offset has moved by ≥ 0.2 world units from the last committed value,
+  // which keeps it smooth enough to feel continuous while avoiding 60
+  // React re-renders per second.
+  const [bubbleOffsetX, setBubbleOffsetX] = useState(2.5);
+  const lastOffsetRef = useRef(2.5);
+  // Viewport-dependent side-flip behaviour. Mobile portrait has a very
+  // narrow visible x range (~±3.03 world units, vs ~±6.3 on desktop) so
+  // the bubble would get clipped at the screen edges when the tank is
+  // near either side. On mobile we use multiplier 1.0 + clamp ±5 — the
+  // bubble's world X cancels out the tank's X for tankX ∈ [-5, 5], so
+  // the bubble stays at the screen center (always visible) and only
+  // drifts toward the tank when the tank is at the very edges. On
+  // desktop / tablet the wider visible range gives the bubble room to
+  // actually follow the tank, so we use multiplier 0.5 + clamp ±2.5 —
+  // the bubble trails the tank at half amplitude, giving the proper
+  // "tank is saying it" feel without getting clipped.
+  const { size } = useThree();
+  const aspect = size.width / size.height;
+  const bubbleMultiplier = aspect < 0.9 ? 1.0 : 0.5;
+  const bubbleMaxOffset = aspect < 0.9 ? 5 : 2.5;
 
   useFrame((state) => {
     if (!groupRef.current) return;
@@ -463,11 +506,52 @@ function Tank() {
     groupRef.current.position.y = TANK_Y_POS + Math.sin(elapsed * 4) * 0.015;
 
     // Spin road wheels in proportion to ground speed.
-    // (26 units of travel over 20s ≈ 1.3 u/s; wheel radius 0.18 →
-    // angular velocity ≈ 1.3/0.18 ≈ 7.2 rad/s)
-    const wheelSpeed = 7.2 * (t < TANK_CROSS_DURATION ? 1 : 0);
+    // (16 units of travel over 32s = 0.5 u/s; wheel radius 0.18 →
+    // angular velocity ≈ 0.5/0.18 ≈ 2.78 rad/s)
+    const wheelSpeed = 2.78 * (t < TANK_CROSS_DURATION ? 1 : 0);
     for (const w of wheelRefs.current) {
       if (w) w.rotation.x = elapsed * wheelSpeed;
+    }
+
+    // ---- Side-flip bubble offset ----
+    // Smoothly interpolate the bubble's X offset based on the tank's X.
+    // When tank is far left (X < 0), bubble sits to the right of the tank
+    // (positive offset, towards screen center).
+    // When tank is far right (X > 0), bubble sits to the left of the tank
+    // (negative offset, towards screen center).
+    // The multiplier and maxOffset are viewport-dependent (see comments
+    // above the function) — mobile uses multiplier=1.0 / clamp=5 so the
+    // bubble's X cancels out the tank's X and stays at screen center
+    // (preventing clipping in mobile's narrow visible-x window), while
+    // desktop uses multiplier=0.5 / clamp=2.5 so the bubble trails the
+    // tank at half amplitude for the "tank is saying it" feel.
+    const tankX = groupRef.current.position.x;
+    const targetOffset = Math.max(
+      -bubbleMaxOffset,
+      Math.min(bubbleMaxOffset, -tankX * bubbleMultiplier)
+    );
+    if (Math.abs(targetOffset - lastOffsetRef.current) > 0.2) {
+      lastOffsetRef.current = targetOffset;
+      setBubbleOffsetX(targetOffset);
+    }
+
+    // ---- Resolve the follow-message caption ----
+    // Loop from the FOLLOW_START_INDEX (skip "TANK INCOMING!") so the
+    // tank-anchored bubble only renders the "dialogue" messages while the
+    // tank is actually on screen. The last message ("bye!") covers the
+    // final stretch up to the end of the crossing.
+    let currentMessage: string | null = null;
+    for (let i = TANK_FOLLOW_START_INDEX; i < TANK_MESSAGES.length; i++) {
+      const start = TANK_MESSAGES[i].at;
+      const end = i + 1 < TANK_MESSAGES.length ? TANK_MESSAGES[i + 1].at : TANK_CROSS_DURATION;
+      if (t >= start && t < end) {
+        currentMessage = TANK_MESSAGES[i].text;
+        break;
+      }
+    }
+    if (currentMessage !== lastMsgRef.current) {
+      lastMsgRef.current = currentMessage;
+      setCaption(currentMessage);
     }
   });
 
@@ -671,77 +755,67 @@ function Tank() {
           roughness={0.3}
         />
       </mesh>
+
+      {/* ---------- Follow-message speech bubble ----------
+          Anchored to the tank group so it MOVES WITH the tank — visually
+          reads as the tank itself saying each line ("passing through",
+          "don't mind me, read on", etc). The horizontal X offset is set
+          dynamically by the side-flip logic above (state.bubbleOffsetX)
+          so the bubble stays closer to the screen's horizontal center
+          and doesn't get clipped at the screen edges.
+          Vertical offset y=1.6 puts the bubble's anchor well above the
+          turret (the turret top is at y≈0.78), giving the bubble room to
+          pop in/out without overlapping the tank geometry. */}
+      <ComicBubble
+        text={caption}
+        size="tank"
+        position={[bubbleOffsetX, 1.6, 0]}
+        rotate={-3}
+      />
     </group>
   );
 }
 
-// Tank caption bubble — rendered at a FIXED world position above the hero
-// copy, decoupled from the tank mesh itself.
+// Tank caption bubble — the "TANK INCOMING!" announcement, rendered at a
+// FIXED world position above the hero copy. Decoupled from the tank mesh
+// because the announcement is meant to play BEFORE the tank enters the
+// frame (tank still off-screen on mobile, just entering on desktop).
 //
-// Why decoupled: when the bubble was a child of the tank group, drei's
-// <Html> projected its position to wherever the tank was in 3D space. On
-// desktop, the tank starts at world x=-13 (off-screen), so the projected
-// bubble was at the left edge of the canvas and got clipped —
-// "TANK INCOMING!" rendered as "DOMING!" because half the bubble was
-// outside the viewport. On mobile (very narrow visible x range), the
-// bubble was entirely off-screen during entry and exit, so the first
-// and last messages were never visible.
-//
-// By rendering the bubble at a fixed world position above the hero copy,
-// it is always on-screen at every viewport size, and all 5 messages
-// are guaranteed to be readable for their full 4-second window.
+// Only the first message (t = 0–4s) is shown by this component. The
+// follow-messages ("passing through", "don't mind me, read on", etc.) are
+// rendered by the tank-anchored ComicBubble inside the Tank group itself,
+// so they follow the tank as it visibly crosses the screen.
 //
 // Responsive Y position: on narrow (mobile portrait) viewports the camera
 // pulls back to z=11 with a wider 62° vFOV, so the visible world-y range
 // is roughly ±6.6. We position the bubble at y=5.4 on mobile so it
 // projects into the top ~18% of the viewport — clear of the hero badge
 // at pt-28 (112px from top). On wide (desktop/tablet) viewports the
-// camera is at z=8 with 45° vFOV, visible y range ±3.31; we use y=3.0
-// so the bubble sits at the very top of the viewport, well above the
-// hero content (which starts at pt-28 = 112px from top).
+// camera is at z=8 with 45° vFOV, visible y range ±3.31; we use y=2.5
+// so the bubble sits just below the navbar (88px) — Lands in the empty
+// space between the navbar bottom and the hero badge (which is on the
+// left, so no horizontal overlap with the centered bubble).
 function TankCaption() {
   const [caption, setCaption] = useState<string | null>(null);
   const lastMsgRef = useRef<string | null>(null);
   const { size } = useThree();
   const aspect = size.width / size.height;
-  // Y position per viewport class — see ResponsiveCamera above for the
-  // matching (fov, z) values.
-  //   • Mobile portrait (aspect < 0.9, z=11, vFOV=62°, visible y ±6.6):
-  //     y = 5.4 → screen y ≈ 74px. The navbar is transparent on mobile
-  //     (no center nav items — `hidden lg:flex`) so the bubble is visible
-  //     through the navbar area, well clear of the hero name (which starts
-  //     at pt-28 = 112px).
-  //   • Tablet (0.9 ≤ aspect < 1.3, z=9, vFOV=50°, visible y ±4.19):
-  //     y = 3.0 → screen y ≈ 145px. Below the navbar (88px) and above the
-  //     hero name (~225px on tablet).
-  //   • Desktop (aspect ≥ 1.3, z=8, vFOV=45°, visible y ±3.31):
-  //     y = 2.5 → screen y ≈ 110px. The navbar on desktop DOES show the
-  //     center nav items (About / Skills / Projects / etc.), so we push
-  //     the bubble just below the navbar (88px) rather than behind it.
-  //     Lands in the empty space between the navbar bottom and the hero
-  //     badge (which is on the left, so no horizontal overlap with the
-  //     horizontally-centered bubble).
   const bubbleY = aspect < 0.9 ? 5.4 : aspect < 1.3 ? 3.0 : 2.5;
 
   useFrame((state) => {
     const elapsed = state.clock.getElapsedTime();
     const t = elapsed % TANK_CYCLE;
 
-    // Resolve the caption for the current time. Only setState when it
-    // actually changes — calling setCaption every frame would re-render
-    // the bubble 60x/sec and tank performance on low-end devices.
-    let currentMessage: string | null = null;
-    for (let i = 0; i < TANK_MESSAGES.length; i++) {
-      const start = TANK_MESSAGES[i].at;
-      const end = i + 1 < TANK_MESSAGES.length ? TANK_MESSAGES[i + 1].at : TANK_CROSS_DURATION;
-      if (t >= start && t < end) {
-        currentMessage = TANK_MESSAGES[i].text;
-        break;
-      }
-    }
-    if (currentMessage !== lastMsgRef.current) {
-      lastMsgRef.current = currentMessage;
-      setCaption(currentMessage);
+    // Only show the announcement (message 0 = "TANK INCOMING!") during
+    // its 4-second window. Outside that window, the bubble is null so
+    // the tank-anchored follow bubble takes over without competition.
+    // Only setState when it actually changes to avoid 60 re-renders/sec.
+    const targetMsg = t >= 0 && t < TANK_MESSAGES[1].at
+      ? TANK_MESSAGES[0].text
+      : null;
+    if (targetMsg !== lastMsgRef.current) {
+      lastMsgRef.current = targetMsg;
+      setCaption(targetMsg);
     }
   });
 

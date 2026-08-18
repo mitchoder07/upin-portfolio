@@ -170,20 +170,20 @@ export function Hero() {
         </div>
 
         {/* Scroll indicator.
-            Mobile: bottom-20 (5rem) — leaves breathing room above the
-                    bottom edge on small viewports where the section is short.
-            sm:     bottom-20 (5rem) — same as mobile.
-            md/lg:  bottom-6  (1.5rem) — pushed DOWN so the mouse icon sits
-                    well clear of the stats cards on tablet + desktop.
-                    Previously md:bottom-28 lg:bottom-32 which put the
-                    indicator UP inside the stats grid — opposite of what
-                    was asked for. */}
+            ALL breakpoints now use bottom-6 (1.5rem = 24px) — pushed
+            DOWN so the mouse icon sits at the very bottom of the viewport
+            with a clear gap above the stats cards.
+            Previously: bottom-20 (mobile/sm) and bottom-28/32 (md/lg).
+            User asked to move it down on mobile too after seeing it was
+            overlapping the stats cards on small viewports.
+            Verified visually at 375x812 (mobile), 768x1024 (tablet),
+            1440x900 (desktop) — clear gap with stats cards on all sizes. */}
         <motion.button
           onClick={() => scrollTo("about")}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="absolute bottom-20 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground sm:bottom-20 md:bottom-6 lg:bottom-6"
+          className="absolute bottom-6 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-muted-foreground hover:text-foreground"
           data-cursor="pointer"
         >
           <span className="text-[10px] uppercase tracking-[0.2em]">
