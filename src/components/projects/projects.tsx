@@ -194,6 +194,10 @@ export function Projects() {
                   </p>
                 </div>
                 <div className="flex gap-2">
+                  {/* GitHub icon hidden for confidential projects — source
+                      code stays private, but the live link can still be shown
+                      (e.g. for client projects where the deployment is public
+                      but the repo is private). */}
                   {!active.confidential && !active.comingSoon && active.githubUrl && (
                     <a
                       href={active.githubUrl}
@@ -206,7 +210,10 @@ export function Projects() {
                       <Github className="h-4 w-4" />
                     </a>
                   )}
-                  {!active.confidential && !active.comingSoon && active.liveUrl && (
+                  {/* Live link icon shown even for confidential projects —
+                      client work like Al-Bashir Academy LMS has a public
+                      deployment but a private repo. */}
+                  {!active.comingSoon && active.liveUrl && (
                     <a
                       href={active.liveUrl}
                       target="_blank"
@@ -265,19 +272,23 @@ export function Projects() {
 
               {/* CTAs */}
               <div className="mt-auto flex flex-wrap gap-2">
-                {active.confidential ? (
-                  <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
-                    <Lock className="h-3.5 w-3.5" />
-                    {t.projects.confidential}
-                  </div>
-                ) : active.comingSoon ? (
+                {active.comingSoon ? (
                   <div className="inline-flex h-9 items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/5 px-4 text-xs font-medium text-sky-600 dark:text-sky-400">
                     <Clock className="h-3.5 w-3.5" />
                     {t.projects.comingSoon}
                   </div>
                 ) : (
-                  <>
-                    {active.githubUrl && (
+                  <div className="flex flex-wrap items-center gap-3">
+                    {active.confidential && (
+                      <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
+                        <Lock className="h-3.5 w-3.5" />
+                        {t.projects.confidential}
+                      </div>
+                    )}
+                    {/* Source code button hidden for confidential projects —
+                        repo stays private. Live link can still be shown for
+                        client projects with public deployments. */}
+                    {!active.confidential && active.githubUrl && (
                       <Button
                         asChild
                         variant="outline"
@@ -312,7 +323,7 @@ export function Projects() {
                         </a>
                       </Button>
                     )}
-                  </>
+                  </div>
                 )}
               </div>
 
