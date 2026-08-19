@@ -429,26 +429,48 @@ function ReactiveShape({
 //      so every message gets its full 4-second read.
 
 // Module-level timing constants — shared between Tank (movement), the
-// tank-anchored follow bubble, and TankCaption (the announcement bubble).
-const TANK_CYCLE = 37; // total cycle = 32s crossing + 5s rest
-const TANK_CROSS_DURATION = 32; // seconds to traverse the screen
+// tank-anchored follow bubble, and TankCaption (the announcement bubble),
+// and the Tanjiro man.
+//
+// SCENE CYCLE STRUCTURE (50 seconds total):
+//   t = 0–32s   : Tank crosses the screen (messages 1–6 play)
+//   t = 32–35s  : Tank rests just off-screen (3s post-tank silence)
+//   t = 35–47s  : Tanjiro man enters from left, runs around, pauses to
+//                 wink at the center, continues shouting, exits right
+//   t = 47–50s  : Brief final rest before the whole cycle loops
+//
+// All scene elements use the same `elapsed % SCENE_CYCLE` clock so they
+// stay in sync automatically — extending the cycle to 50s to fit Tanjiro
+// doesn't shift any of the tank's existing timing.
+const SCENE_CYCLE = 50; // total cycle = 32s tank + 3s rest + 12s man + 3s rest
+const TANK_CROSS_DURATION = 32; // seconds for the tank to traverse the screen
 const TANK_START_X = -8;
 const TANK_END_X = 8;
 const TANK_Y_POS = -1.2;
 const TANK_Z_POS = -1.5;
+
+// Tanjiro man timing — enters 3s after the tank fully exits the path,
+// runs for 12s (3s enter + 1.5s pause/wink + 3s exit + spare changeover),
+// then 3s of rest before the cycle loops.
+const TANJIRO_START = 35; // t=35s, 3s after tank finishes at t=32s
+const TANJIRO_ENTER_DURATION = 3; // 3s to run from left edge to center
+const TANJIRO_PAUSE_DURATION = 1.5; // 1.5s pause at center for the wink
+const TANJIRO_EXIT_DURATION = 3; // 3s to run from center to right edge
+const TANJIRO_END = TANJIRO_START + TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_EXIT_DURATION; // = 43s
 
 // 6 messages total:
 //   - Message 1 ("TANK INCOMING!") at t=0–4s is the ANNOUNCEMENT — rendered
 //     by TankCaption at a fixed top-center position (tank still entering).
 //   - Messages 2–6 are the tank's "dialogue" while it visibly crosses the
 //     screen — rendered by the tank-anchored bubble inside the Tank group.
-// "okay this is kinda fire" is the new playful message inserted before
-// "almost there" — the tank complimenting the site as it passes through.
+// "this is kinda sick ngl" is the playful message inserted before
+// "almost there" — the tank complimenting the site as it passes through
+// (modern casual slang, puts a smile on the viewer's face).
 const TANK_MESSAGES = [
   { at: 0, text: "TANK INCOMING!" },
   { at: 4, text: "passing through" },
   { at: 8, text: "don't mind me, read on" },
-  { at: 12, text: "okay this is kinda fire" },
+  { at: 12, text: "this is kinda sick ngl" },
   { at: 16, text: "almost there" },
   { at: 20, text: "bye!" },
 ] as const;
@@ -463,13 +485,16 @@ function Tank() {
   // ("TANK INCOMING!") is handled separately by TankCaption.
   const [caption, setCaption] = useState<string | null>(null);
   const lastMsgRef = useRef<string | null>(null);
-  // Horizontal offset of the bubble relative to the tank center, for the
-  // smooth side-flip. Updates are throttled — we only setState when the
-  // offset has moved by ≥ 0.2 world units from the last committed value,
-  // which keeps it smooth enough to feel continuous while avoiding 60
-  // React re-renders per second.
-  const [bubbleOffsetX, setBubbleOffsetX] = useState(2.5);
-  const lastOffsetRef = useRef(2.5);
+  // Bubble wrapper group — its X position is updated IMPERATIVELY every
+  // frame via this ref (no React state, no re-renders). This is what makes
+  // the bubble glide smoothly with the tank on mobile — previously the
+  // bubble's offset was React state that only committed when the value had
+  // moved by ≥0.2 world units, which caused visible "stepping" / lag on
+  // mobile (the bubble would jump every ~0.4s instead of moving
+  // continuously). With an imperative ref, we write directly to the
+  // three.js object's position every frame, so the bubble tracks the
+  // tank perfectly with zero React overhead.
+  const bubbleGroupRef = useRef<THREE.Group>(null);
   // Viewport-dependent side-flip behaviour. Mobile portrait has a very
   // narrow visible x range (~±3.03 world units, vs ~±6.3 on desktop) so
   // the bubble would get clipped at the screen edges when the tank is
@@ -489,7 +514,7 @@ function Tank() {
   useFrame((state) => {
     if (!groupRef.current) return;
     const elapsed = state.clock.getElapsedTime();
-    const t = elapsed % TANK_CYCLE;
+    const t = elapsed % SCENE_CYCLE;
 
     // Linear progress while crossing, then hold at 1.0 during the rest
     // period so the tank sits just off-screen before looping.
@@ -513,7 +538,7 @@ function Tank() {
       if (w) w.rotation.x = elapsed * wheelSpeed;
     }
 
-    // ---- Side-flip bubble offset ----
+    // ---- Side-flip bubble offset (imperative, every frame) ----
     // Smoothly interpolate the bubble's X offset based on the tank's X.
     // When tank is far left (X < 0), bubble sits to the right of the tank
     // (positive offset, towards screen center).
@@ -525,14 +550,16 @@ function Tank() {
     // (preventing clipping in mobile's narrow visible-x window), while
     // desktop uses multiplier=0.5 / clamp=2.5 so the bubble trails the
     // tank at half amplitude for the "tank is saying it" feel.
+    //
+    // IMPERATIVE: write directly to the bubble group's position.x every
+    // frame — no React state, no re-renders, perfectly smooth on mobile.
     const tankX = groupRef.current.position.x;
     const targetOffset = Math.max(
       -bubbleMaxOffset,
       Math.min(bubbleMaxOffset, -tankX * bubbleMultiplier)
     );
-    if (Math.abs(targetOffset - lastOffsetRef.current) > 0.2) {
-      lastOffsetRef.current = targetOffset;
-      setBubbleOffsetX(targetOffset);
+    if (bubbleGroupRef.current) {
+      bubbleGroupRef.current.position.x = targetOffset;
     }
 
     // ---- Resolve the follow-message caption ----
@@ -760,18 +787,21 @@ function Tank() {
           Anchored to the tank group so it MOVES WITH the tank — visually
           reads as the tank itself saying each line ("passing through",
           "don't mind me, read on", etc). The horizontal X offset is set
-          dynamically by the side-flip logic above (state.bubbleOffsetX)
-          so the bubble stays closer to the screen's horizontal center
-          and doesn't get clipped at the screen edges.
+          IMPERATIVELY every frame via bubbleGroupRef (no React state,
+          no re-renders) so the bubble glides smoothly with the tank on
+          mobile — previously the throttled state caused visible
+          "stepping" every ~0.4s as the bubble jumped to its new offset.
           Vertical offset y=1.6 puts the bubble's anchor well above the
           turret (the turret top is at y≈0.78), giving the bubble room to
           pop in/out without overlapping the tank geometry. */}
-      <ComicBubble
-        text={caption}
-        size="tank"
-        position={[bubbleOffsetX, 1.6, 0]}
-        rotate={-3}
-      />
+      <group ref={bubbleGroupRef} position={[0, 1.6, 0]}>
+        <ComicBubble
+          text={caption}
+          size="tank"
+          position={[0, 0, 0]}
+          rotate={-3}
+        />
+      </group>
     </group>
   );
 }
@@ -804,7 +834,7 @@ function TankCaption() {
 
   useFrame((state) => {
     const elapsed = state.clock.getElapsedTime();
-    const t = elapsed % TANK_CYCLE;
+    const t = elapsed % SCENE_CYCLE;
 
     // Only show the announcement (message 0 = "TANK INCOMING!") during
     // its 4-second window. Outside that window, the bubble is null so
@@ -826,6 +856,276 @@ function TankCaption() {
       position={[0, bubbleY, 0]}
       rotate={-3}
     />
+  );
+}
+
+// Tanjiro man — a chibi-style character with an oversized head who enters
+// from the left 3 seconds after the tank exits, runs across the hero
+// section shouting "tanjiro!", pauses at the center to wink at the viewer,
+// then continues shouting and exits on the right.
+//
+// Path (within the running phase t = TANJIRO_START → TANJIRO_END):
+//   Phase 1 (enter, 3s)   : X: -8 → 0, Y bobs in a sine wave for a
+//                            "running around" feel rather than a straight
+//                            line. Faces right.
+//   Phase 2 (pause, 1.5s) : X = 0, Y = 0. Faces the viewer. Right eye
+//                            scales Y → 0.1 for the wink.
+//   Phase 3 (exit, 3s)    : X: 0 → 8, Y bobs in a sine wave. Faces right.
+//
+// Running animation: legs and arms swing on their local X axis in
+// opposite phases (left leg forward when right arm forward), giving a
+// proper running gait. Body bobs up-down slightly with the rhythm.
+//
+// Bubble messages cycle through "tanjiro!" / "tanjiro!!" / (no bubble
+// during wink) / "tanjiro!!" / "tanjiro!!!".
+//
+// Imperial refs (groupRef, leg/arm/eye refs) are updated every frame
+// with zero React state — same pattern as the tank bubble, so the
+// running motion is perfectly smooth on mobile.
+function TanjiroMan() {
+  const groupRef = useRef<THREE.Group>(null);
+  const leftLegRef = useRef<THREE.Mesh>(null);
+  const rightLegRef = useRef<THREE.Mesh>(null);
+  const leftArmRef = useRef<THREE.Mesh>(null);
+  const rightArmRef = useRef<THREE.Mesh>(null);
+  const rightEyeGroupRef = useRef<THREE.Group>(null);
+  const [caption, setCaption] = useState<string | null>(null);
+  const lastMsgRef = useRef<string | null>(null);
+
+  // Tanjiro's shout messages. Note the gap during the pause (wink is the
+  // action there — no bubble).
+  const PAUSE_START = TANJIRO_START + TANJIRO_ENTER_DURATION; // = 38
+  const EXIT_START = PAUSE_START + TANJIRO_PAUSE_DURATION; // = 39.5
+  const messages = [
+    { at: TANJIRO_START, text: "tanjiro!" },           // 35 → 36.5
+    { at: TANJIRO_START + 1.5, text: "tanjiro!!" },     // 36.5 → 38 (enter)
+    // 38 → 39.5: pause + wink, no bubble
+    { at: EXIT_START, text: "tanjiro!!" },              // 39.5 → 41
+    { at: EXIT_START + 1.5, text: "tanjiro!!!" },       // 41 → 42.5 (exit)
+  ];
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+    const elapsed = state.clock.getElapsedTime();
+    const t = elapsed % SCENE_CYCLE;
+
+    // Only visible during the running phase.
+    const isRunning = t >= TANJIRO_START && t < TANJIRO_END;
+    groupRef.current.visible = isRunning;
+    if (!isRunning) {
+      // Reset caption to null when the man is off-screen.
+      if (lastMsgRef.current !== null) {
+        lastMsgRef.current = null;
+        setCaption(null);
+      }
+      // Reset eye scale to open for next appearance.
+      if (rightEyeGroupRef.current) {
+        rightEyeGroupRef.current.scale.y = 1;
+      }
+      return;
+    }
+
+    const localT = t - TANJIRO_START; // 0 → 8 (within the running phase)
+
+    let x: number;
+    let yBob = 0;
+    let isPaused = false;
+    let winkClosed = false; // true = right eye closed (winking)
+
+    if (localT < TANJIRO_ENTER_DURATION) {
+      // Phase 1: enter from left, run to center.
+      const phase = localT / TANJIRO_ENTER_DURATION; // 0 → 1
+      x = -8 + phase * 8; // -8 → 0
+      // Sine-wave Y for "running around" feel — one full wave during enter.
+      yBob = 1.2 * Math.sin(phase * Math.PI * 2);
+    } else if (localT < TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION) {
+      // Phase 2: pause at center, wink.
+      isPaused = true;
+      x = 0;
+      yBob = 0;
+      const pausePhase = (localT - TANJIRO_ENTER_DURATION) / TANJIRO_PAUSE_DURATION;
+      // Wink: eye closes during the middle 60% of the pause.
+      winkClosed = pausePhase > 0.2 && pausePhase < 0.8;
+    } else {
+      // Phase 3: exit, run from center to right.
+      const exitPhase = (localT - TANJIRO_ENTER_DURATION - TANJIRO_PAUSE_DURATION) / TANJIRO_EXIT_DURATION;
+      x = exitPhase * 8; // 0 → 8
+      yBob = 1.2 * Math.sin(exitPhase * Math.PI * 2);
+    }
+
+    groupRef.current.position.x = x;
+    groupRef.current.position.y = -1.0 + yBob + (isPaused ? 0 : Math.abs(Math.sin(elapsed * 12)) * 0.08);
+    groupRef.current.position.z = -1.0;
+
+    // Face the direction of movement (right) when running, viewer when paused.
+    groupRef.current.rotation.y = isPaused ? 0 : -Math.PI / 2;
+
+    // Running animation — legs and arms swing in opposite phases.
+    // When paused, limbs ease back to neutral.
+    const targetSwing = isPaused ? 0 : Math.sin(elapsed * 12) * 0.6;
+    if (leftLegRef.current) leftLegRef.current.rotation.x = targetSwing;
+    if (rightLegRef.current) rightLegRef.current.rotation.x = -targetSwing;
+    if (leftArmRef.current) leftArmRef.current.rotation.x = -targetSwing;
+    if (rightArmRef.current) rightArmRef.current.rotation.x = targetSwing;
+
+    // Wink — smoothly close the right eye (scale Y → 0.1) when winkClosed.
+    if (rightEyeGroupRef.current) {
+      const targetScaleY = winkClosed ? 0.1 : 1;
+      const current = rightEyeGroupRef.current.scale.y;
+      rightEyeGroupRef.current.scale.y = current + (targetScaleY - current) * 0.3;
+    }
+
+    // ---- Resolve the caption ----
+    let currentMessage: string | null = null;
+    for (let i = 0; i < messages.length; i++) {
+      const start = messages[i].at;
+      const end = i + 1 < messages.length ? messages[i + 1].at : TANJIRO_END;
+      if (t >= start && t < end) {
+        currentMessage = messages[i].text;
+        break;
+      }
+    }
+    // Suppress the bubble during the pause (the wink is the action instead).
+    if (isPaused) {
+      currentMessage = null;
+    }
+    if (currentMessage !== lastMsgRef.current) {
+      lastMsgRef.current = currentMessage;
+      setCaption(currentMessage);
+    }
+  });
+
+  // Tanjiro's palette:
+  //   • Hair: dark charcoal with red tips at the front (his signature look)
+  //   • Haori: dark teal with a lighter checker-pattern band (simplified as
+  //     a single strip here — full checker would require texture work)
+  //   • Pants: very dark grey
+  //   • Skin: warm light tone
+  //   • Hanafuda earrings: gold rectangles hanging at the sides of the head
+  const hairColor = "#1a1a2e";
+  const hairTipColor = "#dc2626";
+  const skinColor = "#f5d0a9";
+  const haoriColor = "#0f4c5c";
+  const haoriPatternColor = "#e5e5e5";
+  const pantsColor = "#1f2937";
+  const earringColor = "#fbbf24";
+
+  return (
+    <group ref={groupRef} position={[-8, -1.0, -1.0]} visible={false}>
+      {/* ===== BIG HEAD (chibi proportions — head ~1 unit, body ~0.8 unit) ===== */}
+      <group position={[0, 1.0, 0]}>
+        {/* Hair back — dark sphere */}
+        <mesh position={[0, 0, -0.05]} castShadow>
+          <sphereGeometry args={[0.5, 16, 16]} />
+          <meshStandardMaterial color={hairColor} roughness={0.7} metalness={0.1} />
+        </mesh>
+        {/* Hair front-top — red tips (Tanjiro's signature) */}
+        <mesh position={[0, 0.35, 0.15]} castShadow>
+          <sphereGeometry args={[0.18, 12, 12]} />
+          <meshStandardMaterial
+            color={hairTipColor}
+            roughness={0.6}
+            emissive={hairTipColor}
+            emissiveIntensity={0.15}
+          />
+        </mesh>
+        {/* Face — skin-colored sphere, slightly smaller, pushed forward */}
+        <mesh position={[0, -0.05, 0.12]} castShadow>
+          <sphereGeometry args={[0.42, 16, 16]} />
+          <meshStandardMaterial color={skinColor} roughness={0.8} />
+        </mesh>
+
+        {/* Left eye (always open) */}
+        <group position={[-0.15, -0.02, 0.42]}>
+          <mesh>
+            <sphereGeometry args={[0.06, 12, 12]} />
+            <meshStandardMaterial color="#ffffff" />
+          </mesh>
+          <mesh position={[0, 0, 0.04]}>
+            <sphereGeometry args={[0.03, 10, 10]} />
+            <meshStandardMaterial color="#1a1a2e" />
+          </mesh>
+        </group>
+        {/* Right eye — wrapped in a group whose scale.y is animated for the wink */}
+        <group ref={rightEyeGroupRef} position={[0.15, -0.02, 0.42]}>
+          <mesh>
+            <sphereGeometry args={[0.06, 12, 12]} />
+            <meshStandardMaterial color="#ffffff" />
+          </mesh>
+          <mesh position={[0, 0, 0.04]}>
+            <sphereGeometry args={[0.03, 10, 10]} />
+            <meshStandardMaterial color="#1a1a2e" />
+          </mesh>
+        </group>
+
+        {/* Mouth — small dark sphere, looks like shouting */}
+        <mesh position={[0, -0.22, 0.42]}>
+          <sphereGeometry args={[0.05, 10, 10]} />
+          <meshStandardMaterial color="#2c1810" />
+        </mesh>
+
+        {/* Hanafuda earrings — gold rectangles hanging on both sides of the head */}
+        <mesh position={[-0.5, 0.05, 0]}>
+          <boxGeometry args={[0.04, 0.12, 0.08]} />
+          <meshStandardMaterial
+            color={earringColor}
+            roughness={0.4}
+            metalness={0.3}
+            emissive={earringColor}
+            emissiveIntensity={0.2}
+          />
+        </mesh>
+        <mesh position={[0.5, 0.05, 0]}>
+          <boxGeometry args={[0.04, 0.12, 0.08]} />
+          <meshStandardMaterial
+            color={earringColor}
+            roughness={0.4}
+            metalness={0.3}
+            emissive={earringColor}
+            emissiveIntensity={0.2}
+          />
+        </mesh>
+      </group>
+
+      {/* ===== Body — small dark teal haori (Tanjiro's signature jacket) ===== */}
+      <mesh position={[0, 0.25, 0]} castShadow>
+        <boxGeometry args={[0.5, 0.55, 0.35]} />
+        <meshStandardMaterial color={haoriColor} roughness={0.7} />
+      </mesh>
+      {/* Checker-pattern strip on the haori — simplified as a thin lighter band */}
+      <mesh position={[0, 0.25, 0.18]}>
+        <boxGeometry args={[0.5, 0.15, 0.01]} />
+        <meshStandardMaterial color={haoriPatternColor} roughness={0.8} />
+      </mesh>
+
+      {/* ===== Arms — two small cylinders that swing during running ===== */}
+      <mesh ref={leftArmRef} position={[-0.32, 0.35, 0]}>
+        <cylinderGeometry args={[0.07, 0.07, 0.4, 8]} />
+        <meshStandardMaterial color={haoriColor} roughness={0.7} />
+      </mesh>
+      <mesh ref={rightArmRef} position={[0.32, 0.35, 0]}>
+        <cylinderGeometry args={[0.07, 0.07, 0.4, 8]} />
+        <meshStandardMaterial color={haoriColor} roughness={0.7} />
+      </mesh>
+
+      {/* ===== Legs — two small cylinders, swing opposite phases ===== */}
+      <mesh ref={leftLegRef} position={[-0.15, -0.15, 0]}>
+        <cylinderGeometry args={[0.08, 0.08, 0.4, 8]} />
+        <meshStandardMaterial color={pantsColor} roughness={0.8} />
+      </mesh>
+      <mesh ref={rightLegRef} position={[0.15, -0.15, 0]}>
+        <cylinderGeometry args={[0.08, 0.08, 0.4, 8]} />
+        <meshStandardMaterial color={pantsColor} roughness={0.8} />
+      </mesh>
+
+      {/* ===== Speech bubble — anchored above the big head ===== */}
+      <ComicBubble
+        text={caption}
+        size="tank"
+        position={[0, 2.0, 0]}
+        rotate={-3}
+      />
+    </group>
   );
 }
 
@@ -925,6 +1225,7 @@ export function Hero3DScene() {
             always visible on every viewport size. */}
         <Tank />
         <TankCaption />
+        <TanjiroMan />
 
         <MouseParallax />
       </Suspense>
