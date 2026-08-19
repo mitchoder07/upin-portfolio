@@ -183,6 +183,156 @@ function TerminalInner() {
               "error"
             );
             break;
+          // ---- EASTER EGGS (not hinted in help / not in autocomplete) ----
+          // These are intentionally not added to the `commands` array above
+          // so they don't show up in `help` output or Tab autocomplete —
+          // they only reveal themselves when the user types them. This
+          // keeps the terminal feeling like there are hidden secrets to
+          // discover rather than a complete menu of every interaction.
+
+          // "upin" / "who is upin" / "who's upin" / "what is upin" → short bio.
+          case "upin":
+          case "who is upin":
+          case "who is upin?":
+          case "who's upin":
+          case "who's upin?":
+          case "what is upin":
+          case "what is upin?":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Upin</span>{" "}
+                <span className="text-foreground/80">
+                  is the handle of Abdullah Yusuf — a frontend engineer & UI/UX
+                  designer who turns Figma wireframes into pixel-perfect,
+                  accessible React products. Polyglot builder (en / ms / ha /
+                  yo / ja / ar / zh). Lagos-based, Muslim, and currently
+                  available for select engagements.
+                </span>
+              </span>
+            );
+            addOutput(
+              <span className="text-muted-foreground">
+                (psst — try the other commands too: type 'help' for the menu)
+              </span>
+            );
+            break;
+
+          // Islamic greetings → respond appropriately.
+          // "salam alaykum" / "assalam alaykum" / "salam" / "salaam"
+          case "salam alaykum":
+          case "assalam alaykum":
+          case "assalamu alaykum":
+          case "assalamu'alaykum":
+          case "salam":
+          case "salaam":
+          case "salam alaikum":
+          case "asalam alaykum":
+          case "as-salam alaykum":
+          case "assalam aleykum":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Wa alaykum salam</span>
+                <span className="text-foreground/80"> wa rahmatullah 🤲</span>
+              </span>
+            );
+            addOutput(
+              <span className="text-muted-foreground">
+                Peace be upon you too. Welcome — type 'help' to explore.
+              </span>
+            );
+            break;
+
+          // "jumu'ah mubarak" / "jumuat mubarak" → return the greeting.
+          case "jumuat mubarak":
+          case "jumuah mubarak":
+          case "jumu'ah mubarak":
+          case "jumua mubarak":
+          case "jumu'a mubarak":
+          case "jumah mubarak":
+          case "jumuah mubarak!":
+          case "jumuat mubarak!":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Jumu'ah Mubarak</span>
+                <span className="text-foreground/80"> to you too 🤲</span>
+              </span>
+            );
+            addOutput(
+              <span className="text-muted-foreground">
+                May the blessed day carry your good deeds forward. Barakallahu feek.
+              </span>
+            );
+            break;
+
+          // Generic greetings.
+          case "hello":
+          case "hi":
+          case "hey":
+          case "yo":
+          case "hello upin":
+          case "hi upin":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Hey there!</span>{" "}
+                <span className="text-foreground/80">
+                  Type 'help' to see what I can do, or 'upin' to learn about
+                  the man behind the handle.
+                </span>
+              </span>
+            );
+            break;
+          case "good morning":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Good morning!</span>{" "}
+                <span className="text-foreground/80">☀️ Hope your day starts well.</span>
+              </span>
+            );
+            break;
+          case "good afternoon":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Good afternoon!</span>{" "}
+                <span className="text-foreground/80">Hope the day's treating you well.</span>
+              </span>
+            );
+            break;
+          case "good evening":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Good evening!</span>{" "}
+                <span className="text-foreground/80">Thanks for stopping by.</span>
+              </span>
+            );
+            break;
+          case "good night":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Good night!</span>{" "}
+                <span className="text-foreground/80">Rest well. 🌙</span>
+              </span>
+            );
+            break;
+
+          // Ramadan / Eid easter eggs (seasonal but always available).
+          case "ramadan mubarak":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Ramadan Mubarak</span>
+                <span className="text-foreground/80">! 🌙 May it be a month of mercy and growth.</span>
+              </span>
+            );
+            break;
+          case "eid mubarak":
+          case "barka da sallah":
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">Eid Mubarak</span>
+                <span className="text-foreground/80">! 🕌 May the celebration bring you joy.</span>
+              </span>
+            );
+            break;
+
           default:
             addOutput(
               <span>
