@@ -432,17 +432,31 @@ function ReactiveShape({
 // tank-anchored follow bubble, and TankCaption (the announcement bubble),
 // and the Tanjiro man.
 //
-// SCENE CYCLE STRUCTURE (50 seconds total):
-//   t = 0–32s   : Tank crosses the screen (messages 1–6 play)
-//   t = 32–35s  : Tank rests just off-screen (3s post-tank silence)
-//   t = 35–47s  : Tanjiro man enters from left, runs around, pauses to
-//                 wink at the center, continues shouting, exits right
-//   t = 47–50s  : Brief final rest before the whole cycle loops
+// SCENE CYCLE STRUCTURE (55 seconds total):
+//   t = 0–32s    : Tank crosses the screen (messages 1–6 play)
+//   t = 32–35s   : Tank rests just off-screen (3s post-tank silence)
+//   t = 35–47.5s : Tanjiro man enters from left, runs around, pauses at
+//                  center to wink, says "tanjiro wa doko?" (where is
+//                  tanjiro? in Japanese transliteration), then shouts
+//                  "tanjiro!!!" and exits right
+//   t = 47.5–55s : Brief final rest before the whole cycle loops
 //
 // All scene elements use the same `elapsed % SCENE_CYCLE` clock so they
-// stay in sync automatically — extending the cycle to 50s to fit Tanjiro
-// doesn't shift any of the tank's existing timing.
-const SCENE_CYCLE = 50; // total cycle = 32s tank + 3s rest + 12s man + 3s rest
+// stay in sync automatically.
+//
+// Tanjiro phase breakdown (12.5 seconds total — extended from 7.5s after
+// user feedback that it was "going too fast" and the wink wasn't visible):
+//   Phase 1 (enter, 4s)   : X: -8 → 0, Y bobs in a sine wave. Bubble shows
+//                            "tanjiro!" then "tanjiro!!".
+//   Phase 2 (wink, 2.5s)  : X = 0, Y = 0. Right eye scales Y → 0.05 for
+//                            a clearly visible wink (extended from 1.5s
+//                            to 2.5s so the wink is unmissable).
+//   Phase 3 (post-wink, 2s): Still at X = 0. Bubble shows
+//                            "tanjiro wa doko?" — Tanjiro looking around
+//                            for his brother.
+//   Phase 4 (exit, 4s)    : X: 0 → 8, Y bobs in a sine wave. Bubble
+//                            shows "tanjiro!!!" as he runs off-screen.
+const SCENE_CYCLE = 55; // total cycle = 32s tank + 3s rest + 12.5s man + 7.5s rest
 const TANK_CROSS_DURATION = 32; // seconds for the tank to traverse the screen
 const TANK_START_X = -8;
 const TANK_END_X = 8;
@@ -450,13 +464,13 @@ const TANK_Y_POS = -1.2;
 const TANK_Z_POS = -1.5;
 
 // Tanjiro man timing — enters 3s after the tank fully exits the path,
-// runs for 12s (3s enter + 1.5s pause/wink + 3s exit + spare changeover),
-// then 3s of rest before the cycle loops.
+// runs for 12.5s, then 7.5s of rest before the cycle loops.
 const TANJIRO_START = 35; // t=35s, 3s after tank finishes at t=32s
-const TANJIRO_ENTER_DURATION = 3; // 3s to run from left edge to center
-const TANJIRO_PAUSE_DURATION = 1.5; // 1.5s pause at center for the wink
-const TANJIRO_EXIT_DURATION = 3; // 3s to run from center to right edge
-const TANJIRO_END = TANJIRO_START + TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_EXIT_DURATION; // = 43s
+const TANJIRO_ENTER_DURATION = 4;   // 4s enter (slower, was 3s)
+const TANJIRO_PAUSE_DURATION = 2.5; // 2.5s pause for a clearly visible wink (was 1.5s)
+const TANJIRO_POST_WINK_DURATION = 2; // 2s post-wink: bubble shows "tanjiro wa doko?"
+const TANJIRO_EXIT_DURATION = 4;   // 4s exit (slower, was 3s)
+const TANJIRO_END = TANJIRO_START + TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION + TANJIRO_EXIT_DURATION; // = 47.5s
 
 // 6 messages total:
 //   - Message 1 ("TANK INCOMING!") at t=0–4s is the ANNOUNCEMENT — rendered
@@ -892,16 +906,23 @@ function TanjiroMan() {
   const [caption, setCaption] = useState<string | null>(null);
   const lastMsgRef = useRef<string | null>(null);
 
-  // Tanjiro's shout messages. Note the gap during the pause (wink is the
-  // action there — no bubble).
-  const PAUSE_START = TANJIRO_START + TANJIRO_ENTER_DURATION; // = 38
-  const EXIT_START = PAUSE_START + TANJIRO_PAUSE_DURATION; // = 39.5
+  // Phase boundaries (all in scene time, t).
+  const ENTER_END = TANJIRO_START + TANJIRO_ENTER_DURATION;                 // 35 + 4 = 39
+  const PAUSE_END = ENTER_END + TANJIRO_PAUSE_DURATION;                    // 39 + 2.5 = 41.5
+  const POST_WINK_END = PAUSE_END + TANJIRO_POST_WINK_DURATION;            // 41.5 + 2 = 43.5
+  // Exit runs from POST_WINK_END → TANJIRO_END (= 43.5 → 47.5)
+
+  // Bubble messages across the running phase. The wink itself has NO
+  // bubble (the wink is the action). After the wink, the man says
+  // "tanjiro wa doko?" (Japanese transliteration of "where is tanjiro?")
+  // — Tanjiro looking around for his brother — and then shouts
+  // "tanjiro!!!" as he runs off-screen.
   const messages = [
-    { at: TANJIRO_START, text: "tanjiro!" },           // 35 → 36.5
-    { at: TANJIRO_START + 1.5, text: "tanjiro!!" },     // 36.5 → 38 (enter)
-    // 38 → 39.5: pause + wink, no bubble
-    { at: EXIT_START, text: "tanjiro!!" },              // 39.5 → 41
-    { at: EXIT_START + 1.5, text: "tanjiro!!!" },       // 41 → 42.5 (exit)
+    { at: TANJIRO_START, text: "tanjiro!" },         // 35 → 37
+    { at: TANJIRO_START + 2, text: "tanjiro!!" },    // 37 → 39 (enter)
+    // 39 → 41.5: pause + wink, no bubble
+    { at: PAUSE_END, text: "tanjiro wa doko?" },     // 41.5 → 43.5 (post-wink, still at center)
+    { at: POST_WINK_END, text: "tanjiro!!!" },       // 43.5 → 47.5 (exit, running off-screen)
   ];
 
   useFrame((state) => {
@@ -925,12 +946,13 @@ function TanjiroMan() {
       return;
     }
 
-    const localT = t - TANJIRO_START; // 0 → 8 (within the running phase)
+    const localT = t - TANJIRO_START; // 0 → 12.5 (within the running phase)
 
     let x: number;
     let yBob = 0;
-    let isPaused = false;
-    let winkClosed = false; // true = right eye closed (winking)
+    let isPaused = false;        // true during the wink pause
+    let isPostWink = false;      // true during the post-wink "tanjiro wa doko?" phase
+    let winkClosed = false;      // true = right eye closed (winking)
 
     if (localT < TANJIRO_ENTER_DURATION) {
       // Phase 1: enter from left, run to center.
@@ -944,35 +966,60 @@ function TanjiroMan() {
       x = 0;
       yBob = 0;
       const pausePhase = (localT - TANJIRO_ENTER_DURATION) / TANJIRO_PAUSE_DURATION;
-      // Wink: eye closes during the middle 60% of the pause.
-      winkClosed = pausePhase > 0.2 && pausePhase < 0.8;
+      // Wink: eye closes during the middle 75% of the (now 2.5s) pause,
+      // so the closed-eye state lasts ~1.9s — clearly visible.
+      winkClosed = pausePhase > 0.125 && pausePhase < 0.875;
+    } else if (localT < TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION) {
+      // Phase 3: post-wink — still at center, looking around, bubble
+      // says "tanjiro wa doko?".
+      isPostWink = true;
+      x = 0;
+      yBob = 0;
+      // Small "looking around" rotation — head turns slightly left/right.
+      // (No body movement, just a subtle head swivel via rotation.z.)
+      // The body stays facing the viewer so the bubble is readable.
     } else {
-      // Phase 3: exit, run from center to right.
-      const exitPhase = (localT - TANJIRO_ENTER_DURATION - TANJIRO_PAUSE_DURATION) / TANJIRO_EXIT_DURATION;
+      // Phase 4: exit, run from center to right.
+      const exitPhase = (localT - TANJIRO_ENTER_DURATION - TANJIRO_PAUSE_DURATION - TANJIRO_POST_WINK_DURATION) / TANJIRO_EXIT_DURATION;
       x = exitPhase * 8; // 0 → 8
       yBob = 1.2 * Math.sin(exitPhase * Math.PI * 2);
     }
 
     groupRef.current.position.x = x;
-    groupRef.current.position.y = -1.0 + yBob + (isPaused ? 0 : Math.abs(Math.sin(elapsed * 12)) * 0.08);
+    // Body bob for running. When paused (wink) or post-wink (looking around),
+    // the man stands still — no bob.
+    const isRunningMotion = !isPaused && !isPostWink;
+    groupRef.current.position.y = -1.0 + yBob + (isRunningMotion ? Math.abs(Math.sin(elapsed * 12)) * 0.08 : 0);
     groupRef.current.position.z = -1.0;
 
-    // Face the direction of movement (right) when running, viewer when paused.
-    groupRef.current.rotation.y = isPaused ? 0 : -Math.PI / 2;
+    // Face the direction of movement (right) when running, viewer when
+    // paused/post-wink (so the wink and the post-wink shout are
+    // delivered to the viewer, not off to the side).
+    groupRef.current.rotation.y = (isPaused || isPostWink) ? 0 : -Math.PI / 2;
+
+    // Subtle head swivel during the post-wink phase — the man glances
+    // left/right as if scanning for Tanjiro.
+    if (isPostWink) {
+      const lookPhase = (localT - TANJIRO_ENTER_DURATION - TANJIRO_PAUSE_DURATION) / TANJIRO_POST_WINK_DURATION;
+      // Two side-to-side glances during the 2s post-wink window.
+      groupRef.current.rotation.y = Math.sin(lookPhase * Math.PI * 4) * 0.35;
+    }
 
     // Running animation — legs and arms swing in opposite phases.
-    // When paused, limbs ease back to neutral.
-    const targetSwing = isPaused ? 0 : Math.sin(elapsed * 12) * 0.6;
+    // When paused/post-wink, limbs ease back to neutral.
+    const targetSwing = isRunningMotion ? Math.sin(elapsed * 12) * 0.6 : 0;
     if (leftLegRef.current) leftLegRef.current.rotation.x = targetSwing;
     if (rightLegRef.current) rightLegRef.current.rotation.x = -targetSwing;
     if (leftArmRef.current) leftArmRef.current.rotation.x = -targetSwing;
     if (rightArmRef.current) rightArmRef.current.rotation.x = targetSwing;
 
-    // Wink — smoothly close the right eye (scale Y → 0.1) when winkClosed.
+    // Wink — smoothly close the right eye (scale Y → 0.05 for a clearly
+    // visible wink, was 0.1 which was too subtle to notice).
     if (rightEyeGroupRef.current) {
-      const targetScaleY = winkClosed ? 0.1 : 1;
+      const targetScaleY = winkClosed ? 0.05 : 1;
       const current = rightEyeGroupRef.current.scale.y;
-      rightEyeGroupRef.current.scale.y = current + (targetScaleY - current) * 0.3;
+      // Faster interpolation (0.35) so the wink snaps closed/open quickly.
+      rightEyeGroupRef.current.scale.y = current + (targetScaleY - current) * 0.35;
     }
 
     // ---- Resolve the caption ----
@@ -1035,25 +1082,28 @@ function TanjiroMan() {
           <meshStandardMaterial color={skinColor} roughness={0.8} />
         </mesh>
 
-        {/* Left eye (always open) */}
+        {/* Left eye (always open) — BIG so the wink on the right eye is
+            clearly visible by comparison. White sphere + dark pupil. */}
         <group position={[-0.15, -0.02, 0.42]}>
           <mesh>
-            <sphereGeometry args={[0.06, 12, 12]} />
-            <meshStandardMaterial color="#ffffff" />
+            <sphereGeometry args={[0.09, 14, 14]} />
+            <meshStandardMaterial color="#ffffff" roughness={0.4} />
           </mesh>
-          <mesh position={[0, 0, 0.04]}>
-            <sphereGeometry args={[0.03, 10, 10]} />
+          <mesh position={[0, 0, 0.06]}>
+            <sphereGeometry args={[0.045, 12, 12]} />
             <meshStandardMaterial color="#1a1a2e" />
           </mesh>
         </group>
-        {/* Right eye — wrapped in a group whose scale.y is animated for the wink */}
+        {/* Right eye — wrapped in a group whose scale.y is animated for
+            the wink. Same size as the left eye so the wink (eye
+            flattening to a thin line) is unmissable. */}
         <group ref={rightEyeGroupRef} position={[0.15, -0.02, 0.42]}>
           <mesh>
-            <sphereGeometry args={[0.06, 12, 12]} />
-            <meshStandardMaterial color="#ffffff" />
+            <sphereGeometry args={[0.09, 14, 14]} />
+            <meshStandardMaterial color="#ffffff" roughness={0.4} />
           </mesh>
-          <mesh position={[0, 0, 0.04]}>
-            <sphereGeometry args={[0.03, 10, 10]} />
+          <mesh position={[0, 0, 0.06]}>
+            <sphereGeometry args={[0.045, 12, 12]} />
             <meshStandardMaterial color="#1a1a2e" />
           </mesh>
         </group>
