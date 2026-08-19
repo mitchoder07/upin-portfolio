@@ -401,6 +401,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -437,7 +438,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -880,6 +881,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -916,7 +918,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -1359,6 +1361,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -1395,7 +1398,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -1837,6 +1840,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -1873,7 +1877,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -2316,6 +2320,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -2352,7 +2357,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -2795,6 +2800,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -2831,7 +2837,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
@@ -3274,6 +3280,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
+          liveUrl: "https://alhikmah-lms.vercel.app",
         },
         {
           name: "Rafaab",
@@ -3310,7 +3317,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
-          liveUrl: "https://baca-al-qur-an.onrender.com/",
+          liveUrl: "https://baca-al-qur-an.vercel.app",
         },
         {
           name: "Crypto Vault",
