@@ -202,10 +202,10 @@ function TerminalInner() {
               <span>
                 <span className="text-[var(--neon)]">Upin</span>{" "}
                 <span className="text-foreground/80">
-                  is the handle of Abdullah Yusuf — a frontend engineer & UI/UX
+                  is the handle of Abdullah Yusuf. A frontend engineer & UI/UX
                   designer who turns Figma wireframes into pixel-perfect,
                   accessible React products. Polyglot builder (en / ms / ha /
-                  yo / ja / ar / zh). Lagos-based, Muslim, and currently
+                  yo / ja / ar / zh). Muslim, Weeb, and currently
                   available for select engagements.
                 </span>
               </span>
