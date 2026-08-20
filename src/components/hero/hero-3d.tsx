@@ -436,9 +436,9 @@ function ReactiveShape({
 //   t = 0–32s    : Tank crosses the screen (messages 1–6 play)
 //   t = 32–35s   : Tank rests just off-screen (3s post-tank silence)
 //   t = 35–47.5s : Tanjiro man enters from left, runs around, pauses at
-//                  center to wink, says "tanjiro wa doko?" (where is
-//                  tanjiro? in Japanese transliteration), then shouts
-//                  "tanjiro!!!" and exits right
+//                  center to wink, says "puteri di mana" (where is
+//                  puteri? in Malay transliteration), then shouts
+//                  "puteri!!!" and exits right
 //   t = 47.5–55s : Brief final rest before the whole cycle loops
 //
 // All scene elements use the same `elapsed % SCENE_CYCLE` clock so they
@@ -447,15 +447,15 @@ function ReactiveShape({
 // Tanjiro phase breakdown (12.5 seconds total — extended from 7.5s after
 // user feedback that it was "going too fast" and the wink wasn't visible):
 //   Phase 1 (enter, 4s)   : X: -8 → 0, Y bobs in a sine wave. Bubble shows
-//                            "tanjiro!" then "tanjiro!!".
+//                            "puteri!" then "puteri!!".
 //   Phase 2 (wink, 2.5s)  : X = 0, Y = 0. Right eye scales Y → 0.05 for
 //                            a clearly visible wink (extended from 1.5s
 //                            to 2.5s so the wink is unmissable).
 //   Phase 3 (post-wink, 2s): Still at X = 0. Bubble shows
-//                            "tanjiro wa doko?" — Tanjiro looking around
+//                            "puteri di mana" — Tanjiro looking around
 //                            for his brother.
 //   Phase 4 (exit, 4s)    : X: 0 → 8, Y bobs in a sine wave. Bubble
-//                            shows "tanjiro!!!" as he runs off-screen.
+//                            shows "puteri!!!" as he runs off-screen.
 const SCENE_CYCLE = 55; // total cycle = 32s tank + 3s rest + 12.5s man + 7.5s rest
 const TANK_CROSS_DURATION = 32; // seconds for the tank to traverse the screen
 const TANK_START_X = -8;
@@ -468,7 +468,7 @@ const TANK_Z_POS = -1.5;
 const TANJIRO_START = 35; // t=35s, 3s after tank finishes at t=32s
 const TANJIRO_ENTER_DURATION = 4;   // 4s enter (slower, was 3s)
 const TANJIRO_PAUSE_DURATION = 2.5; // 2.5s pause for a clearly visible wink (was 1.5s)
-const TANJIRO_POST_WINK_DURATION = 2; // 2s post-wink: bubble shows "tanjiro wa doko?"
+const TANJIRO_POST_WINK_DURATION = 2; // 2s post-wink: bubble shows "puteri di mana"
 const TANJIRO_EXIT_DURATION = 4;   // 4s exit (slower, was 3s)
 const TANJIRO_END = TANJIRO_START + TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION + TANJIRO_EXIT_DURATION; // = 47.5s
 
@@ -875,7 +875,7 @@ function TankCaption() {
 
 // Tanjiro man — a chibi-style character with an oversized head who enters
 // from the left 3 seconds after the tank exits, runs across the hero
-// section shouting "tanjiro!", pauses at the center to wink at the viewer,
+// section shouting "puteri!", pauses at the center to wink at the viewer,
 // then continues shouting and exits on the right.
 //
 // Path (within the running phase t = TANJIRO_START → TANJIRO_END):
@@ -890,8 +890,8 @@ function TankCaption() {
 // opposite phases (left leg forward when right arm forward), giving a
 // proper running gait. Body bobs up-down slightly with the rhythm.
 //
-// Bubble messages cycle through "tanjiro!" / "tanjiro!!" / (no bubble
-// during wink) / "tanjiro!!" / "tanjiro!!!".
+// Bubble messages cycle through "puteri!" / "puteri!!" / (no bubble
+// during wink) / "puteri!!" / "puteri!!!".
 //
 // Imperial refs (groupRef, leg/arm/eye refs) are updated every frame
 // with zero React state — same pattern as the tank bubble, so the
@@ -914,15 +914,15 @@ function TanjiroMan() {
 
   // Bubble messages across the running phase. The wink itself has NO
   // bubble (the wink is the action). After the wink, the man says
-  // "tanjiro wa doko?" (Japanese transliteration of "where is tanjiro?")
-  // — Tanjiro looking around for his brother — and then shouts
-  // "tanjiro!!!" as he runs off-screen.
+  // "puteri di mana" (Malay transliteration of "where is puteri?")
+  // — Puteri looking around for his brother — and then shouts
+  // "puteri!!!" as he runs off-screen.
   const messages = [
-    { at: TANJIRO_START, text: "tanjiro!" },         // 35 → 37
-    { at: TANJIRO_START + 2, text: "tanjiro!!" },    // 37 → 39 (enter)
+    { at: TANJIRO_START, text: "puteri!" },         // 35 → 37
+    { at: TANJIRO_START + 2, text: "puteri!!" },    // 37 → 39 (enter)
     // 39 → 41.5: pause + wink, no bubble
-    { at: PAUSE_END, text: "tanjiro wa doko?" },     // 41.5 → 43.5 (post-wink, still at center)
-    { at: POST_WINK_END, text: "tanjiro!!!" },       // 43.5 → 47.5 (exit, running off-screen)
+    { at: PAUSE_END, text: "puteri di mana" },     // 41.5 → 43.5 (post-wink, still at center)
+    { at: POST_WINK_END, text: "puteri!!!" },       // 43.5 → 47.5 (exit, running off-screen)
   ];
 
   useFrame((state) => {
@@ -951,7 +951,7 @@ function TanjiroMan() {
     let x: number;
     let yBob = 0;
     let isPaused = false;        // true during the wink pause
-    let isPostWink = false;      // true during the post-wink "tanjiro wa doko?" phase
+    let isPostWink = false;      // true during the post-wink "puteri di mana" phase
     let winkClosed = false;      // true = right eye closed (winking)
 
     if (localT < TANJIRO_ENTER_DURATION) {
@@ -971,7 +971,7 @@ function TanjiroMan() {
       winkClosed = pausePhase > 0.125 && pausePhase < 0.875;
     } else if (localT < TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION) {
       // Phase 3: post-wink — still at center, looking around, bubble
-      // says "tanjiro wa doko?".
+      // says "puteri di mana".
       isPostWink = true;
       x = 0;
       yBob = 0;

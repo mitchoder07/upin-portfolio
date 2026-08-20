@@ -63,6 +63,7 @@ export type Translation = {
       whoami: string;
       ls: string;
       social: string;
+      features: string;
     };
     outputs: {
       whoami: string;
@@ -256,6 +257,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "Who am I?",
         ls: "List directory contents",
         social: "Show social links",
+        features: "Tour every feature of this portfolio",
       },
       outputs: {
         whoami:
@@ -736,6 +738,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "Siapa saya?",
         ls: "Senarai kandungan direktori",
         social: "Tunjuk pautan sosial",
+        features: "Lawati ciri-ciri portfolio ini",
       },
       outputs: {
         whoami:
@@ -1216,6 +1219,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "Wanene ni?",
         ls: "Jerin abubuwan da ke cikin directory",
         social: "Nuna hanyoyin sadarwar jama'a",
+        features: "Ziyarci duk fasalin portfolio",
       },
       outputs: {
         whoami:
@@ -1696,6 +1700,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "Ta ni èmi?",
         ls: "Atokọ àwọn nkan inú directory",
         social: "Fíhàn àwọn ìjápọ̀ ayélujára",
+        features: "Ṣawari gbogbo ẹya portfolio",
       },
       outputs: {
         whoami:
@@ -2175,6 +2180,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "私は誰?",
         ls: "ディレクトリの内容を一覧表示",
         social: "ソーシャルリンクを表示",
+        features: "ポートフォリオの全機能を見る",
       },
       outputs: {
         whoami:
@@ -2655,6 +2661,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "من أنا؟",
         ls: "اعرض محتويات الدليل",
         social: "اعرض روابط التواصل",
+        features: "استكشف كل ميزة في معرض الأعمال",
       },
       outputs: {
         whoami:
@@ -3135,6 +3142,7 @@ export const translations: Record<Locale, Translation> = {
         whoami: "我是谁?",
         ls: "列出目录内容",
         social: "显示社交链接",
+        features: "浏览作品集的所有功能",
       },
       outputs: {
         whoami:

@@ -21,6 +21,19 @@ import { projectCodeSnippets } from "@/lib/project-snippets";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { ProjectLikeButton } from "./project-like-button";
+
+// Convert a project name like "Al-Bashir Academy LMS Portal" into a
+// URL-friendly slug like "al-bashir-academy-lms-portal" that we can
+// use as the unique key in the likes table.
+function projectSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 60);
+}
 
 export function Projects() {
   const { t } = useI18n();
@@ -323,6 +336,14 @@ export function Projects() {
                         </a>
                       </Button>
                     )}
+                    {/* Like button - 1 like per device via the
+                        X-Device-Id fingerprint. Heart fills when this
+                        device has liked. Spam-protected by a unique
+                        (projectSlug, deviceId) constraint in the DB. */}
+                    <ProjectLikeButton
+                      projectSlug={projectSlug(active.name)}
+                      projectName={active.name}
+                    />
                   </div>
                 )}
               </div>

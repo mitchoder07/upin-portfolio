@@ -46,6 +46,7 @@ function TerminalInner() {
       { cmd: "experience", desc: t.terminal.commands.experience },
       { cmd: "contact", desc: t.terminal.commands.contact },
       { cmd: "social", desc: t.terminal.commands.social },
+      { cmd: "features", desc: t.terminal.commands.features },
       { cmd: "ls", desc: t.terminal.commands.ls },
       { cmd: "clear", desc: t.terminal.commands.clear },
     ],
@@ -167,6 +168,89 @@ function TerminalInner() {
             break;
           case "social":
             addOutput(t.terminal.outputs.social);
+            break;
+          case "features":
+            // Tour of every feature the portfolio ships with. Tone is
+            // casual and a little cheeky, not AI-corporate. No em dashes
+            // (per user request), only regular hyphens.
+            addOutput("here's what upin's portfolio is packing:");
+            addOutput("");
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">languages</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>7 of them. english, malay, hausa, yoruba, japanese, arabic (with proper RTL), and chinese. switch from the globe icon up top.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">hero scene</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>a 3D playground where a tank rolls through cracking jokes, and a chibi man runs in looking for his puteri.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">this terminal</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>type 'help' for the menu. there are also hidden easter eggs in here that i'm not gonna tell you about. go poke around.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">project likes</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>heart any project you vibe with. one heart per device, so no spamming the counter.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">anonymous wall</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>visitors can drop a note that everyone sees. messages vanish after 30 days.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">math corner</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>a little puzzle zone because upin lowkey loves math and puzzles.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">themes</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>dark mode and light mode, your call.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">custom cursor</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>because default cursors are boring.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">scroll progress</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>that bar at the very top tracking your journey.</span>
+              </span>
+            );
+            addOutput(
+              <span>
+                <span className="text-[var(--neon)]">pwa ready</span>
+                <span className="text-muted-foreground"> - </span>
+                <span>installable on your phone or desktop for offline viewing.</span>
+              </span>
+            );
+            addOutput("");
+            addOutput(
+              <span className="text-foreground/80">
+                btw, upin is currently out here looking for his puteri. keep that between us, yeah?
+              </span>
+            );
             break;
           case "ls":
             addOutput(t.terminal.outputs.ls);

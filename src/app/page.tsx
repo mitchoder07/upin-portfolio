@@ -7,6 +7,8 @@ import { About } from "@/components/sections/about";
 import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/projects/projects";
 import { Experience } from "@/components/sections/experience";
+import { MathCorner } from "@/components/sections/math-corner";
+import { AnonymousChatWall } from "@/components/sections/anonymous-chat-wall";
 import { OpenSource } from "@/components/sections/open-source";
 import { Writing } from "@/components/sections/writing";
 import { Contact } from "@/components/sections/contact";
@@ -25,6 +27,8 @@ export default function Home() {
         <Skills />
         <Projects />
         <Experience />
+        <MathCorner />
+        <AnonymousChatWall />
         <OpenSource />
         <Writing />
         <Contact />

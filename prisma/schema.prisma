@@ -1,15 +1,31 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "postgresql"
 }
 
 datasource db {
-  provider = "sqlite"
+  // FOR LOCAL DEV with SQLite:    provider = "sqlite"
+  // FOR VERCEL + NEON (PROD):    provider = "postgresql"
+  //
+  // Neon is a serverless Postgres provider (https://neon.tech) with a
+  // generous free tier. It's the recommended database for this project
+  // on Vercel because:
+  //   1. SQLite doesn't work on Vercel serverless (read-only filesystem
+  //      except /tmp, so the DB file would be lost on every cold start).
+  //   2. Neon's pooled connection string works seamlessly with Prisma
+  //      and survives Vercel's serverless lifecycle.
+  //
+  // To switch to Neon for production:
+  //   1. Create a free Neon project at https://neon.tech
+  //   2. Copy the "pooled" connection string (the one with "-pooler"
+  //      in the hostname and `?sslmode=require` at the end).
+  //   3. Set DATABASE_URL on Vercel (Settings > Environment Variables)
+  //      to that connection string.
+  //   4. Change provider below from "sqlite" to "postgresql".
+  //   5. Run `bunx prisma db push` (or `npx prisma db push`) — this
+  //      creates the tables on the Neon DB.
+  //   6. Deploy. That's it.
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -29,4 +45,37 @@ model Post {
   authorId  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+// Project likes — one like per device per project.
+// The (projectSlug, deviceId) pair is unique, so a single device can
+// only like a given project once. Spam-protected by design: there's no
+// way to add a second row with the same (projectSlug, deviceId).
+model ProjectLike {
+  id          String   @id @default(cuid())
+  projectSlug String
+  deviceId    String
+  createdAt   DateTime @default(now())
+
+  @@unique([projectSlug, deviceId])
+  @@index([projectSlug])
+}
+
+// Anonymous chat wall — visitors leave short messages visible to
+// everyone. Messages auto-expire after 30 days (the expiry is enforced
+// at query time in the API route by filtering on createdAt >= now-30d,
+// and a periodic cleanup also deletes expired rows).
+//
+// deviceId is stored (never shown to anyone) so we can rate-limit
+// per device: max 3 messages per minute per device. This blocks casual
+// spam bots without affecting real visitors.
+model ChatMessage {
+  id        String   @id @default(cuid())
+  content   String
+  nickname  String?
+  deviceId  String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([deviceId, createdAt])
 }
