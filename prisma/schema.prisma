@@ -1,30 +1,9 @@
 
 generator client {
-  provider = "postgresql"
+  provider = "prisma-client-js"
 }
 
-datasource db {
-  // FOR LOCAL DEV with SQLite:    provider = "sqlite"
-  // FOR VERCEL + NEON (PROD):    provider = "postgresql"
-  //
-  // Neon is a serverless Postgres provider (https://neon.tech) with a
-  // generous free tier. It's the recommended database for this project
-  // on Vercel because:
-  //   1. SQLite doesn't work on Vercel serverless (read-only filesystem
-  //      except /tmp, so the DB file would be lost on every cold start).
-  //   2. Neon's pooled connection string works seamlessly with Prisma
-  //      and survives Vercel's serverless lifecycle.
-  //
-  // To switch to Neon for production:
-  //   1. Create a free Neon project at https://neon.tech
-  //   2. Copy the "pooled" connection string (the one with "-pooler"
-  //      in the hostname and `?sslmode=require` at the end).
-  //   3. Set DATABASE_URL on Vercel (Settings > Environment Variables)
-  //      to that connection string.
-  //   4. Change provider below from "sqlite" to "postgresql".
-  //   5. Run `bunx prisma db push` (or `npx prisma db push`) — this
-  //      creates the tables on the Neon DB.
-  //   6. Deploy. That's it.
+datasource db {--
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
