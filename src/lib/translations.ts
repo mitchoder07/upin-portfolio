@@ -431,6 +431,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "Quran study tool with word-by-word analysis",
           description:
@@ -441,6 +453,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -501,6 +524,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -641,7 +674,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Portfolio v1: Pick a color, crack a code",
           excerpt:
-            "This old portfolio lets you splash any color you like across the screen. And my birthday? Locked behind a password wall – go on, take a guess! (Hint: it is not 1234.).",
+            "This old portfolio lets you splash any color you like across the screen.",
           date: "2026-01-05",
           readTime: "Figma Case Study",
           tag: "Web Design",
@@ -912,6 +945,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "Alat kajian Quran dengan analisis perkataan-demi-perkataan",
           description:
@@ -922,6 +967,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -982,6 +1038,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -1122,7 +1188,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Portfolio v1: Pilih warna, teka kod",
           excerpt:
-            "Portfolio lama ni bagi awak bebas pilih apa-apa warna untuk hiasan skrin. Hari jadi saya? Terkunci di sebalik dinding kata laluan – jom cuba teka! (Petunjuk: bukan 1234.).",
+            "Portfolio lama ni bagi awak bebas pilih apa-apa warna untuk hiasan skrin.",
           date: "2026-01-05",
           readTime: "Kajian Kes Figma",
           tag: "Reka Bentuk Web",
@@ -1393,6 +1459,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "Kayan aikin nazarin Alqur'ani tare da nazarin kalma-da-kalma",
           description:
@@ -1403,6 +1481,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -1463,6 +1552,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -1603,7 +1702,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Portfolio v1: Zaɓi launi, fasa lambar sirri",
           excerpt:
-            "Wannan tsohon portfolio yana ba ka damar canza kowane launi da kake so a kan allo. Kuma ranar haifuwa ta? A kulle take da kalmar sirri – ka gwada! (Alamar: ba 1234 ba.)",
+            "Wannan tsohon portfolio yana ba ka damar canza kowane launi da kake so a kan allo.",
           date: "2026-01-05",
           readTime: "Kararran Figma",
           tag: "Tsarin Yanar Gizo",
@@ -1873,6 +1972,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "Ohun èlò ẹ̀kọ́ Quran pẹ̀lú ìtupalẹ̀ ọ̀rọ̀-lọ́rọ̀",
           description:
@@ -1883,6 +1994,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -1943,6 +2065,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -2083,7 +2215,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Portfolio v1: Yan awọ, pa koodu",
           excerpt:
-            "Portfolio atijọ yii jẹ ki o yan eyikeyi awọ ti o fẹ lori iboju. Ọjọ-ibi mi? Ti pa mọ lẹhin odi ọrọigbaniwọle – ma gbiyanju lati sọ! (Amọ: kii ṣe 1234.)",
+            "Portfolio atijọ yii jẹ ki o yan eyikeyi awọ ti o fẹ lori iboju.",
           date: "2026-01-05",
           readTime: "Ìdànjáde Figma",
           tag: "Àkóónú Web",
@@ -2354,6 +2486,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "単語ごとの分析を備えたクルアーン学習ツール",
           description:
@@ -2364,6 +2508,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -2424,6 +2579,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -2564,7 +2729,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "Portfolio v1: 色を選んで、コードを解読",
           excerpt:
-            "この旧ポートフォリオでは、画面に好きな色を自由に散りばめられます。私の誕生日？パスワードの壁の向こうに隠れています – さあ、推測してみて！ (ヒント: 1234じゃないよ。)",
+            "この旧ポートフォリオでは、画面に好きな色を自由に散りばめられます。",
           date: "2026-01-05",
           readTime: "Figmaケーススタディ",
           tag: "Webデザイン",
@@ -2835,6 +3000,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "أداة دراسة القرآن مع تحليل كلمة بكلمة",
           description:
@@ -2845,6 +3022,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -2905,6 +3093,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -3045,7 +3243,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "المحفظة الإصدار 1: اختر لوناً، افك شفرة",
           excerpt:
-            "هذه المحفظة القديمة تتيح لك اختيار أي لون تحبه على الشاشة. وعيد ميلادي؟ مخلف وراء جدار كلمة مرور – هيا، خمّن! (تلميح: ليس 1234.)RTL.",
+            "هذه المحفظة القديمة تتيح لك اختيار أي لون تحبه على الشاشة.",
           date: "2026-01-05",
           readTime: "دراسة حالة Figma",
           tag: "تصميم ويب",
@@ -3316,6 +3514,18 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://logostudi0.vercel.app",
         },
         {
+          name: "Cybersecurity Engineer Portfolio",
+          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          description:
+            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+          tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
+          gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
+          comingSoon: true,
+        },
+
+        {
           name: "Baca",
           tagline: "带逐词分析的古兰经学习工具",
           description:
@@ -3326,6 +3536,17 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/islam-baca.png",
           githubUrl: "https://github.com/mitchoder07/baca-Al-qur-an",
           liveUrl: "https://baca-al-qur-an.vercel.app",
+        },
+        {
+          name: "Is There Light?",
+          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          description:
+            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+          tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
+          gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
+          comingSoon: true,
         },
         {
           name: "Crypto Vault",
@@ -3386,6 +3607,16 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/kopi.png",
           githubUrl: "https://github.com/mitchoder07/coffee-shop",
           liveUrl: "https://coffee-kopi.vercel.app/",
+        },
+        {
+          name: "Portfolio v1",
+          tagline: "My former portfolio — pick a color, crack a code",
+          description:
+            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/figma/portfolio-1.png",
         },
       ],
     },
@@ -3526,7 +3757,7 @@ export const translations: Record<Locale, Translation> = {
         {
           title: "作品集 v1：选颜色，破密码",
           excerpt:
-            "这个旧版作品集让你随意在屏幕上泼洒任何颜色。我的生日？被密码墙锁着呢 – 来猜猜看吧！（提示：不是1234。）",
+            "这个旧版作品集让你随意在屏幕上泼洒任何颜色。",
           date: "2026-01-05",
           readTime: "Figma案例研究",
           tag: "网页设计",
