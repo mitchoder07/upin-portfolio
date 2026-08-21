@@ -305,8 +305,28 @@ function ShootingStar({
 }
 
 function ShootingStars() {
+  // Viewport-responsive scale. On mobile portrait (aspect < 0.9) the
+  // camera pulls back to z=11 with a wider 62° FOV, giving a visible
+  // world-x range of ~±3.6. But the shooting star paths are defined
+  // with x values up to 7 (designed for desktop's wider visible range).
+  // Without scaling, the stars and their bubbles render off-screen on
+  // mobile, so users don't see the "war" happening.
+  //
+  // Fix: wrap the whole ShootingStars group in a scale that's 0.5 on
+  // mobile (so x=7 becomes x=3.5, just inside the mobile visible
+  // range) and 1.0 on desktop/tablet (where the wider visible range
+  // already accommodates x=7). This keeps the "pew pew" / "duum duum"
+  // action visible on every viewport, so users feel the shootout
+  // happening in the hero.
+  const { size } = useThree();
+  const aspect = size.width / size.height;
+  // 0.4 on mobile (x=7 → x=2.8, well within ±3.6 visible range), 1.0 on
+  // desktop/tablet. The extra margin accounts for the bubble width which
+  // extends beyond the shooting star's position.
+  const scale = aspect < 0.9 ? 0.4 : 1.0;
+
   return (
-    <>
+    <group scale={scale}>
       {/* === HEAVY ROTATION: PEW PEW! and DUUM DUUM! (3 each) ===
           User specifically wanted "pew pew" and "duum duum" to appear
           more than any other sound. These have shorter cycles (6-7s)
@@ -324,7 +344,7 @@ function ShootingStars() {
       <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={11} delay={7.5} caption="WHOOSH!" />
       <ShootingStar start={[7, 3, -2.5]} end={[3, -2, -1]} color="#34d399" cycle={9.5} delay={3.5} caption="BAM!" />
       <ShootingStar start={[2, 4.5, -2]} end={[6, 0.5, -1]} color="#fbbf24" cycle={10.5} delay={6} caption="BOOM!" />
-    </>
+    </group>
   );
 }
 
