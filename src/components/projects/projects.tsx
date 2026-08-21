@@ -416,8 +416,13 @@ export function Projects() {
                   filename={snippet.filename}
                 />
               ) : (
-                <div className="rounded-xl border border-border bg-background/40 p-6 text-center text-sm text-muted-foreground">
-                  No code preview for this project
+                <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-border bg-background/40 p-6 text-center">
+                  <Clock className="h-8 w-8 text-sky-400" />
+                  <p className="text-sm text-muted-foreground">
+                    {active.comingSoon
+                      ? "Code preview coming soon — stay tuned"
+                      : "No code preview for this project"}
+                  </p>
                 </div>
               )}
             </div>
