@@ -464,8 +464,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "AES-256 encryption in the browser",
           description:
@@ -534,6 +533,8 @@ export const translations: Record<Locale, Translation> = {
           impact: "Color theming, password-locked secret area, mobile-first, bold typography",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -946,11 +947,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "Portfolio bertema terminal dengan hujan matriks, cabaran CTF, dan suapan ancaman langsung",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "Portfolio bertema terminal yang mempamerkan kepakaran siber keselamatan saya dengan estetika penggodam tulen. Menampilkan latar belakang hujan matriks langsung, peta ancaman SVG beranimasi dengan visualisasi serangan masa nyata, cabaran CTF interaktif di mana pelawat menyahkod Base64 untuk mencari bendera tersembunyi, suapan ancaman CVE langsung dengan penunjuk keterukan, dan pameran gudang alat keselamatan. Termasuk kandungan terkunci dengan tahap kebenaran dilindungi frasa laluan, emulator terminal penuh dengan 12 arahan siber keselamatan, dan antarabangsa 7-bahasa dengan sokongan RTL Arab.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Hujan matriks, cabaran CTF, suapan CVE langsung, 12 arahan terminal, i18n 7-bahasa",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -970,16 +971,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "Pengesan kuasa sumber-ramai untuk Nigeria dengan enjin integriti anti-pembohongan enam lapisan",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "Nigeria menghadapi bekalan kuasa yang tidak menentu. Is There Light? membolehkan pengguna menyumbang status kuasa masa nyata merentasi 60+ kawasan kejiranan Nigeria melalui peta Leaflet interaktif, dengan kemas kini berasaskan konsensus dan ramalan kerosakan ramalan. Enjin integriti anti-pembohongan enam lapisan memastikan data jujur: pengundian konsensus, laporan wajaran kepercayaan, pemarkahan reputasi, pengehad kadar, penanda auto pelapor mencurigakan, dan penghashan IP untuk privasi. Juga termasuk pengesahan NextAuth, papan pendahuluan kepercayaan, checkout API premium dikuasakan Stripe dengan 3 tahap, dan penempatan iklan rakan kongsi untuk syarikat solar dan inverter.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "60+ kawasan kejiranan, enjin integriti 6-lapisan, tahap API Stripe, papan pendahuluan kepercayaan",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "Penyulitan AES-256 dalam pelayar",
           description:
@@ -1041,13 +1041,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "Portfolio lama saya — pilih warna, pecahkan kod",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "Ini portfolio lama saya sebelum yang ini. Tapak satu halaman yang ringan yang membolehkan pelawat menyimbah mana-mana warna yang mereka suka di skrin, dengan kawasan rahsia berkunci kata laluan yang anda buka dengan memecahkan kod. Dibina mobile-first dengan fokus pada tipografi tebal, permainan warna, dan sentuhan misteri. Digantikan dengan portfolio yang anda lihat sekarang, tetapi ia masih berfungsi sebagai kapsul masa reka bentuk.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Tema warna, kawasan rahsia berkunci, mobile-first, tipografi tebal",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -1460,11 +1462,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "Manhajar jaraba tare da ruwan matrix, kalubalen CTF, da abin da ke faruwa na barazana",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "Manhajar jaraba tana nuna kwararrun kan tsaro ta yanar gizo da kyakkyawan yanayin hacker. Tana da bango na ruwan matrix mai rai, taswirar barazana ta SVG mai motsi da nuna hare-haren nan da nan, kalubalen CTF inda baki ke warware Base64 don samun tuta, abin da ke faruwa na barazana CVE mai rai tare da alamun mahimmanci, da kuma nuna kayan aikin tsaro. Tana da abubuwa da aka kulle da matakan izini da aka kare da kalma, emulator na terminal cikakke tare da umarni 12 na tsaro, da yare 7 tare da goyon bayan RTL na Larabci.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Ruwan matrix, kalubalen CTF, abin faruwa na CVE, umarni 12 na terminal, yare 7",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -1484,16 +1486,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "Mafaraici na wutar lantarki daga jama'a don Najeriya da injin gaskiyar karya-zabi na tsayi shida",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "Najeriya tana fuskantar wutar lantarki mara tsayi. Is There Light? yana bada damar masu amfani su rinka bayar da halin wutar lantarki a lokaci gaskiya a fadin unguwanni 60+ na Najeriya ta hanyar taswirar Leaflet mai ma'ana, tare da sabuntawa tushen-jimma da hasashen karyewar wutar. Injin gaskiyar karya-zabi na tsayi shida yana kiyaye bayanai gaskiya: zabe jimma, rahoton nauyi-aminci, kimanta suna, iyakance kudi, tattara mai shakka, da kuma hashing IP don sirri. Har ila yau ya kunshi tabbatar da NextAuth, jigon kula da amana, tsarin API na premium da Stripe ke gudanarwa tare da matakan 3, da kuma sanya tallan abokan aiki don kamfanoni na hasken rana da inverter.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "60+ unguwanni, injin gaskiyar 6-tsayi, matakan API na Stripe, jigon amana",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "Rufewar AES-256 a cikin bincike",
           description:
@@ -1555,13 +1556,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "Manhajata ta da — zabi launi, kada lambar",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "Wannan manhajata ta da ce kafin wannan. Wurin shafi daya mai wasa wanda yake bawa baki damar yatsa kowane launi da suka so a fadin allo, tare da yankin sirri mai kullin kalma wanda kuke bude ta hanyar karya lamba. An gina shi mobile-first tare da mayar da hankali kan rubutu mai kauri, wasan launi, da dan wahayi. An maye gurbinsa da manhajar da kuke kallo yanzu, amma har yanzu yana aiki a matsayin kwalban lokacin zane.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Jigon launi, yankin sirri mai kulli, mobile-first, rubutu mai kauri",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -1973,11 +1976,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "Akosile aworan pelu oji matrix, idajo CTF, ati iroyin itokan laifo",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "Akosile aworan to n afihan ogbon ikoko orisirisi mi pelu irisi hacker to dara. O ni ipese oji matrix to n rin, aworan itokan SVG to n riri pelu iha ere laifo, idajo CTF ibi ti awon abo n tu Base64 lati ri bendera to pamo, iroyin itokan CVE laifo pelu awon ammi iye, ati ifihan awon irinse ikoko. O ni akonu to ti kun pelu ipele iyawoda ti a daabo bo pelu oro asina, emulator terminal kikankinni pelu awon ase ikoko orisirisi 12, ati eko 7-ede pelu atileyin RTL.",
+          role: "Onimo-Ero Frontend & Alase UI/UX",
+          impact: "Oji matrix, idajo CTF, iroyin CVE, ase 12, eko 7-ede",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -1997,16 +2000,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "Atoka agbara lati owo opo fun Naijiria pelu amulo idajo ekun-karo merin",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "Naijiria n dojuko ipese agbara to ki i se dede. Is There Light? n fun awon olulo lati fi orisun ipese agbara laifo ka akojo 60+ ni Naijiria nipase mapa Leaflet, pelu imudaju ajosopo ati isoro-roye iko. Amulo idajo merin n setito idajo onitooto: ibo ajosopo, iroyin iwon-igbekale, imo-idajo irin, ipalara iyara, itoka-funra-re awon onise ikoo, ati IP hashing fun ipamo. O tun ni ifasesun NextAuth, pepe isakoso igbekale, idanwo API to wu nipase Stripe pelu ipele 3, ati ifihan ipolowo ore-ise fun awon ile-ise imo-oorun ati inverter.",
+          role: "Onimo-Ero Frontend & Alase UI/UX",
+          impact: "60+ akojo, amulo merin, ipele API Stripe, pepe igbekale",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "Ìdásóní AES-256 nínú bincike",
           description:
@@ -2068,13 +2070,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "Akosile ateyen mi — yan awo, pa koodu",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "Eyọ akosile ateyen mi saaju eyi. Oju-ijoso kan to n ba awon abo lerin pelu yiyan awo kikorikiri lori iboju, pelu agbala ikooko to kun pelu oro-asina to n ri ona nipa fipa koodu. A ko o gege bi iwon ero adapo pelu ifaramo lori oro-ikowe gege, irin-ajo awo, ati ifiyele idamu. A ropo pelu akosile to n wa yi, sugbon o si wa gege bi iranti awose.",
+          role: "Onimo-Ero Frontend & Alase UI/UX",
+          impact: "Isoro-awọ, agbala ikooko, iwon ero adapo, oro-ikowe gege",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -2487,11 +2491,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "マトリックス雨、CTFチャレンジ、ライブ脅威フィード付きのターミナル風ポートフォリオ",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "私のサイバーセキュリティ専門知識を、純粋なハッカー美学で示すターミナル風ポートフォリオ。ライブマトリックス雨の背景、リアルタイム攻撃可視化を備えたアニメーションSVG脅威マップ、訪問者がBase64をデコードして隠されたフラグを見つけるインタラクティブなCTFチャレンジ、重大度インジケーター付きのライブCVE脅威フィード、セキュリティツールアーモナルショーケースを備えています。パスフレーズで保護されたクリアランスレベルのロックされたコンテンツ、12のサイバーセキュリティコマンドを備えたフルターミナルエミュレータ、RTLアラビア語対応の7言語国際化が含まれます。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "マトリックス雨、CTFチャレンジ、ライブCVEフィード、12のターミナルコマンド、7言語i18n",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -2511,16 +2515,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "ナイジェリア向けのクラウドソーシング電力トラッカー、6層の嘘防止エンジン搭載",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "ナイジェリアは不安定な電力供給に直面しています。Is There Light?は、インタラクティブなLeafletマップを通じて、ナイジェリアの60以上の地域のリアルタイム電力状況をクラウドソーシングで収集し、コンセンサスベースの更新と停電予測を提供します。6層の嘘防止インテグリティエンジンがデータの信頼性を保ちます: コンセンサス投票、信頼度加重レポート、評判スコアリング、レート制限、疑わしい報告者の自動フラグ付け、プライバシーのためのIPハッシュ化。NextAuth認証、信頼リーダーボード、3階層のStripe決済API、ソーラー・インバーター企業向けのパートナー広告掲載も含まれます。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "60以上の地域、6層インテグリティエンジン、Stripe API階層、信頼リーダーボード",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "ブラウザ内のAES-256暗号化",
           description:
@@ -2582,13 +2585,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "私の以前のポートフォリオ — 色を選んで、コードを解読",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "これは今のポートフォリオの前の私の以前のポートフォリオです。訪問者が画面上に好きな色を自由に散りばめられる遊び心のあるシングルページサイトで、コードを解読してロックを解除するパスワード保護のシークレットエリアがあります。モバイルファーストで、大胆なタイポグラフィ、カラー遊び、少しのミステリーに焦点を当てて構築しました。今見ているポートフォリオに置き換えられましたが、デザインのタイムカプセルとしてまだ成立しています。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "カラーテーマ、パスワード保護エリア、モバイルファースト、大胆なタイポグラフィ",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -3001,11 +3006,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "معرض أعمال بأسلوب الطرفية مع مطر المصفوفة، تحدي CTF، ونبذ التهديدات المباشرة",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "معرض أعمال بأسلوب الطرفية يعرض خبرتي في الأمن السيبراني بجماليات هاكر نقية. يتميز بخلفية مطر مصفوفة مباشرة، خريطة تهديدات SVG متحركة مع تصور هجمات في الوقت الفعلي، تحدي CTF تفاعلي حيث يفك الزوار تشفير Base64 للعثور على علم مخفي، نبذ تهديدات CVE مباشرة مع مؤشرات الخطورة، وعرض ترسانة أدوات الأمان. يشمل محتوى مقفل بمستويات تخليص محمية بكلمة مرور، محاكي طرفية كامل بـ 12 أمر أمن سيبراني، وتدويل بـ 7 لغات مع دعم RTL للعربية.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "مطر المصفوفة، تحدي CTF، نبذ CVE، 12 أمر طرفية، 7 لغات",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -3025,16 +3030,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "متتبع كهرباء مصدره الجمهور لنيجيريا بمحرك نزاهة مضاد للكذب من ست طبقات",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "تواجه نيجيريا إمدادات كهربائية متقطعة. Is There Light? يتيح للمستخدمين المساهمة في حالة الكهرباء في الوقت الفعلي عبر أكثر من 60 حياً نيجيرياً عبر خريطة Leaflet تفاعلية، مع تحديثات قائمة على الإجماع والتنبؤ بانقطاعات الكهرباء. محرك نزاهة مضاد للكذب من ست طبقات يحافظ على صدق البيانات: تصويت الإجماع، تقارير مرجحة بالثقة، تسجيل السمعة، تحديد المعدل، وضع علامات تلقائية على المراسلين المشبوهين، وتشفير IP للخصوصية. يشمل أيضاً مصادقة NextAuth، لوحة صدارة الثقة، واجهة برمجة API مدفوعة من Stripe بـ 3 مستويات، وإعلانات شركاء لشركات الطاقة الشمسية والإنفرتر.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "60+ حياً، محرك نزاهة 6 طبقات، مستويات API Stripe، لوحة صدارة الثقة",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "تشفير AES-256 في المتصفح",
           description:
@@ -3096,13 +3100,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "معرضي السابق — اختر لوناً، فك الرمز",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "هذا كان معرضي السابق قبل هذا الحالي. موقع من صفحة واحدة مرح يتيح للزوار رش أي لون يحبونه عبر الشاشة، مع منطقة سرية محمية بكلمة مرور تفتحها بفك رمز. بُني للموبايل أولاً مع التركيز على الطباعة الجريئة، اللعب بالألوان، ولمسة من الغموض. استُبدل بالمعرض الذي تنظر إليه الآن، لكنه لا يزال يقف كبسولة زمنية للتصميم.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "سمات الألوان، منطقة سرية محمية، موبايل أولاً، طباعة جريئة",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
@@ -3515,11 +3521,11 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Cybersecurity Engineer Portfolio",
-          tagline: "Terminal-themed portfolio with matrix rain, CTF challenge, and live threat feed",
+          tagline: "终端风格作品集，带矩阵雨、CTF挑战和实时威胁推送",
           description:
-            "A terminal-themed portfolio showcasing my cybersecurity expertise with a pure hacker aesthetic. Features a live matrix rain background, an animated SVG threat map with real-time attack visualization, an interactive CTF challenge where visitors decode Base64 to find a hidden flag, a live CVE threat feed with severity indicators, and a security tools arsenal showcase. Includes locked content with passphrase-protected clearance levels, a full terminal emulator with 12 cybersecurity commands, and 7-language internationalization with RTL Arabic support.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
+            "一个终端风格的作品集，以纯粹的骇客美学展示我的网络安全专业能力。特色包括实时矩阵雨背景、带实时攻击可视化的动画SVG威胁地图、访客解码Base64寻找隐藏flag的互动CTF挑战、带严重性指标的实时CVE威胁推送，以及安全工具军械库展示。包含密码保护的解锁等级锁定内容、12条网络安全命令的完整终端模拟器，以及支持RTL阿拉伯语的7语言国际化。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "矩阵雨、CTF挑战、实时CVE推送、12条终端命令、7语言国际化",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
           comingSoon: true,
@@ -3539,16 +3545,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Is There Light?",
-          tagline: "Crowd-sourced power tracker for Nigeria with a six-layer anti-lie integrity engine",
+          tagline: "尼日利亚众包电力追踪器，配备六层防伪诚信引擎",
           description:
-            "Nigeria faces epileptic power supply. Is There Light? lets users crowd-source real-time power status across 60+ Nigerian neighborhoods via an interactive Leaflet map, with consensus-based updates and predictive outage forecasting. A six-layer anti-lie integrity engine keeps the data honest: consensus voting, trust-weighted reports, reputation scoring, rate limiting, auto-flagging of suspicious reporters, and IP hashing for privacy. Also includes NextAuth authentication, a trust leaderboard, Stripe-powered premium API checkout with 3 tiers, and partner ad placements for solar and inverter companies.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "60+ neighborhoods, 6-layer integrity engine, Stripe API tiers, trust leaderboard",
+            "尼日利亚面临不稳定的电力供应。Is There Light? 通过交互式Leaflet地图，让用户众包实时电力状态，覆盖尼日利亚60多个社区，提供基于共识的更新和停电预测。六层防伪诚信引擎确保数据真实：共识投票、信任加权报告、声誉评分、速率限制、可疑报告者自动标记，以及隐私保护的IP哈希。还包括NextAuth认证、信任排行榜、Stripe驱动的3层API高级结账，以及太阳能和逆变器公司的合作伙伴广告位。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "60+社区、6层诚信引擎、Stripe API层级、信任排行榜",
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL", "Framer Motion", "Leaflet", "NextAuth", "Stripe"],
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
-        },
-        {
+        },        {
           name: "Crypto Vault",
           tagline: "浏览器中的 AES-256 加密",
           description:
@@ -3610,13 +3615,15 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "我的前一个作品集 — 选颜色，破解密码",
           description:
-            "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Color theming, password-locked secret area, mobile-first, bold typography",
+            "这是我在这个之前的旧作品集。一个俏皮的单页网站，让访客在屏幕上随意泼洒任何颜色，还有一个通过破解密码解锁的密码保护秘密区域。以移动优先构建，注重大胆排版、色彩游戏和一丝神秘感。已被你现在看到的这个作品集取代，但它仍然是一个设计时间胶囊。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "色彩主题、密码保护区域、移动优先、大胆排版",
           tech: ["HTML5", "CSS3", "JavaScript"],
           image: "/figma/portfolio-1.png",
+          githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
+          liveUrl: "https://upin-portfolio.vercel.app",
         },
       ],
     },
