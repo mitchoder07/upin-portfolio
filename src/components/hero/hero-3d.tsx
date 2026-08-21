@@ -15,11 +15,29 @@ import {
   AdaptiveDpr,
   PerformanceMonitor,
 } from "@react-three/drei";
-import { Component, Suspense, useRef, useMemo, useEffect, useState } from "react";
-import type { ReactNode } from "react";
+import {
+  Component,
+  Suspense,
+  useRef,
+  useMemo,
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+} from "react";
+import type { ReactNode, MutableRefObject } from "react";
 import type { Mesh } from "three";
 import * as THREE from "three";
 import { motion, AnimatePresence } from "framer-motion";
+
+// ===== Caption Portal Context =====
+// Provides a ref to a high-z-index DOM element (created in hero.tsx) that
+// sits ABOVE the hero text (z-30 vs z-10). All ComicBubble <Html> elements
+// portal into this div instead of the canvas's default container (which is
+// at z-0, below the hero text). This is what makes the tank/man/shooting-
+// star captions visible on mobile — without it, the bubbles render inside
+// the z-0 canvas container and get covered by the z-10 hero content.
+const CaptionPortalContext = createContext<MutableRefObject<HTMLDivElement | null> | null>(null);
 
 // Catches any hard failure from Environment's network-fetched HDR (not just
 // a slow load) so it can never take down the rest of the 3D scene.
@@ -199,12 +217,19 @@ function ComicBubble({
       ? "text-sm sm:text-lg md:text-xl font-black px-4 py-2 sm:px-5 sm:py-2.5"
       : "text-sm sm:text-base md:text-lg font-bold px-3 py-1.5 sm:px-4 sm:py-2";
 
+  // Portal ref — when provided (via CaptionPortalContext), all <Html>
+  // elements render into this high-z-index div instead of the canvas's
+  // default container. This puts the captions ABOVE the hero text (z-30
+  // vs z-10) so they're always visible on mobile.
+  const portalRef = useContext(CaptionPortalContext);
+
   return (
     <Html
       position={position}
       center
       distanceFactor={9}
-      zIndexRange={[30, 0]}
+      zIndexRange={[100, 0]}
+      portal={portalRef ?? undefined}
       style={{ pointerEvents: "none" }}
     >
       <AnimatePresence>
@@ -282,19 +307,23 @@ function ShootingStar({
 function ShootingStars() {
   return (
     <>
-      {/* Original shooting stars with longer duration */}
-      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={8} delay={0} caption="PEW!" />
-      <ShootingStar start={[6, 2.5, -1]} end={[2.5, -1.5, -2]} color="#e879f9" cycle={10} delay={2.5} caption="ZAP!" />
-      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={9} delay={5} caption="PEW PEW!" />
+      {/* === HEAVY ROTATION: PEW PEW! and DUUM DUUM! (3 each) ===
+          User specifically wanted "pew pew" and "duum duum" to appear
+          more than any other sound. These have shorter cycles (6-7s)
+          so they fire more frequently. */}
+      <ShootingStar start={[1.5, 3.5, -2.5]} end={[5, 1, -1.5]} color="#a78bfa" cycle={6} delay={0} caption="PEW PEW!" />
+      <ShootingStar start={[3, 4, -1.5]} end={[7, 1.5, -2]} color="#5eead4" cycle={7} delay={2} caption="PEW PEW!" />
+      <ShootingStar start={[2, 4.5, -2]} end={[6, 0.5, -1]} color="#fbbf24" cycle={6} delay={4} caption="PEW PEW!" />
+
+      <ShootingStar start={[4, 4, -1.5]} end={[7, 1, -2]} color="#f472b6" cycle={7} delay={1} caption="DUUM DUUM!" />
+      <ShootingStar start={[6, 3, -2.5]} end={[3, -2, -1]} color="#34d399" cycle={6} delay={3} caption="DUUM DUUM!" />
+      <ShootingStar start={[5, 3.5, -1]} end={[1, -2.5, -2]} color="#60a5fa" cycle={7} delay={5} caption="DUUM DUUM!" />
+
+      {/* === LIGHT ROTATION: other sounds (1 each, longer cycles) === */}
+      <ShootingStar start={[3.5, 3, -2]} end={[6.5, 0.5, -3]} color="#5eead4" cycle={10} delay={0} caption="PEW!" />
       <ShootingStar start={[6.5, -1, -2]} end={[3, -3, -3]} color="#5eead4" cycle={11} delay={7.5} caption="WHOOSH!" />
-      
-      {/* NEW additional shooting stars with more variety */}
-      <ShootingStar start={[4, 4, -1.5]} end={[7, 1, -2]} color="#f472b6" cycle={12} delay={1} caption="KA-POW!" />
       <ShootingStar start={[7, 3, -2.5]} end={[3, -2, -1]} color="#34d399" cycle={9.5} delay={3.5} caption="BAM!" />
       <ShootingStar start={[2, 4.5, -2]} end={[6, 0.5, -1]} color="#fbbf24" cycle={10.5} delay={6} caption="BOOM!" />
-      <ShootingStar start={[5, 3.5, -1]} end={[1, -2.5, -2]} color="#60a5fa" cycle={13} delay={8} caption="WHAM!" />
-      <ShootingStar start={[3, 5, -2.5]} end={[6.5, 2, -1.5]} color="#f87171" cycle={8.5} delay={4.5} caption="CRASH!" />
-      <ShootingStar start={[6.5, 4, -1]} end={[2, 0, -2]} color="#a3e635" cycle={11.5} delay={9} caption="KAPOW!" />
     </>
   );
 }
@@ -1202,14 +1231,19 @@ function ResponsiveCamera() {
   return null;
 }
 
-export function Hero3DScene() {
+export function Hero3DScene({
+  captionPortalRef,
+}: {
+  captionPortalRef?: MutableRefObject<HTMLDivElement | null>;
+}) {
   return (
-    <Canvas
-      dpr={[1, 2]}
-      gl={{ antialias: true, alpha: true }}
-      camera={{ position: [0, 0, 8], fov: 45 }}
-      style={{ background: "transparent" }}
-    >
+    <CaptionPortalContext.Provider value={captionPortalRef ?? null}>
+      <Canvas
+        dpr={[1, 2]}
+        gl={{ antialias: true, alpha: true }}
+        camera={{ position: [0, 0, 8], fov: 45 }}
+        style={{ background: "transparent" }}
+      >
       <PerformanceMonitor>
         <AdaptiveDpr pixelated={false} />
       </PerformanceMonitor>
@@ -1322,6 +1356,7 @@ export function Hero3DScene() {
           </Environment>
         </Suspense>
       </SilentErrorBoundary>
-    </Canvas>
+      </Canvas>
+    </CaptionPortalContext.Provider>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { ArrowDown, Terminal as TerminalIcon } from "lucide-react";
@@ -20,6 +21,12 @@ const stats = [
 
 export function Hero() {
   const { t } = useI18n();
+  // Caption layer ref — a high-z-index DOM element that sits ABOVE the
+  // hero text (z-30 vs z-10). The 3D scene's ComicBubble elements
+  // portal into this div so the tank/man/shooting-star captions are
+  // always visible on top of the hero text, especially on mobile where
+  // the hero content covers most of the screen.
+  const captionLayerRef = useRef<HTMLDivElement>(null);
 
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -33,8 +40,19 @@ export function Hero() {
     >
       {/* 3D Background — FULL SCREEN, bright and clear */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <Hero3DScene />
+        <Hero3DScene captionPortalRef={captionLayerRef} />
       </div>
+
+      {/* Caption layer — HIGH Z-INDEX overlay that the 3D ComicBubble
+          elements portal into. This sits above the hero text (z-10) so
+          all tank/man/shooting-star speech bubbles are visible on
+          mobile without touching the hero content itself.
+          pointer-events-none so clicks pass through to the hero text. */}
+      <div
+        ref={captionLayerRef}
+        className="absolute inset-0 z-30 pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="container-max relative z-10 flex min-h-screen flex-col justify-center px-6 pt-28 pb-24 sm:px-12 sm:ml-8 lg:ml-16 lg:px-16 xl:ml-24">
         <div className="relative w-full max-w-2xl sm:max-w-3xl lg:max-w-4xl">
