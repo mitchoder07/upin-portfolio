@@ -285,67 +285,86 @@ export function Projects() {
 
               {/* CTAs */}
               <div className="mt-auto flex flex-wrap gap-2">
-                {active.comingSoon ? (
-                  <div className="inline-flex h-9 items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/5 px-4 text-xs font-medium text-sky-600 dark:text-sky-400">
-                    <Clock className="h-3.5 w-3.5" />
-                    {t.projects.comingSoon}
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap items-center gap-3">
-                    {active.confidential && (
-                      <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
-                        <Lock className="h-3.5 w-3.5" />
-                        {t.projects.confidential}
-                      </div>
-                    )}
-                    {/* Source code button hidden for confidential projects —
-                        repo stays private. Live link can still be shown for
-                        client projects with public deployments. */}
-                    {!active.confidential && active.githubUrl && (
-                      <Button
-                        asChild
-                        variant="outline"
-                        size="sm"
-                        className="h-9 rounded-full glass"
-                        data-cursor="pointer"
+                <div className="flex flex-wrap items-center gap-3">
+                  {active.confidential && !active.comingSoon && (
+                    <div className="inline-flex h-9 items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/5 px-4 text-xs font-medium text-amber-600 dark:text-amber-400">
+                      <Lock className="h-3.5 w-3.5" />
+                      {t.projects.confidential}
+                    </div>
+                  )}
+                  {/* Source code button — for normal projects shows the
+                      GitHub link, for Coming Soon projects shows a
+                      disabled "Coming Soon" button, for confidential
+                      projects the button is hidden (repo is private). */}
+                  {!active.confidential && active.comingSoon ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="h-9 rounded-full border-sky-500/30 bg-sky-500/5 text-sky-600 dark:text-sky-400"
+                    >
+                      <Github className="mr-2 h-3.5 w-3.5" />
+                      {t.projects.comingSoon}
+                    </Button>
+                  ) : !active.confidential && active.githubUrl ? (
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="h-9 rounded-full glass"
+                      data-cursor="pointer"
+                    >
+                      <a
+                        href={active.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <a
-                          href={active.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Github className="mr-2 h-3.5 w-3.5" />
-                          {t.projects.viewCode}
-                        </a>
-                      </Button>
-                    )}
-                    {active.liveUrl && (
-                      <Button
-                        asChild
-                        size="sm"
-                        className="h-9 rounded-full bg-foreground text-background hover:bg-foreground/90"
-                        data-cursor="pointer"
+                        <Github className="mr-2 h-3.5 w-3.5" />
+                        {t.projects.viewCode}
+                      </a>
+                    </Button>
+                  ) : null}
+                  {/* Live demo button — for normal projects shows the
+                      live link, for Coming Soon projects shows a disabled
+                      "Coming Soon" button. */}
+                  {active.comingSoon ? (
+                    <Button
+                      size="sm"
+                      disabled
+                      className="h-9 rounded-full border-sky-500/30 bg-sky-500/5 text-sky-600 dark:text-sky-400"
+                    >
+                      {t.projects.comingSoon}
+                      <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+                    </Button>
+                  ) : active.liveUrl ? (
+                    <Button
+                      asChild
+                      size="sm"
+                      className="h-9 rounded-full bg-foreground text-background hover:bg-foreground/90"
+                      data-cursor="pointer"
+                    >
+                      <a
+                        href={active.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
-                        <a
-                          href={active.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {t.projects.viewLive}
-                          <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
-                        </a>
-                      </Button>
-                    )}
-                    {/* Like button - 1 like per device via the
-                        X-Device-Id fingerprint. Heart fills when this
-                        device has liked. Spam-protected by a unique
-                        (projectSlug, deviceId) constraint in the DB. */}
+                        {t.projects.viewLive}
+                        <ArrowUpRight className="ml-2 h-3.5 w-3.5" />
+                      </a>
+                    </Button>
+                  ) : null}
+                  {/* Like button — hidden for Coming Soon projects (can't
+                      like something that isn't live yet). For all other
+                      projects (including confidential ones with public
+                      deployments), the like button shows so visitors can
+                      heart projects they vibe with. */}
+                  {!active.comingSoon && (
                     <ProjectLikeButton
                       projectSlug={projectSlug(active.name)}
                       projectName={active.name}
                     />
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
               {/* Pager */}
@@ -390,11 +409,17 @@ export function Projects() {
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 Live code preview
               </div>
-              <CodePreview
-                code={snippet.code}
-                language={snippet.language}
-                filename={snippet.filename}
-              />
+              {snippet ? (
+                <CodePreview
+                  code={snippet.code}
+                  language={snippet.language}
+                  filename={snippet.filename}
+                />
+              ) : (
+                <div className="rounded-xl border border-border bg-background/40 p-6 text-center text-sm text-muted-foreground">
+                  No code preview for this project
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
