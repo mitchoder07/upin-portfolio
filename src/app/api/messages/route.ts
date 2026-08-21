@@ -17,16 +17,198 @@ const TTL_DAYS = 30;
 const RATE_LIMIT_WINDOW_MS = 60_000; // 60 seconds
 const RATE_LIMIT_MAX_POSTS = 3; // 3 posts per minute per device
 
-// Tiny profanity filter — replace obvious slurs with asterisks.
+// Comprehensive profanity + illicit content filter.
+// Replaces offensive words with asterisks (same length) so the
+// structure of the message is preserved but the harmful content is
+// redacted. Covers:
+//   - Common profanity (English)
+//   - Racial slurs
+//   - Homophobic / ableist slurs
+//   - Sexual explicit terms
+//   - Drug-related slang
+//   - Common leetspeak variants (a→@, i→1, e→3, o→0, s→$, etc.)
+//   - Space-separated bypass attempts (f u c k → ****)
+//
+// This is NOT exhaustive — determined trolls will always find gaps —
+// but it catches the vast majority of casual abuse. The 30-day TTL
+// and the per-device rate limit are the real safety net.
 const PROFANITY = [
-  "fuck", "shit", "bitch", "asshole", "bastard", "dick", "pussy", "cunt",
-  "nigger", "nigga", "faggot", "retard", "whore", "slut",
+  // Common profanity
+  "fuck", "fucker", "fucking", "fucked", "fuckin", "motherfucker", "motherfucking",
+  "shit", "shitty", "shite", "bullshit", "dipshit", "dumbshit",
+  "bitch", "bitches", "bitching", "son of a bitch",
+  "asshole", "assholes", "arsehole",
+  "bastard", "bastards",
+  "dick", "dickhead", "dickheads", "dicks",
+  "pussy", "pussies",
+  "cunt", "cunts",
+  "cock", "cocks", "cock sucker", "cocksucker", "cocksuckers",
+  "wanker", "wankers",
+  "twat", "twats",
+  "prick", "pricks",
+  "slut", "sluts", "slutty",
+  "whore", "whores",
+  "hoe", "hoes",
+  "skank", "skanks",
+  "douche", "douchebag", "douchebags",
+  "jackass", "jackasses",
+  "dumbass", "dumbasses",
+  "fatass", "lazyass",
+  "dumbfuck", "dumbfucks",
+
+  // Racial / ethnic slurs
+  "nigger", "nigga", "niggers", "niggas",
+  "spic", "spics",
+  "chink", "chinks",
+  "wetback", "wetbacks",
+  "gook", "gooks",
+  "kike", "kikes",
+  "kraut", "krauts",
+  "wop", "wops",
+  "mick", "micks",
+  "paki", "pakis",
+  "raghead", "ragheads",
+  "towelhead", "towelheads",
+  "camel jockey", "camel jockeys",
+  "spear chucker", "spear chuckers",
+
+  // Homophobic / ableist slurs
+  "faggot", "faggots", "fag", "fags", "fagg",
+  "dyke", "dykes",
+  "tranny", "trannies",
+  "retard", "retards", "retarded",
+  "mongoloid", "mongoloids",
+  "spaz", "spazz", "spastic",
+  "cripple", "cripples",
+  "midget", "midgets",
+
+  // Sexual explicit terms
+  "porn", "porno", "pornography",
+  "hentai",
+  "milf", "milfs",
+  "dildo", "dildos",
+  "vibrator",
+  "butt plug",
+  "anal", "rimjob", "rimming",
+  "boner",
+  "jizz", "cum", "cumming",
+  "bukkake",
+  "gangbang", "gang bang",
+  "creampie",
+  "deepthroat", "deep throat",
+  "handjob", "hand job",
+  "blowjob", "blow job",
+  "tit", "tits", "titty", "titties",
+  "boob", "boobs", "boobies",
+  "nipple", "nipples",
+  "vagina", "vaginal",
+  "penis",
+  "ballsack", "ball sack",
+  "nutsack", "nut sack",
+  "clit", "clitoris",
+  "fingering",
+  "fisting",
+  "orgasm",
+  "masturbate", "masturbating", "masturbation",
+  "moan", "moaning",
+
+  // Drug-related slang
+  "cocaine", "coke", "crack", "crackhead",
+  "heroin", "meth", "crystal meth", "crystal",
+  "weed", "marijuana", "pot", "ganja",
+  "lsd", "ecstasy", "mdma",
+  "shrooms", "mushrooms",
+  "dealer", "drug dealer",
+  "drug deal",
+  "pill mill",
+
+  // Violence / threats
+  "kill yourself", "kys",
+  "rape", "rapist", "raping",
+  "molest", "molester", "molesting",
+  "pedophile", "paedophile", "pedo",
+  "child porn", "cp",
+  "beheading", "decapitate",
+  "shoot up", "shooting up",
+  "bomb threat", "bombing",
+  "terrorist", "terrorism",
+  "jihad",
+  "genocide", "ethnic cleansing",
+  "lynch", "lynching",
+  "hang yourself",
+  "self harm", "cut yourself",
+
+  // Leetspeak variants of common words (fuck, shit, etc.)
+  "f@ck", "fuk", "fukk", "phuck", "phuk",
+  "sh1t", "shyt", "sh!t",
+  "b1tch", "b!tch",
+  "@ss", "@sshole",
+  "d!ck",
+  "pu$$y",
+  "cunt" ,
+  "f4gg0t", "f4g",
+  "r3t4rd",
+  "n1gg4", "n!gg@",
+  "5h1t",
+  "b00b5",
+  "d1ld0",
+
+  // Bypass attempts with spaces
+  "f u c k", "f.u.c.k", "f-u-c-k",
+  "s h i t", "s.h.i.t", "s-h-i-t",
+  "b i t c h", "b.i.t.c.h",
+  "a s s h o l e", "a.s.s.h.o.l.e",
+  "n i g g a", "n.i.g.g.a",
+  "r e t a r d", "r.e.t.a.r.d",
 ];
+
+// Build a single regex from the word list for efficient matching.
+// Uses word boundaries (\\b) so "ass" doesn't match "class", and
+// escapes regex special characters in the words.
+const profanityRegex = (() => {
+  const escaped = PROFANITY
+    .filter((w) => w.length > 1)
+    .map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  return new RegExp(`\\b(${escaped.join("|")})\\b`, "gi");
+})();
+
 function censor(s: string): string {
-  let out = s;
+  // First pass: catch whole-word matches with word boundaries.
+  let out = s.replace(profanityRegex, (m) => "*".repeat(m.length));
+  // Second pass: catch space-separated bypass attempts like "f u c k".
+  // Collapse spaces and check against the word list, then redact the
+  // original positions if a match is found.
+  let collapsed = s.replace(/\s+/g, "").toLowerCase();
   for (const word of PROFANITY) {
-    const re = new RegExp(word, "gi");
-    out = out.replace(re, (m) => "*".repeat(m.length));
+    if (word.length < 4 || word.includes(" ")) continue; // skip short words and phrases
+    const wordNoSpace = word.replace(/\s+/g, "");
+    let idx = collapsed.indexOf(wordNoSpace);
+    while (idx !== -1) {
+      // Redact the corresponding characters in the original string
+      // (accounting for the spaces that were collapsed).
+      let origIdx = 0;
+      let collapsedIdx = 0;
+      while (collapsedIdx < idx && origIdx < out.length) {
+        if (/\s/.test(s[origIdx])) {
+          origIdx++;
+        } else {
+          collapsedIdx++;
+          origIdx++;
+        }
+      }
+      // Redact wordNoSpace.length non-space characters starting at origIdx
+      let redacted = 0;
+      let i = origIdx;
+      while (i < out.length && redacted < wordNoSpace.length) {
+        if (!/\s/.test(out[i])) {
+          out = out.slice(0, i) + "*" + out.slice(i + 1);
+          redacted++;
+        }
+        i++;
+      }
+      collapsed = collapsed.slice(0, idx) + "*".repeat(wordNoSpace.length) + collapsed.slice(idx + wordNoSpace.length);
+      idx = collapsed.indexOf(wordNoSpace, idx + wordNoSpace.length);
+    }
   }
   return out;
 }
