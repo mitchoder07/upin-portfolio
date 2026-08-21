@@ -4,7 +4,26 @@ export type CodeSnippet = {
   code: string;
 };
 
-export const projectCodeSnippets: CodeSnippet[] = [
+// The snippets array is indexed by project position in the projects list.
+// Projects 3 (Cybersecurity Engineer Portfolio) and 5 (Is There Light?)
+// are "Coming Soon" projects with no source code yet, so they have null
+// entries — the Projects component shows "No code preview for this
+// project" for these.
+//
+// Project order (12 projects total):
+//   0. Al-Bashir Academy LMS Portal
+//   1. Rafaab
+//   2. Your Studio: Logo Portfolio
+//   3. Cybersecurity Engineer Portfolio (Coming Soon — null)
+//   4. Baca
+//   5. Is There Light? (Coming Soon — null)
+//   6. Crypto Vault
+//   7. Similarity Checker
+//   8. Cyber Bot
+//   9. Cyber-Words Guess
+//   10. Kopi
+//   11. Portfolio v1
+export const projectCodeSnippets: (CodeSnippet | null)[] = [
   // 1. Al-Bashir Academy LMS — course analytics dashboard card (TypeScript)
   {
     language: "typescript",
@@ -170,6 +189,9 @@ export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
 }`,
   },
 
+  // 3.5 Cybersecurity Engineer Portfolio — Coming Soon (no source code yet)
+  null,
+
   // 4. Baca — word-by-word Quran reader component (JavaScript)
   {
     language: "javascript",
@@ -237,6 +259,9 @@ export class WordByWordReader {
   }
 }`,
   },
+
+  // 5.5 Is There Light? — Coming Soon (no source code yet)
+  null,
 
   // 5. Crypto Vault — AES-256 encryption (JavaScript)
   {
@@ -605,5 +630,86 @@ class ProductCard {
 document.querySelectorAll(".product-card").forEach((el) => {
   new ProductCard(el);
 });`,
+  },
+
+  // 12. Portfolio v1 — color theming + password-locked secret area (JavaScript)
+  {
+    language: "javascript",
+    filename: "portfolio-v1/app.js",
+    code: `/**
+ * Portfolio v1 — Color theming + secret code unlock.
+ * The playful old portfolio: splash any color, crack the code.
+ */
+
+// === Color theming — splash any color across the screen ===
+const ColorTheme = {
+  root: document.documentElement,
+  picker: document.getElementById("color-picker"),
+
+  init() {
+    // Load saved color or default to cyan
+    const saved = localStorage.getItem("portfolio-color") || "#00d9ff";
+    this.apply(saved);
+    this.picker.value = saved;
+    this.picker.addEventListener("input", (e) => this.apply(e.target.value));
+  },
+
+  apply(hex) {
+    // Convert hex to CSS custom properties so the whole page re-themes
+    const rgb = this.hexToRgb(hex);
+    this.root.style.setProperty("--accent", hex);
+    this.root.style.setProperty("--accent-rgb", \`\${rgb.r}, \${rgb.g}, \${rgb.b}\`);
+    localStorage.setItem("portfolio-color", hex);
+  },
+
+  hexToRgb(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+  },
+};
+
+// === Secret code unlock — crack the code to reveal the secret area ===
+const SecretLock = {
+  overlay: document.getElementById("secret-overlay"),
+  input: document.getElementById("code-input"),
+  hint: document.getElementById("code-hint"),
+
+  // The code is "open sesame" — simple but playful
+  CODE: "open sesame",
+
+  init() {
+    this.input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") this.check();
+    });
+  },
+
+  check() {
+    const guess = this.input.value.trim().toLowerCase();
+    if (guess === this.CODE) {
+      this.unlock();
+    } else {
+      this.hint.textContent = "nope, try again";
+      this.hint.style.color = "#ff4757";
+      this.input.value = "";
+      // Shake animation on wrong guess
+      this.overlay.classList.add("shake");
+      setTimeout(() => this.overlay.classList.remove("shake"), 400);
+    }
+  },
+
+  unlock() {
+    this.hint.textContent = "welcome to the secret area";
+    this.hint.style.color = "#2ed573";
+    this.overlay.classList.add("unlocked");
+    setTimeout(() => {
+      this.overlay.style.display = "none";
+      document.getElementById("secret-content").classList.add("visible");
+    }, 800);
+  },
+};
+
+// === Boot ===
+ColorTheme.init();
+SecretLock.init();`,
   },
 ];
