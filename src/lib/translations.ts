@@ -439,7 +439,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "Matrix rain, CTF challenge, live CVE feed, 12 terminal commands, 7-language i18n",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -465,30 +467,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "AES-256 encryption in the browser",
-          description:
-            "A client-side encryption vault that encrypts and decrypts secrets with AES-256, fully in the browser. Zero data leaves the device. Designed the UX around trust: clear states, copy-to-clipboard, and zero-confusion empty states.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Zero-server encryption, clean key-management UX",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "Multi-algorithm plagiarism checker with visual gauge",
-          description:
-            "A plagiarism checker that runs multiple text-similarity algorithms and renders results on a visual gauge. Includes a citation assistant that suggests proper attribution. Designed the comparison UI and the gauge component from scratch.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Multi-algorithm scoring, visual gauge, citation assistant",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "Ask anything about cybersecurity, get instant answers",
           description:
@@ -511,18 +489,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -586,7 +552,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Started learning HTML, CSS, JavaScript. Built personal projects and grew into React and Next.js.",
           achievements: [
-            "Shipped personal projects including Baca and Crypto Vault",
+            "Shipped personal projects including Baca and Cyber Bot",
             "Learned React, TypeScript, and Tailwind through real builds",
             "Contributed to small open-source repositories",
           ],
@@ -627,16 +593,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "Client-side AES-256 encryption vault. Zero data leaves the device.",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "Multi-algorithm plagiarism checker with visual gauge and citation assistant.",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "View GitHub Profile",
@@ -954,7 +920,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "Hujan matriks, cabaran CTF, suapan CVE langsung, 12 arahan terminal, i18n 7-bahasa",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -980,30 +948,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "Penyulitan AES-256 dalam pelayar",
-          description:
-            "Peti penyulitan sisi-klien yang menyulitkan dan menyahsulit rahsia dengan AES-256, sepenuhnya dalam pelayar. Tiada data meninggalkan peranti. UX direka sekitar kepercayaan: keadaan jelas, salin-ke-papan keratan, dan keadaan kosong tanpa kekeliruan.",
-          role: "Jurutera Frontend & Pereka UI/UX",
-          impact: "Penyulitan tanpa pelayan, UX pengurusan kunci yang bersih",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "Pemeriksa plagiarisme pelbagai-algoritma dengan tolok visual",
-          description:
-            "Pemeriksa plagiarisme yang menjalankan pelbagai algoritma persamaan teks dan memaparkan keputusan pada tolok visual. Termasuk pembantu petikan yang mencadangkan atribusi yang betul. UI perbandingan dan komponen tolok direka dari awal.",
-          role: "Jurutera Frontend & Pereka UI/UX",
-          impact: "Pemarkahan pelbagai-algoritma, tolok visual, pembantu petikan",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "Tanya apa-apa tentang keselamatan siber, dapatkan jawapan serta-merta",
           description:
@@ -1026,18 +970,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -1101,7 +1033,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Mula belajar HTML, CSS, JavaScript. Membina projek peribadi dan berkembang ke React dan Next.js.",
           achievements: [
-            "Menghantar projek peribadi termasuk Baca dan Crypto Vault",
+            "Menghantar projek peribadi termasuk Baca dan Cyber Bot",
             "Belajar React, TypeScript, dan Tailwind melalui binaan sebenar",
             "Menyumbang kepada repositori sumber terbuka kecil",
           ],
@@ -1142,16 +1074,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "Peti penyulitan AES-256 sisi-klien. Tiada data meninggalkan peranti.",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "Pemeriksa plagiarisme pelbagai-algoritma dengan tolok visual dan pembantu petikan.",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "Lihat Profil GitHub",
@@ -1469,7 +1401,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "Ruwan matrix, kalubalen CTF, abin faruwa na CVE, umarni 12 na terminal, yare 7",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -1495,30 +1429,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "Rufewar AES-256 a cikin bincike",
-          description:
-            "Tsarin rufewa na gefen-abokan ciniki wanda ke rufewa da buɗewa asiri da AES-256, gabaɗaya a cikin bincike. Babu bayanan da ke barin na'urar. An tsara UX game da amincewa: yanayi mai haske, kwafi-zuwa-clipboard, da yanayi maras komai ba tare da rudani ba.",
-          role: "Injiniyan Frontend & Mai Tsara UI/UX",
-          impact: "Rufewa ba tare da uba ba, UX na kula da maɓallai mai tsabta",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "Mai duba sata da yawa-algorithm da ma'auni na gani",
-          description:
-            "Mai duba sata wanda ke gudanar da algorithms da yawa na kamanceceniya da rubutu kuma yana nuna sakamako akan ma'auni na gani. Ya haɗa da mataimakin da ke ba da shawarar daɗaɗɗen bayani. An tsara UI na kwatanta da kuma ɓangaren ma'auni daga farko.",
-          role: "Injiniyan Frontend & Mai Tsara UI/UX",
-          impact: "Tsari mai yawa-algorithm, ma'auni na gani, mataimakin daɗaɗɗen bayani",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "Tambaya kome game da tsaron yanar gizo, sami amsa nan take",
           description:
@@ -1541,18 +1451,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -1616,7 +1514,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Fara koyo da HTML, CSS, JavaScript. Gina ayyukan kansa kuma girma zuwa React da Next.js.",
           achievements: [
-            "Tura ayyukan kansa ciki har da Baca da Crypto Vault",
+            "Tura ayyukan kansa ciki har da Baca da Cyber Bot",
             "Koyi React, TypeScript, da Tailwind ta hanyar ginin gaske",
             "Ba da gudummawa ga ƙananan tushen buɗe",
           ],
@@ -1657,16 +1555,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "Tsarin rufewa na AES-256 na gefen-abokan ciniki. Babu bayanan da ke barin na'urar.",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "Mai duba sata da yawa-algorithm tare da ma'auni na gani da mataimakin daɗaɗɗen bayani.",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "Duba Bayanin GitHub",
@@ -1983,7 +1881,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "Oji matrix, idajo CTF, iroyin CVE, ase 12, eko 7-ede",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -2009,30 +1909,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "Ìdásóní AES-256 nínú bincike",
-          description:
-            "Àpò ìdásóní ẹ̀gbẹ́-oníṣẹ́ tó ń dásóní àti ṣíṣe àwọn asírí pẹ̀lú AES-256, gbangba nínú bincike. Kò sí dátà tó ń kúrò lórí ẹ̀rọ. A ṣètò UX lórí ìgbẹ́kẹ̀lé: àwọn ìpín tó yé, dá-kóòpì-sí-clipboard, àti àwọn ìpín asọ̀-làyọ láìsí ìdàrò.",
-          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
-          impact: "Ìdásóní láìsí sẹ́fà, UX ìṣàkóso pínpín tó mọ́",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "Olùdájọ́ jíjàgídíjàcan pẹ̀lú algorithm púpọ̀ àti góòjí àríyànjà",
-          description:
-            "Olùdájọ́ jíjàgídíjàcan tó ń ṣiṣẹ́ àwọn algorithm púpọ̀ ìdájọ́-ìdàkejì ọ̀rọ̀ àti tó ń sọ àbájáde lórí góòjí àríyànjà. Ó ní olùrànwọ́ ìdásílẹ̀ ìrọ̀rùn tó ń dábọ̀ ìdámọ̀ràn tó yẹ. A ṣètò UI ìdájọ́ àti ọ̀ṣọ́ góòjí láti ìbẹ̀rẹ̀.",
-          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
-          impact: "Ìdámọ̀ràn algorithm-púpọ̀, góòjí àríyànjà, olùrànwọ́ ìdásílẹ̀",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "Béèrè kí nkan bíi àbò sáìbà, gba àhùnpò lásìkò",
           description:
@@ -2055,18 +1931,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -2130,7 +1994,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Bẹ̀rẹ̀ kíkọ́ HTML, CSS, JavaScript. Kọ́ àwọn iṣẹ́ fúnra-ra àti dàgbà-sókè sí React àti Next.js.",
           achievements: [
-            "Fi àwọn iṣẹ́ fúnra-ra rán pẹ̀lú Baca àti Crypto Vault",
+            "Fi àwọn iṣẹ́ fúnra-ra rán pẹ̀lú Baca àti Cyber Bot",
             "Kọ́ React, TypeScript, àti Tailwind nípa kíkọ́ àdání",
             "Ṣe ìrànwọ́ sí àwọn ilé-ìkọ́ orísun ìmọ̀ kéèké",
           ],
@@ -2171,16 +2035,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "Àpò ìdásóní AES-256 ẹ̀gbẹ́-oníṣẹ́. Kò sí dátà tó ń kúrò lórí ẹ̀rọ.",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "Olùdájọ́ jíjàgídíjàcan algorithm-púpọ̀ pẹ̀lú góòjí àríyànjà àti olùrànwọ́ ìdásílẹ̀.",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "Wo Ìwé GitHub",
@@ -2498,7 +2362,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "マトリックス雨、CTFチャレンジ、ライブCVEフィード、12のターミナルコマンド、7言語i18n",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -2524,30 +2390,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "ブラウザ内のAES-256暗号化",
-          description:
-            "ブラウザ内で完全にAES-256でシークレットの暗号化と復号を行うクライアントサイド暗号化ボールト。デバイスからデータが外に出ません。信頼を軸にUXを設計: 明確な状態、クリップボードへのコピー、混乱のない空状態。",
-          role: "フロントエンドエンジニア & UI/UXデザイナー",
-          impact: "サーバーレス暗号化、クリーンなキー管理UX",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "ビジュアルゲージ付きマルチアルゴリズム盗作チェッカー",
-          description:
-            "複数のテキスト類似度アルゴリズムを実行し、結果をビジュアルゲージに表示する盗作チェッカー。適切な帰属を提案する引用アシスタントを含む。比較UIとゲージコンポーネントをゼロから設計。",
-          role: "フロントエンドエンジニア & UI/UXデザイナー",
-          impact: "マルチアルゴリズムスコアリング、ビジュアルゲージ、引用アシスタント",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "サイバーセキュリティについて何でも聞いて、即座に回答を得る",
           description:
@@ -2570,18 +2412,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -2645,7 +2475,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "HTML、CSS、JavaScriptの学習を開始。個人プロジェクトを構築し、ReactとNext.jsに成長。",
           achievements: [
-            "BacaとCrypto Vaultを含む個人プロジェクトをリリース",
+            "BacaとCyber Botを含む個人プロジェクトをリリース",
             "実際の構築を通じてReact、TypeScript、Tailwindを学習",
             "小さなオープンソースリポジトリに貢献",
           ],
@@ -2686,16 +2516,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "クライアントサイドAES-256暗号化ボールト。デバイスからデータが外に出ない。",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "ビジュアルゲージと引用アシスタント付きマルチアルゴリズム盗作チェッカー。",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "GitHubプロフィールを見る",
@@ -3013,7 +2843,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "مطر المصفوفة، تحدي CTF، نبذ CVE، 12 أمر طرفية، 7 لغات",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -3039,30 +2871,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "تشفير AES-256 في المتصفح",
-          description:
-            "خزنة تشفير من جانب العميل تشفر وتفك تشفير الأسرار بـ AES-256، بالكامل في المتصفح. لا تغادر أي بيانات الجهاز. صُمم UX حول الثقة: حالات واضحة، نسخ إلى الحافظة، وحالات فارغة بلا ارتباك.",
-          role: "مهندس واجهات أمامية & مصمم UI/UX",
-          impact: "تشفير بلا خادم، UX نظيف لإدارة المفاتيح",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "مدقق انتحال متعدد الخوارزميات مع مقياس مرئي",
-          description:
-            "مدحق انتحال يشغل خوارزميات تشابه نصي متعددة ويعرض النتائج على مقياس مرئي. يتضمن مساعد استشهاد يقترح الإسناد المناسب. صُمم واجهة المقارنة ومكون المقياس من الصفر.",
-          role: "مهندس واجهات أمامية & مصمم UI/UX",
-          impact: "تسجيل متعدد الخوارزميات، مقياس مرئي، مساعد استشهاد",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "اسأل أي شيء عن الأمن السيبراني، احصل على إجابات فورية",
           description:
@@ -3085,18 +2893,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -3160,7 +2956,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "بدأت بتعلم HTML، CSS، JavaScript. بنيت مشاريع شخصية ونمت إلى React و Next.js.",
           achievements: [
-            "أطلقت مشاريع شخصية بما فيها Baca و Crypto Vault",
+            "أطلقت مشاريع شخصية بما فيها Baca و Cyber Bot",
             "تعلمت React، TypeScript، و Tailwind عبر بناء حقيقي",
             "ساهمت في مستودعات مفتوحة المصدر صغيرة",
           ],
@@ -3201,16 +2997,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "خزنة تشفير AES-256 من جانب العميل. لا تغادر البيانات الجهاز.",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "مدقق انتحال متعدد الخوارزميات مع مقياس مرئي ومساعد استشهاد.",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "عرض ملف GitHub",
@@ -3528,7 +3324,9 @@ export const translations: Record<Locale, Translation> = {
           impact: "矩阵雨、CTF挑战、实时CVE推送、12条终端命令、7语言国际化",
           tech: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Framer Motion", "Canvas API"],
           gradient: "linear-gradient(135deg, #0a0a0a 0%, #00ff41 50%, #1a1a2e 100%)",
-          comingSoon: true,
+          image: "/portfolio-images/cyber-portfolio.png",
+          githubUrl: "https://github.com/mitchoder07/cybersecurity-portfolio",
+          liveUrl: "https://cyber-portf0lio.vercel.app",
         },
 
         {
@@ -3554,30 +3352,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Crypto Vault",
-          tagline: "浏览器中的 AES-256 加密",
-          description:
-            "一个客户端加密金库,完全在浏览器中用 AES-256 加密和解密机密。零数据离开设备。围绕信任设计 UX:清晰状态、复制到剪贴板、零混乱的空状态。",
-          role: "前端工程师 & UI/UX 设计师",
-          impact: "零服务器加密,干净的密钥管理 UX",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/crypto-vault.jpeg",
-          githubUrl: "https://github.com/mitchoder07/cryptoVault",
-          liveUrl: "https://crypto-vauult.vercel.app/",
-        },
-        {
-          name: "Similarity Checker",
-          tagline: "带可视化仪表的多算法抄袭检测器",
-          description:
-            "一个运行多种文本相似度算法并在可视化仪表上呈现结果的抄袭检测器。包含建议正确归属性的引用助手。从零设计了比较 UI 和仪表组件。",
-          role: "前端工程师 & UI/UX 设计师",
-          impact: "多算法评分、可视化仪表、引用助手",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/similarity-checker.jpeg",
-          githubUrl: "https://github.com/mitchoder07/similarity-checker",
-          liveUrl: "https://similarity-checker-five.vercel.app/",
-        },
-        {
           name: "Cyber Bot",
           tagline: "问任何关于网络安全的问题,获得即时答案",
           description:
@@ -3600,18 +3374,6 @@ export const translations: Record<Locale, Translation> = {
           image: "/portfolio-images/cyber-words.jpg",
           githubUrl: "https://github.com/mitchoder07/word-guessing-game",
           liveUrl: "https://word-guessing-game-nine.vercel.app/",
-        },
-        {
-          name: "Kopi",
-          tagline: "Coffee shop landing page with menu, gallery, and reviews",
-          description:
-            "A modern coffee-shop landing page with a hero section, menu showcase, customer reviews, photo gallery, and a working contact form. Designed the warm, cafe-inspired visual identity and built it mobile-first.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Menu showcase, photo gallery, reviews section, contact form",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/kopi.png",
-          githubUrl: "https://github.com/mitchoder07/coffee-shop",
-          liveUrl: "https://coffee-kopi.vercel.app/",
         },
         {
           name: "Portfolio v1",
@@ -3675,7 +3437,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "开始学习 HTML、CSS、JavaScript。构建个人项目并成长为 React 和 Next.js。",
           achievements: [
-            "交付个人项目,包括 Baca 和 Crypto Vault",
+            "交付个人项目,包括 Baca 和 Cyber Bot",
             "通过真实构建学习 React、TypeScript 和 Tailwind",
             "为小型开源仓库做贡献",
           ],
@@ -3716,16 +3478,16 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cryptoVault",
-          description: "客户端 AES-256 加密金库。零数据离开设备。",
+          name: "cyber-bot",
+          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
           language: "JavaScript",
           stars: "0",
         },
         {
-          name: "similarity-checker",
-          description: "带可视化仪表和引用助手的多算法抄袭检测器。",
-          language: "JavaScript",
-          stars: "1",
+          name: "logo-studio",
+          description: "Dark editorial logo portfolio with 74 brand marks and lightbox viewer.",
+          language: "TypeScript",
+          stars: "0",
         },
       ],
       viewGithub: "查看 GitHub 主页",

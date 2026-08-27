@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/theme-provider";
 import { I18nProvider } from "@/lib/i18n";
 import { CustomCursor } from "@/components/custom-cursor";
+import { CatCursor } from "@/components/cat-cursor";
+import { ScrollButtons } from "@/components/scroll-buttons";
+import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -84,6 +87,9 @@ export default function RootLayout({
         <ThemeProvider>
           <I18nProvider>
             <CustomCursor />
+            <CatCursor />
+            <ScrollButtons />
+            <MobileBottomNav />
             {children}
             <Toaster />
           </I18nProvider>

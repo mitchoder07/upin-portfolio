@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUp, Github, Linkedin, Mail, Dribbble, Figma } from "lucide-react";
+import { Github, Linkedin, Mail, Dribbble, Figma } from "lucide-react";
 import { SiX, SiWhatsapp } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { AnimatedLogo } from "@/components/animated-logo";
@@ -101,18 +101,10 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="mt-6 flex flex-col items-center justify-center gap-4">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Upin. {t.footer.rights}
           </p>
-          <button
-            onClick={() => scrollTo("home")}
-            className="group flex items-center gap-2 rounded-full glass px-4 py-2 text-xs font-medium transition-all duration-300 hover:border-[var(--neon)]/40 hover:text-[var(--neon)]"
-            data-cursor="pointer"
-          >
-            <ArrowUp className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5" />
-            {t.footer.backToTop}
-          </button>
         </div>
       </div>
     </footer>

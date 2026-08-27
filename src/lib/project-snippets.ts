@@ -5,24 +5,20 @@ export type CodeSnippet = {
 };
 
 // The snippets array is indexed by project position in the projects list.
-// Projects 3 (Cybersecurity Engineer Portfolio) and 5 (Is There Light?)
-// are "Coming Soon" projects with no source code yet, so they have null
-// entries — the Projects component shows "No code preview for this
-// project" for these.
+// Project 5 (Is There Light?) is a "Coming Soon" project with no source
+// code yet, so it has a null entry — the Projects component shows
+// "Code preview coming soon" for it.
 //
-// Project order (12 projects total):
+// Project order (9 projects total):
 //   0. Al-Bashir Academy LMS Portal
 //   1. Rafaab
 //   2. Your Studio: Logo Portfolio
-//   3. Cybersecurity Engineer Portfolio (Coming Soon — null)
+//   3. Cybersecurity Engineer Portfolio
 //   4. Baca
 //   5. Is There Light? (Coming Soon — null)
-//   6. Crypto Vault
-//   7. Similarity Checker
-//   8. Cyber Bot
-//   9. Cyber-Words Guess
-//   10. Kopi
-//   11. Portfolio v1
+//   6. Cyber Bot
+//   7. Cyber-Words Guess
+//   8. Portfolio v1
 export const projectCodeSnippets: (CodeSnippet | null)[] = [
   // 1. Al-Bashir Academy LMS — course analytics dashboard card (TypeScript)
   {
@@ -189,8 +185,54 @@ export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
 }`,
   },
 
-  // 3.5 Cybersecurity Engineer Portfolio — Coming Soon (no source code yet)
-  null,
+  // 3.5 Cybersecurity Engineer Portfolio — matrix rain + CTF challenge (TypeScript)
+  {
+    language: "typescript",
+    filename: "cyber-portfolio/matrix-rain.ts",
+    code: `/**
+ * Cybersecurity Portfolio — Matrix rain effect on canvas.
+ * Pure Canvas API, no dependencies. Lightweight and creepy.
+ */
+export function initMatrixRain(canvas: HTMLCanvasElement) {
+  const ctx = canvas.getContext("2d")!;
+  const chars = "01<>/{}[]()#$%&*+-=ABCDEF0123456789".split("");
+  const fontSize = 14;
+  let columns: number[] = [];
+
+  const resize = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    columns = Array(Math.floor(canvas.width / fontSize)).fill(1);
+  };
+  resize();
+  window.addEventListener("resize", resize);
+
+  const draw = () => {
+    // Trail effect — semi-transparent black overlay
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ff41";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < columns.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const x = i * fontSize;
+      const y = columns[i] * fontSize;
+
+      ctx.fillText(char, x, y);
+
+      // Reset column to top randomly, or advance
+      if (y > canvas.height && Math.random() > 0.975) {
+        columns[i] = 0;
+      }
+      columns[i]++;
+    }
+  };
+
+  setInterval(draw, 50);
+}`,
+  },
 
   // 4. Baca — word-by-word Quran reader component (JavaScript)
   {
@@ -262,168 +304,6 @@ export class WordByWordReader {
 
   // 5.5 Is There Light? — Coming Soon (no source code yet)
   null,
-
-  // 5. Crypto Vault — AES-256 encryption (JavaScript)
-  {
-    language: "javascript",
-    filename: "crypto-vault/aes.js",
-    code: `/**
- * Crypto Vault — AES-256-GCM in the browser.
- * Zero data leaves the device. Key derived from password via PBKDF2.
- */
-const SUBTLE = window.crypto.subtle;
-const ENC = new TextEncoder();
-const DEC = new TextDecoder();
-
-const PBKDF2_ITERATIONS = 250_000;
-const SALT_BYTES = 16;
-const IV_BYTES = 12;
-
-export async function deriveKey(password, salt) {
-  const baseKey = await SUBTLE.importKey(
-    "raw",
-    ENC.encode(password),
-    "PBKDF2",
-    false,
-    ["deriveKey"]
-  );
-  return SUBTLE.deriveKey(
-    {
-      name: "PBKDF2",
-      salt,
-      iterations: PBKDF2_ITERATIONS,
-      hash: "SHA-256",
-    },
-    baseKey,
-    { name: "AES-GCM", length: 256 },
-    false,
-    ["encrypt", "decrypt"]
-  );
-}
-
-export async function encryptSecret(password, plaintext) {
-  const salt = window.crypto.getRandomValues(new Uint8Array(SALT_BYTES));
-  const iv = window.crypto.getRandomValues(new Uint8Array(IV_BYTES));
-  const key = await deriveKey(password, salt);
-
-  const ciphertext = await SUBTLE.encrypt(
-    { name: "AES-GCM", iv },
-    key,
-    ENC.encode(plaintext)
-  );
-
-  return {
-    salt: toBase64(salt),
-    iv: toBase64(iv),
-    ciphertext: toBase64(new Uint8Array(ciphertext)),
-  };
-}
-
-export async function decryptSecret(password, payload) {
-  const salt = fromBase64(payload.salt);
-  const iv = fromBase64(payload.iv);
-  const key = await deriveKey(password, salt);
-
-  const plaintext = await SUBTLE.decrypt(
-    { name: "AES-GCM", iv },
-    key,
-    fromBase64(payload.ciphertext)
-  );
-  return DEC.decode(plaintext);
-}
-
-function toBase64(bytes) {
-  return btoa(String.fromCharCode(...bytes));
-}
-
-function fromBase64(str) {
-  return Uint8Array.from(atob(str), (c) => c.charCodeAt(0));
-}`,
-  },
-
-  // 6. Similarity Checker — text similarity algorithm (JavaScript)
-  {
-    language: "javascript",
-    filename: "similarity-checker/similarity.js",
-    code: `/**
- * Similarity Checker — multi-algorithm text similarity.
- * Returns 0..1 score and a per-algorithm breakdown.
- */
-
-export function tokenize(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\\w\\s]/g, " ")
-    .split(/\\s+/)
-    .filter(Boolean);
-}
-
-export function cosineSimilarity(a, b) {
-  const ta = tokenize(a);
-  const tb = tokenize(b);
-  const freq = new Map();
-
-  for (const w of ta) freq.set(w, (freq.get(w) ?? 0) + 1);
-  for (const w of tb) freq.set(w, (freq.get(w) ?? 0) - 1);
-
-  let dot = 0;
-  let magA = 0;
-  let magB = 0;
-
-  const allWords = new Set([...ta, ...tb]);
-  for (const w of allWords) {
-    const fa = ta.filter((x) => x === w).length;
-    const fb = tb.filter((x) => x === w).length;
-    dot += fa * fb;
-    magA += fa * fa;
-    magB += fb * fb;
-  }
-
-  if (magA === 0 || magB === 0) return 0;
-  return dot / (Math.sqrt(magA) * Math.sqrt(magB));
-}
-
-export function jaccardSimilarity(a, b) {
-  const sa = new Set(tokenize(a));
-  const sb = new Set(tokenize(b));
-  let intersection = 0;
-  for (const w of sa) if (sb.has(w)) intersection++;
-  return intersection / (sa.size + sb.size - intersection);
-}
-
-export function levenshteinRatio(a, b) {
-  const m = a.length;
-  const n = b.length;
-  if (m === 0) return n === 0 ? 1 : 0;
-  if (n === 0) return 0;
-
-  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
-  for (let i = 0; i <= m; i++) dp[i][0] = i;
-  for (let j = 0; j <= n; j++) dp[0][j] = j;
-
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
-      dp[i][j] = Math.min(
-        dp[i - 1][j] + 1,
-        dp[i][j - 1] + 1,
-        dp[i - 1][j - 1] + cost
-      );
-    }
-  }
-
-  const dist = dp[m][n];
-  return 1 - dist / Math.max(m, n);
-}
-
-export function scoreSimilarity(a, b) {
-  const cosine = cosineSimilarity(a, b);
-  const jaccard = jaccardSimilarity(a, b);
-  const lev = levenshteinRatio(a, b);
-  const overall = 0.5 * cosine + 0.3 * jaccard + 0.2 * lev;
-  return { overall, cosine, jaccard, levenshtein: lev };
-}`,
-  },
 
   // 7. Cyber Bot — chatbot suggested prompts (JavaScript)
   {
@@ -578,58 +458,6 @@ export function nextKeyState(feedback) {
     return acc;
   }, {});
 }`,
-  },
-
-  // 9. Kopi — Coffee shop product card with hover animation
-  {
-    language: "javascript",
-    filename: "kopi/product-card.js",
-    code: `/**
- * Kopi — Coffee shop product card.
- * Warm hover animation, accessible focus state.
- */
-class ProductCard {
-  constructor(element) {
-    this.card = element;
-    this.image = this.card.querySelector(".product-image");
-    this.addButton = this.card.querySelector(".add-to-cart");
-
-    this.bindEvents();
-  }
-
-  bindEvents() {
-    this.card.addEventListener("mouseenter", this.onHover.bind(this));
-    this.card.addEventListener("mouseleave", this.onLeave.bind(this));
-    this.addButton.addEventListener("click", this.onAddToCart.bind(this));
-  }
-
-  onHover() {
-    this.image.style.transform = "scale(1.08) translateY(-4px)";
-    this.card.style.boxShadow = "0 12px 32px rgba(120, 80, 40, 0.25)";
-  }
-
-  onLeave() {
-    this.image.style.transform = "scale(1) translateY(0)";
-    this.card.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.08)";
-  }
-
-  onAddToCart(event) {
-    const productId = this.card.dataset.productId;
-    const productName = this.card.dataset.name;
-
-    Cart.add({ id: productId, name: productName, qty: 1 });
-    Toast.show(\`\${productName} added to cart\`, { type: "success" });
-
-    // Haptic-style button feedback
-    this.addButton.classList.add("pulse");
-    setTimeout(() => this.addButton.classList.remove("pulse"), 400);
-  }
-}
-
-// Initialize all product cards on the menu page
-document.querySelectorAll(".product-card").forEach((el) => {
-  new ProductCard(el);
-});`,
   },
 
   // 12. Portfolio v1 — color theming + password-locked secret area (JavaScript)
