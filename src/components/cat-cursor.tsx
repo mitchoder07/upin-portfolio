@@ -5,48 +5,52 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 
 // ===== CatCursor =====
-// A well-drawn SVG cat that follows the mouse cursor on desktop only.
+// A clean, simple cat that follows the mouse cursor on desktop only.
 //
-// Behavior (inspired by nehalingole.in):
-//   • When the mouse moves, the cat RUNS toward the mouse position.
-//     The running animation has leg movement (frame-based), the body
-//     bounces slightly, and the cat rotates to face the direction
-//     it's running.
-//   • When the mouse stops, the cat catches up and SITS down beside
-//     the cursor (not on top of it). It transitions from the running
-//     pose to a sitting pose, then says "mew mew" once.
-//   • The cat goes idle (sitting, occasionally blinking) until the
-//     mouse moves again.
-//   • Color: white in dark mode, dark gray in light mode — so it's
-//     always visible against the background.
-//   • Only active on viewports >= 1024px (desktop). Touch devices
-//     don't have a cursor to follow.
+// Inspired by nehalingole.in — a simple white (or dark in light mode)
+// cat sprite that:
+//   1. FOLLOWS the mouse smoothly — not too fast, not too slow.
+//      Uses a gentle lerp (0.05) so the cat trails behind the cursor
+//      naturally, like a real cat walking toward its target.
+//   2. Always wants to stay BESIDE the mouse — when the mouse stops,
+//      the cat catches up and sits beside it (offset to the right of
+//      the cursor, facing left toward it).
+//   3. When the cat catches up and the mouse has stopped, it says
+//      "mew mew" in a speech bubble above its HEAD (not at a fixed
+//      screen position).
+//   4. Goes idle (sitting, occasional blink) until the mouse moves
+//      again.
 //
-// The cat is drawn as inline SVG so it's crisp at any size and the
-// color can be themed via CSS variables.
+// The cat is drawn as clean SVG — simple, rounded, cute. Not a complex
+// anatomical drawing. Think "Neko" mascot style: rounded body, pointy
+// ears, simple eyes, curled tail.
+//
+// Color: white in dark mode, dark gray in light mode.
 
-type CatState = "idle" | "running" | "sitting";
+type CatState = "walking" | "sitting" | "idle";
 
 export function CatCursor() {
   const [mounted, setMounted] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
-  const [catState, setCatState] = useState<CatState>("idle");
+  const [catState, setCatState] = useState<CatState>("walking");
   const [mewText, setMewText] = useState<string | null>(null);
-  const [runFrame, setRunFrame] = useState(0); // 0 or 1 for leg animation
-  const [facingLeft, setFacingLeft] = useState(false);
+  const mewTextRef = useRef<string | null>(null);
+  const [walkFrame, setWalkFrame] = useState(0);
+  const [facingLeft, setFacingLeft] = useState(true);
   const [eyeBlink, setEyeBlink] = useState(false);
+  const mewBubbleRef = useRef<HTMLDivElement>(null);
 
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
+  const isDark = resolvedTheme !== "light"; // default dark
 
   const catRef = useRef<HTMLDivElement>(null);
   const mousePos = useRef({ x: 0, y: 0 });
   const catPos = useRef({ x: 0, y: 0 });
-  const targetPos = useRef({ x: 0, y: 0 });
   const lastMouseMove = useRef(0);
   const hasSaidMew = useRef(false);
   const rafRef = useRef<number>(0);
-  const stateRef = useRef<CatState>("idle");
+  const stateRef = useRef<CatState>("walking");
+  const facingLeftRef = useRef(true);
 
   useEffect(() => {
     setMounted(true);
@@ -59,29 +63,28 @@ export function CatCursor() {
   useEffect(() => {
     if (!isDesktop) return;
 
-    // Initialize cat at center-right of screen (away from hero text)
-    catPos.current = { x: window.innerWidth * 0.7, y: window.innerHeight * 0.5 };
-    targetPos.current = { ...catPos.current };
+    // Initialize cat at center of screen
+    catPos.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     mousePos.current = { ...catPos.current };
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
-      // The cat targets a position slightly BESIDE the cursor (offset
-      // by 30px to the left or right depending on direction) so it
-      // doesn't sit directly on top of the cursor.
-      targetPos.current = { x: e.clientX, y: e.clientY };
       lastMouseMove.current = Date.now();
       hasSaidMew.current = false;
-      if (mewText) setMewText(null);
-      if (stateRef.current !== "running") {
-        stateRef.current = "running";
-        setCatState("running");
+      // Clear mew bubble if it's showing — use ref to avoid stale closure
+      if (mewTextRef.current) {
+        mewTextRef.current = null;
+        setMewText(null);
+      }
+      if (stateRef.current !== "walking") {
+        stateRef.current = "walking";
+        setCatState("walking");
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Blink animation — randomly blink every 3-6 seconds when idle
+    // Blink animation — randomly blink every 3-6 seconds when idle/sitting
     const blinkInterval = setInterval(() => {
       if (stateRef.current === "idle" || stateRef.current === "sitting") {
         setEyeBlink(true);
@@ -89,69 +92,104 @@ export function CatCursor() {
       }
     }, 3000 + Math.random() * 3000);
 
-    // Running leg animation — toggle frame every 120ms when running
-    const runAnimInterval = setInterval(() => {
-      if (stateRef.current === "running") {
-        setRunFrame((f) => (f === 0 ? 1 : 0));
+    // Walking animation — toggle frame every 200ms when walking
+    // (slower than before = more relaxed pace)
+    const walkAnimInterval = setInterval(() => {
+      if (stateRef.current === "walking") {
+        setWalkFrame((f) => (f === 0 ? 1 : 0));
       }
-    }, 120);
+    }, 200);
 
     // Main animation loop
     const animate = () => {
-      const dx = targetPos.current.x - catPos.current.x;
-      const dy = targetPos.current.y - catPos.current.y;
+      // The cat targets a position BESIDE the mouse cursor.
+      // When facing left (mouse is to the left of cat), the cat sits
+      // to the RIGHT of the cursor. When facing right, cat sits to
+      // the LEFT. This way the cat always "faces" the cursor.
+      //
+      // Offset: 45px to the side, same Y as cursor (slightly below).
+      const dx = mousePos.current.x - catPos.current.x;
+      const dy = mousePos.current.y - catPos.current.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Determine facing direction
-      if (Math.abs(dx) > 2) {
-        setFacingLeft(dx < 0);
+      // Determine facing — cat faces TOWARD the mouse
+      const newFacingLeft = dx < 0;
+      if (Math.abs(dx) > 3 && newFacingLeft !== facingLeftRef.current) {
+        facingLeftRef.current = newFacingLeft;
+        setFacingLeft(newFacingLeft);
       }
 
-      // Lerp toward target — faster when far, slower when close
-      const lerp = dist > 100 ? 0.08 : 0.12;
-      catPos.current.x += dx * lerp;
-      catPos.current.y += dy * lerp;
+      // Target position: beside the cursor
+      // If facing left (mouse is left), cat is to the RIGHT of mouse
+      // If facing right (mouse is right), cat is to the LEFT of mouse
+      const sideOffset = newFacingLeft ? 40 : -40;
+      const targetX = mousePos.current.x + sideOffset;
+      const targetY = mousePos.current.y;
 
-      // Update DOM position
+      const targetDx = targetX - catPos.current.x;
+      const targetDy = targetY - catPos.current.y;
+      const targetDist = Math.sqrt(targetDx * targetDx + targetDy * targetDy);
+
+      // Lerp toward the target — moderate pace (0.08)
+      // Slow enough to look like a cat walking, fast enough to catch
+      // up to the cursor within a second or two.
+      const lerp = 0.08;
+      catPos.current.x += targetDx * lerp;
+      catPos.current.y += targetDy * lerp;
+
+      // Snap to target when very close — prevents the cat from
+      // oscillating around the target without ever reaching it.
+      if (targetDist < 3) {
+        catPos.current.x = targetX;
+        catPos.current.y = targetY;
+      }
+
+      // Update DOM position — the cat div is 48x48, so offset by 24
+      // to center it on catPos.
       if (catRef.current) {
-        // Offset the cat so it sits BESIDE the cursor, not on top.
-        // When facing left, cat is to the right of cursor; when facing
-        // right, cat is to the left. This way the cat "approaches"
-        // the cursor from behind/beside.
-        const offsetX = facingLeft ? 35 : -35;
-        const offsetY = -10;
-        catRef.current.style.transform = `translate(${catPos.current.x + offsetX - 32}px, ${catPos.current.y + offsetY - 32}px)`;
+        catRef.current.style.transform = `translate(${catPos.current.x - 24}px, ${catPos.current.y - 24}px)`;
+      }
+
+      // Update mew bubble position imperatively (if visible) — this
+      // avoids 60 React re-renders per second from setCatScreenPos.
+      if (mewBubbleRef.current) {
+        mewBubbleRef.current.style.transform = `translate(${catPos.current.x - 30}px, ${catPos.current.y - 50}px)`;
       }
 
       // State transitions
       const timeSinceMove = Date.now() - lastMouseMove.current;
 
-      if (dist < 8 && timeSinceMove > 200) {
+      // If the cat is close to the target AND the mouse has stopped
+      if (targetDist < 12 && timeSinceMove > 250) {
         // Cat has caught up and mouse stopped → sit down
-        if (stateRef.current !== "sitting" && stateRef.current !== "idle") {
+        // Only trigger the sit + mew when coming FROM walking
+        if (stateRef.current === "walking") {
           stateRef.current = "sitting";
           setCatState("sitting");
-          // Say "mew mew" once
+          // Say "mew mew" immediately when sitting down
           if (!hasSaidMew.current) {
             hasSaidMew.current = true;
-            setTimeout(() => {
-              setMewText("mew mew");
-              setTimeout(() => setMewText(null), 2000);
-            }, 400); // small delay so the sit animation finishes first
+            mewTextRef.current = "mew mew";
+            setMewText("mew mew");
+            // Clear after 2s
+            window.setTimeout(() => {
+              mewTextRef.current = null;
+              setMewText(null);
+            }, 2000);
           }
-          // Transition to idle after sitting for 2s
-          setTimeout(() => {
+          // Transition to idle after 2.5s of sitting
+          window.setTimeout(() => {
             if (stateRef.current === "sitting") {
               stateRef.current = "idle";
               setCatState("idle");
             }
-          }, 2000);
+          }, 2500);
         }
-      } else if (dist > 15 && timeSinceMove < 200) {
-        // Mouse is moving → run
-        if (stateRef.current !== "running") {
-          stateRef.current = "running";
-          setCatState("running");
+      } else if (targetDist > 20 || timeSinceMove < 250) {
+        // Mouse is moving or cat is far → walk
+        if (stateRef.current !== "walking") {
+          stateRef.current = "walking";
+          setCatState("walking");
         }
       }
 
@@ -163,9 +201,12 @@ export function CatCursor() {
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(rafRef.current);
       clearInterval(blinkInterval);
-      clearInterval(runAnimInterval);
+      clearInterval(walkAnimInterval);
     };
-  }, [isDesktop, mewText, facingLeft]);
+  }, [isDesktop]); // NOTE: mewText is intentionally NOT in the deps —
+  // we don't want the effect to re-run (and reset the cat position)
+  // every time mewText changes. The mewText state is handled via the
+  // mewBubbleRef imperatively.
 
   if (!mounted || !isDesktop) return null;
 
@@ -177,25 +218,26 @@ export function CatCursor() {
 
   return (
     <>
+      {/* The cat */}
       <div
         ref={catRef}
         className="pointer-events-none fixed left-0 top-0 z-[60]"
         style={{
-          width: "64px",
-          height: "64px",
+          width: "48px",
+          height: "48px",
           willChange: "transform",
         }}
         aria-hidden="true"
       >
         <div
           style={{
-            transform: facingLeft ? "scaleX(-1)" : "scaleX(1)",
-            transition: "transform 0.15s ease",
+            transform: facingLeft ? "scaleX(1)" : "scaleX(-1)",
+            transition: "transform 0.2s ease",
           }}
         >
           <CatSVG
             state={catState}
-            runFrame={runFrame}
+            walkFrame={walkFrame}
             blink={eyeBlink}
             color={catColor}
             accent={catAccent}
@@ -205,18 +247,23 @@ export function CatCursor() {
         </div>
       </div>
 
-      {/* "mew mew" speech bubble */}
+      {/* "mew mew" speech bubble — positioned ABOVE the cat's head.
+          Uses a ref + imperative transform updates from the RAF loop
+          so it tracks the cat's position without causing React
+          re-renders every frame. */}
       <AnimatePresence>
         {mewText && (
           <motion.div
-            initial={{ scale: 0, opacity: 0, y: 10 }}
+            ref={mewBubbleRef}
+            initial={{ scale: 0, opacity: 0, y: 5 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 500, damping: 20 }}
-            className="pointer-events-none fixed z-[61] select-none rounded-lg border-2 border-white bg-black/85 px-3 py-1.5 font-display text-sm font-bold text-white shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
+            className="pointer-events-none fixed left-0 top-0 z-[61] select-none whitespace-nowrap rounded-lg border-2 border-white bg-black/85 px-2.5 py-1 font-display text-xs font-bold text-white shadow-[2px_2px_0_rgba(0,0,0,0.5)]"
             style={{
-              left: catPos.current + 30,
-              top: catPos.current - 35,
+              // Initial position — will be updated by RAF loop via ref.
+              // left-0 top-0 + translate(x, y) from the ref.
+              transform: `translate(${catPos.current.x - 30}px, ${catPos.current.y - 50}px)`,
             }}
             aria-hidden="true"
           >
@@ -229,15 +276,13 @@ export function CatCursor() {
 }
 
 // ===== CatSVG =====
-// A well-drawn SVG cat with three poses: running (2 frames), sitting,
-// and idle (standing/blinking). The cat is drawn side-profile so the
-// running animation looks natural.
-//
-// Color is passed in as props so it adapts to the theme.
+// Simple, clean, cute cat — "Neko" mascot style.
+// Not anatomically complex. Just: round head, pointy ears, simple
+// eyes, tiny nose, body, curled tail. Two poses: walking and sitting.
 
 function CatSVG({
   state,
-  runFrame,
+  walkFrame,
   blink,
   color,
   accent,
@@ -245,157 +290,147 @@ function CatSVG({
   noseColor,
 }: {
   state: CatState;
-  runFrame: number;
+  walkFrame: number;
   blink: boolean;
   color: string;
   accent: string;
   eyeColor: string;
   noseColor: string;
 }) {
-  // The SVG is drawn in a 64x64 viewBox. The cat faces right by default.
-  // The parent div flips it with scaleX(-1) when facingLeft is true.
-
-  if (state === "running") {
-    return <RunningCat runFrame={runFrame} color={color} accent={accent} eyeColor={eyeColor} noseColor={noseColor} />;
+  if (state === "walking") {
+    return <WalkingCat walkFrame={walkFrame} color={color} accent={accent} eyeColor={eyeColor} noseColor={noseColor} />;
   }
-  if (state === "sitting") {
-    return <SittingCat blink={false} color={color} accent={accent} eyeColor={eyeColor} noseColor={noseColor} />;
-  }
-  // idle
+  // sitting or idle → both use the sitting pose
   return <SittingCat blink={blink} color={color} accent={accent} eyeColor={eyeColor} noseColor={noseColor} />;
 }
 
-// ===== Running Cat =====
-// Side-profile cat in mid-stride. Two frames alternate for the leg
-// animation. The body bounces up and down slightly (handled by CSS).
-function RunningCat({ runFrame, color, accent, eyeColor, noseColor }: { runFrame: number; color: string; accent: string; eyeColor: string; noseColor: string }) {
-  // Frame 0: front legs forward, back legs back
-  // Frame 1: front legs back, back legs forward
-  const frontLegY = runFrame === 0 ? 44 : 48;
-  const backLegY = runFrame === 0 ? 48 : 44;
-  const frontLegX = runFrame === 0 ? 38 : 32;
-  const backLegX = runFrame === 0 ? 20 : 26;
+// ===== Walking Cat =====
+// Simple side-profile walking cat. The walkFrame toggles the body
+// up/down slightly and shifts the tail to simulate walking motion.
+// No complex leg animation — just a gentle bob, like a real cat
+// walking smoothly.
+function WalkingCat({ walkFrame, color, accent, eyeColor, noseColor }: { walkFrame: number; color: string; accent: string; eyeColor: string; noseColor: string }) {
+  const bodyY = walkFrame === 0 ? 26 : 27; // gentle bob
+  const tailWave = walkFrame === 0 ? 0 : 2;
 
   return (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Tail — curved and pointing up/back when running */}
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Tail — curving up and back, sways slightly when walking */}
       <path
-        d="M 14 36 Q 6 30 8 22 Q 10 16 16 18"
+        d={`M 10 ${bodyY + 4} Q 2 ${bodyY - 2 + tailWave} 5 ${bodyY - 10 + tailWave}`}
         stroke={color}
         strokeWidth="3"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Back legs */}
-      <ellipse cx={backLegX} cy={backLegY + 4} rx="3" ry="6" fill={color} transform={`rotate(${runFrame === 0 ? -20 : 20} ${backLegX} ${backLegY})`} />
-      <ellipse cx={backLegX + 3} cy={backLegY + 6} rx="2.5" ry="5" fill={accent} transform={`rotate(${runFrame === 0 ? -30 : 10} ${backLegX + 3} ${backLegY})`} />
+      {/* Body — simple rounded shape, side profile */}
+      <ellipse cx="20" cy={bodyY + 6} rx="12" ry="8" fill={color} />
 
-      {/* Body — elongated ellipse, side profile */}
-      <ellipse cx="28" cy="36" rx="16" ry="10" fill={color} />
+      {/* Belly — slightly lighter */}
+      <ellipse cx="20" cy={bodyY + 9} rx="8" ry="4" fill={accent} opacity="0.3" />
 
-      {/* Belly highlight */}
-      <ellipse cx="28" cy="40" rx="12" ry="5" fill={accent} opacity="0.4" />
-
+      {/* Legs — two simple rounded rectangles at the bottom */}
       {/* Front legs */}
-      <ellipse cx={frontLegX} cy={frontLegY + 4} rx="3" ry="6" fill={color} transform={`rotate(${runFrame === 0 ? 20 : -20} ${frontLegX} ${frontLegY})`} />
-      <ellipse cx={frontLegX + 3} cy={frontLegY + 6} rx="2.5" ry="5" fill={accent} transform={`rotate(${runFrame === 0 ? 30 : -10} ${frontLegX + 3} ${frontLegY})`} />
+      <rect x="24" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
+      <rect x="28" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
+      {/* Back legs */}
+      <rect x="12" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
+      <rect x="16" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
 
-      {/* Head — circle, side profile, looking forward */}
-      <circle cx="42" cy="28" r="10" fill={color} />
+      {/* Head — round, side profile, looking forward (toward cursor) */}
+      <circle cx="32" cy={bodyY} r="8" fill={color} />
 
-      {/* Ears — two triangles */}
-      <path d="M 36 22 L 34 14 L 40 20 Z" fill={color} />
-      <path d="M 44 20 L 46 12 L 48 20 Z" fill={color} />
-      {/* Inner ears */}
-      <path d="M 37 21 L 36 17 L 39 20 Z" fill={noseColor} opacity="0.5" />
-      <path d="M 45 19 L 46 15 L 47 19 Z" fill={noseColor} opacity="0.5" />
+      {/* Ears — two pointy triangles on top */}
+      <path d={`M 27 ${bodyY - 5} L 26 ${bodyY - 11} L 30 ${bodyY - 7} Z`} fill={color} />
+      <path d={`M 34 ${bodyY - 6} L 36 ${bodyY - 12} L 37 ${bodyY - 6} Z`} fill={color} />
+      {/* Inner ears — pink */}
+      <path d={`M 28 ${bodyY - 6} L 27.5 ${bodyY - 9} L 29.5 ${bodyY - 7} Z`} fill={noseColor} opacity="0.5" />
+      <path d={`M 35 ${bodyY - 7} L 36 ${bodyY - 10} L 36.5 ${bodyY - 7} Z`} fill={noseColor} opacity="0.5" />
 
-      {/* Eye — side profile, one eye visible */}
-      <ellipse cx="46" cy="27" rx="2" ry="2.5" fill={eyeColor} />
-      <circle cx="46.5" cy="27" r="1" fill="#000" />
-      {/* Eye shine */}
-      <circle cx="46.8" cy="26.5" r="0.5" fill="#fff" />
+      {/* Eye — single eye visible in side profile */}
+      <ellipse cx="36" cy={bodyY - 1} rx="1.5" ry="2" fill={eyeColor} />
+      <circle cx="36.3" cy={bodyY - 1} r="0.8" fill="#000" />
+      <circle cx="36.5" cy={bodyY - 1.5} r="0.3" fill="#fff" />
 
-      {/* Nose */}
-      <path d="M 50 29 L 52 29 L 51 31 Z" fill={noseColor} />
+      {/* Nose — tiny pink dot */}
+      <circle cx="39" cy={bodyY + 1} r="0.8" fill={noseColor} />
 
-      {/* Mouth — small smile */}
-      <path d="M 50 32 Q 51 33 52 32" stroke={accent} strokeWidth="0.8" strokeLinecap="round" fill="none" />
+      {/* Mouth — tiny smile */}
+      <path d={`M 38 ${bodyY + 3} Q 39 ${bodyY + 4} 40 ${bodyY + 3}`} stroke={accent} strokeWidth="0.6" strokeLinecap="round" fill="none" />
 
-      {/* Whiskers */}
-      <line x1="48" y1="30" x2="54" y2="29" stroke={accent} strokeWidth="0.5" opacity="0.6" />
-      <line x1="48" y1="31" x2="54" y2="31" stroke={accent} strokeWidth="0.5" opacity="0.6" />
+      {/* Whiskers — 2 thin lines */}
+      <line x1="37" y1={bodyY + 2} x2="42" y2={bodyY + 1.5} stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      <line x1="37" y1={bodyY + 3} x2="42" y2={bodyY + 3} stroke={accent} strokeWidth="0.4" opacity="0.5" />
     </svg>
   );
 }
 
 // ===== Sitting Cat =====
-// Cat sitting down, facing forward (3/4 view). Used for both "sitting"
-// (just caught up to mouse) and "idle" (waiting) states. The blink
-// prop toggles the eyes closed.
+// Simple sitting cat, facing forward (3/4 view). Cute and compact.
+// The blink prop closes the eyes.
 function SittingCat({ blink, color, accent, eyeColor, noseColor }: { blink: boolean; color: string; accent: string; eyeColor: string; noseColor: string }) {
   return (
-    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Tail — curled around the body when sitting */}
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Tail — curled around the body */}
       <path
-        d="M 16 44 Q 10 42 12 36 Q 14 32 20 34"
+        d="M 12 34 Q 6 32 8 26 Q 10 22 16 24"
         stroke={color}
-        strokeWidth="3.5"
+        strokeWidth="3"
         strokeLinecap="round"
         fill="none"
       />
 
       {/* Body — rounded, sitting posture */}
-      <ellipse cx="32" cy="42" rx="14" ry="12" fill={color} />
+      <ellipse cx="24" cy="34" rx="11" ry="9" fill={color} />
 
       {/* Belly */}
-      <ellipse cx="32" cy="46" rx="9" ry="7" fill={accent} opacity="0.3" />
+      <ellipse cx="24" cy="37" rx="7" ry="5" fill={accent} opacity="0.3" />
 
-      {/* Front paws — two small ovals at the bottom */}
-      <ellipse cx="26" cy="52" rx="3.5" ry="2.5" fill={color} />
-      <ellipse cx="38" cy="52" rx="3.5" ry="2.5" fill={color} />
+      {/* Front paws — two small ovals */}
+      <ellipse cx="19" cy="42" rx="3" ry="2" fill={color} />
+      <ellipse cx="29" cy="42" rx="3" ry="2" fill={color} />
 
-      {/* Head — circle, forward-facing */}
-      <circle cx="32" cy="26" r="12" fill={color} />
+      {/* Head — round, forward-facing */}
+      <circle cx="24" cy="20" r="10" fill={color} />
 
-      {/* Ears — two triangles on top */}
-      <path d="M 22 20 L 20 10 L 28 18 Z" fill={color} />
-      <path d="M 42 20 L 44 10 L 36 18 Z" fill={color} />
-      {/* Inner ears — pink */}
-      <path d="M 23 19 L 22 14 L 26 18 Z" fill={noseColor} opacity="0.5" />
-      <path d="M 41 19 L 42 14 L 38 18 Z" fill={noseColor} opacity="0.5" />
+      {/* Ears — two pointy triangles */}
+      <path d="M 16 14 L 14 6 L 21 12 Z" fill={color} />
+      <path d="M 32 14 L 34 6 L 27 12 Z" fill={color} />
+      {/* Inner ears */}
+      <path d="M 17 13 L 16 9 L 19.5 12 Z" fill={noseColor} opacity="0.5" />
+      <path d="M 31 13 L 32 9 L 28.5 12 Z" fill={noseColor} opacity="0.5" />
 
       {/* Eyes — two, forward-facing */}
       {blink ? (
         <>
-          <line x1="25" y1="26" x2="29" y2="26" stroke={accent} strokeWidth="1.5" strokeLinecap="round" />
-          <line x1="35" y1="26" x2="39" y2="26" stroke={accent} strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="19" y1="20" x2="22" y2="20" stroke={accent} strokeWidth="1.2" strokeLinecap="round" />
+          <line x1="26" y1="20" x2="29" y2="20" stroke={accent} strokeWidth="1.2" strokeLinecap="round" />
         </>
       ) : (
         <>
-          <ellipse cx="27" cy="26" rx="2" ry="2.5" fill={eyeColor} />
-          <circle cx="27.3" cy="26" r="1" fill="#000" />
-          <circle cx="27.6" cy="25.5" r="0.4" fill="#fff" />
+          <ellipse cx="20.5" cy="20" rx="1.5" ry="2" fill={eyeColor} />
+          <circle cx="20.7" cy="20" r="0.8" fill="#000" />
+          <circle cx="20.9" cy="19.5" r="0.3" fill="#fff" />
 
-          <ellipse cx="37" cy="26" rx="2" ry="2.5" fill={eyeColor} />
-          <circle cx="37.3" cy="26" r="1" fill="#000" />
-          <circle cx="37.6" cy="25.5" r="0.4" fill="#fff" />
+          <ellipse cx="27.5" cy="20" rx="1.5" ry="2" fill={eyeColor} />
+          <circle cx="27.7" cy="20" r="0.8" fill="#000" />
+          <circle cx="27.9" cy="19.5" r="0.3" fill="#fff" />
         </>
       )}
 
-      {/* Nose — small pink triangle */}
-      <path d="M 30 31 L 34 31 L 32 33 Z" fill={noseColor} />
+      {/* Nose — tiny pink triangle */}
+      <path d="M 23 24 L 25 24 L 24 25.5 Z" fill={noseColor} />
 
-      {/* Mouth — classic cat "ω" shape */}
-      <path d="M 32 33 Q 30 35 28 34" stroke={accent} strokeWidth="0.8" strokeLinecap="round" fill="none" />
-      <path d="M 32 33 Q 34 35 36 34" stroke={accent} strokeWidth="0.8" strokeLinecap="round" fill="none" />
+      {/* Mouth — tiny cat "ω" smile */}
+      <path d="M 24 25.5 Q 22 27 20.5 26" stroke={accent} strokeWidth="0.6" strokeLinecap="round" fill="none" />
+      <path d="M 24 25.5 Q 26 27 27.5 26" stroke={accent} strokeWidth="0.6" strokeLinecap="round" fill="none" />
 
       {/* Whiskers — 2 on each side */}
-      <line x1="20" y1="30" x2="26" y2="31" stroke={accent} strokeWidth="0.5" opacity="0.6" />
-      <line x1="20" y1="32" x2="26" y2="32" stroke={accent} strokeWidth="0.5" opacity="0.6" />
-      <line x1="44" y1="30" x2="38" y2="31" stroke={accent} strokeWidth="0.5" opacity="0.6" />
-      <line x1="44" y1="32" x2="38" y2="32" stroke={accent} strokeWidth="0.5" opacity="0.6" />
+      <line x1="15" y1="23" x2="20" y2="24" stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      <line x1="15" y1="25" x2="20" y2="25" stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      <line x1="33" y1="23" x2="28" y2="24" stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      <line x1="33" y1="25" x2="28" y2="25" stroke={accent} strokeWidth="0.4" opacity="0.5" />
     </svg>
   );
 }
