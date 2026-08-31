@@ -251,7 +251,13 @@ export function CatCursor() {
       >
         <div
           style={{
-            transform: facingLeft ? "scaleX(1)" : "scaleX(-1)",
+            // The WalkingCat/SittingCat SVGs are drawn with the head
+            // on the RIGHT by default (unflipped = facing right).
+            // So when the cat should face LEFT (mouse is to the
+            // left), we flip it — and vice versa. This was backwards
+            // before, which made the cat show its back/tail to the
+            // mouse instead of its face.
+            transform: facingLeft ? "scaleX(-1)" : "scaleX(1)",
             transition: "transform 0.2s ease",
           }}
         >
