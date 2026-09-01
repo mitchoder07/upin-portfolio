@@ -9,10 +9,9 @@ import { useTheme } from "next-themes";
 //
 // Inspired by nehalingole.in — a simple white (or dark in light mode)
 // cat sprite that:
-//   1. CHASES the mouse at a constant, capped speed — not too fast,
-//      not too slow. Because the speed is capped (not proportional
-//      to distance), a fast mouse movement creates a real gap the
-//      cat has to run to close, instead of snapping alongside it.
+//   1. FOLLOWS the mouse smoothly — not too fast, not too slow.
+//      Uses a gentle lerp (0.05) so the cat trails behind the cursor
+//      naturally, like a real cat walking toward its target.
 //   2. Always wants to stay BESIDE the mouse — when the mouse stops,
 //      the cat catches up and sits beside it (offset to the right of
 //      the cursor, facing left toward it).
@@ -131,35 +130,16 @@ export function CatCursor() {
       const targetDy = targetY - catPos.current.y;
       const targetDist = Math.sqrt(targetDx * targetDx + targetDy * targetDy);
 
-      // Move toward the target at a CONSTANT max speed (not a
-      // proportional lerp). This is the key difference from before:
-      // with a proportional lerp, the cat's speed scales with how
-      // far away the mouse is, so a fast mouse flick made the cat
-      // snap across the screen almost instantly — it looked glued
-      // to the cursor instead of chasing it.
-      //
-      // With a capped speed, the cat can only close a fixed number
-      // of pixels per frame no matter how far the mouse jumps. That
-      // means a quick mouse movement creates a real, visible gap —
-      // the cat has to actually run to catch up, and a viewer who
-      // keeps moving the mouse can keep the cat "chasing" instead of
-      // teleporting alongside it.
-      const maxSpeed = 4.2; // px per frame (~250px/s at 60fps) — brisk but catchable
-      const easeRadius = 30; // inside this distance, ease speed down for a soft landing
-
-      if (targetDist > 0.5) {
-        const speed =
-          targetDist < easeRadius
-            ? maxSpeed * (targetDist / easeRadius) // slow down as it arrives
-            : maxSpeed;
-        const step = Math.min(speed, targetDist); // never overshoot
-        catPos.current.x += (targetDx / targetDist) * step;
-        catPos.current.y += (targetDy / targetDist) * step;
-      }
+      // Lerp toward the target — moderate pace (0.08)
+      // Slow enough to look like a cat walking, fast enough to catch
+      // up to the cursor within a second or two.
+      const lerp = 0.08;
+      catPos.current.x += targetDx * lerp;
+      catPos.current.y += targetDy * lerp;
 
       // Snap to target when very close — prevents the cat from
       // oscillating around the target without ever reaching it.
-      if (targetDist < 1) {
+      if (targetDist < 3) {
         catPos.current.x = targetX;
         catPos.current.y = targetY;
       }
@@ -251,13 +231,7 @@ export function CatCursor() {
       >
         <div
           style={{
-            // The WalkingCat/SittingCat SVGs are drawn with the head
-            // on the RIGHT by default (unflipped = facing right).
-            // So when the cat should face LEFT (mouse is to the
-            // left), we flip it — and vice versa. This was backwards
-            // before, which made the cat show its back/tail to the
-            // mouse instead of its face.
-            transform: facingLeft ? "scaleX(-1)" : "scaleX(1)",
+            transform: facingLeft ? "scaleX(1)" : "scaleX(-1)",
             transition: "transform 0.2s ease",
           }}
         >
