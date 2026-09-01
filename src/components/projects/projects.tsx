@@ -38,13 +38,28 @@ function projectSlug(name: string): string {
 export function Projects() {
   const { t } = useI18n();
   const [activeIdx, setActiveIdx] = useState(0);
+  const [filter, setFilter] = useState<"all" | "web-app" | "landing-page">("all");
 
-  const projects = t.projects.items;
-  const active = projects[activeIdx];
-  const snippet = projectCodeSnippets[activeIdx];
+  const allProjects = t.projects.items;
+  // Filter projects by category. Projects without a "category" field
+  // default to "web-app" (the original projects are all web apps).
+  const projects = allProjects.filter((p) => {
+    if (filter === "all") return true;
+    return (p.category || "web-app") === filter;
+  });
+  const active = projects[activeIdx] || projects[0];
+  // Map the filtered index back to the original index for the snippet
+  const originalIdx = allProjects.indexOf(active);
+  const snippet = projectCodeSnippets[originalIdx];
 
   const go = (delta: number) => {
     setActiveIdx((prev) => (prev + delta + projects.length) % projects.length);
+  };
+
+  // Reset activeIdx when filter changes
+  const handleFilterChange = (newFilter: "all" | "web-app" | "landing-page") => {
+    setFilter(newFilter);
+    setActiveIdx(0);
   };
 
   return (
@@ -55,6 +70,25 @@ export function Projects() {
           heading={t.projects.heading}
           subheading={t.projects.subheading}
         />
+
+        {/* Category filter tabs */}
+        <div className="mb-4 flex items-center gap-2">
+          {(["all", "web-app", "landing-page"] as const).map((f) => (
+            <button
+              key={f}
+              onClick={() => handleFilterChange(f)}
+              data-cursor="pointer"
+              className={cn(
+                "rounded-full px-3 py-1.5 text-xs font-medium transition-all duration-300",
+                filter === f
+                  ? "bg-[var(--neon)] text-background"
+                  : "glass text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {f === "all" ? "All Projects" : f === "web-app" ? "Web Apps" : "Landing Pages"}
+            </button>
+          ))}
+        </div>
 
         {/* Tab selector */}
         <div className="mb-8 flex flex-wrap items-center gap-2">

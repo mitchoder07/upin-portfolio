@@ -123,6 +123,7 @@ export type Translation = {
       comingSoon?: boolean;
       githubUrl?: string;
       liveUrl?: string;
+      category?: "web-app" | "landing-page";
     }[];
   };
   experience: {
@@ -492,7 +493,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "My former portfolio — pick a color, crack a code",
+          tagline: "My former portfolio, pick a color, crack a code",
           description:
             "This was my former portfolio before this one. A playful single-page site that lets visitors splash any color they like across the screen, with a password-locked secret area you unlock by cracking a code. Built mobile-first with a focus on bold typography, color play, and a touch of mystery. Replaced by the portfolio you're looking at now, but it still holds up as a design time capsule.",
           role: "Frontend Engineer & UI/UX Designer",
@@ -502,6 +503,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "Designer portfolio built like an auction catalogue",
+          description:
+            "A self-initiated concept project. Most designer portfolios look alike, so what would one look like if it treated the work like collectibles? Solarin answers that, a landing page built like an auction catalogue where every project is presented as a lot with a number, an editorial writeup, an outcome figure, and a rubber stamp that slams in on scroll. Three-color system (bottle green, warm cream, brass gold) with Fraunces display type and IBM Plex Mono for the catalogue voice. Every mockup, hotel signage, coffee packaging, vinyl sleeves, gold debit cards is built entirely in CSS so it stays sharp at any zoom. Interaction includes a counting preloader, kinetic hero typography, a custom cursor with a gold ink trail, and a fullscreen mockup kit. Fully responsive and reduced-motion friendly.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "CSS-only mockups, kinetic typography, custom cursor with gold trail, auction-catalogue UX",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "A yoga studio landing page that feels like the practice, calm, intentional, and quiet",
+          description:
+            "Solhem (Swedish for 'sun home') is a concept for a quiet yoga studio in Portland, designed around one rule: the page should feel like the practice. The hero sun breathes on a real four-second in, four-second out cycle, with inhale and exhale captions synced to it. Headlines fade up softly. Practice cards zoom at a glacial Ken Burns pace. Teacher quotes type themselves letter by letter on hover. The weekly schedule expands row by row. Even the sound design is polite, a soft singing bowl chime, strictly opt-in. Warm sand, sage green, and off-white palette with Newsreader and Karla over a subtle linen texture. Every scene is illustrated in pure CSS, not stock photography. Fully responsive, reduced-motion friendly, zero external libraries.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Breathing hero animation, CSS-illustrated scenes, typewriter quotes, zero dependencies",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -569,6 +597,19 @@ export const translations: Record<Locale, Translation> = {
             "Presented final project to cohort",
           ],
         },
+        {
+          role: "BSc Cybersecurity",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "Four-year degree in cybersecurity covering network security, cryptography, digital forensics, and secure software development. Graduated with hands-on experience in penetration testing, vulnerability assessment, and security operations.",
+          achievements: [
+            "Graduated with a degree in Cybersecurity",
+            "Specialized in network security and digital forensics",
+            "Built security-focused projects including encryption tools and CTF challenges",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -973,7 +1014,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "Portfolio lama saya — pilih warna, pecahkan kod",
+          tagline: "Portfolio lama saya, pilih warna, pecahkan kod",
           description:
             "Ini portfolio lama saya sebelum yang ini. Tapak satu halaman yang ringan yang membolehkan pelawat menyimbah mana-mana warna yang mereka suka di skrin, dengan kawasan rahsia berkunci kata laluan yang anda buka dengan memecahkan kod. Dibina mobile-first dengan fokus pada tipografi tebal, permainan warna, dan sentuhan misteri. Digantikan dengan portfolio yang anda lihat sekarang, tetapi ia masih berfungsi sebagai kapsul masa reka bentuk.",
           role: "Jurutera Frontend & Pereka UI/UX",
@@ -983,6 +1024,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "Portfolio pereka dibina seperti katalog lelongan, setiap projek adalah lot koleksi",
+          description:
+            "Projek konsep kendiri. Kebanyakan portfolio pereka kelihatan sama, jadi bagaimana rupanya jika ia menganggap kerja sebagai koleksi? Solarin menjawabnya, landing page dibina seperti katalog lelongan di mana setiap projek dipaparkan sebagai lot dengan nombor, penulisan editorial, angka hasil, dan cop getah yang menampar masuk ketika skrol. Sistem tiga warna (hijau botol, krim hangat, emas loyang) dengan jenis paparan Fraunces dan IBM Plex Mono untuk suara katalog. Setiap mockup, papan tanda hotel, pembungkus kopi, sarung vinil, kad debit emas, dibina sepenuhnya dalam CSS supaya kekal tajam pada sebarang zum. Interaksi termasuk preloader pengiraan, tipografi hero kinetik, kursor tersuai dengan jejak dakwat emas, dan kit mockup skrin penuh. Sepenuhnya responsif dan mesra gerakan berkurangan.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Mockup CSS sahaja, tipografi kinetik, kursor tersuai dengan jejak emas, UX katalog lelongan",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "Landing page studio yoga yang terasa seperti amalan, tenang, disengajakan, dan senyap",
+          description:
+            "Solhem (bahasa Sweden untuk 'rumah matahari') ialah konsep studio yoga yang tenang di Portland, direka sekitar satu peraturan: halaman ini harus terasa seperti amalan. Matahari hero bernafas pada kitaran empat saat masuk, empat saat keluar, dengan kapsyeng tarik dan hembus disegerakkan dengannya. Tajuk pudar perlahan. Kad amalan zum pada rentak Ken Burns yang sangat perlahan. Sebutan guru menaip diri huruf demi huruf ketika hover. Jadual mingguan mengembang baris demi baris. Reka bentuk bunyi juga sopan, denting mangkuk nyanyian lembut, secara pilihan sahaja. Palet pasir hangat, hijau sage, dan putih lusuh dengan Newsreader dan Karla atas tekstur linen halus. Setiap adegan digambarkan dalam CSS tulen, bukan fotografi stok. Sepenuhnya responsif, mesra gerakan berkurangan, tanpa pustaka luaran.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Animasi hero bernafas, adegan CSS, sebutan menaip, tanpa kebergantungan",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -1050,6 +1118,19 @@ export const translations: Record<Locale, Translation> = {
             "Membentangkan projek akhir kepada kohort",
           ],
         },
+        {
+          role: "Ijazah Sarjana Muda Keselamatan Siber",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "Ijazah empat tahun dalam keselamatan siber merangkumi keselamatan rangkaian, kriptografi, forensik digital, dan pembangunan perisian selamat. Berkelulusan dengan pengalaman praktikal dalam pengujian penembusan, penilaian kerentanan, dan operasi keselamatan.",
+          achievements: [
+            "Berkelulusan dengan ijazah dalam Keselamatan Siber",
+            "Mengkhusus dalam keselamatan rangkaian dan forensik digital",
+            "Membina projek berfokuskan keselamatan termasuk alat penyulitan dan cabaran CTF",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -1454,7 +1535,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "Manhajata ta da — zabi launi, kada lambar",
+          tagline: "Manhajata ta da, zabi launi, kada lambar",
           description:
             "Wannan manhajata ta da ce kafin wannan. Wurin shafi daya mai wasa wanda yake bawa baki damar yatsa kowane launi da suka so a fadin allo, tare da yankin sirri mai kullin kalma wanda kuke bude ta hanyar karya lamba. An gina shi mobile-first tare da mayar da hankali kan rubutu mai kauri, wasan launi, da dan wahayi. An maye gurbinsa da manhajar da kuke kallo yanzu, amma har yanzu yana aiki a matsayin kwalban lokacin zane.",
           role: "Injiniyan Frontend & Mai Tsara UI/UX",
@@ -1464,6 +1545,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "Manhajar masani da aka gina kamar katin gwanar sayarwa, kowane aiki lamari ne na tarawa",
+          description:
+            "Aikin ra'ayi kai tsaye. Yawancin manhajar masani suna kama da juna, don me za ta kasance idan ta ɗauki aikin kamar abubuwan tarawa? Solarin ya amsa, shafi da aka gina kamar katin gwanar sayarwa inda ake nuna kowane aiki a matsayin lamba tare da rubutun, adadin sakamako, da tambarin roba da ke shiga lokacin skrolawa. Tsarin launi uku (kore madigo, krim mai dumi, zinare tagulla) tare da nau'in Fraunces da IBM Plex Mono don muryar katin. Kowane mockup, alamar otal, kwamfutar kofi, murfin vinyl, katin zinare, an gina su gaba ɗaya a cikin CSS don su kasance masu kaifi. Hulɗa ta haɗa da preloader mai kirga, typography na motsi, kursor na musamman da tafarkin tawada na zinare, da cikakken kayan mockup. Cikakken amsawa da laushi ga rage motsi.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Mockup na CSS kawai, typography mai motsi, kursor na musamman da tafarkin zinare, UX na katin gwanar",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "Shafin studio yoga wanda yake jin kamar aikin, shiru, da gangan, da nutsuwa",
+          description:
+            "Solhem (Sunanci na Sweden don 'gidan rana') ra'ayi ne na studio na yoga mai nutsuwa a Portland, wanda aka tsara akan ka'ida guda: shafin ya kamata ya ji kamar aikin. Rana ta hero tana numfashi akan zagayon daƙiƙa huɗu shiga, daƙiƙa huɗu fita, tare da kapsyeng shiga da fita da aka daidaita. Kanun labarai suna dusashewa laushi. Katunan aikin suna zum a sannsanniyar gwamnatin Ken Burns. Maganganun malamai suna rubuta kansu wasiƙa da wasiƙa akan hover. Jadawalin mako-mako yana fadada jere-jere. Ma'anar saƙo ma tana da ladabi, ƙararrawar kwarya mai laushi, kawai idan aka zaɓi. Launin yashi mai dumi, kore sage, da fari mara kyau tare da Newsreader da Karla akan linin mai laushi. Kowane yanayi an kwatanta shi a cikin CSS tsantsa, ba daukar hoto ba. Cikakken amsawa, laushi ga rage motsi, babu ɗakunan karatu na waje.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Animasyon na hero numfashi, yanayin CSS, maganganun rubutu, babu dogaro",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -1531,6 +1639,19 @@ export const translations: Record<Locale, Translation> = {
             "Gabatar da aikin ƙarshe ga kohort",
           ],
         },
+        {
+          role: "BSc Tsaro ta Yanar Gizo",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "Digiri na shekaru hudu a fannin tsaro ta yanar gizo wanda ya kunshi tsaron hanyar sadarwa, cryptography, bincikan dijital, da habaka software mai aminci. Kammala karatun da gogewar aikace-aikace akan gwajin shiga, kimanta raunu, da ayyukan tsaro.",
+          achievements: [
+            "Kammala karatun da digiri a fannin Tsaro ta Yanar Gizo",
+            "Kwarewa a tsaron hanyar sadarwa da bincikan dijital",
+            "Gin ayyuka masu mayar da hankali kan tsaro ciki har da kayan aikin rufewa da kalubalen CTF",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -1934,7 +2055,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "Akosile ateyen mi — yan awo, pa koodu",
+          tagline: "Akosile ateyen mi, yan awo, pa koodu",
           description:
             "Eyọ akosile ateyen mi saaju eyi. Oju-ijoso kan to n ba awon abo lerin pelu yiyan awo kikorikiri lori iboju, pelu agbala ikooko to kun pelu oro-asina to n ri ona nipa fipa koodu. A ko o gege bi iwon ero adapo pelu ifaramo lori oro-ikowe gege, irin-ajo awo, ati ifiyele idamu. A ropo pelu akosile to n wa yi, sugbon o si wa gege bi iranti awose.",
           role: "Onimo-Ero Frontend & Alase UI/UX",
@@ -1944,6 +2065,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "Àkọsílẹ̀ oníṣẹ́-àwòrán tí a kọ́ gẹ́gẹ́ bí kátálọ́gù ìtaja, iṣẹ́ kọ̀ọ̀kan jẹ́ ẹ̀yà ìkójọpọ̀",
+          description:
+            "Iṣẹ́ àkànṣe ìdàrò fúnra ẹni. Ọ̀pọ̀lọpọ̀ àkọsílẹ̀ oníṣẹ́-àwòrán dàbí ara wọn, nitorinaa kí ni yóò dà bí ó bà gba iṣẹ́ náà gẹ́gẹ́ bí àwọn ẹ̀yà ìkójọpọ̀? Solarin dáhùn, ojú-ìjọsọ́ kan tí a kọ́ gẹ́gẹ́ bí kátálọ́gù ìtaja níbití a ti ń ṣàfihàn iṣẹ́ kọ̀ọ̀kan gẹ́gẹ́ bí nọ́mbà, ìwé àpilẹ̀kọ̀, nọ́mbà èsì, àti ìgboyà ẹni tí ń wọ̀ sínú nígbà ìyípo. Eto àwọ̀ mẹ́ta (àwọ̀ ewé bọ́ti, kẹ̀rímì gèè, goolu tọ́mbà) pẹ̀lú irúlíwọ́n Fraunces àti IBM Plex Mono fún ohùn kátálọ́gù. Àkọsílẹ̀ kọ̀ọ̀kan, aàmúrà ìdáná, ìdáná ìkékò, ààmì vinyl, káàdì goolu, a kọ́ pátápátá nínú CSS kí ó lè máa yé ní ìyípo kọ̀ọ̀kan. Ìbáṣepọ̀ pẹ̀lú preloader tó ń ka, typography hero tí kò sunwọ̀n, kúrsọ̀ pẹ̀lú àlùpùpù goolu, àti kítì ìjọra. Gbogbo rẹ̀ múni lórí, o sì ń bọ́wọ̀ fún ìmúdára ìgberìga.",
+          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
+          impact: "Àkọsílẹ́ CSS nìkan, typography tó ń yípo, kúrsọ̀ pẹ̀lú àlùpùpù goolu, UX kátálọ́gù ìtaja",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "Ojú-ìjọsọ́ yóga studio tó ń jẹ́ bí iṣẹ́ náà, kíkè, tóǹṣe, kí ó sì máa jagun",
+          description:
+            "Solhem (èyí túmọ̀ sí 'ilé òòrùn' ní Yorùbá Sweden) jẹ́ ìdàrò fún yóga studio tó ní kíkè ní Portland, tó dá lórí òfin kan: ojú-ìjọsọ́ yóò fẹ́ bí iṣẹ́ náà. Òòrùn hero ń mì lórí ìyípo ìṣẹ́ mẹ́rin-ìsọ́pọ̀ mẹ́rin-ífà, pẹ̀lú àkíyèsí 'mú-in' àti 'jáde' tó ń bá a lọ. Àkọlé ń rọ́ kíkè. Káàdì iṣẹ́ ń sunwọ̀n lórí ìyípo Ken Burns tó ń rìn lẹ́. Gbàsílẹ̀ olùkọ́ ń kọ ara rẹ̀ lórí ìwé lórí hover. Ìkànnì ìṣẹ́ ń fẹ̀ ìká lórí ìká. Ohùn tún ń bọ́wọ̀, fílà ìdáná tó dùn, ní yíyan nìkan. Àwọ̀ yánṣá tó dùn, ewé sage, àti fúnà tó kò yé pẹ̀lú Newsreader àti Karla lórí rẹ̀gẹ̀ lẹ̀ẹ̀. Gbogbo ìhín ìyí à ń yé ní CSS nìkan, kì ṣe òyì àwòrán. Gbogbo rẹ̀ múni lórí, ó ń bọ́wọ̀ fún ìmúdára ìgberìga, làíṣe ìwé ìránṣẹ́ òde.",
+          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
+          impact: "Ìhín hero numfashi, ìyípo CSS, ìwé ìkọ, làíṣe ìgbẹ́kẹ̀le",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -2011,6 +2159,19 @@ export const translations: Record<Locale, Translation> = {
             "Ṣàfihàn iṣẹ́ ìkẹyìn sí ẹgbẹ́",
           ],
         },
+        {
+          role: "BSc Abo Maayaworan",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "Odun merin iwe eri ninu abo maayaworan ti o n bo abo ikaniyan, cryptography, forensics dijita, ati idagbasoke software aabo. Jade pelu iriri lowo ninu idanwo iwole, idajo ifaragba, ati ise abo.",
+          achievements: [
+            "Jade pelu iwe eri ninu Abo Maayaworan",
+            "Se akanta abo ikaniyan ati forensics dijita",
+            "Ko awon ise abo pelu awon irinse idasoni ati ayewo CTF",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -2415,7 +2576,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "私の以前のポートフォリオ — 色を選んで、コードを解読",
+          tagline: "私の以前のポートフォリオ, 色を選んで、コードを解読",
           description:
             "これは今のポートフォリオの前の私の以前のポートフォリオです。訪問者が画面上に好きな色を自由に散りばめられる遊び心のあるシングルページサイトで、コードを解読してロックを解除するパスワード保護のシークレットエリアがあります。モバイルファーストで、大胆なタイポグラフィ、カラー遊び、少しのミステリーに焦点を当てて構築しました。今見ているポートフォリオに置き換えられましたが、デザインのタイムカプセルとしてまだ成立しています。",
           role: "フロントエンドエンジニア & UI/UXデザイナー",
@@ -2425,6 +2586,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "オークションカタログのように構築されたデザイナーポートフォリオ, 各プロジェクトはコレクタブルのロット",
+          description:
+            "自主コンセプトプロジェクト。ほとんどのデザイナーポートフォリオは似通っているので、作品をコレクタブルとして扱ったらどうなるか？Solarinがそれに答えます, 各プロジェクトが番号、エディトリアル、成果数値、スクロール時にスラムインするゴムスタンプ付きのロットとして提示される、オークションカタログのように構築されたランディングページ。3色システム（ボトルグリーン、ウォームクリーム、ブラスゴールド）にFrauncesディスプレイとIBM Plex Monoカタログボイス。すべてのモックアップ, ホテルの看板、コーヒーパッケージ、ヴァイナルスリーブ、ゴールドデビットカード, はCSSのみで構築され、どのズームでも鮮明。カウントプリローダー、キネティックヒーロー、ゴールドインクトレイルのカスタムカーソル、フルスクリーンモックアップキット。完全レスポンシブ、モーション削減対応。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "CSSのみのモックアップ、キネティックタイポグラフィ、ゴールドトレイルカーソル、オークションUX",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "練習のように感じるヨガスタジオのランディングページ, 静かで、意図的で、穏やか",
+          description:
+            "Solhem（スウェーデン語で「太陽の家」）はポートランドの静かなヨガスタジオのコンセプトで、一つのルールの上に設計されています：ページは練習のように感じるべき。ヒーローの太陽は実際の4秒吸入・4秒呼出サイクルで呼吸し、吸入・呼出キャプションが同期。見出しは静かにフェードアップ。プラクティスカードはゆっくりとしたKen Burnsペースでズーム。先生の引用はホバー時に一文字ずつタイピング。週間スケジュールは行ごとに展開。サウンドデザインも控えめ, 厳密にオプトインの柔らかい歌鉢のチャイム。ウォームサンド、セージグリーン、オフホワイトのパレットにNewsreaderとKarla。すべてのシーンはCSSのみで描画。完全レスポンシブ、モーション削減対応、外部ライブラリゼロ。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "呼吸するヒーロー、CSSシーン、タイプライター引用、依存関係ゼロ",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -2492,6 +2680,19 @@ export const translations: Record<Locale, Translation> = {
             "コホートに最終プロジェクトを発表",
           ],
         },
+        {
+          role: "サイバーセキュリティ学士",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "ネットワークセキュリティ、暗号学、デジタルフォレンジクス、セキュアソフトウェア開発を網羅する4年制サイバーセキュリティ学位。ペネトレーションテスト、脆弱性評価、セキュリティ運用の実践的経験を積んで卒業。",
+          achievements: [
+            "サイバーセキュリティ学位を取得",
+            "ネットワークセキュリティとデジタルフォレンジクスを専攻",
+            "暗号化ツールやCTFチャレンジなどセキュリティ特化プロジェクトを構築",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -2896,7 +3097,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "معرضي السابق — اختر لوناً، فك الرمز",
+          tagline: "معرضي السابق, اختر لوناً، فك الرمز",
           description:
             "هذا كان معرضي السابق قبل هذا الحالي. موقع من صفحة واحدة مرح يتيح للزوار رش أي لون يحبونه عبر الشاشة، مع منطقة سرية محمية بكلمة مرور تفتحها بفك رمز. بُني للموبايل أولاً مع التركيز على الطباعة الجريئة، اللعب بالألوان، ولمسة من الغموض. استُبدل بالمعرض الذي تنظر إليه الآن، لكنه لا يزال يقف كبسولة زمنية للتصميم.",
           role: "مهندس واجهات أمامية & مصمم UI/UX",
@@ -2906,6 +3107,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "معرض أعمال مصمم مبني ككتالوج مزاد, كل مشروع هو قطعة قابلة للتحصيل",
+          description:
+            "مشروع مفهوم ذاتي. معظم معارض المصممين تبدو متشابهة، فكيف سيبدو واحد إذا عامل العمل كقطع قابلة للتحصيل؟ سولارين يجيب, صفحة هبوط مبنية ككتالوج مزاد حيث يُعرض كل مشروع كقطعة برقم وكتابة تحريرية ورقم نتيجة وختم مطاطي يضرب عند التمرير. نظام ثلاثي الألوان (أخضر داكن، كريم دافئ، ذهبي نحاسي) مع خط Fraunces للعرض وIBM Plex Mono لصوت الكتالوج. كل نموذج, لافتات الفندق، تغليف القهوة، أغلفة الفينيل، بطاقة ذهبية, مبني بالكامل في CSS ليبقى حادًا عند أي تكبير. التفاعل يشمل عداد تحميل، طباعة حركية، مؤشر مخصص بمسار حبر ذهبي، وعرض شاشة كاملة. متجاوب بالكامل وداعم لتقليل الحركة.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "نماذج CSS فقط، طباعة حركية، مؤشر مخصص بمسار ذهبي، تجربة كتالوج مزاد",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "صفحة هبوط لاستوديو يوغا تشعر كالممارسة, هادئة، مقصودة، وصامتة",
+          description:
+            "سولهيم (بالسويدية تعني 'بيت الشمس') مفهوم لاستوديو يوغا هادئ في بورتلاند، مصمم حول قاعدة واحدة: يجب أن تشعر الصفحة كالممارسة. شمس البطل تتنفس بدورة حقيقية أربع ثوانٍ شهيق، أربع ثوانٍ زفير، مع تعليقات شهيق وزفير متزامنة. العناوين تظهر بنعومة. بطاقات الممارسة تتكبر بوتيرة كين بيرنس البطيئة. اقتباسات المعلمين تطبع نفسها حرفًا بحرف عند التحويم. الجدول الأسبوعي يتوسع صفًا بصف. حتى تصميم الصوت مهذب, رنين وعاء غنائي ناعم، اختياري فقط. لوحة رمل دافئ، أخضر مريمية، وأبيض ناصع مع Newsreader وKarla. كل مشهد مرسوم بـ CSS نقي. متجاوب بالكامل، داعم لتقليل الحركة، بدون مكتبات خارجية.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "بطل يتنفس، مشاهد CSS، اقتباسات آلية، بدون اعتماديات",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -2973,6 +3201,19 @@ export const translations: Record<Locale, Translation> = {
             "قدمت المشروع النهائي للفوج",
           ],
         },
+        {
+          role: "بكالوريوس الأمن السيبراني",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "درجة بكالوريوس لمدة أربع سنوات في الأمن السيبراني تغطي أمان الشبكات والتشفير والطب الشرعي الرقمي وتطوير البرمجيات الآمنة. تخرج بخبرة عملية في اختبار الاختراق وتقييم الثغرات وعمليات الأمن.",
+          achievements: [
+            "تخرج بدرجة في الأمن السيبراني",
+            "تخصص في أمان الشبكات والطب الشرعي الرقمي",
+            "بنى مشاريع أمنية بما في ذلك أدوات التشفير وتحديات CTF",
+          ],
+        },
+
       ],
     },
     openSource: {
@@ -3377,7 +3618,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Portfolio v1",
-          tagline: "我的前一个作品集 — 选颜色，破解密码",
+          tagline: "我的前一个作品集, 选颜色，破解密码",
           description:
             "这是我在这个之前的旧作品集。一个俏皮的单页网站，让访客在屏幕上随意泼洒任何颜色，还有一个通过破解密码解锁的密码保护秘密区域。以移动优先构建，注重大胆排版、色彩游戏和一丝神秘感。已被你现在看到的这个作品集取代，但它仍然是一个设计时间胶囊。",
           role: "前端工程师 & UI/UX 设计师",
@@ -3387,6 +3628,33 @@ export const translations: Record<Locale, Translation> = {
           githubUrl: "https://github.com/mitchoder07/upin-portfolio-old-",
           liveUrl: "https://upin-portfolio.vercel.app",
         },
+        {
+          name: "Solarin",
+          tagline: "设计师作品集，构建如拍卖目录, 每个项目都是收藏品",
+          description:
+            "自主概念项目。大多数设计师作品集看起来都一样，如果把作品当作收藏品来展示会怎样？Solarin 回答了这个问题, 一个构建如拍卖目录的着陆页，每个项目都以编号、编辑文案、成果数字和滚动时砸入的橡皮印章呈现。三色系统（深瓶绿、暖奶油、黄铜金）配 Fraunces 展示字体和 IBM Plex Mono 目录语调。每个模型, 酒店标识、咖啡包装、黑胶封套、金卡, 全部纯 CSS 构建，任何缩放都保持锐利。交互包括计数预加载器、动态英雄排版、带金色墨迹的自定义光标和全屏模型套件。完全响应式，支持减弱动画。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "纯CSS模型、动态排版、金色光标轨迹、拍卖目录UX",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solarin.png",
+          githubUrl: "https://github.com/mitchoder07/solarin",
+          liveUrl: "https://solarin-chi.vercel.app",
+          category: "landing-page",
+        },
+        {
+          name: "Solhem",
+          tagline: "瑜伽工作室着陆页，感觉像练习本身, 平静、有意、安静",
+          description:
+            "Solhem（瑞典语意为'太阳之家'）是波特兰一个安静瑜伽工作室的概念，围绕一个规则设计：页面应该感觉像练习本身。英雄太阳以真实的四秒吸、四秒呼节奏呼吸，吸气和呼气字幕同步。标题柔和淡入。练习卡片以极慢的 Ken Burns 节奏缩放。老师引用在悬停时逐字打出。每周课表逐行展开。声音设计也礼貌, 柔和的颂钵铃声，严格可选。暖沙、鼠尾草绿和灰白配色，配 Newsreader 和 Karla。每个场景纯 CSS 绘制。完全响应式，支持减弱动画，零外部库。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "呼吸英雄动画、CSS场景、打字引用、零依赖",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/solhem.png",
+          githubUrl: "https://github.com/mitchoder07/Solhem",
+          liveUrl: "https://solhem-rho.vercel.app",
+          category: "landing-page",
+        },
+
       ],
     },
     experience: {
@@ -3454,6 +3722,19 @@ export const translations: Record<Locale, Translation> = {
             "向同期展示最终项目",
           ],
         },
+        {
+          role: "网络安全学士",
+          company: "Alhikmah University, Ilorin",
+          period: "2020 - 2024",
+          description:
+            "四年制网络安全学位，涵盖网络安全、密码学、数字取证和安全软件开发。毕业时具备渗透测试、漏洞评估和安全运营的实践经验。",
+          achievements: [
+            "获得网络安全学位",
+            "专攻网络安全和数字取证",
+            "构建安全相关项目，包括加密工具和CTF挑战",
+          ],
+        },
+
       ],
     },
     openSource: {

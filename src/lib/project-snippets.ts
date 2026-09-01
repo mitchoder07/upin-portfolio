@@ -4,11 +4,6 @@ export type CodeSnippet = {
   code: string;
 };
 
-// The snippets array is indexed by project position in the projects list.
-// Project 5 (Is There Light?) is a "Coming Soon" project with no source
-// code yet, so it has a null entry — the Projects component shows
-// "Code preview coming soon" for it.
-//
 // Project order (9 projects total):
 //   0. Al-Bashir Academy LMS Portal
 //   1. Rafaab
@@ -539,5 +534,102 @@ const SecretLock = {
 // === Boot ===
 ColorTheme.init();
 SecretLock.init();`,
+  },
+
+  // Solarin — auction catalogue kinetic typography (CSS/JS)
+  {
+    language: "javascript",
+    filename: "solarin/catalogue.js",
+    code: `/**
+ * Solarin — Auction catalogue interaction.
+ * Rubber stamp animation + kinetic hero typography.
+ */
+const Stamp = {
+  el: document.querySelector(".lot-stamp"),
+  fired: false,
+  init() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !this.fired) { this.slam(); this.fired = true; }
+        });
+      }, { threshold: 0.6 }
+    );
+    observer.observe(this.el);
+  },
+  slam() {
+    this.el.classList.add("stamp--slam");
+    document.body.classList.add("shake");
+    setTimeout(() => document.body.classList.remove("shake"), 400);
+  },
+};
+
+const KineticHero = {
+  init() {
+    document.querySelectorAll(".hero-letter").forEach((l, i) => {
+      l.style.animationDelay = (i * 0.04) + "s";
+    });
+  },
+};
+
+Stamp.init();
+KineticHero.init();`,
+  },
+
+  // Solhem — breathing hero animation (CSS/JS)
+  {
+    language: "javascript",
+    filename: "solhem/breathing-hero.js",
+    code: `/**
+ * Solhem — Breathing hero animation.
+ * The sun breathes on a real 4s in, 4s out cycle.
+ */
+const BreathingHero = {
+  sun: document.querySelector(".hero-sun"),
+  caption: document.querySelector(".breath-caption"),
+  init() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    this.breathe();
+  },
+  breathe() {
+    let phase = "inhale";
+    const cycle = () => {
+      if (phase === "inhale") {
+        this.sun.classList.add("sun--expanded");
+        this.sun.classList.remove("sun--contracted");
+        this.caption.textContent = "inhale";
+        phase = "exhale";
+        setTimeout(cycle, 4000);
+      } else {
+        this.sun.classList.add("sun--contracted");
+        this.sun.classList.remove("sun--expanded");
+        this.caption.textContent = "exhale";
+        phase = "inhale";
+        setTimeout(cycle, 4000);
+      }
+    };
+    cycle();
+  },
+};
+
+const TypewriterQuote = {
+  init() {
+    document.querySelectorAll("[data-quote]").forEach((el) => {
+      el.addEventListener("mouseenter", () => this.type(el));
+    });
+  },
+  type(el) {
+    const text = el.dataset.quote;
+    el.textContent = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) { el.textContent += text[i]; i++; }
+      else { clearInterval(interval); }
+    }, 50);
+  },
+};
+
+BreathingHero.init();
+TypewriterQuote.init();`,
   },
 ];
