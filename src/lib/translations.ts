@@ -531,9 +531,9 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "A family practice landing page that behaves like the clinic — calm, honest, and efficient",
+          tagline: "A family practice landing page that behaves like the clinic; calm, honest, and efficient",
           description:
-            "Hale is a concept landing page for a small family practice, built on one observation: patients choose doctors online in seconds, and most clinic websites lose them instantly. So the page behaves like the practice it represents. The design language borrows straight from the clinic: ECG chart-paper grid, ink navy, one signal red, monospace readouts, and handwriting where a human would write. The hero ends in a live vitals strip with an ECG line that sweeps forever. Navigation works like chart divider tabs that fill red as you pass each section, and the visit steps tick themselves off with checkboxes as you read them. The centerpiece is the Care Menu: every visit has a name, a duration, a flat all-in price, and an expandable list of what's included, with one-tap booking that prefills the appointment form. An FAQ absorbs the questions that clog a front desk phone, and an emergency strip keeps 911 calls where they belong. Four pure CSS mockup plates ship with it. No libraries, fully responsive, reduced-motion friendly.",
+            "Hale is a concept landing page for a small family practice, built on a simple truth: patients choose doctors online in seconds, and most clinic websites lose them instantly.The design borrows from the clinic itself: ECG chart-paper grid, ink navy, signal red, monospace readouts, and human handwriting. A live ECG line sweeps forever. Navigation works like chart divider tabs that fill red as you scroll. Visit steps tick themselves off. The Care Menu shows every visit with a name, duration, flat price, and one-tap booking. FAQs absorb phone calls. Emergency stays where it belongs.",
           role: "Frontend Engineer & UI/UX Designer",
           impact: "ECG hero animation, chart-tab navigation, Care Menu with booking, CSS mockup plates, zero libraries",
           tech: ["HTML5", "CSS3", "JavaScript"],
@@ -1065,7 +1065,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "Landing page amalan keluarga yang berkelakuan seperti klinik — tenang, jujur, dan cekap",
+          tagline: "Landing page amalan keluarga yang berkelakuan seperti klinik; tenang, jujur, dan cekap",
           description:
             "Hale ialah landing page konsep untuk amalan keluarga kecil, dibina atas satu pemerhatian: pesakit memilih doktor dalam talian dalam beberapa saat, dan kebanyakan laman web klinik kehilangan mereka serta-merta. Jadi halaman ini berkelakuan seperti amalan yang ia wakili. Bahasa reka bentuk meminjam terus dari klinik: grid kertas carta ECG, biru tinta, satu merah isyarat, bacaan monospace, dan tulisan tangan di mana manusia akan menulis. Hero berakhir dengan jaluran vitals langsung dengan garis ECG yang menyapu selamanya. Navigasi berfungsi seperti tab pembahagi carta yang dipenuhi merah semasa anda melalui setiap bahagian, dan langkah lawatan menandakan diri mereka dengan kotak semak semasa anda membacanya. Pusatnya ialah Menu Penjagaan: setiap lawatan mempunyai nama, tempoh, harga tetap semua termasuk, dan senarai yang boleh dikembangkan tentang apa yang termasuk, dengan tempahan satu ketik yang mengisi borang temujanji. FAQ menyerap soalan yang menyumbat telefon kaunter hadapan, dan jaluran kecemasan menyimpan panggilan 911 di tempatnya. Empat plat mockup CSS tulen disertakan. Tanpa pustaka, sepenuhnya responsif, mesra gerakan berkurangan.",
           role: "Jurutera Frontend & Pereka UI/UX",
@@ -1599,7 +1599,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "Shafin tsabtar iyali da ke kama da asibiti — shiru, gaskiya, da inganci",
+          tagline: "Shafin tsabtar iyali da ke kama da asibiti; shiru, gaskiya, da inganci",
           description:
             "Hale shafi ne na tsabar iyali kanana, wanda aka gina akan lura daya: marasa lafiya suna zabin likita akan intanet cikin daqiqa, kuma yawancin shafoshin asibiti suna rasa su nan take. Don haka shafin yana kama da aikin da yake wakilta. Harshan zane yana dauke daga asibiti: gridin takardar jini ECG, shudi mai tawada, ja daya na alama, karatu monospace, da rubutun hannu inda dan adam zai rubuta. Hero yana kare da tsarkin vitals kai tsaye da layin ECG da ke gudanarwa har abada. Kewayawa tana aiki kamar rarrabuwar katin bayani wanda ke cika ja yayin da kake wucewa ta kowane sashe, matakan ziyarta suna cika kansu da akwatin gwaji yayin da kake karantawa. Cibiyar tsohuwar Menu Kulawa ne: kowane ziyara tana da suna, tsawon lokaci, farashin tsayayye, da jerin abubuwan da za a iya fadada, tare da booking na tafi daya wanda ke cika fom din alkwari. FAQ yana shawo kan tambayoyin da ke toshe wayar kwamitin gaba, kuma tsagin gaggawa yana rike kiran 911 inda ya kamata. Faranti hudu na CSS kadai suke tare da shi. Babu dakunan karatu, cikakken amsawa, laushi ga rage motsi.",
           role: "Injiniyan Frontend & Mai Tsara UI/UX",
@@ -2132,7 +2132,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "Oju-ijoso iwoosan ebi to n je bi ile iwoosan — kike, otito, ati yiyara",
+          tagline: "Oju-ijoso iwoosan ebi to n je bi ile iwoosan; kike, otito, ati yiyara",
           description:
             "Hale je akosile idaro fun iwoosan ebi kekere, to da lori wiwa idajo kan: alaisan n yan dokita lori ikaniyan ni iseju, opolopo oju-ijoso iwoosan si n so won nun lonalona. Nitorina, oju-ijoso yi n je gege bi iwoosan naa. Ede adani re n bo lati inu iwoosan: akopo ECG, ina bulu, eyin ami, kika monospace, ati kiko ni owo ibi ti enia ba ko. Hero pya n pari pelu aaya vitals to n ya laaye pelu liini ECG to n yiyi titi lae. Irin ajo n sise bii pin kaadi to n kun pelu eyin bi o se koja ipin kookan, ati igbese ibewo n te won duro pelu akosile ayewo bi o se n ka won. Okan re ni Eto Itoju: ibewo kookan ni oruko, igun, owo to wa, ati atowoda awon ohun to wa ninu, pelu ipese adako kan to n kun apa foomu ipese. FAQ gba awon ibere to n ge ero ibewo duro, ati aaya idajo n gba awon 911 ka sinu aaya won. Awon aworan merin CSS naa wa. Laisi eko, gbogbo re muni lori, o n bowo fun imudara irin.",
           role: "Onimo-Ero Frontend & Alase UI/UX",
@@ -2666,7 +2666,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "クリニックのように振る舞う家族診療所のランディングページ — 落ち着いて、誠実で、効率的",
+          tagline: "クリニックのように振る舞う家族診療所のランディングページ; 落ち着いて、誠実で、効率的",
           description:
             "Haleは小規模な家族診療所のコンセプトランディングページで、一つの観察の上に構築されています：患者は数秒でオンラインで医師を選び、ほとんどのクリニックウェブサイトは即座に患者を失います。なので、ページはそれが代表する診療所のように振る舞います。デザイン言語はクリニックから直接借用しています：ECGチャート用紙グリッド、インクネイビー、一つの信号赤、モノスペース読み取り値、人間が書く場所の手書き。ヒーローは永遠にスキャンするECGライン付きのライブバイタルストリップで終わります。ナビゲーションは各セクションを通過すると赤く塗りつぶされるチャート仕切りタブのように機能し、受診ステップは読むと自動的にチェックボックスで完了します。中心はケアメニュー：各受診には名前、所要時間、固定の全込み価格、内容の展開可能なリストがあり、ワンタップ予約で予約フォームに事前入力されます。FAQは受付の電話を詰まらせる質問を吸収し、緊急ストリップは911通話を適切な場所に保ちます。4つの純CSSモックアッププレートが同梱。ライブラリ不要、完全レスポンシブ、モーション削減対応。",
           role: "フロントエンドエンジニア & UI/UXデザイナー",
@@ -3200,7 +3200,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "صفحة هبوط لعيادة عائلية تتصرف كالعيادة — هادئة وصادقة وفعالة",
+          tagline: "صفحة هبوط لعيادة عائلية تتصرف كالعيادة; هادئة وصادقة وفعالة",
           description:
             "هيل صفحة هبوط مفهومية لعيادة عائلية صغيرة، مبنية على ملاحظة واحدة: المرضى يختارون الأطباء عبر الإنترنت في ثوانٍ، ومعظم مواقع العيادات تفقدهم فورًا. لذا تتصرف الصفحة مثل الممارسة التي تمثلها. لغة التصميم تقترض مباشرة من العيادة: شبكة ورق رسم تخطيط القلب ECG، كحلي داكن، أحمر إشارة واحد، قراءات أحادية المسافة، وكتابة يدوية حيث يكتب الإنسان. ينتهي البطل بشريط علامات حيوية مباشر مع خط ECG يمسح للأبد. يعمل التنقل مثل علامات تبويب تقسيم الرسم التي تمتلئ بالأحمر عند المرور بكل قسم، وخطوات الزيارة تكتمل ذاتيًا بمربعات اختيار أثناء قراءتها. القطعة المركزية هي قائمة الرعاية: لكل زيارة اسم ومدة وسعر شامل ثابت وقائمة قابلة للتوسيع لما هو متضمن، مع حجز بنقرة واحدة يملأ نموذج الموعد مسبقًا. يمتص الأسئلة الشائعة الأسئلة التي تعيق هاتف الاستقبال، ويحتفظ شريط الطوارئ بمكالمات 911 في مكانها. أربع لوحات نموذج CSS نقية تأتي معها. بدون مكتبات، متجاوب بالكامل، داعم لتقليل الحركة.",
           role: "مهندس واجهات أمامية & مصمم UI/UX",
@@ -3734,7 +3734,7 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Hale",
-          tagline: "家庭诊所着陆页，表现如诊所本身 — 平静、诚实、高效",
+          tagline: "家庭诊所着陆页，表现如诊所本身; 平静、诚实、高效",
           description:
             "Hale 是一个小型家庭诊所的概念着陆页，基于一个观察：患者在网上几秒内就选择医生，而大多数诊所网站会立刻失去他们。所以页面表现得像它代表的诊所一样。设计语言直接借用自诊所：ECG心图纸网格、墨蓝、一个信号红、等宽读数、以及人类会书写地方的手写字体。英雄部分以一条永远扫描的ECG线生命体征条结束。导航像病历分隔标签一样工作，当你经过每个部分时填满红色，就诊步骤在你阅读时自动用复选框勾选。核心是护理菜单：每次就诊都有名称、时长、固定全包价格和可展开的内容列表，一键预约自动填写预约表单。常见问题吸收了堵塞前台电话的问题，紧急条将911呼叫放在该放的地方。四个纯CSS模型板随附。零库、完全响应式、支持减弱动画。",
           role: "前端工程师 & UI/UX 设计师",
