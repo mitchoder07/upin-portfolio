@@ -632,4 +632,141 @@ const TypewriterQuote = {
 BreathingHero.init();
 TypewriterQuote.init();`,
   },
+
+  // Hale — ECG line sweep + care menu booking (CSS/JS)
+  {
+    language: "javascript",
+    filename: "hale/ecg-sweep.js",
+    code: `/**
+ * Hale — ECG line sweep + chart-tab navigation.
+ * The hero vitals strip has an ECG line that sweeps forever.
+ */
+
+// === ECG line sweep ===
+const ECGSweep = {
+  canvas: document.querySelector(".ecg-canvas"),
+  ctx: null,
+  points: [],
+  x: 0,
+
+  init() {
+    if (!this.canvas || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    this.ctx = this.canvas.getContext("2d");
+    this.resize();
+    window.addEventListener("resize", () => this.resize());
+    this.animate();
+  },
+
+  resize() {
+    this.canvas.width = this.canvas.offsetWidth * 2;
+    this.canvas.height = this.canvas.offsetHeight * 2;
+    this.ctx.scale(2, 2);
+  },
+
+  generatePoint(x) {
+    // Simulate ECG waveform — flat line with periodic spikes
+    const cycle = x % 120;
+    if (cycle > 50 && cycle < 55) return -15; // QRS spike up
+    if (cycle >= 55 && cycle < 58) return 25;  // S dip
+    if (cycle > 58 && cycle < 62) return -5;   // recovery
+    return Math.sin(x * 0.02) * 1;             // baseline noise
+  },
+
+  animate() {
+    const w = this.canvas.width / 2;
+    const h = this.canvas.height / 2;
+    const midY = h / 2;
+
+    // Fade trail
+    this.ctx.fillStyle = "rgba(248, 249, 250, 0.08)";
+    this.ctx.fillRect(0, 0, w, h);
+
+    // Draw new segment
+    const y = midY + this.generatePoint(this.x);
+    this.points.push({ x: this.x % w, y });
+    if (this.points.length > w) this.points.shift();
+
+    this.ctx.strokeStyle = "#dc2626";
+    this.ctx.lineWidth = 1.5;
+    this.ctx.beginPath();
+    this.points.forEach((p, i) => {
+      if (i === 0) this.ctx.moveTo(p.x, p.y);
+      else this.ctx.lineTo(p.x, p.y);
+    });
+    this.ctx.stroke();
+
+    this.x += 2;
+    requestAnimationFrame(() => this.animate());
+  },
+};
+
+// === Chart divider tabs — fill red on scroll ===
+const ChartTabs = {
+  init() {
+    const tabs = document.querySelectorAll(".chart-tab");
+    const sections = document.querySelectorAll("section[data-chart]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.dataset.chart;
+            tabs.forEach((tab) => {
+              if (tab.dataset.chart === id) tab.classList.add("tab--filled");
+              else tab.classList.remove("tab--filled");
+            });
+          }
+        });
+      },
+      { rootMargin: "-30% 0px -50% 0px" }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+  },
+};
+
+// === Visit steps — tick off checkboxes as you read ===
+const VisitSteps = {
+  init() {
+    const steps = document.querySelectorAll(".visit-step");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("step--done");
+          }
+        });
+      },
+      { threshold: 0.7 }
+    );
+    steps.forEach((s) => observer.observe(s));
+  },
+};
+
+// === Care Menu — expandable + one-tap booking ===
+const CareMenu = {
+  init() {
+    document.querySelectorAll(".care-item").forEach((item) => {
+      const header = item.querySelector(".care-header");
+      header?.addEventListener("click", () => item.classList.toggle("care--open"));
+      const bookBtn = item.querySelector(".care-book");
+      bookBtn?.addEventListener("click", () => this.book(item));
+    });
+  },
+
+  book(item) {
+    const name = item.dataset.visit;
+    const form = document.getElementById("appointment-form");
+    if (form) {
+      form.querySelector("[name=visit]").value = name;
+      form.scrollIntoView({ behavior: "smooth" });
+    }
+  },
+};
+
+ECGSweep.init();
+ChartTabs.init();
+VisitSteps.init();
+CareMenu.init();`,
+  },
 ];
