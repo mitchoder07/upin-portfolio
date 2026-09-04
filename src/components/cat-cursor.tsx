@@ -93,13 +93,13 @@ export function CatCursor() {
       }
     }, 3000 + Math.random() * 3000);
 
-    // Walking animation — toggle frame every 200ms when walking
-    // (slower than before = more relaxed pace)
+    // Walking animation — toggle frame every 130ms when walking.
+    // Fast enough to read as a genuine running bound, not a slow drift.
     const walkAnimInterval = setInterval(() => {
       if (stateRef.current === "walking") {
         setWalkFrame((f) => (f === 0 ? 1 : 0));
       }
-    }, 200);
+    }, 130);
 
     // Main animation loop
     const animate = () => {
@@ -331,63 +331,93 @@ function CatSVG({
 }
 
 // ===== Walking Cat =====
-// Simple side-profile walking cat. The walkFrame toggles the body
-// up/down slightly and shifts the tail to simulate walking motion.
-// No complex leg animation — just a gentle bob, like a real cat
-// walking smoothly.
+// A proper 2-frame "running bound" cycle — the classic cartoon-run
+// silhouette: legs fully extended (reaching forward / pushing off
+// behind) on the "contact" frame, then tucked in tight under the
+// body on the "airborne" frame, with the whole body bouncing up and
+// down between the two and the tail whipping with the motion. This
+// reads as an actual run, unlike a body that just bobs 1px with
+// static legs.
 function WalkingCat({ walkFrame, color, accent, eyeColor, noseColor }: { walkFrame: number; color: string; accent: string; eyeColor: string; noseColor: string }) {
-  const bodyY = walkFrame === 0 ? 26 : 27; // gentle bob
-  const tailWave = walkFrame === 0 ? 0 : 2;
+  const contact = walkFrame === 0; // true = legs planted/pushing off, false = airborne/tucked
+
+  const bodyY = contact ? 28 : 23; // lower on contact, pops up when airborne — the bounce
+  const bodyRx = contact ? 13 : 11; // stretches longer on contact, compacts when tucked
+  const bodyRy = contact ? 7 : 8.5;
+  const headCy = bodyY - 1;
+  const bodyCy = bodyY + 6;
 
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Tail — curving up and back, sways slightly when walking */}
+      {/* Tail — trails low behind on contact, whips up on the airborne bounce */}
       <path
-        d={`M 10 ${bodyY + 4} Q 2 ${bodyY - 2 + tailWave} 5 ${bodyY - 10 + tailWave}`}
+        d={
+          contact
+            ? `M 9 ${bodyCy + 2} Q 1 ${bodyCy + 3} 3 ${bodyCy + 8}`
+            : `M 9 ${bodyCy - 1} Q 1 ${bodyCy - 9} 5 ${bodyCy - 15}`
+        }
         stroke={color}
         strokeWidth="3"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Body — simple rounded shape, side profile */}
-      <ellipse cx="20" cy={bodyY + 6} rx="12" ry="8" fill={color} />
+      {/* Back legs — behind the body, near the tail */}
+      {contact ? (
+        <>
+          <line x1="16" y1={bodyCy + 3} x2="10" y2={bodyCy + 9} stroke={color} strokeWidth="3" strokeLinecap="round" />
+          <line x1="13" y1={bodyCy + 3} x2="8" y2={bodyCy + 8} stroke={color} strokeWidth="3" strokeLinecap="round" />
+        </>
+      ) : (
+        <>
+          <line x1="16" y1={bodyCy + 3} x2="15" y2={bodyCy + 8} stroke={color} strokeWidth="3" strokeLinecap="round" />
+          <line x1="13" y1={bodyCy + 3} x2="13" y2={bodyCy + 7} stroke={color} strokeWidth="3" strokeLinecap="round" />
+        </>
+      )}
+
+      {/* Body — simple rounded shape, side profile. Stretches/compacts with the stride. */}
+      <ellipse cx="21" cy={bodyCy} rx={bodyRx} ry={bodyRy} fill={color} />
 
       {/* Belly — slightly lighter */}
-      <ellipse cx="20" cy={bodyY + 9} rx="8" ry="4" fill={accent} opacity="0.3" />
+      <ellipse cx="21" cy={bodyCy + 3} rx={bodyRx - 4} ry="4" fill={accent} opacity="0.3" />
 
-      {/* Legs — two simple rounded rectangles at the bottom */}
-      {/* Front legs */}
-      <rect x="24" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
-      <rect x="28" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
-      {/* Back legs */}
-      <rect x="12" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
-      <rect x="16" y={bodyY + 10} width="3" height="6" rx="1.5" fill={color} />
+      {/* Front legs — near the head, reaching forward */}
+      {contact ? (
+        <>
+          <line x1="27" y1={bodyCy + 3} x2="32" y2={bodyCy + 9} stroke={color} strokeWidth="3" strokeLinecap="round" />
+          <line x1="30" y1={bodyCy + 3} x2="34" y2={bodyCy + 8} stroke={color} strokeWidth="3" strokeLinecap="round" />
+        </>
+      ) : (
+        <>
+          <line x1="27" y1={bodyCy + 3} x2="27" y2={bodyCy + 8} stroke={color} strokeWidth="3" strokeLinecap="round" />
+          <line x1="30" y1={bodyCy + 3} x2="30" y2={bodyCy + 7} stroke={color} strokeWidth="3" strokeLinecap="round" />
+        </>
+      )}
 
       {/* Head — round, side profile, looking forward (toward cursor) */}
-      <circle cx="32" cy={bodyY} r="8" fill={color} />
+      <circle cx="33" cy={headCy} r="8" fill={color} />
 
-      {/* Ears — two pointy triangles on top */}
-      <path d={`M 27 ${bodyY - 5} L 26 ${bodyY - 11} L 30 ${bodyY - 7} Z`} fill={color} />
-      <path d={`M 34 ${bodyY - 6} L 36 ${bodyY - 12} L 37 ${bodyY - 6} Z`} fill={color} />
+      {/* Ears — two pointy triangles on top, flatten back slightly when running */}
+      <path d={`M 28 ${headCy - 5} L ${contact ? 26 : 25} ${headCy - 11} L 31 ${headCy - 7} Z`} fill={color} />
+      <path d={`M 35 ${headCy - 6} L ${contact ? 37 : 36} ${headCy - 12} L 38 ${headCy - 6} Z`} fill={color} />
       {/* Inner ears — pink */}
-      <path d={`M 28 ${bodyY - 6} L 27.5 ${bodyY - 9} L 29.5 ${bodyY - 7} Z`} fill={noseColor} opacity="0.5" />
-      <path d={`M 35 ${bodyY - 7} L 36 ${bodyY - 10} L 36.5 ${bodyY - 7} Z`} fill={noseColor} opacity="0.5" />
+      <path d={`M 29 ${headCy - 6} L 28.5 ${headCy - 9} L 30.5 ${headCy - 7} Z`} fill={noseColor} opacity="0.5" />
+      <path d={`M 36 ${headCy - 7} L 37 ${headCy - 10} L 37.5 ${headCy - 7} Z`} fill={noseColor} opacity="0.5" />
 
-      {/* Eye — single eye visible in side profile */}
-      <ellipse cx="36" cy={bodyY - 1} rx="1.5" ry="2" fill={eyeColor} />
-      <circle cx="36.3" cy={bodyY - 1} r="0.8" fill="#000" />
-      <circle cx="36.5" cy={bodyY - 1.5} r="0.3" fill="#fff" />
+      {/* Eye — single eye visible in side profile, focused forward */}
+      <ellipse cx="37" cy={headCy - 1} rx="1.5" ry="2" fill={eyeColor} />
+      <circle cx="37.3" cy={headCy - 1} r="0.8" fill="#000" />
+      <circle cx="37.5" cy={headCy - 1.5} r="0.3" fill="#fff" />
 
       {/* Nose — tiny pink dot */}
-      <circle cx="39" cy={bodyY + 1} r="0.8" fill={noseColor} />
+      <circle cx="40" cy={headCy + 1} r="0.8" fill={noseColor} />
 
       {/* Mouth — tiny smile */}
-      <path d={`M 38 ${bodyY + 3} Q 39 ${bodyY + 4} 40 ${bodyY + 3}`} stroke={accent} strokeWidth="0.6" strokeLinecap="round" fill="none" />
+      <path d={`M 39 ${headCy + 3} Q 40 ${headCy + 4} 41 ${headCy + 3}`} stroke={accent} strokeWidth="0.6" strokeLinecap="round" fill="none" />
 
-      {/* Whiskers — 2 thin lines */}
-      <line x1="37" y1={bodyY + 2} x2="42" y2={bodyY + 1.5} stroke={accent} strokeWidth="0.4" opacity="0.5" />
-      <line x1="37" y1={bodyY + 3} x2="42" y2={bodyY + 3} stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      {/* Whiskers — swept back with the running motion */}
+      <line x1="38" y1={headCy + 2} x2={contact ? 44 : 43} y2={headCy + 1} stroke={accent} strokeWidth="0.4" opacity="0.5" />
+      <line x1="38" y1={headCy + 3} x2={contact ? 44 : 43} y2={headCy + 3.5} stroke={accent} strokeWidth="0.4" opacity="0.5" />
     </svg>
   );
 }
