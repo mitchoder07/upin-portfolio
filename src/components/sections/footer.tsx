@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Dribbble, Figma } from "lucide-react";
-import { SiX, SiWhatsapp } from "react-icons/si";
+import { Github, Mail, Dribbble, Figma } from "lucide-react";
+import { SiX, SiWhatsapp, SiFiverr } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { AnimatedLogo } from "@/components/animated-logo";
 
@@ -67,7 +67,7 @@ export function Footer() {
             <div className="flex gap-2">
               {[
                 { icon: Github, href: "https://github.com/mitchoder07", label: "GitHub" },
-                { icon: Linkedin, href: "https://linkedin.com/in/mitchoder07", label: "LinkedIn" },
+                { icon: SiFiverr, href: "https://www.fiverr.com/s/lr9QgXy", label: "Fiverr" },
                 { icon: SiX, href: "https://x.com/mitchoder07", label: "X" },
                 { icon: Dribbble, href: "https://dribbble.com/mitchoder07", label: "Dribbble" },
                 { icon: Figma, href: "https://figma.com/@mitchoder07", label: "Figma" },

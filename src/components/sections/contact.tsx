@@ -8,13 +8,12 @@ import {
   Download,
   Send,
   Github,
-  Linkedin,
   Dribbble,
   Figma,
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
-import { SiX, SiWhatsapp } from "react-icons/si";
+import { SiX, SiWhatsapp, SiFiverr } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "./section-heading";
 import { Button } from "@/components/ui/button";
@@ -69,7 +68,7 @@ export function Contact() {
 
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/mitchoder07" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/mitchoder07" },
+    { icon: SiFiverr, label: "Fiverr", href: "https://www.fiverr.com/s/lr9QgXy" },
     { icon: SiX, label: "X", href: "https://x.com/mitchoder07" },
     { icon: Dribbble, label: "Dribbble", href: "https://dribbble.com/mitchoder07" },
     { icon: Figma, label: "Figma", href: "https://figma.com/@mitchoder07" },
