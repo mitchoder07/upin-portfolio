@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 import { useI18n } from "@/lib/i18n";
 import { ThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher } from "./language-switcher";
@@ -25,7 +24,6 @@ const sectionIds = [
 export function Navbar() {
   const { t } = useI18n();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -68,7 +66,6 @@ export function Navbar() {
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    setMobileOpen(false);
   };
 
   return (
@@ -135,74 +132,14 @@ export function Navbar() {
                 {t.nav.contact}
               </Button>
 
-              {/* Mobile menu trigger */}
-              <button
-                onClick={() => setMobileOpen(true)}
-                className="ml-1 flex h-9 w-9 items-center justify-center rounded-full hover:bg-foreground/5 lg:hidden"
-                aria-label="Open menu"
-              >
-                <Menu className="h-5 w-5" />
-              </button>
+              {/* Mobile menu trigger removed — the mobile bottom nav bar
+                  (MobileBottomNav in layout.tsx) handles navigation on
+                  mobile/tablet now. The hamburger menu and its drawer
+                  are no longer needed. */}
             </div>
           </div>
         </div>
       </motion.header>
-
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] lg:hidden"
-          >
-            <div
-              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 26, stiffness: 240 }}
-              className="absolute right-0 top-0 h-full w-[78%] max-w-sm glass-strong p-6 pt-8"
-            >
-              <div className="mb-8 flex items-center justify-between">
-                <AnimatedLogo onClick={() => { setMobileOpen(false); scrollTo("home"); }} size="lg" />
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full hover:bg-foreground/5"
-                  aria-label="Close menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-              <nav className="flex flex-col gap-1">
-                {navItems.map((item, i) => (
-                  <motion.button
-                    key={item.id}
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.05 + i * 0.04 }}
-                    onClick={() => scrollTo(item.id)}
-                    className="rounded-xl px-4 py-3 text-left text-lg font-medium text-foreground/80 transition-colors hover:bg-foreground/5 hover:text-foreground"
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
-              </nav>
-              <Button
-                onClick={() => scrollTo("contact")}
-                className="mt-6 w-full rounded-xl"
-                size="lg"
-              >
-                {t.nav.contact}
-              </Button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
