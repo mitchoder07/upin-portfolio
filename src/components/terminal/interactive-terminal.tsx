@@ -161,7 +161,7 @@ function TerminalInner() {
           case "cat contact.vcf":
             addOutput("Email: olaniyiaremu2003@gmail.com");
             addOutput("GitHub: github.com/mitchoder07");
-            addOutput("LinkedIn: linkedin.com/in/mitchoder07");
+            addOutput("Fiverr: fiverr.com/s/lr9QgXy");
             addOutput("X (Twitter): x.com/mitchoder07");
             addOutput("WhatsApp: wa.me/2347088955340");
             setTimeout(() => scrollToSection("contact"), 300);
