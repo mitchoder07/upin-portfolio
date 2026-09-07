@@ -10,12 +10,12 @@ export type CodeSnippet = {
 //   2. Your Studio: Logo Portfolio
 //   3. Cybersecurity Engineer Portfolio
 //   4. Baca
-//   5. Is There Light? (Coming Soon — null)
+//   5. Is There Light? (Coming Soon; null)
 //   6. Cyber Bot
 //   7. Cyber-Words Guess
 //   8. Portfolio v1
 export const projectCodeSnippets: (CodeSnippet | null)[] = [
-  // 1. Al-Bashir Academy LMS — course analytics dashboard card (TypeScript)
+  // 1. Al-Bashir Academy LMS; course analytics dashboard card (TypeScript)
   {
     language: "typescript",
     filename: "al-bashir/analytics-card.tsx",
@@ -28,7 +28,7 @@ interface CourseAnalyticsProps {
 }
 
 /**
- * Al-Bashir Academy LMS — Course analytics card.
+ * Al-Bashir Academy LMS; Course analytics card.
  * Part of the instructor-facing dashboard, built with Recharts.
  */
 export function CourseAnalyticsCard(props: CourseAnalyticsProps) {
@@ -64,7 +64,7 @@ export function CourseAnalyticsCard(props: CourseAnalyticsProps) {
 }`,
   },
 
-  // 2. Rafaab — AI shopping assistant + flash sale countdown (TypeScript/React)
+  // 2. Rafaab; AI shopping assistant + flash sale countdown (TypeScript/React)
   {
     language: "typescript",
     filename: "rafaab/flash-sale.tsx",
@@ -74,7 +74,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 /**
- * Rafaab — Flash sale countdown.
+ * Rafaab; Flash sale countdown.
  * Live countdown + Paystack-ready CTA. Mobile-first.
  */
 export function FlashSaleCountdown({ endsAt }: { endsAt: string }) {
@@ -125,7 +125,7 @@ function pad(n: number) {
 }`,
   },
 
-  // 3. Your Studio — LogoCard component with masonry grid + lightbox (TypeScript/React)
+  // 3. Your Studio; LogoCard component with masonry grid + lightbox (TypeScript/React)
   {
     language: "typescript",
     filename: "your-studio/logo-card.tsx",
@@ -143,7 +143,7 @@ interface LogoCardProps {
 }
 
 /**
- * Your Studio — LogoCard.
+ * Your Studio; LogoCard.
  * Masonry grid card with hover overlay, palette swatches,
  * and click-to-open lightbox behavior.
  */
@@ -160,7 +160,7 @@ export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
       )}>
         <Image
           src={\`/logos/\${logo.slug}.png\`}
-          alt={\`\${logo.name} — \${logo.style} logo for \${logo.industry}\`}
+          alt={\`\${logo.name}; \${logo.style} logo for \${logo.industry}\`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain transition-transform duration-700 group-hover:scale-[1.04]"
@@ -180,12 +180,12 @@ export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
 }`,
   },
 
-  // 3.5 Cybersecurity Engineer Portfolio — matrix rain + CTF challenge (TypeScript)
+  // 3.5 Cybersecurity Engineer Portfolio; matrix rain + CTF challenge (TypeScript)
   {
     language: "typescript",
     filename: "cyber-portfolio/matrix-rain.ts",
     code: `/**
- * Cybersecurity Portfolio — Matrix rain effect on canvas.
+ * Cybersecurity Portfolio; Matrix rain effect on canvas.
  * Pure Canvas API, no dependencies. Lightweight and creepy.
  */
 export function initMatrixRain(canvas: HTMLCanvasElement) {
@@ -203,7 +203,7 @@ export function initMatrixRain(canvas: HTMLCanvasElement) {
   window.addEventListener("resize", resize);
 
   const draw = () => {
-    // Trail effect — semi-transparent black overlay
+    // Trail effect; semi-transparent black overlay
     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -229,12 +229,12 @@ export function initMatrixRain(canvas: HTMLCanvasElement) {
 }`,
   },
 
-  // 4. Baca — word-by-word Quran reader component (JavaScript)
+  // 4. Baca; word-by-word Quran reader component (JavaScript)
   {
     language: "javascript",
     filename: "baca/word-reader.js",
     code: `/**
- * Baca — Word-by-word Quran reader.
+ * Baca; Word-by-word Quran reader.
  * Highlights the active word, plays audio, and respects focus.
  */
 export class WordByWordReader {
@@ -297,15 +297,15 @@ export class WordByWordReader {
 }`,
   },
 
-  // 5.5 Is There Light? — Coming Soon (no source code yet)
+  // 5.5 Is There Light?; Coming Soon (no source code yet)
   null,
 
-  // 7. Cyber Bot — chatbot suggested prompts (JavaScript)
+  // 7. Cyber Bot; chatbot suggested prompts (JavaScript)
   {
     language: "javascript",
     filename: "cyber-bot/prompts.js",
     code: `/**
- * Cyber Bot — suggested-prompts engine.
+ * Cyber Bot; suggested-prompts engine.
  * Returns the most relevant follow-up prompts for a given answer.
  */
 
@@ -370,12 +370,12 @@ export function formatAnswerCard(answer) {
 }`,
   },
 
-  // 8. Cyber-Words — game loop (JavaScript)
+  // 8. Cyber-Words; game loop (JavaScript)
   {
     language: "javascript",
     filename: "cyber-words/game.js",
     code: `/**
- * Cyber-Words Guess — game loop.
+ * Cyber-Words Guess; game loop.
  * 5-letter word guessing with color-coded feedback.
  */
 
@@ -455,16 +455,16 @@ export function nextKeyState(feedback) {
 }`,
   },
 
-  // 12. Portfolio v1 — color theming + password-locked secret area (JavaScript)
+  // 12. Portfolio v1; color theming + password-locked secret area (JavaScript)
   {
     language: "javascript",
     filename: "portfolio-v1/app.js",
     code: `/**
- * Portfolio v1 — Color theming + secret code unlock.
+ * Portfolio v1; Color theming + secret code unlock.
  * The playful old portfolio: splash any color, crack the code.
  */
 
-// === Color theming — splash any color across the screen ===
+// === Color theming; splash any color across the screen ===
 const ColorTheme = {
   root: document.documentElement,
   picker: document.getElementById("color-picker"),
@@ -491,13 +491,13 @@ const ColorTheme = {
   },
 };
 
-// === Secret code unlock — crack the code to reveal the secret area ===
+// === Secret code unlock; crack the code to reveal the secret area ===
 const SecretLock = {
   overlay: document.getElementById("secret-overlay"),
   input: document.getElementById("code-input"),
   hint: document.getElementById("code-hint"),
 
-  // The code is "open sesame" — simple but playful
+  // The code is "open sesame"; simple but playful
   CODE: "open sesame",
 
   init() {
@@ -536,12 +536,12 @@ ColorTheme.init();
 SecretLock.init();`,
   },
 
-  // Solarin — auction catalogue kinetic typography (CSS/JS)
+  // Solarin; auction catalogue kinetic typography (CSS/JS)
   {
     language: "javascript",
     filename: "solarin/catalogue.js",
     code: `/**
- * Solarin — Auction catalogue interaction.
+ * Solarin; Auction catalogue interaction.
  * Rubber stamp animation + kinetic hero typography.
  */
 const Stamp = {
@@ -576,12 +576,12 @@ Stamp.init();
 KineticHero.init();`,
   },
 
-  // Solhem — breathing hero animation (CSS/JS)
+  // Solhem; breathing hero animation (CSS/JS)
   {
     language: "javascript",
     filename: "solhem/breathing-hero.js",
     code: `/**
- * Solhem — Breathing hero animation.
+ * Solhem; Breathing hero animation.
  * The sun breathes on a real 4s in, 4s out cycle.
  */
 const BreathingHero = {
@@ -633,12 +633,12 @@ BreathingHero.init();
 TypewriterQuote.init();`,
   },
 
-  // Hale — ECG line sweep + care menu booking (CSS/JS)
+  // Hale; ECG line sweep + care menu booking (CSS/JS)
   {
     language: "javascript",
     filename: "hale/ecg-sweep.js",
     code: `/**
- * Hale — ECG line sweep + chart-tab navigation.
+ * Hale; ECG line sweep + chart-tab navigation.
  * The hero vitals strip has an ECG line that sweeps forever.
  */
 
@@ -664,7 +664,7 @@ const ECGSweep = {
   },
 
   generatePoint(x) {
-    // Simulate ECG waveform — flat line with periodic spikes
+    // Simulate ECG waveform; flat line with periodic spikes
     const cycle = x % 120;
     if (cycle > 50 && cycle < 55) return -15; // QRS spike up
     if (cycle >= 55 && cycle < 58) return 25;  // S dip
@@ -700,7 +700,7 @@ const ECGSweep = {
   },
 };
 
-// === Chart divider tabs — fill red on scroll ===
+// === Chart divider tabs; fill red on scroll ===
 const ChartTabs = {
   init() {
     const tabs = document.querySelectorAll(".chart-tab");
@@ -725,7 +725,7 @@ const ChartTabs = {
   },
 };
 
-// === Visit steps — tick off checkboxes as you read ===
+// === Visit steps; tick off checkboxes as you read ===
 const VisitSteps = {
   init() {
     const steps = document.querySelectorAll(".visit-step");
@@ -743,7 +743,7 @@ const VisitSteps = {
   },
 };
 
-// === Care Menu — expandable + one-tap booking ===
+// === Care Menu; expandable + one-tap booking ===
 const CareMenu = {
   init() {
     document.querySelectorAll(".care-item").forEach((item) => {
@@ -770,12 +770,12 @@ VisitSteps.init();
 CareMenu.init();`,
   },
 
-  // Hire Ground — verified listing counter + salary-first job cards (HTML/JS)
+  // Hire Ground; verified listing counter + salary-first job cards (HTML/JS)
   {
     language: "javascript",
     filename: "hireground/jobs.js",
     code: `/**
- * Hire Ground — Verified listings + salary-first job cards.
+ * Hire Ground; Verified listings + salary-first job cards.
  * Every listing is verified by a human. Every salary is visible.
  */
 
@@ -826,7 +826,7 @@ const JobBoard = {
   apply(card) {
     const title = card.dataset.title;
     const lead = card.dataset.lead;
-    // Direct link to hiring lead — no middleman, no data resale
+    // Direct link to hiring lead; no middleman, no data resale
     window.location.href = "mailto:" + lead + "?subject=Application: " + title;
   },
 
@@ -843,7 +843,7 @@ const JobBoard = {
   },
 };
 
-// === Approval stamps — slam in on scroll ===
+// === Approval stamps; slam in on scroll ===
 const Stamps = {
   init() {
     const stamps = document.querySelectorAll(".approval-stamp");
