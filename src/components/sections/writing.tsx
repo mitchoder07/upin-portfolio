@@ -22,7 +22,7 @@ const caseStudies: CaseStudy[] = [
     figmaUrl: "https://www.figma.com/design/dpBwBIf76c1RkgSPZ5QjLD/LMS?node-id=0-1&p=f&t=vNkUX7Y1HplKiA4k-0",
   },
   {
-    images: ["/figma/flyer-1.png", "/figma/flyer-2.png"],
+    images: ["/figma/flyer-1.png", "/figma/flyer-2.png", "/figma/flyer-3.png", "/figma/flyer-4.png", "/figma/flyer-5.png"],
     figmaUrl: "https://www.figma.com/design/taZ7gCuveSPRNGUf5le6VP/Flyers?node-id=0-1&p=f&t=iEOudEdq9femXgfZ-0",
   },
   {
@@ -30,7 +30,7 @@ const caseStudies: CaseStudy[] = [
     figmaUrl: "https://www.figma.com/design/04BmvgaTEEuR25ewyIW0zF/Untitled?t=Xc4woXRINRhsclP4-0",
   },
   {
-    images: ["/figma/landing-1.png", "/figma/landing-2.png", "/figma/landing-3.png"],
+    images: ["/figma/landing-1.png", "/figma/landing-2.png", "/figma/landing-3.png", "/figma/landing-4.png", "/figma/landing-5.png", "/figma/landing-6.png"],
     figmaUrl: "https://www.figma.com/design/sk46trFFnbC8Xuc9jY1xOG/Landing-Pages?node-id=0-1&p=f&t=A5nXFNhNEMVPHL7D-0",
   },
 ];
