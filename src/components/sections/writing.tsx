@@ -14,7 +14,7 @@ type CaseStudy = {
 
 const caseStudies: CaseStudy[] = [
   {
-    images: ["/figma/rafaab-1.png", "/figma/rafaab-2.png", "/figma/rafaab-3.png"],
+    images: ["/figma/rafaab-1.png", "/figma/rafaab-2.png", "/figma/rafaab-3.png", "/figma/rafaab-4.png", "/figma/rafaab-5.png", "/figma/rafaab-6.png"],
     figmaUrl: "https://www.figma.com/design/0dxazcz2O4PsKuae6jzt0v/Rafaab?node-id=0-1&p=f&t=xsVVyAJ7lZQltKq9-0",
   },
   {
