@@ -29,6 +29,10 @@ const caseStudies: CaseStudy[] = [
     images: ["/figma/portfolio-1.png", "/figma/portfolio-2.png", "/figma/portfolio-3.png"],
     figmaUrl: "https://www.figma.com/design/04BmvgaTEEuR25ewyIW0zF/Untitled?t=Xc4woXRINRhsclP4-0",
   },
+  {
+    images: ["/figma/landing-1.png", "/figma/landing-2.png", "/figma/landing-3.png"],
+    figmaUrl: "https://www.figma.com/design/sk46trFFnbC8Xuc9jY1xOG/Landing-Pages?node-id=0-1&p=f&t=A5nXFNhNEMVPHL7D-0",
+  },
 ];
 
 const IMAGE_INTERVAL = 3000;

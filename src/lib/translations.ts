@@ -542,6 +542,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "A jobs paper for people who build things — verified listings, visible salaries, zero data resale",
+          description:
+            "Hire Ground is a concept landing page for a jobs board with a simple promise: every listing is verified by a human, every salary is printed where you can see it, and every application goes to a real hiring lead, not into a resale market for your data. The page reads like a newspaper classifieds section — ink on cream paper, monospace price tags, and stamps of approval that slam in on scroll. The hero sets the tone with a bold masthead and a live counter of verified positions. Job cards are laid out as editorial clippings with the salary front and center, a one-line summary, and a direct apply button that links to the hiring lead, not a middleman. An FAQ section handles the questions job seekers actually ask, and a trust strip breaks down the verification process step by step. Built with pure HTML, CSS, and JavaScript — no frameworks, no libraries, fully responsive.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "Newspaper-classifieds aesthetic, verified-listing counter, salary-first job cards, direct-apply flow, zero libraries",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -699,6 +712,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Figma Case Study",
           tag: "Web Design",
+        },
+        {
+          title: "Landing Pages: Solarin, Solhem & Hale",
+          excerpt:
+            "Three concept landing pages, three completely different design languages. Solarin treats work as collectibles with an auction-catalogue aesthetic. Solhem breathes like a yoga practice. Hale behaves like a family clinic. All three ship with pure CSS mockups, zero libraries, and fully responsive layouts.",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "Landing Page Design",
         },
       ],
     },
@@ -1076,6 +1097,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "Akhbar kerja untuk orang yang membina benda — senarai disahkan, gaji jelas, tiada jualan data",
+          description:
+            "Hire Ground ialah landing page konsep untuk papan kerja dengan janji mudah: setiap senarai disahkan oleh manusia, setiap gaji dicetak di mana anda boleh lihat, dan setiap permohonan pergi ke ketua pengambilan sebenar, bukan pasaran jualan semula data anda. Halaman ini dibaca seperti bahagian iklan akhbar — dakwat pada kertas krim, tag harga monospace, dan cop persetujuan yang menampar masuk ketika skrol. Hero menetapkan nada dengan masthead tebal dan pengiraan langsung jawatan yang disahkan. Kad kerja disusun sebagai keratan editorial dengan gaji di hadapan, ringkasan satu baris, dan butang permohonan terus yang dipautkan ke ketua pengambilan. FAQ mengendalikan soalan yang pencari kerja benar-benar tanya, dan jalur kepercayaan memecahkan proses pengesahan langkah demi langkah. Dibina dengan HTML, CSS, dan JavaScript tulen — tiada rangka kerja, tiada pustaka, sepenuhnya responsif.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Estetik iklan akhbar, pengiraan jawatan disahkan, kad kerja gaji-dahulu, aliran permohonan terus, tiada pustaka",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -1233,6 +1267,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Kajian Kes Figma",
           tag: "Reka Bentuk Web",
+        },
+        {
+          title: "Landing Pages: Solarin, Solhem & Hale",
+          excerpt:
+            "Tiga landing page konsep, tiga bahasa reka bentuk yang berbeza. Solarin menganggap kerja sebagai koleksi dengan estetika katalog lelongan. Solhem bernafas seperti amalan yoga. Hale berkelakuan seperti klinik keluarga. Ketiga-tiganya disertakan dengan mockup CSS tulen, tanpa pustaka, dan susun atur responsif sepenuhnya.",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "Reka Bentuk Landing Page",
         },
       ],
     },
@@ -1610,6 +1652,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "Takardar ayyuka ga masu ginawa — duk listing da aka tabbatar, albashin a fili, babu siyar da bayanai",
+          description:
+            "Hire Ground shafi ne na tsabar ayyuka da alawar daya: kowane listing an tabbatar da shi da mutum, kowane albashin an buga shi inda zaka iya gani, kuma kowane aikace-aikace yana tafiya ga shugaban daukar ma'aikata na gaske, ba kasuwar sake sayar da bayanan ka. Shafin yana karantu kamar sashin tallan takarda — tawada a takardar kirim, farashin monospace, da tambarin amincewa da ke shiga lokacin skrolawa. Hero yana saita sauti da masthead mai karfi da kidayar mukamai da aka tabbatar. Katunan aikin an tsara su a matsayin yanke takarda tare da albashin a gaba, takaitaccen bayani na layi daya, da ma'aikin aikace-aikace kai tsaye wanda ke hade da shugaban daukar ma'aikata. FAQ yana kula da tambayoyin da masu neman aiki ke tambaya, kuma tsarkin amana yana bayanin tsarin tabbatarwa mataki daya. An gina da HTML, CSS, da JavaScript tsirar — babu tsarin, babu dakunan karatu, cikakken amsawa.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Tsarin tallan takarda, kidayar mukamai da aka tabbatar, katunan aikin alashi-gaba, aikace-aikace kai tsaye, babu dakunan karatu",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -1767,6 +1822,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Kararran Figma",
           tag: "Tsarin Yanar Gizo",
+        },
+        {
+          title: "Landing Pages: Solarin, Solhem & Hale",
+          excerpt:
+            "Shafuka guda uku na tsarin kwaya, yaruka guda uku na zane daban-daban. Solarin yana ɗaukar aiki a matsayin tarawa tare da kyauwar katin gwanar. Solhem yana numfashi kamar aikin yoga. Hale yana kama da asibitin iyali. Duk uku suna dauke da mockup na CSS kawai, babu dakunan karatu, da tsarawa cikakke.",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "Tsarin Shafin Landing",
         },
       ],
     },
@@ -2143,6 +2206,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "Iwe iṣẹ fun awọn tó ń ṣe nkan — àtẹ̀jáde àfihàn, owó han gbangba, kò sí títà dátà",
+          description:
+            "Hire Ground jẹ́ ojú-ìjọsọ́ ìdàrò fún pẹpẹ iṣẹ́ pẹ̀lú ìlérí kan: àtẹ̀jáde kọ̀ọ̀kan ni a f'áyẹ̀wò, owó kọ̀ọ̀kan sì han níbi tó wà, ìdásílẹ̀ kọ̀okan sì ń lọ sókò tó ń gbà iṣẹ́ náà, kì í ṣe sí ọjà títà dátà rẹ. Ojú-ìjọsọ́ yìí ń ka bí ìpìnlẹ̀ ìròyìn — tìǹká lórí ìwé cream, owó monospace, àti ìgboyà tó ń bọ̀ lórí àtẹ̀. Hero ń ṣ'ètùtù pẹ̀lú akọlé gẹ́gẹ́ àti kọ́ńtà tó ń ka iṣẹ́ àfihàn. Káàdì iṣẹ́ ń ṣàfihàn owó níwájú, ìpínrẹ̀ lóríkan, àti bọ́tìnì ìdásílẹ̀ tó ń lọ sí ọ̀dọ̀ ènìyàn tó ń gbà iṣẹ́. FAQ ń gbé àwọn ìbéèrè tí àwọn oníṣẹ́ ń béèrè, àti ìsọrọ̀-gbòòyà ń ṣàlàyé ìlérí náà. A kọ́ pẹ̀lú HTML, CSS, àti JavaScript — láìsí ìdàgbàsókè, láìsí ìwé, gbogbo rẹ̀ múni lórí.",
+          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
+          impact: "Ìrísí ìròyìn ìkànìyàn, kọ́ńtà iṣẹ́ àfihàn, káàdì owó-níwájú, ìdásílẹ̀ kán-kan, láìsí ìwé",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -2300,6 +2376,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Ìdànjáde Figma",
           tag: "Àkóónú Web",
+        },
+        {
+          title: "Landing Pages: Solarin, Solhem & Hale",
+          excerpt:
+            "Awon oju-ijoso mẹrin ti nkan oriṣiriṣi, ede aro mẹrin ti yato. Solarin n fi iṣẹ han gege bi akojọpọ pẹlu irisi katin gwanin idana. Solhem n mì gege bi iṣẹ yoga. Hale n huwa gege bi ile iwoosan ebi. Gbogbo mẹrin naa wa pẹlu mockup CSS, laisi iwe, ati eto to n bọwọ.",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "Aro Oju-ijoso",
         },
       ],
     },
@@ -2677,6 +2761,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "作る人のための求人新聞 — 人間確認済み、給与公開、データ転売なし",
+          description:
+            "Hire Groundは求人ボードのコンセプトランディングページで、一つの約束に基づいています：すべての求人は人間が確認し、すべての給与は見える場所に印刷され、すべての応募はデータ転売市場ではなく実際の採用担当者に行きます。ページは新聞の求人広告セクションのように読めます — クリーム色の紙にインク、等幅フォントの価格タグ、スクロール時にスラムインする承認スタンプ。ヒーローは太い見出しと確認済みポジションのライブカウンターでトーンを設定。求人カードは編集切り抜きとして配置され、給与が前面中央、一行サマリー、採用担当者への直接応募ボタン付き。FAQは求職者が実際に聞く質問を処理し、信頼ストリップが確認プロセスをステップバイステップで分解。純粋なHTML、CSS、JavaScriptで構築 — フレームワーク不要、ライブラリ不要、完全レスポンシブ。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "新聞求人美学、確認済み求人カウンター、給与先行カード、直接応募フロー、ライブラリ不要",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -2834,6 +2931,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Figmaケーススタディ",
           tag: "Webデザイン",
+        },
+        {
+          title: "ランディングページ：Solarin、Solhem & Hale",
+          excerpt:
+            "3つのコンセプトランディングページ、3つの全く異なるデザイン言語。Solarinは作品をオークションカタログの美学でコレクタブルとして扱います。Solhemはヨガの練習のように呼吸します。Haleは家族診療所のように振る舞います。3つすべてに純CSSモックアップ、ライブラリ不要、完全レスポンシブレイアウトが同梱されています。",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "ランディングページデザイン",
         },
       ],
     },
@@ -3211,6 +3316,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "صحيفة وظائف لمن يبنون الأشياء — إعلانات موثقة، رواتب ظاهرة، بلا بيع بيانات",
+          description:
+            "هاير جراوند صفحة هبوط مفهومية للوحة وظائف بوعد بسيط: كل إعلان موثق من قبل إنسان، كل راتب مطبوع حيث تراه، وكل طلب يذهب إلى مسؤول توظيف حقيقي وليس إلى سوق إعادة بيع بياناتك. تُقرأ الصفحة كقسم إعلانات صحفية — حبر على ورق كريمي، وسوم أسعار بأحادية المسافة، وأختام موافقة تضرب عند التمرير. يحدد البطل النبرة بعنوان رئيسي جريء وعداد مباشر للوظائف الموثقة. تُ arranged بطاقات الوظائف كقصاصات تحريرية مع الراتب في المقدمة، ملخص من سطر واحد، وزر تقديم مباشر يربط بمسؤول التوظيف. يمتص قسم الأسئلة الشائعة الأسئلة التي يطرحها الباحثون عن عمل فعلاً، ويقسم شريط الثقة عملية التحقق خطوة بخطوة. بُني بـ HTML و CSS و JavaScript نقي — بدون أطر عمل، بدون مكتبات، متجاوب بالكامل.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "جمالية إعلانات الصحف، عداد وظائف موثق، بطاقات راتب-أولاً، تقديم مباشر، بدون مكتبات",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -3368,6 +3486,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "دراسة حالة Figma",
           tag: "تصميم ويب",
+        },
+        {
+          title: "صفحات الهبوط: Solarin و Solhem و Hale",
+          excerpt:
+            "ثلاث صفحات هبوط مفهومية، ثلاث لغات تصميم مختلفة تمامًا. سولارين يعامل العمل كقطع قابلة للتحصيل بجماليات كتالوج المزاد. سولهيم يتنفس كتمرين يوغا. هيل يتصرف كعيادة عائلية. الثلاثة جميعها تأتي بنماذج CSS نقية وبدون مكتبات وتخطيطات متجاوبة بالكامل.",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "تصميم صفحات الهبوط",
         },
       ],
     },
@@ -3745,6 +3871,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hale-gamma.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Hire Ground",
+          tagline: "为造物者打造的招聘报纸 — 人工验证、薪资透明、零数据转售",
+          description:
+            "Hire Ground 是一个招聘看板的概念着陆页，基于一个简单的承诺：每条招聘信息都由人工验证，每个薪资都印在你看得见的地方，每个申请都直接发送给真正的招聘负责人，而不是进入你的数据转售市场。页面读起来像报纸的分类广告版面 — 奶油色纸上的墨水、等宽字体的价格标签、滚动时砸入的批准印章。英雄部分以粗体刊头和验证职位的实时计数器定下基调。工作卡片以编辑剪报形式排列，薪资居中靠前，一行摘要，直接申请按钮链接到招聘负责人。常见问题部分处理求职者真正会问的问题，信任条逐步分解验证流程。纯HTML、CSS和JavaScript构建 — 无框架、无库、完全响应式。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "报纸分类美学、验证职位计数器、薪资先行卡片、直接申请流程、零库",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/hireground.png",
+          githubUrl: "https://github.com/mitchoder07/hireGround",
+          liveUrl: "https://hireground.vercel.app",
+          category: "landing-page",
+        },
 
       ],
     },
@@ -3902,6 +4041,14 @@ export const translations: Record<Locale, Translation> = {
           date: "2026-01-05",
           readTime: "Figma案例研究",
           tag: "网页设计",
+        },
+        {
+          title: "着陆页：Solarin、Solhem 和 Hale",
+          excerpt:
+            "三个概念着陆页，三种完全不同的设计语言。Solarin以拍卖目录的美学将作品视为收藏品。Solhem像瑜伽练习一样呼吸。Hale表现得像家庭诊所。三个都附带纯CSS模型、零库、完全响应式布局。",
+          date: "2026-09-05",
+          readTime: "Figma Case Study",
+          tag: "着陆页设计",
         },
       ],
     },

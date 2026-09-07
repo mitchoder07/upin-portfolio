@@ -769,4 +769,100 @@ ChartTabs.init();
 VisitSteps.init();
 CareMenu.init();`,
   },
+
+  // Hire Ground — verified listing counter + salary-first job cards (HTML/JS)
+  {
+    language: "javascript",
+    filename: "hireground/jobs.js",
+    code: `/**
+ * Hire Ground — Verified listings + salary-first job cards.
+ * Every listing is verified by a human. Every salary is visible.
+ */
+
+// === Verified listing counter ===
+const VerifiedCounter = {
+  el: document.querySelector(".verified-count"),
+  target: 247,
+  current: 0,
+
+  init() {
+    if (!this.el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) this.count();
+        });
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(this.el);
+  },
+
+  count() {
+    const step = () => {
+      this.current += 3;
+      if (this.current >= this.target) {
+        this.current = this.target;
+        this.el.textContent = this.current;
+        return;
+      }
+      this.el.textContent = this.current;
+      requestAnimationFrame(step);
+    };
+    step();
+  },
+};
+
+// === Salary-first job cards ===
+const JobBoard = {
+  init() {
+    const cards = document.querySelectorAll(".job-card");
+    cards.forEach((card) => {
+      const applyBtn = card.querySelector(".apply-btn");
+      applyBtn?.addEventListener("click", () => this.apply(card));
+    });
+  },
+
+  apply(card) {
+    const title = card.dataset.title;
+    const lead = card.dataset.lead;
+    // Direct link to hiring lead — no middleman, no data resale
+    window.location.href = "mailto:" + lead + "?subject=Application: " + title;
+  },
+
+  filter(tag) {
+    const cards = document.querySelectorAll(".job-card");
+    cards.forEach((card) => {
+      const tags = card.dataset.tags.split(",");
+      if (tag === "all" || tags.includes(tag)) {
+        card.classList.remove("hidden");
+      } else {
+        card.classList.add("hidden");
+      }
+    });
+  },
+};
+
+// === Approval stamps — slam in on scroll ===
+const Stamps = {
+  init() {
+    const stamps = document.querySelectorAll(".approval-stamp");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("stamp--slam");
+          }
+        });
+      },
+      { threshold: 0.7 }
+    );
+    stamps.forEach((s) => observer.observe(s));
+  },
+};
+
+VerifiedCounter.init();
+JobBoard.init();
+Stamps.init();`,
+  },
 ];
