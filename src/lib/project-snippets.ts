@@ -160,7 +160,7 @@ export function LogoCard({ logo, index, onOpen }: LogoCardProps) {
       )}>
         <Image
           src={\`/logos/\${logo.slug}.png\`}
-          alt={\`\${logo.name}; \${logo.style} logo for \${logo.industry}\`}
+          alt={\`\${logo.name} - \${logo.style} logo for \${logo.industry}\`}
           fill
           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain transition-transform duration-700 group-hover:scale-[1.04]"
