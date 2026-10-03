@@ -297,78 +297,8 @@ export class WordByWordReader {
 }`,
   },
 
-  // 5.5 Is There Light?; Coming Soon (no source code yet)
+  // 5.5 Is There Light? — Coming Soon (no source code yet)
   null,
-
-  // 7. Cyber Bot; chatbot suggested prompts (JavaScript)
-  {
-    language: "javascript",
-    filename: "cyber-bot/prompts.js",
-    code: `/**
- * Cyber Bot; suggested-prompts engine.
- * Returns the most relevant follow-up prompts for a given answer.
- */
-
-const PROMPT_LIBRARY = [
-  {
-    id: "phishing",
-    text: "How do I spot a phishing email?",
-    keywords: ["phishing", "email", "scam", "spoof"],
-  },
-  {
-    id: "passwords",
-    text: "What makes a strong password?",
-    keywords: ["password", "credential", "auth"],
-  },
-  {
-    id: "2fa",
-    text: "Why should I enable two-factor auth?",
-    keywords: ["2fa", "mfa", "factor", "otp"],
-  },
-  {
-    id: "vpn",
-    text: "Does a VPN actually protect me?",
-    keywords: ["vpn", "tunnel", "encrypt", "network"],
-  },
-  {
-    id: "ransomware",
-    text: "How does ransomware spread?",
-    keywords: ["ransomware", "malware", "encrypt", "virus"],
-  },
-  {
-    id: "updates",
-    text: "Why are software updates important?",
-    keywords: ["update", "patch", "vulnerability", "cve"],
-  },
-];
-
-export function suggestPrompts(answerText, limit = 3) {
-  const lower = answerText.toLowerCase();
-  const scored = PROMPT_LIBRARY.map((p) => {
-    let score = 0;
-    for (const kw of p.keywords) {
-      if (lower.includes(kw)) score += 1;
-    }
-    return { ...p, score };
-  });
-
-  return scored
-    .filter((p) => p.score >= 0)
-    .sort((a, b) => b.score - a.score || Math.random() - 0.5)
-    .slice(0, limit)
-    .map((p) => ({ id: p.id, text: p.text }));
-}
-
-export function formatAnswerCard(answer) {
-  return {
-    title: answer.title,
-    summary: answer.summary,
-    bullets: answer.bullets ?? [],
-    source: answer.source ?? "Cyber Bot knowledge base",
-    prompts: suggestPrompts(\`\${answer.title} \${answer.summary}\`),
-  };
-}`,
-  },
 
   // 8. Cyber-Words; game loop (JavaScript)
   {
@@ -864,5 +794,64 @@ const Stamps = {
 VerifiedCounter.init();
 JobBoard.init();
 Stamps.init();`,
+  },
+
+  // Ballykay Ventures — WhatsApp-first product flow (HTML/JS)
+  {
+    language: "javascript",
+    filename: "ballykay/whatsapp-flow.js",
+    code: `/**
+ * Ballykay Ventures — WhatsApp-first product flow.
+ * Every product leads to a prefilled WhatsApp chat because
+ * poultry prices change weekly.
+ */
+
+const WhatsAppFlow = {
+  phone: "2347088955340",
+
+  init() {
+    document.querySelectorAll("[data-product]").forEach((el) => {
+      el.addEventListener("click", () => this.openChat(el.dataset.product));
+    });
+  },
+
+  openChat(productName) {
+    const message = this.buildMessage(productName);
+    const url = "https://wa.me/" + this.phone + "?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+  },
+
+  buildMessage(productName) {
+    return (
+      "Hello Ballykay Ventures!\n\n" +
+      "I'm interested in: " + productName + "\n\n" +
+      "Could you share the current price and availability?\n" +
+      "Thank you!"
+    );
+  },
+};
+
+// === Lazy-load farm photos for mobile data savings ===
+const LazyPhotos = {
+  init() {
+    const photos = document.querySelectorAll("img[data-src]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            observer.unobserve(img);
+          }
+        });
+      },
+      { rootMargin: "50px" }
+    );
+    photos.forEach((p) => observer.observe(p));
+  },
+};
+
+WhatsAppFlow.init();
+LazyPhotos.init();`,
   },
 ];

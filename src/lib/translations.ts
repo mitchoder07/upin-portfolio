@@ -468,18 +468,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "Ask anything about cybersecurity, get instant answers",
-          description:
-            "A cybersecurity Q&A bot that gives instant answers on common security topics. Designed the conversational UI, the suggested-prompts pattern, and the readable answer cards. Built mobile-first with keyboard-friendly input.",
-          role: "Frontend Engineer & UI/UX Designer",
-          impact: "Instant answers, suggested prompts, readable response cards",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "Guess the cyber word game",
           description:
@@ -555,6 +543,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "Real poultry farm in Kaduna — conversion landing page with WhatsApp-first sales and full brand identity",
+          description:
+            "Ballykay Ventures is a real poultry farm in Kaduna, Nigeria, and this is their full digital presence. A conversion-focused landing page paired with a complete hen logo identity. Every product leads to a prefilled WhatsApp chat because poultry prices change weekly, so the site sells through conversation, not static price tags. Real photos, real video of the birds, real numbers, zero middlemen. The page is designed to load fast on mobile data, guide visitors straight to the WhatsApp chat with prefilled product names, and convert curiosity into a direct conversation with the farm. This is a client project — the repo is private.",
+          role: "Frontend Engineer & UI/UX Designer",
+          impact: "WhatsApp-first conversion flow, hen logo identity, real farm media, mobile-data optimized, client work",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -606,7 +607,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Started learning HTML, CSS, JavaScript. Built personal projects and grew into React and Next.js.",
           achievements: [
-            "Shipped personal projects including Baca and Cyber Bot",
+            "Shipped personal projects including Baca and Hire Ground",
             "Learned React, TypeScript, and Tailwind through real builds",
             "Contributed to small open-source repositories",
           ],
@@ -660,8 +661,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -1023,18 +1024,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "Tanya apa-apa tentang keselamatan siber, dapatkan jawapan serta-merta",
-          description:
-            "Bot soal-jawab keselamatan siber yang memberikan jawapan serta-merta tentang topik keselamatan biasa. UI perbualan, corak cadangan, dan kad jawapan yang boleh dibaca direka. Dibina mobile-first dengan input mesra papan kekunci.",
-          role: "Jurutera Frontend & Pereka UI/UX",
-          impact: "Jawapan serta-merta, cadangan, kad respons boleh dibaca",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "Permainan teka perkataan siber",
           description:
@@ -1110,6 +1099,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "Ladang ayam sebenar di Kaduna — landing page penukaran dengan jualan WhatsApp-first dan identiti jenama penuh",
+          description:
+            "Ballykay Ventures ialah ladang ayam sebenar di Kaduna, Nigeria, dan ini adalah kehadiran digital penuh mereka. Landing page fokus-penukaran dipasangkan dengan identiti logo ayam yang lengkap. Setiap produk membawa ke sembang WhatsApp yang telah diisi sebelumnya kerana harga ayam berubah setiap minggu, jadi laman web menjual melalui perbualan, bukan tag harga statik. Foto sebenar, video burung sebenar, nombor sebenar, tiada orang tengah. Halaman direka untuk dimuatkan pantas pada data mudah alih, membimak pengunjung terus ke sembang WhatsApp dengan nama produk yang telah diisi, dan menukar rasa ingin tahu menjadi perbualan langsung dengan ladang. Ini adalah projek klien — repo adalah peribadi.",
+          role: "Jurutera Frontend & Pereka UI/UX",
+          impact: "Aliran penukaran WhatsApp-first, identiti logo ayam, media ladang sebenar, dioptimumkan data mudah alih, kerja klien",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -1161,7 +1163,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Mula belajar HTML, CSS, JavaScript. Membina projek peribadi dan berkembang ke React dan Next.js.",
           achievements: [
-            "Menghantar projek peribadi termasuk Baca dan Cyber Bot",
+            "Menghantar projek peribadi termasuk Baca dan Hire Ground",
             "Belajar React, TypeScript, dan Tailwind melalui binaan sebenar",
             "Menyumbang kepada repositori sumber terbuka kecil",
           ],
@@ -1215,8 +1217,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -1578,18 +1580,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "Tambaya kome game da tsaron yanar gizo, sami amsa nan take",
-          description:
-            "Bot na tambaya da amsa na tsaron yanar gizo wanda ke ba da amsa nan take akan batutuwan tsaro na yau da kullun. An tsara UI na tattaunawa, tsarin shawarwari, da katunan amsa masu karantawa. An gina shi mobile-first da maɓalli mai saukin kewayawa.",
-          role: "Injiniyan Frontend & Mai Tsara UI/UX",
-          impact: "Amsa nan take, shawarwari, katunan amsa masu karantawa",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "Wasan ƙidaya kalmar siber",
           description:
@@ -1665,6 +1655,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "Gidan ajin kaji na gaske a Kaduna — shafin canzawa da sayarwa ta WhatsApp da cikakken ainihin alama",
+          description:
+            "Ballykay Ventures gidan ajin kaji ne na gaske a Kaduna, Najeriya, kuma wannan shine cikakken kasancewar su ta dijital. Shafin da ya dace da canzawa tare da cikakken ainihin alamar kaji. Kowane samfur yana kaiwa zuwa tattaunawar WhatsApp da aka riga aka cika saboda farashin kaji yana canzawa a kowane mako, don haka shafin yana siyarwa ta hanyar tattaunawa, ba ta tsayayyen farashin. Hotunan gaske, bidiyo na kajin gaske, lambobin gaske, babu matsakaci. An tsara shafin don loda cikin sauri akan bayanan waya, jagorantar masu zuwa kai tsaye zuwa tattaunawar WhatsApp tare da sunayen samfur da aka riga aka cika, da kuma canza sha'awa zuwa tattaunawa kai tsaye da gonar. Wannan aikin abokin ciniki ne — repo sirri ne.",
+          role: "Injiniyan Frontend & Mai Tsara UI/UX",
+          impact: "Tsarin canzawa ta WhatsApp, ainihin alamar kaji, media na gona na gaske, daidaitaccen bayanan waya, aikin abokin ciniki",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -1716,7 +1719,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Fara koyo da HTML, CSS, JavaScript. Gina ayyukan kansa kuma girma zuwa React da Next.js.",
           achievements: [
-            "Tura ayyukan kansa ciki har da Baca da Cyber Bot",
+            "Tura ayyukan kansa ciki har da Baca da Hire Ground",
             "Koyi React, TypeScript, da Tailwind ta hanyar ginin gaske",
             "Ba da gudummawa ga ƙananan tushen buɗe",
           ],
@@ -1770,8 +1773,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -2132,18 +2135,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "Béèrè kí nkan bíi àbò sáìbà, gba àhùnpò lásìkò",
-          description:
-            "Bot Q&A àbò sáìbà tó ń fún ni àhùnpò lásìkò lórí àwọn ọ̀rọ̀ àbò wọ́pọ̀. A ṣètò UI ìbámu-ọ̀rọ̀, ọ̀nà àbá-àfọ́jú, àti àwọn káàdì àhùnpò tó rọrùn láti kà. A kọ́ mobile-first pẹ̀lú ìbámu pínpín-rọrùn.",
-          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
-          impact: "Àhùnpò lásìkò, àbá-àfọ́jú, àwọn káàdì àhùnpò tó rọrùn",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "Eré ìròyìn ọ̀rọ̀ sáìbà",
           description:
@@ -2219,6 +2210,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "Fármù adiye gẹ́gẹ́bí àdúrà wa ní Kaduna — ojú-ìjọsọ́ ìyípadà pẹ̀lú títà WhatsApp àkọ́kọ́ àti ìdánimọ̀ àmì tó pé",
+          description:
+            "Ballykay Ventures jẹ́ fármù adiye gẹ́gẹ́bí àdúrà wa ní Kaduna, Nàìjíríà, àti pé eyi jẹ́ gbogbo ìfarahàn wọn lórí ìkànìyàn. Ojú-ìjọsọ́ tó da lórí ìyípadà pẹ̀lú ìdánimọ̀ àmì adiye tó pé. Ọkọ̀ọ̀kan gbóò ló ń lọ sókò̀ WhatsApp tó ti kún tẹ́lẹ̀ nítorí pé owó adiye ń yípadà lọ́sẹ̀ọ̀sẹ̀, nitorínà ojú-ìjọsọ́ yìí ń tà nípasẹ̀ àròkọ, kì í ṣe nípasẹ̀ owó tó dúró. Àwòrán gẹ́gẹ́bí, fídíò àwọn ẹyẹ gẹ́gẹ́bí, nọ́ńbà gẹ́gẹ́bí, láìsí àbáńtẹ́rù. Ojú-ìjọsọ́ yìí a ṣeé lọ́wọ́sọ́ótọ́ nípa dátà fónù, ó ń gbé àwọn àbọ̀ lọ sókò WhatsApp pẹ̀lú orúkọ gbóò tó ti kún, ó sì ń yí ìfẹ́padà wọn ní ìròyìn tàkòtàkò pẹ̀lú fármù náà. Eyi iṣẹ́ àjọṣepọ̀ alábàáṣepọ̀ ni — repo jẹ́ ìkọ̀kọ̀.",
+          role: "Onímọ̀-Ẹrọ Frontend & Aláṣẹ UI/UX",
+          impact: "Ìlana WhatsApp-àkọ́kọ́, ìdánimọ̀ àmì adiye, media fármù gẹ́gẹ́bí, dátà fónù tó dá, iṣẹ́ àjọṣepọ̀",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -2270,7 +2274,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "Bẹ̀rẹ̀ kíkọ́ HTML, CSS, JavaScript. Kọ́ àwọn iṣẹ́ fúnra-ra àti dàgbà-sókè sí React àti Next.js.",
           achievements: [
-            "Fi àwọn iṣẹ́ fúnra-ra rán pẹ̀lú Baca àti Cyber Bot",
+            "Fi àwọn iṣẹ́ fúnra-ra rán pẹ̀lú Baca àti Hire Ground",
             "Kọ́ React, TypeScript, àti Tailwind nípa kíkọ́ àdání",
             "Ṣe ìrànwọ́ sí àwọn ilé-ìkọ́ orísun ìmọ̀ kéèké",
           ],
@@ -2324,8 +2328,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -2687,18 +2691,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "サイバーセキュリティについて何でも聞いて、即座に回答を得る",
-          description:
-            "一般的なセキュリティトピックについて即座に回答を提供するサイバーセキュリティQ&Aボット。会話UI、提案プロンプトパターン、読みやすい回答カードを設計。キーボードフレンドリーな入力でモバイルファースト構築。",
-          role: "フロントエンドエンジニア & UI/UXデザイナー",
-          impact: "即座の回答、提案プロンプト、読みやすい応答カード",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "サイバーワード推しゲーム",
           description:
@@ -2774,6 +2766,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "カドゥナの実際の養鶏場 — WhatsAppファースト販売と完全ブランドアイデンティティのコンバージョンランディングページ",
+          description:
+            "Ballykay Venturesはナイジェリアのカドゥナにある実際の養鶏場で、これが彼らの完全なデジタルプレゼンスです。コンバージョン重視のランディングページと完全な鶏のロゴアイデンティティを組み合わせています。鶏の価格は毎週変わるため、すべての製品は事前入力されたWhatsAppチャットに誘導され、サイトは静的な価格タグではなく会話を通じて販売します。実際の写真、実際の鳥の動画、実際の数字、仲介者なし。ページはモバイルデータで高速読み込みするよう設計され、製品名が事前入力されたWhatsAppチャットへ訪問者を直接導き、好奇心を農場との直接会話に変換します。これはクライアントプロジェクトです — リポジトリは非公開です。",
+          role: "フロントエンドエンジニア & UI/UXデザイナー",
+          impact: "WhatsAppファーストコンバージョンフロー、鶏ロゴアイデンティティ、実際の農場メディア、モバイルデータ最適化、クライアントワーク",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -2825,7 +2830,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "HTML、CSS、JavaScriptの学習を開始。個人プロジェクトを構築し、ReactとNext.jsに成長。",
           achievements: [
-            "BacaとCyber Botを含む個人プロジェクトをリリース",
+            "BacaとHire Groundを含む個人プロジェクトをリリース",
             "実際の構築を通じてReact、TypeScript、Tailwindを学習",
             "小さなオープンソースリポジトリに貢献",
           ],
@@ -2879,8 +2884,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -3242,18 +3247,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "اسأل أي شيء عن الأمن السيبراني، احصل على إجابات فورية",
-          description:
-            "روبوت أسئلة وأجوبة للأمن السيبراني يعطي إجابات فورية عن مواضيع الأمن الشائعة. صُمم واجهة المحادثة، نمط الاقتراحات، وبطاقات الإجابات القابلة للقراءة. بُني mobile-first مع إدخال صديق للوحة المفاتيح.",
-          role: "مهندس واجهات أمامية & مصمم UI/UX",
-          impact: "إجابات فورية، اقتراحات، بطاقات استجابة قابلة للقراءة",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "لعبة تخمين كلمة الأمن السيبراني",
           description:
@@ -3329,6 +3322,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "مزرعة دواجن حقيقية في كادونا — صفحة هبوط تحويلية مع مبيعات واتساب أولاً وهوية علامة كاملة",
+          description:
+            "باليكاي فينتشرز مزرعة دواجن حقيقية في كادونا، نيجيريا، وهذا هو حضورهم الرقمي الكامل. صفحة هبوط تركز على التحويل مقترنة بهوية شعار دجاج كاملة. كل منتج يؤدي إلى محادثة واتساب معبأة مسبقًا لأن أسعار الدواجن تتغير أسبوعيًا، لذا الموقع يبيع عبر المحادثة وليس عبر أسعار ثابتة. صور حقيقية، فيديو حقيقي للطيور، أرقام حقيقية، بلا وسطاء. الصفحة مصممة للتحميل السريع على بيانات الهاتف المحمول، وتوجيه الزوار مباشرة إلى محادثة واتساب مع أسماء منتجات معبأة مسبقًا، وتحويل الفضول إلى محادثة مباشرة مع المزرعة. هذا مشروع عميل — المستودع خاص.",
+          role: "مهندس واجهات أمامية & مصمم UI/UX",
+          impact: "تدفق تحويل واتساب أولاً، هوية شعار دجاج، وسائط مزرعة حقيقية، محسّن لبيانات الهاتف، عمل عميل",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -3380,7 +3386,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "بدأت بتعلم HTML، CSS، JavaScript. بنيت مشاريع شخصية ونمت إلى React و Next.js.",
           achievements: [
-            "أطلقت مشاريع شخصية بما فيها Baca و Cyber Bot",
+            "أطلقت مشاريع شخصية بما فيها Baca و Hire Ground",
             "تعلمت React، TypeScript، و Tailwind عبر بناء حقيقي",
             "ساهمت في مستودعات مفتوحة المصدر صغيرة",
           ],
@@ -3434,8 +3440,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
@@ -3797,18 +3803,6 @@ export const translations: Record<Locale, Translation> = {
           gradient: "linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #1a1a2e 100%)",
           comingSoon: true,
         },        {
-          name: "Cyber Bot",
-          tagline: "问任何关于网络安全的问题,获得即时答案",
-          description:
-            "一个网络安全问答机器人,就常见安全话题给出即时答案。设计了对话式 UI、建议提示模式,以及可读的答案卡片。以键盘友好的输入移动优先构建。",
-          role: "前端工程师 & UI/UX 设计师",
-          impact: "即时答案、建议提示、可读响应卡片",
-          tech: ["HTML5", "CSS3", "JavaScript"],
-          image: "/portfolio-images/cyber-bot.jpg",
-          githubUrl: "https://github.com/mitchoder07/cyber-bot",
-          liveUrl: "https://cyber-bot-zeta.vercel.app/",
-        },
-        {
           name: "Cyber-Words Guess",
           tagline: "猜网络安全词汇游戏",
           description:
@@ -3884,6 +3878,19 @@ export const translations: Record<Locale, Translation> = {
           liveUrl: "https://hireground.vercel.app",
           category: "landing-page",
         },
+        {
+          name: "Ballykay Ventures",
+          tagline: "卡杜纳的真实家禽农场 — WhatsApp优先销售和完整品牌标识的转化着陆页",
+          description:
+            "Ballykay Ventures是尼日利亚卡杜纳的一家真实家禽农场，这是他们的完整数字形象。一个以转化为核心的着陆页配上完整的母鸡品牌标识。每个产品都链接到预填的WhatsApp聊天，因为家禽价格每周变化，所以网站通过对话销售，而不是静态价格标签。真实照片、真实鸟类视频、真实数字、零中间商。页面设计为在移动数据上快速加载，引导访客直接进入带有预填产品名称的WhatsApp聊天，将好奇心转化为与农场的直接对话。这是一个客户项目 — 仓库是私有的。",
+          role: "前端工程师 & UI/UX 设计师",
+          impact: "WhatsApp优先转化流程、母鸡品牌标识、真实农场媒体、移动数据优化、客户工作",
+          tech: ["HTML5", "CSS3", "JavaScript"],
+          image: "/portfolio-images/ballykay.png",
+          liveUrl: "https://ballykay.vercel.app",
+          confidential: true,
+          category: "landing-page",
+        },
 
       ],
     },
@@ -3935,7 +3942,7 @@ export const translations: Record<Locale, Translation> = {
           description:
             "开始学习 HTML、CSS、JavaScript。构建个人项目并成长为 React 和 Next.js。",
           achievements: [
-            "交付个人项目,包括 Baca 和 Cyber Bot",
+            "交付个人项目,包括 Baca 和 Hire Ground",
             "通过真实构建学习 React、TypeScript 和 Tailwind",
             "为小型开源仓库做贡献",
           ],
@@ -3989,8 +3996,8 @@ export const translations: Record<Locale, Translation> = {
           stars: "1",
         },
         {
-          name: "cyber-bot",
-          description: "Cybersecurity Q&A bot with instant answers on common security topics.",
+          name: "word-guessing-game",
+          description: "Cybersecurity word-guessing game with color-coded feedback and on-screen keyboard.",
           language: "JavaScript",
           stars: "0",
         },
