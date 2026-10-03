@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Upin — Frontend Engineer & UI/UX Designer | Polyglot Builder",
+  title: "Upin - Frontend Engineer & UI/UX Designer | Polyglot Builder",
   description:
     "Upin is a frontend engineer who designs, builds, and ships responsive and accessible web applications. Fluent in 7 human languages and 16+ programming ones.",
   keywords: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   openGraph: {
-    title: "Upin — Frontend Engineer & UI/UX Designer",
+    title: "Upin - Frontend Engineer & UI/UX Designer",
     description:
       "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones. From database to pixel.",
     siteName: "Upin",
@@ -61,13 +61,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Upin — Frontend Engineer & UI/UX Designer",
+        alt: "Upin - Frontend Engineer & UI/UX Designer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Upin — Frontend Engineer & UI/UX Designer",
+    title: "Upin - Frontend Engineer & UI/UX Designer",
     description:
       "Polyglot frontend engineer & UI/UX designer. Seven human languages, 16+ programming ones.",
     images: ["/og-image.png"],
