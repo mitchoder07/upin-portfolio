@@ -545,9 +545,9 @@ export const translations: Record<Locale, Translation> = {
         },
         {
           name: "Ballykay Ventures",
-          tagline: "Real poultry farm in Kaduna — conversion landing page with WhatsApp-first sales and full brand identity",
+          tagline: "Real poultry farm in Kaduna, conversion landing page with WhatsApp-first sales and full brand identity",
           description:
-            "Ballykay Ventures is a real poultry farm in Kaduna, Nigeria, and this is their full digital presence. A conversion-focused landing page paired with a complete hen logo identity. Every product leads to a prefilled WhatsApp chat because poultry prices change weekly, so the site sells through conversation, not static price tags. Real photos, real video of the birds, real numbers, zero middlemen. The page is designed to load fast on mobile data, guide visitors straight to the WhatsApp chat with prefilled product names, and convert curiosity into a direct conversation with the farm. This is a client project — the repo is private.",
+            "Ballykay Ventures is a real poultry farm in Kaduna, Nigeria, and this is their full digital presence. A conversion-focused landing page paired with a complete hen logo identity. Every product leads to a prefilled WhatsApp chat because poultry prices change weekly, so the site sells through conversation, not static price tags. Real photos, real video of the birds, real numbers, zero middlemen. The page is designed to load fast on mobile data, guide visitors straight to the WhatsApp chat with prefilled product names, and convert curiosity into a direct conversation with the farm. This is a client project, the repo is private.",
           role: "Frontend Engineer & UI/UX Designer",
           impact: "WhatsApp-first conversion flow, hen logo identity, real farm media, mobile-data optimized, client work",
           tech: ["HTML5", "CSS3", "JavaScript"],

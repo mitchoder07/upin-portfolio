@@ -796,12 +796,12 @@ JobBoard.init();
 Stamps.init();`,
   },
 
-  // Ballykay Ventures — WhatsApp-first product flow (HTML/JS)
+  // Ballykay Ventures; WhatsApp-first product flow (HTML/JS)
   {
     language: "javascript",
     filename: "ballykay/whatsapp-flow.js",
     code: `/**
- * Ballykay Ventures — WhatsApp-first product flow.
+ * Ballykay Ventures: WhatsApp-first product flow.
  * Every product leads to a prefilled WhatsApp chat because
  * poultry prices change weekly.
  */
