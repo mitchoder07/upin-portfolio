@@ -163,7 +163,7 @@ function TerminalInner() {
             addOutput("GitHub: github.com/mitchoder07");
             addOutput("Fiverr: fiverr.com/s/lr9QgXy");
             addOutput("X (Twitter): x.com/mitchoder07");
-            addOutput("WhatsApp: wa.me/2347088955340");
+            addOutput("LinkedIn: linkedin.com/in/abdullah-yusuf-83a524440");
             setTimeout(() => scrollToSection("contact"), 300);
             break;
           case "social":
