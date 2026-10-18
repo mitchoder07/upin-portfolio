@@ -105,7 +105,7 @@ export default function ResumePage() {
             </div>
             <div className="mt-1 flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-gray-600 sm:justify-start">
               <a
-                href="https://linkedin.com/in/mitchoder07"
+                href="https://www.linkedin.com/in/abdullah-yusuf-83a524440"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-900"
