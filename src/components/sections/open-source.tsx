@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 const stats = [
   { icon: Github, key: "reposLabel", value: "20+" },
-  { icon: Star, key: "starsLabel", value: "18" },
+  { icon: Star, key: "starsLabel", value: "20+" },
   { icon: Activity, key: "contribsLabel", value: "700+" },
 ] as const;
 
