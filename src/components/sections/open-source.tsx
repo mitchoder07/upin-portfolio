@@ -7,8 +7,8 @@ import { SectionHeading } from "./section-heading";
 import { Button } from "@/components/ui/button";
 
 const stats = [
-  { icon: Github, key: "reposLabel", value: "17" },
-  { icon: Star, key: "starsLabel", value: "8" },
+  { icon: Github, key: "reposLabel", value: "20+" },
+  { icon: Star, key: "starsLabel", value: "18" },
   { icon: Activity, key: "contribsLabel", value: "700+" },
 ] as const;
 
