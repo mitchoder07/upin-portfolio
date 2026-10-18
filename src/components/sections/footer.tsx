@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Mail, Dribbble, Figma } from "lucide-react";
-import { SiX, SiWhatsapp, SiFiverr } from "react-icons/si";
+import { Github, Mail, Dribbble, Figma, Linkedin } from "lucide-react";
+import { SiX, SiFiverr } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { AnimatedLogo } from "@/components/animated-logo";
 
@@ -71,7 +71,7 @@ export function Footer() {
                 { icon: SiX, href: "https://x.com/mitchoder07", label: "X" },
                 { icon: Dribbble, href: "https://dribbble.com/mitchoder07", label: "Dribbble" },
                 { icon: Figma, href: "https://figma.com/@mitchoder07", label: "Figma" },
-                { icon: SiWhatsapp, href: "https://wa.me/2347088955340", label: "WhatsApp" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/abdullah-yusuf-83a524440", label: "LinkedIn" },
                 { icon: Mail, href: "mailto:olaniyiaremu2003@gmail.com", label: "Email" },
               ].map((s) => {
                 const Icon = s.icon;

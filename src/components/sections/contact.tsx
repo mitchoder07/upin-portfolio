@@ -8,12 +8,13 @@ import {
   Download,
   Send,
   Github,
+  Linkedin,
   Dribbble,
   Figma,
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
-import { SiX, SiWhatsapp, SiFiverr } from "react-icons/si";
+import { SiX, SiFiverr } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "./section-heading";
 import { Button } from "@/components/ui/button";
@@ -72,7 +73,7 @@ export function Contact() {
     { icon: SiX, label: "X", href: "https://x.com/mitchoder07" },
     { icon: Dribbble, label: "Dribbble", href: "https://dribbble.com/mitchoder07" },
     { icon: Figma, label: "Figma", href: "https://figma.com/@mitchoder07" },
-    { icon: SiWhatsapp, label: "WhatsApp", href: "https://wa.me/2347088955340" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/abdullah-yusuf-83a524440" },
   ];
 
   return (
@@ -183,20 +184,20 @@ export function Contact() {
             </a>
 
             <a
-              href="https://wa.me/2347088955340"
+              href="https://www.linkedin.com/in/abdullah-yusuf-83a524440"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-3 rounded-2xl glass p-4 transition-all duration-300 hover:border-[var(--magenta)]/30 hover:bg-[var(--magenta)]/5"
               data-cursor="pointer"
             >
               <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--magenta)]/15 text-[var(--magenta)] transition-transform duration-300 group-hover:scale-110">
-                <SiWhatsapp className="h-5 w-5" />
+                <Linkedin className="h-5 w-5" />
               </div>
               <div className="flex-1">
                 <div className="text-xs text-muted-foreground">
-                  WhatsApp
+                  LinkedIn
                 </div>
-                <div className="text-sm font-semibold">+234 708 895 5340</div>
+                <div className="text-sm font-semibold">Abdullah Yusuf</div>
               </div>
               <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-[var(--magenta)]" />
             </a>
