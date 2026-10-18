@@ -404,7 +404,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -960,7 +960,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -1516,7 +1516,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -2071,7 +2071,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -2627,7 +2627,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -3183,7 +3183,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
@@ -3739,7 +3739,7 @@ export const translations: Record<Locale, Translation> = {
           tech: ["Next.js 16", "TypeScript", "Tailwind CSS 4", "shadcn/ui", "Zustand", "TanStack Query", "Recharts"],
           gradient: "linear-gradient(135deg, #006633 0%, #D4AF37 50%, #1a1a2e 100%)",
           confidential: true,
-          liveUrl: "https://alhikmah-lms.vercel.app",
+          liveUrl: "https://www.albashiracademy.com",
         },
         {
           name: "Rafaab",
