@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const stats = [
   { icon: Github, key: "reposLabel", value: "17" },
   { icon: Star, key: "starsLabel", value: "8" },
-  { icon: Activity, key: "contribsLabel", value: "500+" },
+  { icon: Activity, key: "contribsLabel", value: "700+" },
 ] as const;
 
 const languageColors: Record<string, string> = {
