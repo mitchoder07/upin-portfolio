@@ -14,7 +14,7 @@ import {
   ArrowUpRight,
   CheckCircle2,
 } from "lucide-react";
-import { SiX, SiFiverr } from "react-icons/si";
+import { SiX, SiFiverr, SiWhatsapp } from "react-icons/si";
 import { useI18n } from "@/lib/i18n";
 import { SectionHeading } from "./section-heading";
 import { Button } from "@/components/ui/button";
@@ -73,6 +73,7 @@ export function Contact() {
     { icon: SiX, label: "X", href: "https://x.com/mitchoder07" },
     { icon: Dribbble, label: "Dribbble", href: "https://dribbble.com/mitchoder07" },
     { icon: Figma, label: "Figma", href: "https://figma.com/@mitchoder07" },
+    { icon: SiWhatsapp, label: "WhatsApp", href: "https://wa.me/2347088955340" },
     { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/abdullah-yusuf-83a524440" },
   ];
 
