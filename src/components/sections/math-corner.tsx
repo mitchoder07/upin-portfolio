@@ -47,13 +47,13 @@ const PUZZLES: Puzzle[] = [
   },
   {
     question: "you have 3 apples. you take away 2. how many apples do you have?",
-    answer: "2. you took them. the trick is the verb 'take' — you're left holding the 2 you took, not the 1 that remained in the pile.",
+    answer: "2. you took them. the trick is the verb 'take', you're left holding the 2 you took, not the 1 that remained in the pile.",
     hint: "read it carefully",
     source: "a riddle that has angered many",
   },
   {
     question: "what's the only number whose english letter-spelling is in alphabetical order?",
-    answer: "40. 'forty' — f, o, r, t, y. all five letters appear in alphabetical order. no other english number-word has this property.",
+    answer: "40. 'forty': f, o, r, t, y. all five letters appear in alphabetical order. no other english number-word has this property.",
     hint: "it's between 30 and 50",
     source: "trivia that has delighted nerds for decades",
   },
@@ -148,7 +148,7 @@ export function MathCorner() {
         <SectionHeading
           badge="Math & puzzles"
           heading="Frontend by day, math nerd by night."
-          subheading="A little corner for the part of me that geeks out over fibonacci, ramanujan, and riddles that look easy until they aren't. try one below — there's no shame in peeking at the answer."
+          subheading="A little corner for the part of me that geeks out over fibonacci, ramanujan, and riddles that look easy until they aren't. try one below, there's no shame in peeking at the answer."
         />
 
         <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_1.2fr] lg:items-stretch">
