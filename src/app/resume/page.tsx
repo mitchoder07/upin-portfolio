@@ -110,16 +110,16 @@ export default function ResumePage() {
                 rel="noopener noreferrer"
                 className="hover:text-gray-900"
               >
-                linkedin.com/in/mitchoder07
+                linkedin.com/in/abdullah-yusuf-83a524440
               </a>
               <span className="text-gray-300">|</span>
               <a
-                href="https://wa.me/2347088955340"
+                href="https://www.fiverr.com/s/lr9QgXy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-gray-900"
               >
-                WhatsApp
+                Fiverr
               </a>
             </div>
           </div>
