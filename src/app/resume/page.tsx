@@ -134,7 +134,7 @@ export default function ResumePage() {
             Frontend Engineer and UI/UX Designer with 5+ years of experience
             turning ideas into interfaces users love. Skilled in Next.js,
             TypeScript, Tailwind CSS, and Figma. I design and build production
-            web applications with design systems, responsive layouts, and
+            web applications with design system, responsive layouts, and
             accessible components. Seeking roles where I can own both design
             and implementation.
           </p>
