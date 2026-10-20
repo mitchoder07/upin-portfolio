@@ -250,7 +250,7 @@ function ComicBubble({
   );
 }
 
-// A single playful "pew pew" streak — darts once across the background,
+// A single playful "pew pew" streak, darts once across the background,
 // popping up a comic-style caption as it fires, then goes idle for a while
 // before firing again. Paths are kept on the right/upper side of the scene
 // (positive x, away from the text column on the left) so the trail never
