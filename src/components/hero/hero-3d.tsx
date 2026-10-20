@@ -35,7 +35,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // sits ABOVE the hero text (z-30 vs z-10). All ComicBubble <Html> elements
 // portal into this div instead of the canvas's default container (which is
 // at z-0, below the hero text). This is what makes the tank/man/shooting-
-// star captions visible on mobile — without it, the bubbles render inside
+// star captions visible on mobile, without it, the bubbles render inside
 // the z-0 canvas container and get covered by the z-10 hero content.
 const CaptionPortalContext = createContext<MutableRefObject<HTMLDivElement | null> | null>(null);
 
@@ -191,12 +191,12 @@ function MouseParallax() {
 // Three size tiers:
 //   - "normal": shooting star captions (compact)
 //   - "large": reactive shape captions (bigger)
-//   - "tank": tank captions — biggest & boldest, sized to be readable on
+//   - "tank": tank captions, biggest & boldest, sized to be readable on
 //             mobile through desktop. On mobile we use text-base (16px)
 //             rather than text-sm (14px) so the longest caption
 //             "don't mind me, read on" is comfortably readable when the
 //             bubble is rotated. Still fits inside a 360px viewport.
-// `rotate` lets each instance choose its tilt — the tank bubble uses a
+// `rotate` lets each instance choose its tilt, the tank bubble uses a
 // gentler -3° (vs the comic -6° on shooting stars) so the longer tank
 // messages stay closer to horizontal and easier to read at small sizes.
 function ComicBubble({
@@ -217,7 +217,7 @@ function ComicBubble({
       ? "text-sm sm:text-lg md:text-xl font-black px-4 py-2 sm:px-5 sm:py-2.5"
       : "text-sm sm:text-base md:text-lg font-bold px-3 py-1.5 sm:px-4 sm:py-2";
 
-  // Portal ref — when provided (via CaptionPortalContext), all <Html>
+  // Portal ref, when provided (via CaptionPortalContext), all <Html>
   // elements render into this high-z-index div instead of the canvas's
   // default container. This puts the captions ABOVE the hero text (z-30
   // vs z-10) so they're always visible on mobile.
@@ -349,7 +349,7 @@ function ShootingStars() {
 }
 
 // The comic relief: a little shape that periodically "gets hit" by a
-// passing shot, panics, and bolts away in a full dramatic overreaction —
+// passing shot, panics, and bolts away in a full dramatic overreaction,
 // before sheepishly sneaking back to its spot a moment later. Runs on a
 // fixed loop rather than true collision detection, so the timing is always
 // predictable and never chaotic.
@@ -448,12 +448,12 @@ function ReactiveShape({
 // Tank that slowly passes through the scene with sequential comic messages.
 //
 // DESIGN GOALS (per user spec):
-//   1. Crosses the screen SLOWLY — 32 seconds end-to-end at a constant,
+//   1. Crosses the screen SLOWLY, 32 seconds end-to-end at a constant,
 //      readable pace (no eased-in-out jerky bits in the middle that rush
 //      past the copy).
 //   2. Each caption is shown for ~4 seconds so the user can actually read
 //      every word on both mobile and desktop before the next one swaps in.
-//   3. ALL captions are shown before the tank exits — the last one ("bye!")
+//   3. ALL captions are shown before the tank exits, the last one ("bye!")
 //      is held until the tank has fully left the frame at every viewport.
 //   4. Tank itself is a proper-looking military vehicle: hull, sloped
 //      glacis plate, turret with hatch + commander stub, long cannon,
@@ -465,7 +465,7 @@ function ReactiveShape({
 //      BEFORE the tank enters the frame. The announcement bubble is
 //      rendered separately at a fixed top-center position so it is always
 //      readable while the tank is still off-screen entering.
-//   7. The tank-anchored bubble uses a SMOOTH SIDE-FLIP — when the tank
+//   7. The tank-anchored bubble uses a SMOOTH SIDE-FLIP, when the tank
 //      is on the left half of the screen, the bubble sits to the RIGHT
 //      of the tank; when the tank is on the right half, the bubble sits
 //      to the LEFT. This keeps the bubble closer to the screen center
@@ -477,7 +477,7 @@ function ReactiveShape({
 //      world units). Tank enters mobile view at t ≈ 4.5s, exits at t ≈ 24.9s,
 //      so every message gets its full 4-second read.
 
-// Module-level timing constants — shared between Tank (movement), the
+// Module-level timing constants, shared between Tank (movement), the
 // tank-anchored follow bubble, and TankCaption (the announcement bubble),
 // and the Tanjiro man.
 //
@@ -493,7 +493,7 @@ function ReactiveShape({
 // All scene elements use the same `elapsed % SCENE_CYCLE` clock so they
 // stay in sync automatically.
 //
-// Tanjiro phase breakdown (12.5 seconds total — extended from 7.5s after
+// Tanjiro phase breakdown (12.5 seconds total, extended from 7.5s after
 // user feedback that it was "going too fast" and the wink wasn't visible):
 //   Phase 1 (enter, 4s)   : X: -8 → 0, Y bobs in a sine wave. Bubble shows
 //                            "puteri!" then "puteri!!".
@@ -501,7 +501,7 @@ function ReactiveShape({
 //                            a clearly visible wink (extended from 1.5s
 //                            to 2.5s so the wink is unmissable).
 //   Phase 3 (post-wink, 2s): Still at X = 0. Bubble shows
-//                            "puteri di mana" — Tanjiro looking around
+//                            "puteri di mana", Tanjiro looking around
 //                            for his brother.
 //   Phase 4 (exit, 4s)    : X: 0 → 8, Y bobs in a sine wave. Bubble
 //                            shows "puteri!!!" as he runs off-screen.
@@ -512,7 +512,7 @@ const TANK_END_X = 8;
 const TANK_Y_POS = -1.2;
 const TANK_Z_POS = -1.5;
 
-// Tanjiro man timing — enters 3s after the tank fully exits the path,
+// Tanjiro man timing, enters 3s after the tank fully exits the path,
 // runs for 12.5s, then 7.5s of rest before the cycle loops.
 const TANJIRO_START = 35; // t=35s, 3s after tank finishes at t=32s
 const TANJIRO_ENTER_DURATION = 4;   // 4s enter (slower, was 3s)
@@ -522,12 +522,12 @@ const TANJIRO_EXIT_DURATION = 4;   // 4s exit (slower, was 3s)
 const TANJIRO_END = TANJIRO_START + TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION + TANJIRO_EXIT_DURATION; // = 47.5s
 
 // 6 messages total:
-//   - Message 1 ("TANK INCOMING!") at t=0–4s is the ANNOUNCEMENT — rendered
+//   - Message 1 ("TANK INCOMING!") at t=0–4s is the ANNOUNCEMENT, rendered
 //     by TankCaption at a fixed top-center position (tank still entering).
 //   - Messages 2–6 are the tank's "dialogue" while it visibly crosses the
-//     screen — rendered by the tank-anchored bubble inside the Tank group.
+//     screen, rendered by the tank-anchored bubble inside the Tank group.
 // "this is kinda sick ngl" is the playful message inserted before
-// "almost there" — the tank complimenting the site as it passes through
+// "almost there", the tank complimenting the site as it passes through
 // (modern casual slang, puts a smile on the viewer's face).
 const TANK_MESSAGES = [
   { at: 0, text: "TANK INCOMING!" },
@@ -548,9 +548,9 @@ function Tank() {
   // ("TANK INCOMING!") is handled separately by TankCaption.
   const [caption, setCaption] = useState<string | null>(null);
   const lastMsgRef = useRef<string | null>(null);
-  // Bubble wrapper group — its X position is updated IMPERATIVELY every
+  // Bubble wrapper group, its X position is updated IMPERATIVELY every
   // frame via this ref (no React state, no re-renders). This is what makes
-  // the bubble glide smoothly with the tank on mobile — previously the
+  // the bubble glide smoothly with the tank on mobile, previously the
   // bubble's offset was React state that only committed when the value had
   // moved by ≥0.2 world units, which caused visible "stepping" / lag on
   // mobile (the bubble would jump every ~0.4s instead of moving
@@ -561,12 +561,12 @@ function Tank() {
   // Viewport-dependent side-flip behaviour. Mobile portrait has a very
   // narrow visible x range (~±3.03 world units, vs ~±6.3 on desktop) so
   // the bubble would get clipped at the screen edges when the tank is
-  // near either side. On mobile we use multiplier 1.0 + clamp ±5 — the
+  // near either side. On mobile we use multiplier 1.0 + clamp ±5, the
   // bubble's world X cancels out the tank's X for tankX ∈ [-5, 5], so
   // the bubble stays at the screen center (always visible) and only
   // drifts toward the tank when the tank is at the very edges. On
   // desktop / tablet the wider visible range gives the bubble room to
-  // actually follow the tank, so we use multiplier 0.5 + clamp ±2.5 —
+  // actually follow the tank, so we use multiplier 0.5 + clamp ±2.5,
   // the bubble trails the tank at half amplitude, giving the proper
   // "tank is saying it" feel without getting clipped.
   const { size } = useThree();
@@ -583,7 +583,7 @@ function Tank() {
     // period so the tank sits just off-screen before looping.
     const progress = t < TANK_CROSS_DURATION ? t / TANK_CROSS_DURATION : 1;
 
-    // Pure linear interpolation — no easing — so the tank never "rushes"
+    // Pure linear interpolation, no easing, so the tank never "rushes"
     // through the middle and the caption timing stays predictable.
     groupRef.current.position.x = TANK_START_X + (TANK_END_X - TANK_START_X) * progress;
     groupRef.current.position.y = TANK_Y_POS;
@@ -608,14 +608,14 @@ function Tank() {
     // When tank is far right (X > 0), bubble sits to the left of the tank
     // (negative offset, towards screen center).
     // The multiplier and maxOffset are viewport-dependent (see comments
-    // above the function) — mobile uses multiplier=1.0 / clamp=5 so the
+    // above the function), mobile uses multiplier=1.0 / clamp=5 so the
     // bubble's X cancels out the tank's X and stays at screen center
     // (preventing clipping in mobile's narrow visible-x window), while
     // desktop uses multiplier=0.5 / clamp=2.5 so the bubble trails the
     // tank at half amplitude for the "tank is saying it" feel.
     //
     // IMPERATIVE: write directly to the bubble group's position.x every
-    // frame — no React state, no re-renders, perfectly smooth on mobile.
+    // frame, no React state, no re-renders, perfectly smooth on mobile.
     const tankX = groupRef.current.position.x;
     const targetOffset = Math.max(
       -bubbleMaxOffset,
@@ -645,7 +645,7 @@ function Tank() {
     }
   });
 
-  // Military green palette — high metalness for the metal bits, matte
+  // Military green palette, high metalness for the metal bits, matte
   // for the rubber tracks/wheels, slightly emissive so the tank reads
   // against the dark space background without being a flat silhouette.
   const hullColor = "#3f5c3a";
@@ -666,7 +666,7 @@ function Tank() {
   return (
     <group ref={groupRef} position={[TANK_START_X, TANK_Y_POS, TANK_Z_POS]}>
       {/* ---------- Hull ---------- */}
-      {/* Lower hull — main box */}
+      {/* Lower hull, main box */}
       <mesh position={[0, 0, 0]} castShadow receiveShadow>
         <boxGeometry args={[2.2, 0.5, 1.3]} />
         <meshStandardMaterial {...metalMat(hullColor)} />
@@ -678,13 +678,13 @@ function Tank() {
         <meshStandardMaterial {...metalMat(hullColor, { rough: 0.5 })} />
       </mesh>
 
-      {/* Rear deck — flat sloped plate at the back */}
+      {/* Rear deck, flat sloped plate at the back */}
       <mesh position={[-1.15, 0.18, 0]} rotation={[0, 0, Math.PI / 4.5]} castShadow>
         <boxGeometry args={[0.55, 0.5, 1.25]} />
         <meshStandardMaterial {...metalMat(hullColor, { rough: 0.5 })} />
       </mesh>
 
-      {/* Fenders / side skirts over the tracks — left + right */}
+      {/* Fenders / side skirts over the tracks, left + right */}
       <mesh position={[0, -0.05, 0.78]} castShadow>
         <boxGeometry args={[2.3, 0.08, 0.25]} />
         <meshStandardMaterial {...metalMat(trimColor, { rough: 0.7 })} />
@@ -700,12 +700,12 @@ function Tank() {
         <cylinderGeometry args={[0.55, 0.6, 0.15, 16]} />
         <meshStandardMaterial {...metalMat(trimColor, { rough: 0.4 })} />
       </mesh>
-      {/* Turret body — slab-sided, slightly tapered front */}
+      {/* Turret body, slab-sided, slightly tapered front */}
       <mesh position={[0.05, 0.55, 0]} castShadow>
         <boxGeometry args={[1.1, 0.4, 1.0]} />
         <meshStandardMaterial {...metalMat(turretColor)} />
       </mesh>
-      {/* Sloped front of turret — looks armored */}
+      {/* Sloped front of turret, looks armored */}
       <mesh position={[0.62, 0.55, 0]} rotation={[0, 0, -Math.PI / 5]} castShadow>
         <boxGeometry args={[0.4, 0.4, 1.0]} />
         <meshStandardMaterial {...metalMat(turretColor, { rough: 0.5 })} />
@@ -723,24 +723,24 @@ function Tank() {
       </mesh>
 
       {/* ---------- Main gun ---------- */}
-      {/* Gun mantlet — block where barrel meets turret */}
+      {/* Gun mantlet, block where barrel meets turret */}
       <mesh position={[1.0, 0.55, 0]} castShadow>
         <boxGeometry args={[0.3, 0.3, 0.3]} />
         <meshStandardMaterial {...metalMat(trimColor, { rough: 0.4 })} />
       </mesh>
-      {/* Main barrel — long cylinder */}
+      {/* Main barrel, long cylinder */}
       <mesh position={[1.85, 0.55, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
         <cylinderGeometry args={[0.07, 0.08, 1.5, 16]} />
         <meshStandardMaterial {...metalMat(barrelColor, { rough: 0.35 })} />
       </mesh>
-      {/* Muzzle brake — slight bulge at the end */}
+      {/* Muzzle brake, slight bulge at the end */}
       <mesh position={[2.62, 0.55, 0]} rotation={[0, 0, Math.PI / 2]} castShadow>
         <cylinderGeometry args={[0.1, 0.1, 0.18, 16]} />
         <meshStandardMaterial {...metalMat(barrelColor, { rough: 0.3 })} />
       </mesh>
 
       {/* ---------- Tracks + road wheels ---------- */}
-      {/* Track base — long rounded box running along each side */}
+      {/* Track base, long rounded box running along each side */}
       <mesh position={[0, -0.18, 0.7]} castShadow>
         <boxGeometry args={[2.4, 0.32, 0.18]} />
         <meshStandardMaterial
@@ -762,7 +762,7 @@ function Tank() {
         />
       </mesh>
 
-      {/* Road wheels — 5 per side, evenly spaced. Wheels SPIN on their
+      {/* Road wheels. 5 per side, evenly spaced. Wheels SPIN on their
           local X axis (cylinder default axis is Y, so we rotate the mesh
           90° on Z to lay it on its side, then spin on X to roll). */}
       {[-0.8, -0.4, 0, 0.4, 0.8].map((xOff, i) => (
@@ -802,7 +802,7 @@ function Tank() {
         </group>
       ))}
 
-      {/* Drive sprockets — slightly bigger, at the rear of each track */}
+      {/* Drive sprockets, slightly bigger, at the rear of each track */}
       <mesh position={[-1.05, -0.15, 0.7]} rotation={[0, 0, Math.PI / 2]} castShadow>
         <cylinderGeometry args={[0.22, 0.22, 0.14, 10]} />
         <meshStandardMaterial {...metalMat("#1a1f12", { rough: 0.4 })} />
@@ -829,13 +829,13 @@ function Tank() {
         <meshStandardMaterial color="#1a1a1a" roughness={0.8} metalness={0.4} />
       </mesh>
 
-      {/* Antenna — thin tall stick on the turret */}
+      {/* Antenna, thin tall stick on the turret */}
       <mesh position={[0.45, 1.2, 0.3]}>
         <cylinderGeometry args={[0.012, 0.018, 1.0, 6]} />
         <meshStandardMaterial color="#0a0a0a" roughness={0.5} metalness={0.6} />
       </mesh>
 
-      {/* Headlight — small emissive disc on the glacis */}
+      {/* Headlight, small emissive disc on the glacis */}
       <mesh position={[1.32, 0.1, 0.35]} rotation={[0, 0, Math.PI / 2]}>
         <cylinderGeometry args={[0.06, 0.06, 0.04, 12]} />
         <meshStandardMaterial
@@ -847,12 +847,12 @@ function Tank() {
       </mesh>
 
       {/* ---------- Follow-message speech bubble ----------
-          Anchored to the tank group so it MOVES WITH the tank — visually
+          Anchored to the tank group so it MOVES WITH the tank, visually
           reads as the tank itself saying each line ("passing through",
           "don't mind me, read on", etc). The horizontal X offset is set
           IMPERATIVELY every frame via bubbleGroupRef (no React state,
           no re-renders) so the bubble glides smoothly with the tank on
-          mobile — previously the throttled state caused visible
+          mobile, previously the throttled state caused visible
           "stepping" every ~0.4s as the bubble jumped to its new offset.
           Vertical offset y=1.6 puts the bubble's anchor well above the
           turret (the turret top is at y≈0.78), giving the bubble room to
@@ -869,7 +869,7 @@ function Tank() {
   );
 }
 
-// Tank caption bubble — the "TANK INCOMING!" announcement, rendered at a
+// Tank caption bubble, the "TANK INCOMING!" announcement, rendered at a
 // FIXED world position above the hero copy. Decoupled from the tank mesh
 // because the announcement is meant to play BEFORE the tank enters the
 // frame (tank still off-screen on mobile, just entering on desktop).
@@ -882,10 +882,10 @@ function Tank() {
 // Responsive Y position: on narrow (mobile portrait) viewports the camera
 // pulls back to z=11 with a wider 62° vFOV, so the visible world-y range
 // is roughly ±6.6. We position the bubble at y=5.4 on mobile so it
-// projects into the top ~18% of the viewport — clear of the hero badge
+// projects into the top ~18% of the viewport, clear of the hero badge
 // at pt-28 (112px from top). On wide (desktop/tablet) viewports the
 // camera is at z=8 with 45° vFOV, visible y range ±3.31; we use y=2.5
-// so the bubble sits just below the navbar (88px) — Lands in the empty
+// so the bubble sits just below the navbar (88px), Lands in the empty
 // space between the navbar bottom and the hero badge (which is on the
 // left, so no horizontal overlap with the centered bubble).
 function TankCaption() {
@@ -922,7 +922,7 @@ function TankCaption() {
   );
 }
 
-// Tanjiro man — a chibi-style character with an oversized head who enters
+// Tanjiro man, a chibi-style character with an oversized head who enters
 // from the left 3 seconds after the tank exits, runs across the hero
 // section shouting "puteri!", pauses at the center to wink at the viewer,
 // then continues shouting and exits on the right.
@@ -943,7 +943,7 @@ function TankCaption() {
 // during wink) / "puteri!!" / "puteri!!!".
 //
 // Imperial refs (groupRef, leg/arm/eye refs) are updated every frame
-// with zero React state — same pattern as the tank bubble, so the
+// with zero React state, same pattern as the tank bubble, so the
 // running motion is perfectly smooth on mobile.
 function TanjiroMan() {
   const groupRef = useRef<THREE.Group>(null);
@@ -964,7 +964,7 @@ function TanjiroMan() {
   // Bubble messages across the running phase. The wink itself has NO
   // bubble (the wink is the action). After the wink, the man says
   // "puteri di mana" (Malay transliteration of "where is puteri?")
-  // — Puteri looking around for his brother — and then shouts
+  //, Puteri looking around for his brother, and then shouts
   // "puteri!!!" as he runs off-screen.
   const messages = [
     { at: TANJIRO_START, text: "puteri!" },         // 35 → 37
@@ -1007,7 +1007,7 @@ function TanjiroMan() {
       // Phase 1: enter from left, run to center.
       const phase = localT / TANJIRO_ENTER_DURATION; // 0 → 1
       x = -8 + phase * 8; // -8 → 0
-      // Sine-wave Y for "running around" feel — one full wave during enter.
+      // Sine-wave Y for "running around" feel, one full wave during enter.
       yBob = 1.2 * Math.sin(phase * Math.PI * 2);
     } else if (localT < TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION) {
       // Phase 2: pause at center, wink.
@@ -1016,15 +1016,15 @@ function TanjiroMan() {
       yBob = 0;
       const pausePhase = (localT - TANJIRO_ENTER_DURATION) / TANJIRO_PAUSE_DURATION;
       // Wink: eye closes during the middle 75% of the (now 2.5s) pause,
-      // so the closed-eye state lasts ~1.9s — clearly visible.
+      // so the closed-eye state lasts ~1.9s, clearly visible.
       winkClosed = pausePhase > 0.125 && pausePhase < 0.875;
     } else if (localT < TANJIRO_ENTER_DURATION + TANJIRO_PAUSE_DURATION + TANJIRO_POST_WINK_DURATION) {
-      // Phase 3: post-wink — still at center, looking around, bubble
+      // Phase 3: post-wink, still at center, looking around, bubble
       // says "puteri di mana".
       isPostWink = true;
       x = 0;
       yBob = 0;
-      // Small "looking around" rotation — head turns slightly left/right.
+      // Small "looking around" rotation, head turns slightly left/right.
       // (No body movement, just a subtle head swivel via rotation.z.)
       // The body stays facing the viewer so the bubble is readable.
     } else {
@@ -1036,7 +1036,7 @@ function TanjiroMan() {
 
     groupRef.current.position.x = x;
     // Body bob for running. When paused (wink) or post-wink (looking around),
-    // the man stands still — no bob.
+    // the man stands still, no bob.
     const isRunningMotion = !isPaused && !isPostWink;
     groupRef.current.position.y = -1.0 + yBob + (isRunningMotion ? Math.abs(Math.sin(elapsed * 12)) * 0.08 : 0);
     groupRef.current.position.z = -1.0;
@@ -1046,7 +1046,7 @@ function TanjiroMan() {
     // delivered to the viewer, not off to the side).
     groupRef.current.rotation.y = (isPaused || isPostWink) ? 0 : -Math.PI / 2;
 
-    // Subtle head swivel during the post-wink phase — the man glances
+    // Subtle head swivel during the post-wink phase, the man glances
     // left/right as if scanning for Tanjiro.
     if (isPostWink) {
       const lookPhase = (localT - TANJIRO_ENTER_DURATION - TANJIRO_PAUSE_DURATION) / TANJIRO_POST_WINK_DURATION;
@@ -1054,7 +1054,7 @@ function TanjiroMan() {
       groupRef.current.rotation.y = Math.sin(lookPhase * Math.PI * 4) * 0.35;
     }
 
-    // Running animation — legs and arms swing in opposite phases.
+    // Running animation, legs and arms swing in opposite phases.
     // When paused/post-wink, limbs ease back to neutral.
     const targetSwing = isRunningMotion ? Math.sin(elapsed * 12) * 0.6 : 0;
     if (leftLegRef.current) leftLegRef.current.rotation.x = targetSwing;
@@ -1062,7 +1062,7 @@ function TanjiroMan() {
     if (leftArmRef.current) leftArmRef.current.rotation.x = -targetSwing;
     if (rightArmRef.current) rightArmRef.current.rotation.x = targetSwing;
 
-    // Wink — smoothly close the right eye (scale Y → 0.05 for a clearly
+    // Wink, smoothly close the right eye (scale Y → 0.05 for a clearly
     // visible wink, was 0.1 which was too subtle to notice).
     if (rightEyeGroupRef.current) {
       const targetScaleY = winkClosed ? 0.05 : 1;
@@ -1094,7 +1094,7 @@ function TanjiroMan() {
   // Tanjiro's palette:
   //   • Hair: dark charcoal with red tips at the front (his signature look)
   //   • Haori: dark teal with a lighter checker-pattern band (simplified as
-  //     a single strip here — full checker would require texture work)
+  //     a single strip here, full checker would require texture work)
   //   • Pants: very dark grey
   //   • Skin: warm light tone
   //   • Hanafuda earrings: gold rectangles hanging at the sides of the head
@@ -1108,14 +1108,14 @@ function TanjiroMan() {
 
   return (
     <group ref={groupRef} position={[-8, -1.0, -1.0]} visible={false}>
-      {/* ===== BIG HEAD (chibi proportions — head ~1 unit, body ~0.8 unit) ===== */}
+      {/* ===== BIG HEAD (chibi proportions, head ~1 unit, body ~0.8 unit) ===== */}
       <group position={[0, 1.0, 0]}>
-        {/* Hair back — dark sphere */}
+        {/* Hair back, dark sphere */}
         <mesh position={[0, 0, -0.05]} castShadow>
           <sphereGeometry args={[0.5, 16, 16]} />
           <meshStandardMaterial color={hairColor} roughness={0.7} metalness={0.1} />
         </mesh>
-        {/* Hair front-top — red tips (Tanjiro's signature) */}
+        {/* Hair front-top, red tips (Tanjiro's signature) */}
         <mesh position={[0, 0.35, 0.15]} castShadow>
           <sphereGeometry args={[0.18, 12, 12]} />
           <meshStandardMaterial
@@ -1125,13 +1125,13 @@ function TanjiroMan() {
             emissiveIntensity={0.15}
           />
         </mesh>
-        {/* Face — skin-colored sphere, slightly smaller, pushed forward */}
+        {/* Face, skin-colored sphere, slightly smaller, pushed forward */}
         <mesh position={[0, -0.05, 0.12]} castShadow>
           <sphereGeometry args={[0.42, 16, 16]} />
           <meshStandardMaterial color={skinColor} roughness={0.8} />
         </mesh>
 
-        {/* Left eye (always open) — BIG so the wink on the right eye is
+        {/* Left eye (always open), BIG so the wink on the right eye is
             clearly visible by comparison. White sphere + dark pupil. */}
         <group position={[-0.15, -0.02, 0.42]}>
           <mesh>
@@ -1143,7 +1143,7 @@ function TanjiroMan() {
             <meshStandardMaterial color="#1a1a2e" />
           </mesh>
         </group>
-        {/* Right eye — wrapped in a group whose scale.y is animated for
+        {/* Right eye, wrapped in a group whose scale.y is animated for
             the wink. Same size as the left eye so the wink (eye
             flattening to a thin line) is unmissable. */}
         <group ref={rightEyeGroupRef} position={[0.15, -0.02, 0.42]}>
@@ -1157,13 +1157,13 @@ function TanjiroMan() {
           </mesh>
         </group>
 
-        {/* Mouth — small dark sphere, looks like shouting */}
+        {/* Mouth, small dark sphere, looks like shouting */}
         <mesh position={[0, -0.22, 0.42]}>
           <sphereGeometry args={[0.05, 10, 10]} />
           <meshStandardMaterial color="#2c1810" />
         </mesh>
 
-        {/* Hanafuda earrings — gold rectangles hanging on both sides of the head */}
+        {/* Hanafuda earrings, gold rectangles hanging on both sides of the head */}
         <mesh position={[-0.5, 0.05, 0]}>
           <boxGeometry args={[0.04, 0.12, 0.08]} />
           <meshStandardMaterial
@@ -1186,18 +1186,18 @@ function TanjiroMan() {
         </mesh>
       </group>
 
-      {/* ===== Body — small dark teal haori (Tanjiro's signature jacket) ===== */}
+      {/* ===== Body, small dark teal haori (Tanjiro's signature jacket) ===== */}
       <mesh position={[0, 0.25, 0]} castShadow>
         <boxGeometry args={[0.5, 0.55, 0.35]} />
         <meshStandardMaterial color={haoriColor} roughness={0.7} />
       </mesh>
-      {/* Checker-pattern strip on the haori — simplified as a thin lighter band */}
+      {/* Checker-pattern strip on the haori, simplified as a thin lighter band */}
       <mesh position={[0, 0.25, 0.18]}>
         <boxGeometry args={[0.5, 0.15, 0.01]} />
         <meshStandardMaterial color={haoriPatternColor} roughness={0.8} />
       </mesh>
 
-      {/* ===== Arms — two small cylinders that swing during running ===== */}
+      {/* ===== Arms, two small cylinders that swing during running ===== */}
       <mesh ref={leftArmRef} position={[-0.32, 0.35, 0]}>
         <cylinderGeometry args={[0.07, 0.07, 0.4, 8]} />
         <meshStandardMaterial color={haoriColor} roughness={0.7} />
@@ -1207,7 +1207,7 @@ function TanjiroMan() {
         <meshStandardMaterial color={haoriColor} roughness={0.7} />
       </mesh>
 
-      {/* ===== Legs — two small cylinders, swing opposite phases ===== */}
+      {/* ===== Legs, two small cylinders, swing opposite phases ===== */}
       <mesh ref={leftLegRef} position={[-0.15, -0.15, 0]}>
         <cylinderGeometry args={[0.08, 0.08, 0.4, 8]} />
         <meshStandardMaterial color={pantsColor} roughness={0.8} />
@@ -1217,7 +1217,7 @@ function TanjiroMan() {
         <meshStandardMaterial color={pantsColor} roughness={0.8} />
       </mesh>
 
-      {/* ===== Speech bubble — anchored above the big head ===== */}
+      {/* ===== Speech bubble, anchored above the big head ===== */}
       <ComicBubble
         text={caption}
         size="tank"
@@ -1234,7 +1234,7 @@ function ResponsiveCamera() {
     const aspect = size.width / size.height;
     const cam = camera as THREE.PerspectiveCamera;
     if (aspect < 0.9) {
-      // Narrow/portrait viewport (most phones) — pull the camera back and
+      // Narrow/portrait viewport (most phones), pull the camera back and
       // widen the FOV so shapes spread across x aren't cramped or clipped.
       cam.fov = 62;
       cam.position.z = 11;
@@ -1334,7 +1334,7 @@ export function Hero3DScene({
         <MouseParallax />
       </Suspense>
 
-      {/* Generated procedurally, in-browser, via WebGL — no network fetch,
+      {/* Generated procedurally, in-browser, via WebGL, no network fetch,
           so it can never fail to load regardless of CDN/network conditions.
           This is what gives the metallic shapes their reflections/highlights;
           previously this used Environment preset="night", which fetched an
